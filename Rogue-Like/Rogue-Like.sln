@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rogue-Like", "Rogue-Like\Rogue-Like.csproj", "{399AA49F-2347-432C-BD64-B7126948D293}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{399AA49F-2347-432C-BD64-B7126948D293}.Debug|x86.ActiveCfg = Debug|x86
+		{399AA49F-2347-432C-BD64-B7126948D293}.Debug|x86.Build.0 = Debug|x86
+		{399AA49F-2347-432C-BD64-B7126948D293}.Release|x86.ActiveCfg = Release|x86
+		{399AA49F-2347-432C-BD64-B7126948D293}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB1C1AE6-8894-410B-AFCC-9B89234D5635}
+	EndGlobalSection
+EndGlobal
