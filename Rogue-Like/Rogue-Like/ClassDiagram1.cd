@@ -73,7 +73,7 @@
   <Class Name="Rogue_Like.RoomManager">
     <Position X="3" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>RoomManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -89,6 +89,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Component.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rogue_Like.State">
+    <Position X="4.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAgBBAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>State.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

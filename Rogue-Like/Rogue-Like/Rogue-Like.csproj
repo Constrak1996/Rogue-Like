@@ -56,6 +56,7 @@
     <Compile Include="Rooms\Room3.cs" />
     <Compile Include="Rooms\Room4.cs" />
     <Compile Include="RoomManager.cs" />
+    <Compile Include="State.cs" />
     <Compile Include="Ënemy.cs" />
   </ItemGroup>
   <ItemGroup>
