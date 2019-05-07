@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Rogue_Like
 {
@@ -12,10 +13,23 @@ namespace Rogue_Like
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        private TimeSpan timeSinceStart;
+        private State _currentState;
+        private State _nextState;
+        private float time;
+        public static int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+        public static int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+        public void ChangeState(State state)
+        {
+            _nextState = state;
+        }
+
         public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = Width;
+            graphics.PreferredBackBufferHeight = Height;
         }
 
         /// <summary>
@@ -39,7 +53,7 @@ namespace Rogue_Like
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            _currentState = new Map1(this, GraphicsDevice, Content);
             // TODO: use this.Content to load your game content here
         }
 
@@ -61,7 +75,16 @@ namespace Rogue_Like
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            if (_nextState != null)
+            {
+                _currentState = _nextState;
+                _nextState = null;
+            }
+            _currentState.Update(gameTime);
+            _currentState.PostUpdate(gameTime);
 
+            timeSinceStart += gameTime.ElapsedGameTime;
+            time = (int)timeSinceStart.Seconds;
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -74,7 +97,7 @@ namespace Rogue_Like
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            _currentState.Draw(gameTime, spriteBatch);
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

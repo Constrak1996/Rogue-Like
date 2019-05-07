@@ -3,7 +3,7 @@
   <Class Name="Rogue_Like.Player">
     <Position X="8" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAgAAAABIIAQAAAAEAAAAAAAAAAACAAA=</HashCode>
       <FileName>Player\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -28,38 +28,38 @@
       <FileName>MVC\View.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Rogue_Like.Room1">
+  <Class Name="Rogue_Like.Map1">
     <Position X="0.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Rooms\Room1.cs</FileName>
+      <HashCode>AAQAEAAABAAAAiAQAABAAEAAAQAAABABAAQAAAACAAA=</HashCode>
+      <FileName>Rooms\Map1.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Rogue_Like.Room2">
+  <Class Name="Rogue_Like.Map2">
     <Position X="0.5" Y="2.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Rooms\Room2.cs</FileName>
+      <FileName>Rooms\Map2.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Rogue_Like.Room3">
+  <Class Name="Rogue_Like.Map3">
     <Position X="0.5" Y="4.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Rooms\Room3.cs</FileName>
+      <FileName>Rooms\Map3.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Rogue_Like.Room4">
+  <Class Name="Rogue_Like.Map4">
     <Position X="3.25" Y="4.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Rooms\Room4.cs</FileName>
+      <FileName>Rooms\Map4.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.GameObject">
     <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>CAwAAAAAAgAAAgAgAAAAIAAAAAAAAgAAAAQAAAAIAAA=</HashCode>
       <FileName>GameObject.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -96,6 +96,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Shop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rogue_Like.EndScreen">
+    <Position X="6" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EndScreen.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
