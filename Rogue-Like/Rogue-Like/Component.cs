@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Rogue_Like
 {
-    public class Player : GameObject
+    public class Component
     {
     }
 }
