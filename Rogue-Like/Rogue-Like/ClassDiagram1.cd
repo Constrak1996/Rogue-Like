@@ -1,101 +1,101 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Rogue_Like.Player">
-    <Position X="7" Y="2.25" Width="1.5" />
+    <Position X="8" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Player\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.Model">
-    <Position X="9.75" Y="0.75" Width="1.5" />
+    <Position X="11.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAACAAAAAAAg=</HashCode>
       <FileName>MVC\Model.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.Controller">
-    <Position X="9.75" Y="3.25" Width="1.5" />
+    <Position X="10" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
       <FileName>MVC\Controller.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.View">
-    <Position X="9.75" Y="2" Width="1.5" />
+    <Position X="11.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MVC\View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.Room1">
-    <Position X="0.75" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Rooms\Room1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.Room2">
-    <Position X="0.75" Y="1.75" Width="1.5" />
+    <Position X="0.5" Y="2.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Rooms\Room2.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.Room3">
-    <Position X="0.75" Y="3" Width="1.5" />
+    <Position X="0.5" Y="4.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Rooms\Room3.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.Room4">
-    <Position X="0.75" Y="4.25" Width="1.5" />
+    <Position X="3.25" Y="4.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Rooms\Room4.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.GameObject">
-    <Position X="5.25" Y="0.5" Width="1.5" />
+    <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObject.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.Ënemy">
-    <Position X="4.25" Y="2.25" Width="1.5" />
+    <Position X="6" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Ënemy.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Rogue_Like.RoomManager">
-    <Position X="3" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>RoomManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Rogue_Like.Equipment">
-    <Position X="7" Y="4" Width="1.5" />
+    <Position X="8" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Equipment.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.Component">
-    <Position X="9.75" Y="4.5" Width="1.5" />
+    <Position X="10" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Component.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.State">
-    <Position X="4.25" Y="4" Width="1.5" />
+    <Position X="3.75" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAACAAAAAAAgBBAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>State.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rogue_Like.Shop">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shop.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
