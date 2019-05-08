@@ -34,12 +34,12 @@ namespace Rogue_Like
             newGameButton.Click += NewGameButton_Click;
 
 
-            //var highScoreButton = new Button(buttonTexture, buttonFont)
-            //{
-            //    Position = new Vector2(700, 400),
-            //    Text = "HighScore",
-            //};
-            //highScoreButton.Click += HighScoreButton_Click;
+            var highScoreButton = new Button(buttonTexture, buttonFont)
+            {
+                Position = new Vector2(700, 400),
+                Text = "HighScore",
+            };
+            highScoreButton.Click += HighScoreButton_Click;
             var quitGameButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2(700, 600),
@@ -51,7 +51,7 @@ namespace Rogue_Like
             {
                 newGameButton,
                 
-                //highScoreButton,
+                highScoreButton,
                 quitGameButton,
             };
         }
@@ -90,7 +90,7 @@ namespace Rogue_Like
         private void HighScoreButton_Click(object sender, EventArgs e)
         {
             controller.newPlayer();
-            _gameWorld.ChangeState(new Map1(_gameWorld, _graphichsDevice, _content));
+            _gameWorld.ChangeState(new HighScore(_gameWorld, _graphichsDevice, _content));
         }
 
         public override void PostUpdate(GameTime gameTime)

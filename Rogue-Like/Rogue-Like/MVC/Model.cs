@@ -36,11 +36,11 @@ namespace Rogue_Like
         public void fillHighscoreTable()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
-            cmd.CommandText = "INSERT INTO highscores (id,name, score) VALUES(NULL,'Jens', 4000)";
+            cmd.CommandText = "INSERT INTO highscores (id,name, score) VALUES(NULL,'Alex', 4000)";
             cmd.ExecuteNonQuery();
             cmd.CommandText = "INSERT INTO highscores (id,name, score) VALUES(NULL,'Peter', 5000)";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO highscores (id,name, score) VALUES(NULL,'Bob', 2500)";
+            cmd.CommandText = "INSERT INTO highscores (id,name, score) VALUES(NULL,'Mikkel', 2500)";
             cmd.ExecuteNonQuery();
         }
         /// <summary>

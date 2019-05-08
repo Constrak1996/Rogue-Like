@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Button.cs" />
     <Compile Include="Component.cs" />
+    <Compile Include="HighScore.cs" />
     <Compile Include="Levels\EndScreen.cs" />
     <Compile Include="Equipment.cs" />
     <Compile Include="GameObject.cs" />

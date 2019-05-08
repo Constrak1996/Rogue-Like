@@ -20,15 +20,32 @@ namespace Rogue_Like
             }
             //Fill the Tables
             {
-                //bait.fillBaitTable();
+                
                 //model.fillHighscoreTable();
-                //fish.fillfishTable();
+                
             }
             
         }
         public void newPlayer()
         {
             model.newPlayerScore();
+        }
+        //Get the games HighScore
+        public String getHighscore()
+        {
+            return model.getHighscore();
+        }
+        public String getNewHighscore()
+        {
+            return model.getNewHighScore();
+        }
+        public String getBestscore()
+        {
+            return model.getBestHeighscore();
+        }
+        public String getPlayerScore()
+        {
+            return model.getUpdateNewScore();
         }
 
     }

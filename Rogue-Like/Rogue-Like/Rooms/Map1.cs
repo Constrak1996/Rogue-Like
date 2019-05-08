@@ -129,7 +129,7 @@ namespace Rogue_Like
             }
             //Draws the player
             {
-                spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
+                //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
                 player.Draw(spritebatch);
             }
 

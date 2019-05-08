@@ -17,7 +17,7 @@
   <Class Name="Rogue_Like.Controller">
     <Position X="11.75" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAIAAA=</HashCode>
+      <HashCode>AAgCAAAAAAAAAAAAEAAAAAAAAgAAAAAAAAAAAAAIIAA=</HashCode>
       <FileName>MVC\Controller.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -117,6 +117,13 @@
     <TypeIdentifier>
       <HashCode>QAQAAAAAAQAAAgAoAAAAAAAAAAKgACAAAAQACAAAAgA=</HashCode>
       <FileName>Button.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rogue_Like.HighScore">
+    <Position X="8.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgEAAABAAAAAAAAAAAAAAAAAgAAAAAg=</HashCode>
+      <FileName>HighScore.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

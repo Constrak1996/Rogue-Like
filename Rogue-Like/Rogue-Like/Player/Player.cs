@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace Rogue_Like
         private Texture2D playersprite;
         public int score;
         SpriteFont Font;
+        private int speed;
+        
 
         private string name;
         private Vector2 position;
@@ -24,17 +27,23 @@ namespace Rogue_Like
             this.playersprite = playersprite;
             this.name = "Bob";
             this.position = new Vector2(325, 50);
+            speed = 5;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Draw(playersprite, position, Color.White);
         }
 
         public void PostUpdate(GameTime gameTime)
         {
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                position.X--;
+            }
         }
     }
     
