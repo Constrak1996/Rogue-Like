@@ -40,6 +40,7 @@ namespace Rogue_Like
         /// </summary>
         protected override void Initialize()
         {
+            IsMouseVisible = true;
             // TODO: Add your initialization logic here
 
             base.Initialize();
@@ -53,7 +54,7 @@ namespace Rogue_Like
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            _currentState = new Map1(this, GraphicsDevice, Content);
+            _currentState = new Menu(this, GraphicsDevice, Content);
             // TODO: use this.Content to load your game content here
         }
 
@@ -73,8 +74,8 @@ namespace Rogue_Like
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //    Exit();
             if (_nextState != null)
             {
                 _currentState = _nextState;

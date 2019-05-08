@@ -152,7 +152,7 @@ namespace Rogue_Like
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-                _gameWorld.ChangeState(new EndScreen(_gameWorld, _graphichsDevice, _content));
+                _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
             }
 
             foreach (var component in _component)

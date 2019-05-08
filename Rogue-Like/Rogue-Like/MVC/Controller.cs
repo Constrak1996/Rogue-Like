@@ -16,7 +16,7 @@ namespace Rogue_Like
             model = new Model();
             //Structure the Tables
             {
-                
+                model.highscoreStructure();
             }
             //Fill the Tables
             {
@@ -24,6 +24,12 @@ namespace Rogue_Like
                 //model.fillHighscoreTable();
                 //fish.fillfishTable();
             }
+            
         }
+        public void newPlayer()
+        {
+            model.newPlayerScore();
+        }
+
     }
 }

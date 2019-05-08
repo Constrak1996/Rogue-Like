@@ -43,10 +43,12 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Button.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="EndScreen.cs" />
     <Compile Include="Equipment.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="MVC\Controller.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="MVC\Model.cs" />
