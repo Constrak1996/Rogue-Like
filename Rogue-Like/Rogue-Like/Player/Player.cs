@@ -29,15 +29,11 @@ namespace Rogue_Like
             this.position = new Vector2(325, 50);
             speed = 5;
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(playersprite, position, Color.White);
         }
-
-        public void PostUpdate(GameTime gameTime)
-        {
-        }
-
+        
         public override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.S))
