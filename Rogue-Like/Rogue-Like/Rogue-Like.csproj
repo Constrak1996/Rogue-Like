@@ -45,10 +45,10 @@
   <ItemGroup>
     <Compile Include="Button.cs" />
     <Compile Include="Component.cs" />
-    <Compile Include="EndScreen.cs" />
+    <Compile Include="Levels\EndScreen.cs" />
     <Compile Include="Equipment.cs" />
     <Compile Include="GameObject.cs" />
-    <Compile Include="Menu.cs" />
+    <Compile Include="Levels\Menu.cs" />
     <Compile Include="MVC\Controller.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="MVC\Model.cs" />
@@ -60,7 +60,7 @@
     <Compile Include="Rooms\Map2.cs" />
     <Compile Include="Rooms\Map3.cs" />
     <Compile Include="Rooms\Map4.cs" />
-    <Compile Include="Shop.cs" />
+    <Compile Include="Levels\Shop.cs" />
     <Compile Include="State.cs" />
     <Compile Include="Ënemy.cs" />
   </ItemGroup>

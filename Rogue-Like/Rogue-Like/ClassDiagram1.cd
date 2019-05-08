@@ -95,21 +95,21 @@
     <Position X="8.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Shop.cs</FileName>
+      <FileName>Levels\Shop.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.EndScreen">
     <Position X="5.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAgAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EndScreen.cs</FileName>
+      <FileName>Levels\EndScreen.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.Menu">
     <Position X="10.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAEAgEAAABAIAAAAAIAABAAAAAAAAAAAAA=</HashCode>
-      <FileName>Menu.cs</FileName>
+      <FileName>Levels\Menu.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rogue_Like.Button">
