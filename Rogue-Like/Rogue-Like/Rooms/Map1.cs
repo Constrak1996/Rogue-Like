@@ -86,7 +86,7 @@ namespace Rogue_Like
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             _playerTexture = content.Load<Texture2D>("Fisher_Bob");
-            player = new Player(_playerTexture, "Fisher_Bob", content, new Vector2(500, 60));
+            player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
             AddTexture(wall);
             AddTexture(piller);
             AddTexture(ground);
@@ -160,6 +160,7 @@ namespace Rogue_Like
                 component.Update(gameTime);
             }
 
+            player.Update(gameTime);
         }
         
     }
