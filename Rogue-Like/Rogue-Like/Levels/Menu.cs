@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace Rogue_Like
 {
@@ -12,6 +13,7 @@ namespace Rogue_Like
     {
         private Controller controller = new Controller();
         private List<Component> _component;
+        //private Thread idleIkon;
         /// <summary>
         /// The MenuStates Constructor
         /// </summary>
@@ -20,6 +22,7 @@ namespace Rogue_Like
         /// <param name="content"></param>
         public Menu(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
+            
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
 
@@ -47,12 +50,21 @@ namespace Rogue_Like
             _component = new List<Component>()
             {
                 newGameButton,
-
+                
                 //highScoreButton,
                 quitGameButton,
             };
         }
-
+        /// <summary>
+        /// Make a idleikon spinning around in the buttom right side of the screen attached to a thread
+        /// </summary>
+        //public void IdleIkon()
+        //{
+            
+        //    //idleIkon = new Thread(new ThreadStart(IdleIkon));
+        //    idleIkon.Start();
+        //    idleIkon.IsBackground = true;
+        //}
         /// <summary>
         /// Draws the MenuState
         /// </summary>
@@ -65,6 +77,7 @@ namespace Rogue_Like
             {
                 component.Draw(gameTime, spriteBatch);
             }
+            //IdleIkon();
             spriteBatch.End();
         }
         //Makes a Newgamebutton
@@ -94,6 +107,7 @@ namespace Rogue_Like
             {
                 component.Update(gameTime);
             }
+            //IdleIkon();
         }
         //Makes a QuitGamebutton
         private void QuitGameButton_Click(object sender, EventArgs e)
