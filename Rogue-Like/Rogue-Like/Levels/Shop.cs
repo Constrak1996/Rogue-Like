@@ -13,11 +13,12 @@ namespace Rogue_Like
     {
         private SpriteFont Font;
         private Texture2D _playerTexture;
+        private int playerHealth = Player.health;
         Player player;
         public Shop(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
             _playerTexture = content.Load<Texture2D>("Fisher_Bob");
-            player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
+            player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform, playerHealth);
             Font = content.Load<SpriteFont>("Font");
         }
 

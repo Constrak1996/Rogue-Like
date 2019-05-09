@@ -90,7 +90,7 @@ namespace Rogue_Like
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
             _playerTexture = content.Load<Texture2D>("Fisher_Bob");
-            player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
+            player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform, playerHealth);
             
 
             var shop = new Button(Shop, buttonFont)
