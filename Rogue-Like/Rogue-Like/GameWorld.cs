@@ -13,6 +13,8 @@ namespace Rogue_Like
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Player player;
+
         private TimeSpan timeSinceStart;
         private State _currentState;
         private State _nextState;
@@ -88,6 +90,11 @@ namespace Rogue_Like
             time = (int)timeSinceStart.Seconds;
             // TODO: Add your update logic here
 
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                
+            }
+            
             base.Update(gameTime);
         }
 

@@ -10,12 +10,13 @@ namespace Rogue_Like
 {
     public class GameObject
     {
-        protected Texture2D texture;
         protected Vector2 position;
         protected Vector2 velocity;
         protected Vector2 center;
         protected Vector2 origin;
         protected ContentManager Content;
+        protected Transform Transform;
+        protected Texture2D sprite;
         public Vector2 Center
         {
             get { return center; }
@@ -24,18 +25,22 @@ namespace Rogue_Like
         {
             get { return position; }
         }
-        public GameObject(string textureName, ContentManager Content, Vector2 position)
+        public virtual Rectangle Hitbox
+        {
+            get { return new Rectangle((int)Transform.Position.X, (int)Transform.Position.Y, sprite.Width, sprite.Height); }
+        }
+        public GameObject(string textureName, ContentManager Content, Transform Transform)
         {
             this.Content = Content;
-            texture = Content.Load<Texture2D>(textureName);
-            this.position = position;
+            sprite = Content.Load<Texture2D>(textureName);
+            this.position = Transform.Position;
             velocity = Vector2.Zero;
-            center = new Vector2(position.X + texture.Width / 2, position.Y + texture.Height / 2);
-            origin = new Vector2(texture.Width / 2, texture.Height / 2);
+            center = new Vector2(Transform.Position.X + sprite.Width / 2, Transform.Position.Y + sprite.Height / 2);
+            origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
         }
         public virtual void Update(GameTime gameTime)
         {
-            this.center = new Vector2(position.X + texture.Width / 2, position.Y + texture.Height / 2);
+            this.center = new Vector2(position.X + sprite.Width / 2, position.Y + sprite.Height / 2);
         }
         /// <summary>
         /// Draws the GameObject
@@ -43,7 +48,7 @@ namespace Rogue_Like
         /// <param name="spriteBatch"></param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, Color.White);
+            spriteBatch.Draw(sprite, position, Color.White);
         }
 
     }

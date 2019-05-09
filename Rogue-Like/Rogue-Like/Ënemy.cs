@@ -9,7 +9,7 @@ namespace Rogue_Like
 {
     public class Ënemy : GameObject
     {
-        public Ënemy(string textureName, ContentManager Content, Vector2 position) : base(textureName, Content, position)
+        public Ënemy(string textureName, ContentManager Content, Transform Transform) : base(textureName, Content, Transform)
         {
         }
     }

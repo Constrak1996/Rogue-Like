@@ -14,6 +14,7 @@ namespace Rogue_Like
         private Player player;
         private SpriteFont Font;
         private Texture2D _playerTexture;
+        private int playerHealth = Player.health;
 
         private List<Component> _component;
         //Tilemap of Lake Map
@@ -80,13 +81,25 @@ namespace Rogue_Like
 
         public Map1(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
+            var buttonTexture = _content.Load<Texture2D>("Button");
+            var buttonFont = _content.Load<SpriteFont>("Font");
             Font = content.Load<SpriteFont>("Font");
             Texture2D piller = content.Load<Texture2D>("Pillar1");
             Texture2D wall = content.Load<Texture2D>("Wall");
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
+            Texture2D Shop = content.Load<Texture2D>("Shop");
             _playerTexture = content.Load<Texture2D>("Fisher_Bob");
-            player = new Player(_playerTexture, "Fisher_Bob", content, new Vector2(500, 60));
+            player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform, playerHealth);
+            
+
+            var shop = new Button(Shop, buttonFont)
+            {
+                Position = new Vector2(100, 200),
+                
+            };
+            shop.Click += Shop_Click;
+            player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform, playerHealth);
             AddTexture(wall);
             AddTexture(piller);
             AddTexture(ground);
@@ -95,12 +108,17 @@ namespace Rogue_Like
             
             _component = new List<Component>()
             {
-                
+                shop,
 
             };
 
         }
-        
+
+        private void Shop_Click(object sender, EventArgs e)
+        {
+            _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+        }
+
         /// <summary>
         /// Draws the Lake
         /// </summary>
@@ -160,6 +178,7 @@ namespace Rogue_Like
                 component.Update(gameTime);
             }
 
+            player.Update(gameTime);
         }
         
     }
