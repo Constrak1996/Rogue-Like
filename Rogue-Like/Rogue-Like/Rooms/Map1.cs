@@ -14,6 +14,7 @@ namespace Rogue_Like
         private Player player;
         private SpriteFont Font;
         private Texture2D _playerTexture;
+        private int playerHealth = Player.health;
 
         private List<Component> _component;
         //Tilemap of Lake Map
@@ -86,7 +87,7 @@ namespace Rogue_Like
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             _playerTexture = content.Load<Texture2D>("Fisher_Bob");
-            player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
+            player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform, playerHealth);
             AddTexture(wall);
             AddTexture(piller);
             AddTexture(ground);

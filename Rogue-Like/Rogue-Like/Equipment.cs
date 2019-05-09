@@ -12,8 +12,9 @@ namespace Rogue_Like
     {
         private List<Component> weapon;
 
-        public Equipment(Texture2D playersprite, string textureName, ContentManager Content, Transform Transform) : base(playersprite, textureName, Content, Transform)
+        public Equipment(Texture2D playersprite, string textureName, ContentManager Content, Transform Transform, int health) : base(playersprite, textureName, Content, Transform, health)
         {
+
         }
     }
 }

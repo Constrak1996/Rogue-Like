@@ -12,21 +12,28 @@ namespace Rogue_Like
     public class Player : GameObject
     {
         private Texture2D playersprite;
-
+        public static int health;
+        public Random randomPlayerHealth = new Random();
         public int score;
         SpriteFont Font;
         private int speed;
         private string name;
         public static Transform playerTransform = new Transform(new Vector2(200, 100), new Vector2(), 1f);
 
-        public string Name { get => name; set => name = value; }
-        public Player(Texture2D playersprite, string textureName,ContentManager Content, Transform Transform):base(textureName,Content,Transform)
+        public string Name
+        {
+            get => name;
+            set => name = value;
+        }
+        public Player(Texture2D playersprite, string textureName,ContentManager Content, Transform Transform, int health):base(textureName,Content,Transform)
         {
             Font = Content.Load<SpriteFont>("Font");
             this.playersprite = playersprite;
             this.Transform = playerTransform;
             this.name = "Bob";
             speed = 5;
+            Player.health = randomPlayerHealth.Next(50, 75);
+
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -35,21 +42,26 @@ namespace Rogue_Like
 
         public override void Update(GameTime gameTime)
         {
+            Movement();
+        }
+
+        public void Movement()
+        {
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                position.Y -= 2;
+                position.Y -= 1 * speed;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                position.X -= 2;
+                position.X -= 1 * speed;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                position.Y += 2;
+                position.Y += 1 * speed;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                position.X += 2;
+                position.X += 1 * speed;
             }
         }
     }
