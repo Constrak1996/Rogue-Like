@@ -9,8 +9,10 @@ using System.Text;
 
 namespace Rogue_Like
 {
-    public class Player
+    public class Player : Component
     {
+        ContentManager Content;
+        Transform transform;
         private static Player instance;
         private Texture2D playersprite;
         public static int health;
@@ -40,25 +42,19 @@ namespace Rogue_Like
         }
         private Player()
         {
+            
+            
             this.name = "Bob";
             speed = 5;
             Player.health = randomPlayerHealth.Next(50, 75);
         }
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            Movement();
-        }
-
+        
+        
         public void Movement()
         {
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                position.Y -= 1 * speed;
+                transform.Position.Y -= 1 * speed;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
@@ -72,6 +68,16 @@ namespace Rogue_Like
             {
                 position.X += 1 * speed;
             }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            Movement();
+        }
+
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBath)
+        {
+            
         }
     }
     

@@ -25,7 +25,7 @@ namespace Rogue_Like
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(Font, $"Welcome {Player.Instance.Name} to the shop, here you can upgrade if you got the coins, if not Hit the ESC key to return", Vector2.Zero, Color.White);
+            spriteBatch.DrawString(Font, $"Welcome {Player.Instance.Name} to the shop, here you can upgrade if you got the coins, if not Hit the 1 key to return", Vector2.Zero, Color.White);
             spriteBatch.End();
         }
 
@@ -36,7 +36,7 @@ namespace Rogue_Like
 
         public override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.D1))
             {
                 _gameWorld.ChangeState(new Map1(_gameWorld, _graphichsDevice, _content));
             }

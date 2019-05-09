@@ -14,7 +14,7 @@ namespace Rogue_Like
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Player player;
+        private Texture2D playersprite;
 
         private TimeSpan timeSinceStart;
         private State _currentState;
@@ -64,6 +64,8 @@ namespace Rogue_Like
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             _currentState = new Menu(this, GraphicsDevice, Content);
+            playersprite = Content.Load<Texture2D>("Fisher_Bob");
+            
             // TODO: use this.Content to load your game content here
         }
 
@@ -108,7 +110,7 @@ namespace Rogue_Like
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _currentState.Draw(gameTime, spriteBatch);
             // TODO: Add your drawing code here
-
+            
             base.Draw(gameTime);
         }
     }

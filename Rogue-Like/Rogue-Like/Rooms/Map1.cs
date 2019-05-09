@@ -11,10 +11,11 @@ namespace Rogue_Like
 {
     public class Map1 : State
     {
-        private Player player;
+        Transform transform;
         private SpriteFont Font;
         private Texture2D _playerTexture;
         private int playerHealth = Player.health;
+
 
         private List<Component> _component;
         //Tilemap of Lake Map
@@ -138,6 +139,7 @@ namespace Rogue_Like
                     }
                     Texture2D texture = tileTextures[textureIndex];
                     spritebatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
+                    spritebatch.Draw(_playerTexture, transform.Position, Color.White);
                 }
 
             }
