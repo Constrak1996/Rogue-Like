@@ -139,7 +139,7 @@ namespace Rogue_Like
                     }
                     Texture2D texture = tileTextures[textureIndex];
                     spritebatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
-                    spritebatch.Draw(_playerTexture, transform.Position, Color.White);
+                    
                 }
 
             }
@@ -150,7 +150,7 @@ namespace Rogue_Like
             //Draws the player
             {
                 //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
-                
+                Player.Instance.Draw(gameTime, spritebatch);
             }
 
             spritebatch.End();

@@ -77,7 +77,7 @@ namespace Rogue_Like
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBath)
         {
-            
+            spriteBath.Draw(playersprite, position, Color.White);
         }
     }
     
