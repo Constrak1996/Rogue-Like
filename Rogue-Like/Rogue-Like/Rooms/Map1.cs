@@ -80,13 +80,24 @@ namespace Rogue_Like
 
         public Map1(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
+            var buttonTexture = _content.Load<Texture2D>("Button");
+            var buttonFont = _content.Load<SpriteFont>("Font");
             Font = content.Load<SpriteFont>("Font");
             Texture2D piller = content.Load<Texture2D>("Pillar1");
             Texture2D wall = content.Load<Texture2D>("Wall");
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
+            Texture2D Shop = content.Load<Texture2D>("Shop");
             _playerTexture = content.Load<Texture2D>("Fisher_Bob");
             player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
+            
+
+            var shop = new Button(Shop, buttonFont)
+            {
+                Position = new Vector2(100, 200),
+                
+            };
+            shop.Click += Shop_Click;
             AddTexture(wall);
             AddTexture(piller);
             AddTexture(ground);
@@ -95,12 +106,17 @@ namespace Rogue_Like
             
             _component = new List<Component>()
             {
-                
+                shop,
 
             };
 
         }
-        
+
+        private void Shop_Click(object sender, EventArgs e)
+        {
+            _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+        }
+
         /// <summary>
         /// Draws the Lake
         /// </summary>
