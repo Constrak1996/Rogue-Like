@@ -64,7 +64,7 @@
     <Compile Include="Levels\Shop.cs" />
     <Compile Include="State.cs" />
     <Compile Include="Transform.cs" />
-    <Compile Include="Ënemy.cs" />
+    <Compile Include="Enemy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
