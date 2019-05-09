@@ -14,18 +14,18 @@ namespace Rogue_Like
         private SpriteFont Font;
         private Texture2D _playerTexture;
         private int playerHealth = Player.health;
-        Player player;
+        
         public Shop(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
             _playerTexture = content.Load<Texture2D>("Fisher_Bob");
-            player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform, playerHealth);
+            
             Font = content.Load<SpriteFont>("Font");
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(Font, $"Welcome {player.Name} to the shop, here you can upgrade if you got the coins, if not Hit the ESC key to return", Vector2.Zero, Color.White);
+            spriteBatch.DrawString(Font, $"Welcome {Player.Instance.Name} to the shop, here you can upgrade if you got the coins, if not Hit the ESC key to return", Vector2.Zero, Color.White);
             spriteBatch.End();
         }
 

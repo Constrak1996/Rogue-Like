@@ -9,38 +9,47 @@ using System.Text;
 
 namespace Rogue_Like
 {
-    public class Player : GameObject
+    public class Player
     {
+        private static Player instance;
         private Texture2D playersprite;
         public static int health;
         public Random randomPlayerHealth = new Random();
         public int score;
         SpriteFont Font;
         private int speed;
+        private Vector2 position;
         private string name;
         public static Transform playerTransform = new Transform(new Vector2(200, 100), new Vector2(), 1f);
 
+        public static Player Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Player();
+                }
+                return instance;
+            }
+        }
         public string Name
         {
             get => name;
             set => name = value;
         }
-        public Player(Texture2D playersprite, string textureName,ContentManager Content, Transform Transform, int health):base(textureName,Content,Transform)
+        private Player()
         {
-            Font = Content.Load<SpriteFont>("Font");
-            this.playersprite = playersprite;
-            this.Transform = playerTransform;
             this.name = "Bob";
             speed = 5;
             Player.health = randomPlayerHealth.Next(50, 75);
-
         }
-        public override void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(playersprite, position, Color.White);
+            
         }
 
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             Movement();
         }

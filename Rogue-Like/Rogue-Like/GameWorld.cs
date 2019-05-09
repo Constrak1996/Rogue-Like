@@ -94,7 +94,7 @@ namespace Rogue_Like
             {
                 
             }
-            
+            Player.Instance.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -106,6 +106,7 @@ namespace Rogue_Like
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _currentState.Draw(gameTime, spriteBatch);
+            Player.Instance.Draw(spriteBatch);
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
