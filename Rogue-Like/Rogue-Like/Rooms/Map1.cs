@@ -11,7 +11,7 @@ namespace Rogue_Like
 {
     public class Map1 : State
     {
-        private Player player;
+        
         private SpriteFont Font;
         private Texture2D _playerTexture;
         private int playerHealth = Player.health;
@@ -147,8 +147,8 @@ namespace Rogue_Like
             }
             //Draws the player
             {
-                //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
-                
+                spritebatch.Draw(_playerTexture, Player.Instance.position, Color.White); //draws the player and his position
+                spritebatch.DrawString(Font, $"Name:{Player.Instance.Name} Health:{Player.health}", Vector2.Zero, Color.White);
             }
 
             spritebatch.End();

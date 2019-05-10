@@ -12,16 +12,18 @@ namespace Rogue_Like
     public class Player
     {
         private static Player instance;
-        private Texture2D playersprite;
+        
+        private Texture2D playerTexture;
         public static int health;
         public Random randomPlayerHealth = new Random();
         public int score;
-        SpriteFont Font;
+        private SpriteFont Font;
         private int speed;
-        private Vector2 position;
+        Transform transform;
+        public Vector2 position;
         private string name;
-        public static Transform playerTransform = new Transform(new Vector2(200, 100), new Vector2(), 1f);
-
+        public static Transform playerTransform = new Transform(new Vector2(300, 200), new Vector2(), 1f);
+        
         public static Player Instance
         {
             get
@@ -38,12 +40,15 @@ namespace Rogue_Like
             get => name;
             set => name = value;
         }
-        private Player()
+        
+        public Player()
         {
             this.name = "Bob";
+            position = new Vector2(400, 50);
             speed = 5;
             Player.health = randomPlayerHealth.Next(50, 75);
         }
+        
         public void Draw(SpriteBatch spriteBatch)
         {
             
