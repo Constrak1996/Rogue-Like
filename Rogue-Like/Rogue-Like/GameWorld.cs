@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 
 namespace Rogue_Like
 {
@@ -25,6 +26,12 @@ namespace Rogue_Like
         {
             _nextState = state;
         }
+
+        //Object pool
+        private List<GameObject> gameObjects;
+        private static List<GameObject> gameObjectsAdd = new List<GameObject>();
+        private static List<GameObject> gameObjectRemove = new List<GameObject>();
+        private Texture2D collisionTexture;
 
         public GameWorld()
         {
@@ -88,12 +95,6 @@ namespace Rogue_Like
 
             timeSinceStart += gameTime.ElapsedGameTime;
             time = (int)timeSinceStart.Seconds;
-            // TODO: Add your update logic here
-
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
-            {
-                
-            }
             
             base.Update(gameTime);
         }
