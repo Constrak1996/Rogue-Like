@@ -99,7 +99,7 @@ namespace Rogue_Like
                 
             };
             shop.Click += Shop_Click;
-            player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform, playerHealth);
+            
             AddTexture(wall);
             AddTexture(piller);
             AddTexture(ground);
