@@ -148,7 +148,7 @@ namespace Rogue_Like
             //Draws the player
             {
                 spritebatch.Draw(_playerTexture, Player.Instance.position, Color.White); //draws the player and his position
-                spritebatch.DrawString(Font, $"Name:{Player.Instance.Name} Health:{Player.health}", Vector2.Zero, Color.White);
+                spritebatch.DrawString(Font, $"Name:{Player.Instance.Name} Health:{Player.health} Damage: {Player.damage}", Vector2.Zero, Color.White);
             }
 
             spritebatch.End();

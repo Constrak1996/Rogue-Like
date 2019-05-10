@@ -15,6 +15,8 @@ namespace Rogue_Like
         
         private Texture2D playerTexture;
         public static int health;
+        public static int damage;
+        public Random randomPlayerDamage = new Random();
         public Random randomPlayerHealth = new Random();
         public int score;
         private SpriteFont Font;
@@ -47,6 +49,7 @@ namespace Rogue_Like
             position = new Vector2(400, 50);
             speed = 5;
             Player.health = randomPlayerHealth.Next(50, 75);
+            Player.damage = randomPlayerDamage.Next(10, 120);
         }
         
         public void Draw(SpriteBatch spriteBatch)
