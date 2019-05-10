@@ -31,6 +31,7 @@ namespace Rogue_Like
                 if (instance == null)
                 {
                     instance = new Player();
+                    
                 }
                 return instance;
             }
@@ -42,7 +43,8 @@ namespace Rogue_Like
         }
         private Player()
         {
-            
+            this.playersprite = Content.Load<Texture2D>("Fisher_Bob");
+            this.transform = playerTransform;
             
             this.name = "Bob";
             speed = 5;
