@@ -95,7 +95,22 @@ namespace Rogue_Like
 
             timeSinceStart += gameTime.ElapsedGameTime;
             time = (int)timeSinceStart.Seconds;
-            
+
+            // Remove all game objects in removeList
+            foreach (GameObject obj in gameObjectRemove)
+            {
+                gameObjects.Remove(obj);
+            }
+            gameObjectRemove.Clear();
+
+
+            // Add all game obejcts in addList
+            foreach (GameObject obj in gameObjectsAdd)
+            {
+                gameObjects.Add(obj);
+            }
+            gameObjectsAdd.Clear();
+
             base.Update(gameTime);
         }
 
@@ -107,9 +122,39 @@ namespace Rogue_Like
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _currentState.Draw(gameTime, spriteBatch);
-            // TODO: Add your drawing code here
+
+            // Iterate and draw each object
+            foreach (GameObject obj in gameObjects)
+            {
+                obj.Draw(spriteBatch);
+            }
+
+            //Collision texture draw
+            foreach (GameObject go in gameObjects)
+            {
+                go.Draw(spriteBatch);
+#if DEBUG
+                DrawCollisionBox(go);
+#endif
+            }
 
             base.Draw(gameTime);
+        }
+
+        private void DrawCollisionBox(GameObject go)
+        {
+            //Creating a box around the object
+            Rectangle collisionBox = go.Hitbox;
+
+            Rectangle topLine = new Rectangle(collisionBox.Center.X - collisionBox.Width / 2, collisionBox.Center.Y - collisionBox.Height / 2, collisionBox.Width, 1);
+            Rectangle bottomLine = new Rectangle(collisionBox.Center.X - collisionBox.Width / 2, collisionBox.Center.Y + collisionBox.Height / 2, collisionBox.Width, 1);
+            Rectangle rightLine = new Rectangle(collisionBox.Center.X + collisionBox.Width / 2, collisionBox.Center.Y - collisionBox.Height / 2, 1, collisionBox.Height);
+            Rectangle leftLine = new Rectangle(collisionBox.Center.X - collisionBox.Width / 2, collisionBox.Center.Y - collisionBox.Height / 2, 1, collisionBox.Height);
+
+            spriteBatch.Draw(collisionTexture, topLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, bottomLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
     }
 }
