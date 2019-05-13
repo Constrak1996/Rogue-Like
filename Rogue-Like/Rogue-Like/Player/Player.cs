@@ -20,7 +20,7 @@ namespace Rogue_Like
         public static Transform playerTransform = new Transform(new Vector2(200, 100), new Vector2(), 1f);
 
         public string Name { get => name; set => name = value; }
-        public Player(Texture2D playersprite, string textureName,ContentManager Content, Transform Transform):base(textureName,Content,Transform)
+        public Player(Texture2D playersprite, string textureName, ContentManager Content, Transform Transform):base(textureName,Content,Transform)
         {
             Font = Content.Load<SpriteFont>("Font");
             this.playersprite = playersprite;
