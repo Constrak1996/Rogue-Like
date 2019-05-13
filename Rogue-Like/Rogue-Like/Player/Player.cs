@@ -9,38 +9,55 @@ using System.Text;
 
 namespace Rogue_Like
 {
-    public class Player : GameObject
+    public class Player
     {
-        private Texture2D playersprite;
+        private static Player instance;
+        
+        private Texture2D playerTexture;
         public static int health;
+        public static int damage;
+        public Random randomPlayerDamage = new Random();
         public Random randomPlayerHealth = new Random();
         public int score;
-        SpriteFont Font;
+        private SpriteFont Font;
         private int speed;
+        Transform transform;
+        public Vector2 position;
         private string name;
-        public static Transform playerTransform = new Transform(new Vector2(200, 100), new Vector2(), 1f);
-
+        public static Transform playerTransform = new Transform(new Vector2(300, 200), new Vector2(), 1f);
+        
+        public static Player Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Player();
+                }
+                return instance;
+            }
+        }
         public string Name
         {
             get => name;
             set => name = value;
         }
-        public Player(Texture2D playersprite, string textureName,ContentManager Content, Transform Transform, int health):base(textureName,Content,Transform)
+        
+        public Player()
         {
-            Font = Content.Load<SpriteFont>("Font");
-            this.playersprite = playersprite;
-            this.Transform = playerTransform;
             this.name = "Bob";
+            position = new Vector2(400, 50);
             speed = 5;
             Player.health = randomPlayerHealth.Next(50, 75);
-
+            Player.damage = randomPlayerDamage.Next(10, 120);
         }
-        public override void Draw(SpriteBatch spriteBatch)
+        
+        public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(playersprite, position, Color.White);
+            
         }
 
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             Movement();
         }

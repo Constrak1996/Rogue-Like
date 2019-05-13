@@ -43,11 +43,11 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Button.cs" />
+    <Compile Include="Button\Button.cs" />
     <Compile Include="Component.cs" />
-    <Compile Include="HighScore.cs" />
+    <Compile Include="Levels\HighScore.cs" />
     <Compile Include="Levels\EndScreen.cs" />
-    <Compile Include="Equipment.cs" />
+    <Compile Include="Player\Equipment.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Levels\Menu.cs" />
     <Compile Include="MVC\Controller.cs" />
@@ -64,7 +64,7 @@
     <Compile Include="Levels\Shop.cs" />
     <Compile Include="State.cs" />
     <Compile Include="Transform.cs" />
-    <Compile Include="Enemy.cs" />
+    <Compile Include="Player\Ënemy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">

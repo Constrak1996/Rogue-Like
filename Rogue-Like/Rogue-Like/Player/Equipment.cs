@@ -8,11 +8,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Rogue_Like
 {
-    public class Equipment : Player
+    public class Equipment
     {
         private List<Component> weapon;
 
-        public Equipment(Texture2D playersprite, string textureName, ContentManager Content, Transform Transform, int health) : base(playersprite, textureName, Content, Transform, health)
+        public Equipment(Texture2D playersprite, string textureName, ContentManager Content, Transform Transform, int health)
         {
 
         }

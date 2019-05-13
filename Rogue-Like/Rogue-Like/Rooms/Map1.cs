@@ -11,7 +11,7 @@ namespace Rogue_Like
 {
     public class Map1 : State
     {
-        private Player player;
+        
         private SpriteFont Font;
         private Texture2D _playerTexture;
         private int playerHealth = Player.health;
@@ -90,7 +90,7 @@ namespace Rogue_Like
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
             _playerTexture = content.Load<Texture2D>("Fisher_Bob");
-            player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform, playerHealth);
+            
             
 
             var shop = new Button(Shop, buttonFont)
@@ -126,7 +126,7 @@ namespace Rogue_Like
         /// <param name="spritebatch"></param>
         public override void Draw(GameTime gameTime, SpriteBatch spritebatch)
         {
-            spritebatch.Begin();
+            
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -147,11 +147,11 @@ namespace Rogue_Like
             }
             //Draws the player
             {
-                //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
-                player.Draw(spritebatch);
+                spritebatch.Draw(_playerTexture, Player.Instance.position, Color.White); //draws the player and his position
+                spritebatch.DrawString(Font, $"Name:{Player.Instance.Name} Health:{Player.health} Damage: {Player.damage}", Vector2.Zero, Color.White);
             }
 
-            spritebatch.End();
+            
         }
         //Allows a NextStage Event to happen
         
@@ -178,7 +178,7 @@ namespace Rogue_Like
                 component.Update(gameTime);
             }
 
-            player.Update(gameTime);
+            Player.Instance.Update(gameTime);
         }
         
     }

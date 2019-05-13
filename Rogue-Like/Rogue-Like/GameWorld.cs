@@ -15,7 +15,7 @@ namespace Rogue_Like
         SpriteBatch spriteBatch;
 
         Player player;
-
+        
         private TimeSpan timeSinceStart;
         private State _currentState;
         private State _nextState;
@@ -28,7 +28,7 @@ namespace Rogue_Like
         }
 
         //Object pool
-        private List<GameObject> gameObjects;
+        private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> gameObjectsAdd = new List<GameObject>();
         private static List<GameObject> gameObjectRemove = new List<GameObject>();
         private Texture2D collisionTexture;
@@ -39,8 +39,6 @@ namespace Rogue_Like
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = Width;
             graphics.PreferredBackBufferHeight = Height;
-
-            gameObjects = new List<GameObject>();
         }
 
         /// <summary>
@@ -97,6 +95,7 @@ namespace Rogue_Like
 
             timeSinceStart += gameTime.ElapsedGameTime;
             time = (int)timeSinceStart.Seconds;
+            // TODO: Add your update logic here
 
             // Remove all game objects in removeList
             foreach (GameObject obj in gameObjectRemove)
@@ -113,6 +112,7 @@ namespace Rogue_Like
             }
             gameObjectsAdd.Clear();
 
+            Player.Instance.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -123,8 +123,9 @@ namespace Rogue_Like
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
-
+            Player.Instance.Draw(spriteBatch);
             // Iterate and draw each object
             foreach (GameObject obj in gameObjects)
             {
@@ -139,10 +140,11 @@ namespace Rogue_Like
                 DrawCollisionBox(go);
 #endif
             }
+            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+            spriteBatch.End();
         }
-
         private void DrawCollisionBox(GameObject go)
         {
             //Creating a box around the object

@@ -72,13 +72,13 @@ namespace Rogue_Like
         /// <param name="spriteBatch"></param>
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             foreach (var component in _component)
             {
                 component.Draw(gameTime, spriteBatch);
             }
             //IdleIkon();
-            spriteBatch.End();
+            
         }
         //Makes a Newgamebutton
         private void NewGameButton_Click(object sender, EventArgs e)
