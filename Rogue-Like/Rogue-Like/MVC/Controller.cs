@@ -16,7 +16,7 @@ namespace Rogue_Like
             model = new Model();
             //Structure the Tables
             {
-                model.highscoreStructure();
+                //model.highscoreStructure();
             }
             //Fill the Tables
             {
@@ -28,7 +28,7 @@ namespace Rogue_Like
         }
         public void newPlayer()
         {
-            model.newPlayerScore();
+           //model.newPlayerScore();
         }
         //Get the games HighScore
         public String getHighscore()
