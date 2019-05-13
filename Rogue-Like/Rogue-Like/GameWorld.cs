@@ -14,7 +14,7 @@ namespace Rogue_Like
         SpriteBatch spriteBatch;
 
         Player player;
-        Menu menu;
+        
         private TimeSpan timeSinceStart;
         private State _currentState;
         private State _nextState;
