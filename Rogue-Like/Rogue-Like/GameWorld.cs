@@ -97,10 +97,21 @@ namespace Rogue_Like
             time = (int)timeSinceStart.Seconds;
             // TODO: Add your update logic here
 
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            // Remove all game objects in removeList
+            foreach (GameObject obj in gameObjectRemove)
             {
-                
+                gameObjects.Remove(obj);
             }
+            gameObjectRemove.Clear();
+
+
+            // Add all game obejcts in addList
+            foreach (GameObject obj in gameObjectsAdd)
+            {
+                gameObjects.Add(obj);
+            }
+            gameObjectsAdd.Clear();
+
             Player.Instance.Update(gameTime);
             base.Update(gameTime);
         }
