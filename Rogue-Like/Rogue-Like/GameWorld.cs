@@ -126,6 +126,20 @@ namespace Rogue_Like
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
             Player.Instance.Draw(spriteBatch);
+            // Iterate and draw each object
+            foreach (GameObject obj in gameObjects)
+            {
+                obj.Draw(spriteBatch);
+            }
+
+            //Collision texture draw
+            foreach (GameObject go in gameObjects)
+            {
+                go.Draw(spriteBatch);
+#if DEBUG
+                DrawCollisionBox(go);
+#endif
+            }
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
