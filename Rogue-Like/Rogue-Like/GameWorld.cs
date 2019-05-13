@@ -28,7 +28,7 @@ namespace Rogue_Like
         }
 
         //Object pool
-        private List<GameObject> gameObjects;
+        private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> gameObjectsAdd = new List<GameObject>();
         private static List<GameObject> gameObjectRemove = new List<GameObject>();
         private Texture2D collisionTexture;
@@ -144,6 +144,21 @@ namespace Rogue_Like
 
             base.Draw(gameTime);
             spriteBatch.End();
+        }
+        private void DrawCollisionBox(GameObject go)
+        {
+            //Creating a box around the object
+            Rectangle collisionBox = go.Hitbox;
+
+            Rectangle topLine = new Rectangle(collisionBox.Center.X - collisionBox.Width / 2, collisionBox.Center.Y - collisionBox.Height / 2, collisionBox.Width, 1);
+            Rectangle bottomLine = new Rectangle(collisionBox.Center.X - collisionBox.Width / 2, collisionBox.Center.Y + collisionBox.Height / 2, collisionBox.Width, 1);
+            Rectangle rightLine = new Rectangle(collisionBox.Center.X + collisionBox.Width / 2, collisionBox.Center.Y - collisionBox.Height / 2, 1, collisionBox.Height);
+            Rectangle leftLine = new Rectangle(collisionBox.Center.X - collisionBox.Width / 2, collisionBox.Center.Y - collisionBox.Height / 2, 1, collisionBox.Height);
+
+            spriteBatch.Draw(collisionTexture, topLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, bottomLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
     }
 }
