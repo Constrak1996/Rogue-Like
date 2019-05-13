@@ -39,6 +39,8 @@ namespace Rogue_Like
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = Width;
             graphics.PreferredBackBufferHeight = Height;
+
+            gameObjects = new List<GameObject>();
         }
 
         /// <summary>
