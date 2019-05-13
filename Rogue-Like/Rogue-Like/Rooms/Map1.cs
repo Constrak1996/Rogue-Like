@@ -126,7 +126,7 @@ namespace Rogue_Like
         /// <param name="spritebatch"></param>
         public override void Draw(GameTime gameTime, SpriteBatch spritebatch)
         {
-            spritebatch.Begin();
+            
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -151,7 +151,7 @@ namespace Rogue_Like
                 spritebatch.DrawString(Font, $"Name:{Player.Instance.Name} Health:{Player.health} Damage: {Player.damage}", Vector2.Zero, Color.White);
             }
 
-            spritebatch.End();
+            
         }
         //Allows a NextStage Event to happen
         

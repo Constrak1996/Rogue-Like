@@ -24,9 +24,9 @@ namespace Rogue_Like
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            
             spriteBatch.DrawString(Font, $"Welcome {Player.Instance.Name} to the shop, here you can upgrade if you got the coins, if not Hit the 1 key to return", Vector2.Zero, Color.White);
-            spriteBatch.End();
+            
         }
 
         public override void PostUpdate(GameTime gameTime)

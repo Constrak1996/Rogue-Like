@@ -14,7 +14,7 @@ namespace Rogue_Like
         SpriteBatch spriteBatch;
 
         Player player;
-
+        Menu menu;
         private TimeSpan timeSinceStart;
         private State _currentState;
         private State _nextState;
@@ -105,11 +105,13 @@ namespace Rogue_Like
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
             Player.Instance.Draw(spriteBatch);
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+            spriteBatch.End();
         }
     }
 }
