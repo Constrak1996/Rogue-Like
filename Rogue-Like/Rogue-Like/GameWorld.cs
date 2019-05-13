@@ -122,7 +122,7 @@ namespace Rogue_Like
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Coral);
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
             Player.Instance.Draw(spriteBatch);
