@@ -14,23 +14,29 @@ namespace Rogue_Like
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        //Player
         Player player;
         
+        //States
         private TimeSpan timeSinceStart;
         private State _currentState;
         private State _nextState;
         private float time;
-        public static int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-        public static int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
         public void ChangeState(State state)
         {
             _nextState = state;
         }
 
+        //Graphics
+        public static int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+        public static int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+
         //Object pool
         private List<GameObject> gameObjects = new List<GameObject>();
         private static List<GameObject> gameObjectsAdd = new List<GameObject>();
         private static List<GameObject> gameObjectRemove = new List<GameObject>();
+
+        //Collision
         private Texture2D collisionTexture;
 
         public GameWorld()
@@ -50,7 +56,6 @@ namespace Rogue_Like
         protected override void Initialize()
         {
             IsMouseVisible = true;
-            // TODO: Add your initialization logic here
 
             base.Initialize();
         }
@@ -64,7 +69,6 @@ namespace Rogue_Like
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             _currentState = new Menu(this, GraphicsDevice, Content);
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -73,7 +77,7 @@ namespace Rogue_Like
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+
         }
 
         /// <summary>
@@ -95,7 +99,6 @@ namespace Rogue_Like
 
             timeSinceStart += gameTime.ElapsedGameTime;
             time = (int)timeSinceStart.Seconds;
-            // TODO: Add your update logic here
 
             // Remove all game objects in removeList
             foreach (GameObject obj in gameObjectRemove)
@@ -103,8 +106,7 @@ namespace Rogue_Like
                 gameObjects.Remove(obj);
             }
             gameObjectRemove.Clear();
-
-
+            
             // Add all game obejcts in addList
             foreach (GameObject obj in gameObjectsAdd)
             {
@@ -126,6 +128,7 @@ namespace Rogue_Like
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
             Player.Instance.Draw(spriteBatch);
+            
             // Iterate and draw each object
             foreach (GameObject obj in gameObjects)
             {
@@ -140,21 +143,23 @@ namespace Rogue_Like
                 DrawCollisionBox(go);
 #endif
             }
-            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
             spriteBatch.End();
         }
+
         private void DrawCollisionBox(GameObject go)
         {
             //Creating a box around the object
             Rectangle collisionBox = go.Hitbox;
 
+            //Definening each side
             Rectangle topLine = new Rectangle(collisionBox.Center.X - collisionBox.Width / 2, collisionBox.Center.Y - collisionBox.Height / 2, collisionBox.Width, 1);
             Rectangle bottomLine = new Rectangle(collisionBox.Center.X - collisionBox.Width / 2, collisionBox.Center.Y + collisionBox.Height / 2, collisionBox.Width, 1);
             Rectangle rightLine = new Rectangle(collisionBox.Center.X + collisionBox.Width / 2, collisionBox.Center.Y - collisionBox.Height / 2, 1, collisionBox.Height);
             Rectangle leftLine = new Rectangle(collisionBox.Center.X - collisionBox.Width / 2, collisionBox.Center.Y - collisionBox.Height / 2, 1, collisionBox.Height);
 
+            //Draw each side
             spriteBatch.Draw(collisionTexture, topLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, bottomLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
