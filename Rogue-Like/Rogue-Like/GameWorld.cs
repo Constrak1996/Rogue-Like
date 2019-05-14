@@ -69,6 +69,11 @@ namespace Rogue_Like
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             _currentState = new Menu(this, GraphicsDevice, Content);
+
+            //Collision Texture
+            collisionTexture = Content.Load<Texture2D>("OnePixel");
+
+            
         }
 
         /// <summary>
