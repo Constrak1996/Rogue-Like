@@ -14,6 +14,7 @@ namespace Rogue_Like
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpriteFont Font;
         private TimeSpan timeSinceStart;
         private State _currentState;
         private State _nextState;
@@ -74,8 +75,8 @@ namespace Rogue_Like
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            _currentState = new Level1(this, GraphicsDevice, Content);
-
+            _currentState = new Menu(this, GraphicsDevice, Content);
+            Font = Content.Load<SpriteFont>("Font");
             //Collisionbox texture
             collisionTexture = Content.Load<Texture2D>("OnePixel");
 
@@ -100,8 +101,8 @@ namespace Rogue_Like
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //    Exit();
 
             if (_nextState != null)
             {
@@ -159,7 +160,7 @@ namespace Rogue_Like
                 DrawCollisionBox(go);
 #endif
             }
-
+            spriteBatch.DrawString(Font, $"Player Name: {player.Name} Health: {Player.health} Damage: {Player.damage}", new Vector2(0, 20), Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);

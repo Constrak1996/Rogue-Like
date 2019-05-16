@@ -54,6 +54,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Enemy\Ranged.cs" />
+    <Compile Include="Stages\Levels\Level2.cs" />
+    <Compile Include="Stages\Menu.cs" />
     <Compile Include="Stages\Shop.cs" />
     <Compile Include="Stages\State.cs" />
     <Compile Include="Transform.cs" />
