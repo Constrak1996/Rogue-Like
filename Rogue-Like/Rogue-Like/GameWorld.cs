@@ -32,6 +32,7 @@ namespace Rogue_Like
         public static int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
         public static int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
+
         //Player
         Player player;
 
@@ -131,7 +132,7 @@ namespace Rogue_Like
             }
 
             //Player movement
-            PlayerMovement(3);
+            player.PlayerMovement(3);
 
             base.Update(gameTime);
         }
@@ -182,26 +183,6 @@ namespace Rogue_Like
             spriteBatch.Draw(collisionTexture, bottomLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
-        }
-
-        public void PlayerMovement(int speed)
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
-            {
-                player.Transform.Position.Y -= 1 * speed;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
-            {
-                player.Transform.Position.X -= 1 * speed;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
-            {
-                player.Transform.Position.Y += 1 * speed;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
-            {
-                player.Transform.Position.X += 1 * speed;
-            }
         }
     }
 }
