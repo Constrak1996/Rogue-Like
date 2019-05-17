@@ -22,6 +22,7 @@ namespace Rogue_Like
         public static bool room4;
 
         public int damage;
+        private int i;
 
         //Enemy hitbox
         public override Rectangle Hitbox
@@ -33,13 +34,22 @@ namespace Rogue_Like
         {
         }
 
+        public override void Update()
+        {
+            base.Update();
+        }
+
         public void EnemySpawner()
         {
             if (level1 == true)
             {
                 if (room1 == true)
                 {
-
+                    //while (i <= 5)
+                    //{
+                    //    SpawnEnemy();
+                    //    i++;
+                    //}
                 }
                 if (room2 == true)
                 {
@@ -111,6 +121,12 @@ namespace Rogue_Like
 
                 }
             }
+        }
+
+        public void SpawnEnemy()
+        {
+            Random r = new Random();
+            GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5));
         }
 
         public void OnCollision(GameObject player)
