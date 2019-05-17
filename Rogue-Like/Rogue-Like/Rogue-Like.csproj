@@ -62,6 +62,7 @@
     <Compile Include="Rooms\Map3.cs" />
     <Compile Include="Rooms\Map4.cs" />
     <Compile Include="Levels\Shop.cs" />
+    <Compile Include="Rooms\Shop.cs" />
     <Compile Include="State.cs" />
     <Compile Include="Transform.cs" />
     <Compile Include="Ënemy.cs" />

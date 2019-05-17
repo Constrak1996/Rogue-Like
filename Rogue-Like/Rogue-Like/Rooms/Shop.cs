@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Rogue_Like
+namespace Rogue_Like.Rooms
 {
     public class Shop : State
     {
@@ -55,9 +55,9 @@ namespace Rogue_Like
             {7,16,14,14,14,14,14,14,14,70,14,14,14,14,14,14,14,70,14,14,14,14,14,14,14,36,31},
             {8,9,14,14,14,14,14,14,14,14,80,81,81,81,81,81,82,14,14,14,14,14,14,14,14,30,29},
             {7,16,14,14,14,14,14,14,14,14,83,88,88,88,88,88,87,14,14,14,14,14,14,14,14,36,31},
-            {7,16,14,14,14,14,14,14,14,14,83,88,88,88,88,88,87,14,14,14,14,14,14,14,14,36,31},
-            {10,15,14,14,14,14,14,14,14,14,83,88,88,88,88,88,87,14,14,14,14,14,14,14,14,36,31},
-            {10,15,14,14,14,14,14,14,14,14,83,88,88,88,88,88,87,14,14,14,14,14,14,14,14,36,28},
+            {66,69,14,14,14,14,14,14,14,14,83,88,88,88,88,88,87,14,14,14,14,14,14,14,14,55,52},
+            {65,68,14,14,14,14,14,14,14,14,83,88,88,88,88,88,87,14,14,14,14,14,14,14,14,56,53},
+            {64,67,14,14,14,14,14,14,14,14,83,88,88,88,88,88,87,14,14,14,14,14,14,14,14,57,54},
             {10,15,14,14,14,14,14,14,14,14,84,85,85,85,85,85,86,14,14,14,14,14,14,14,14,36,28},
             {8,9,14,14,14,14,14,14,14,70,14,14,14,14,14,14,14,70,14,14,14,14,14,14,14,30,29},
             {10,15,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,28},
@@ -754,7 +754,7 @@ namespace Rogue_Like
 
         private void Shop_Click(object sender, EventArgs e)
         {
-            _gameWorld.ChangeState(new Map1(_gameWorld, _graphichsDevice, _content));
+            _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
         }
 
         /// <summary>
@@ -822,7 +822,7 @@ namespace Rogue_Like
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-                _gameWorld.ChangeState(new Map1(_gameWorld, _graphichsDevice, _content));
+                _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
             }
 
             foreach (var component in _component)
@@ -835,5 +835,3 @@ namespace Rogue_Like
 
     }
 }
-
-

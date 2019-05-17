@@ -16,48 +16,77 @@ namespace Rogue_Like
         private Texture2D _playerTexture;
 
         private List<Component> _component;
+
+        private int[,] mapBackground = new int[,]
+       {
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,14,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,14,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+
+       };
+        public int GetIndexBackGround(int cellX, int cellY)
+        {
+            if (cellX < 0 || cellX > Width - 1 || cellY < 0 || cellY > Height - 1)
+                return 0;
+
+            return mapBackground[cellY, cellX];
+        }
         //Tilemap of Lake Map
         private int[,] map = new int[,]
        {
-            {4,41,42,42,42,42,42,39,42,42,42,42,42,42,38,38,38,38,38,39,38,38,38,38,38,37,33},
-            {6,5,43,43,43,43,43,40,43,43,43,43,43,44,44,44,44,44,44,40,44,44,44,44,44,34,32},
-            {7,16,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,31},
+            {4,41,42,42,42,42,42,39,42,42,42,42,46,47,48,38,38,38,38,39,38,38,38,38,38,37,33},
+            {6,5,43,43,43,43,43,40,43,43,76,43,49,50,51,44,76,44,44,40,44,44,44,44,44,34,32},
+            {7,16,14,14,14,14,14,14,14,14,14,14,70,14,70,14,14,14,14,14,14,14,14,14,14,36,31},
             {7,16,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,31},
             {7,16,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,31},
             {8,9,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,30,29},
-            {7,16,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,31},
-            {7,16,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,31},
-            {10,16,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,31},
-            {10,15,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,28},
-            {10,15,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,28},
+            {7,79,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,77,31},
+            {66,69,70,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,70,55,52},
+            {65,68,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,56,53},
+            {64,67,70,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,70,57,54},
+            {10,79,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,77,28},
             {8,9,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,30,29},
             {10,15,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,28},
             {10,15,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,28},
-            {10,15,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,28},
-            {11,13,25,25,25,25,25,20,25,25,25,25,25,25,25,25,25,25,25,20,25,25,25,25,25,24,27},
-            {12,17,18,18,18,18,18,19,18,18,18,18,18,18,21,21,21,21,21,19,21,21,21,21,21,22,23},
+            {10,15,14,14,14,14,14,14,14,14,14,14,70,14,70,14,14,14,14,14,14,14,14,14,14,36,28},
+            {11,13,25,25,25,25,25,20,25,25,78,25,63,62,61,25,78,25,25,20,25,25,25,25,25,24,27},
+            {12,17,18,18,18,18,18,19,18,18,18,18,60,59,58,21,21,21,21,19,21,21,21,21,21,22,23},
 
        };
         public int GetIndex(int cellX, int cellY)
         {
             if (cellX < 0 || cellX > Width - 1 || cellY < 0 || cellY > Height - 1)
                 return 0;
-
+            
             return map[cellY, cellX];
         }
         private List<Texture2D> tileTextures = new List<Texture2D>();
-        //add Textures to the lake map
+        //add Textures to the Dungeon map
         public void AddTexture(Texture2D texture)
         {
             tileTextures.Add(texture);
         }
-        //The Width of Lake map
+        //The Width of Dungeon map
         public int Width
         {
             get { return map.GetLength(1); }
 
         }
-        //Height of Lake map
+        //Height of Dungeon map
         public int Height
         {
             get { return map.GetLength(0); }
@@ -283,9 +312,219 @@ namespace Rogue_Like
             get { return map.GetLength(45); }
         }
 
-        public int Floor_Pattern_2
+        public int Door_Left_Top_Top
         {
-            get { return map.GetLength(45); }
+            get { return map.GetLength(46); }
+        }
+
+        public int Door_Mid_Top_Top
+        {
+            get { return map.GetLength(47); }
+        }
+
+        public int Door_Right_Top_Top
+        {
+            get { return map.GetLength(48); }
+        }
+
+        public int Door_Left_Bot_Top
+        {
+            get { return map.GetLength(49); }
+        }
+
+        public int Door_Mid_Bot_Top
+        {
+            get { return map.GetLength(50); }
+        }
+
+        public int Door_Right_Bot_Top
+        {
+            get { return map.GetLength(51); }
+        }
+
+        public int Door_Left_Top_Right
+        {
+            get { return map.GetLength(52); }
+        }
+
+        public int Door_Mid_Top_Right
+        {
+            get { return map.GetLength(53); }
+        }
+
+        public int Door_Right_Top_Right
+        {
+            get { return map.GetLength(54); }
+        }
+
+        public int Door_Left_Bot_Right
+        {
+            get { return map.GetLength(55); }
+        }
+
+        public int Door_Mid_Bot_Right
+        {
+            get { return map.GetLength(56); }
+        }
+
+        public int Door_Right_Bot_Right
+        {
+            get { return map.GetLength(57); }
+        }
+
+        public int Door_Left_Top_Bottom
+        {
+            get { return map.GetLength(58); }
+        }
+
+        public int Door_Mid_Top_Bottom
+        {
+            get { return map.GetLength(59); }
+        }
+
+        public int Door_Right_Top_Bottom
+        {
+            get { return map.GetLength(60); }
+        }
+
+        public int Door_Left_Bot_Bottom
+        {
+            get { return map.GetLength(61); }
+        }
+
+        public int Door_Mid_Bot_Bottom
+        {
+            get { return map.GetLength(62); }
+        }
+
+        public int Door_Right_Bot_Bottom
+        {
+            get { return map.GetLength(63); }
+        }
+
+        public int Door_Left_Top_Left
+        {
+            get { return map.GetLength(64); }
+        }
+
+        public int Door_Mid_Top_Left
+        {
+            get { return map.GetLength(65); }
+        }
+
+        public int Door_Right_Top_Left
+        {
+            get { return map.GetLength(66); }
+        }
+
+        public int Door_Left_Bot_Left
+        {
+            get { return map.GetLength(67); }
+        }
+
+        public int Door_Mid_Bot_Left
+        {
+            get { return map.GetLength(68); }
+        }
+
+        public int Door_Right_Bot_Left
+        {
+            get { return map.GetLength(69); }
+        }
+
+        public int Brazier
+        {
+            get { return map.GetLength(70); }
+        }
+
+        public int Rocks
+        {
+            get { return map.GetLength(71); }
+        }
+
+        public int Wall_Shield_Top
+        {
+            get { return map.GetLength(72); }
+        }
+
+        public int Wall_Shield_Right
+        {
+            get { return map.GetLength(73); }
+        }
+
+        public int Wall_Shield_Bot
+        {
+            get { return map.GetLength(74); }
+        }
+
+        public int Wall_Shield_Left
+        {
+            get { return map.GetLength(75); }
+        }
+
+        public int Wall_SwordShield_Top
+        {
+            get { return map.GetLength(76); }
+        }
+
+        public int Wall_SwordShield_Right
+        {
+            get { return map.GetLength(77); }
+        }
+
+        public int Wall_SwordShield_Bot
+        {
+            get { return map.GetLength(78); }
+        }
+
+        public int Wall_SwordShield_Left
+        {
+            get { return map.GetLength(79); }
+        }
+
+        public int Carpet_Top_Left_Corner
+        {
+            get { return map.GetLength(80); }
+        }
+
+        public int Carpet_Top_Mid
+        {
+            get { return map.GetLength(81); }
+        }
+
+        public int Carpet_Top_Right_Corner
+        {
+            get { return map.GetLength(82); }
+        }
+
+        public int Carpet_Left_Mid
+        {
+            get { return map.GetLength(83); }
+        }
+
+        public int Carpet_Left_Bot_Corner
+        {
+            get { return map.GetLength(84); }
+        }
+
+        public int Carpet_Bot_Mid
+        {
+            get { return map.GetLength(85); }
+        }
+
+        public int Carpet_Bot_Right_Corner
+        {
+            get { return map.GetLength(86); }
+        }
+
+        public int Carpet_Right_Mid
+        {
+            get { return map.GetLength(87); }
+        }
+
+        public int Carpet_Mid_Mid
+        {
+            get { return map.GetLength(88); }
         }
 
 
@@ -348,7 +587,59 @@ namespace Rogue_Like
             Texture2D floorBrick = content.Load<Texture2D>("64x64/Brick_Floor");
             Texture2D floorPlainGray = content.Load<Texture2D>("64x64/Plain_Floor_Gray");
             Texture2D floorRockyGray = content.Load<Texture2D>("64x64/Rocky_Floor_Gray");
+            //Door
+            //Top Door
+            Texture2D Door_Left_Top_Top = content.Load<Texture2D>("64x64/Door_Left_Top_Top");
+            Texture2D Door_Mid_Top_Top = content.Load<Texture2D>("64x64/Door_Mid_Top_Top");
+            Texture2D Door_Right_Top_Top = content.Load<Texture2D>("64x64/Door_Right_Top_Top");
+            Texture2D Door_Left_Bot_Top = content.Load<Texture2D>("64x64/Door_Left_Bot_Top");
+            Texture2D Door_Mid_Bot_Top = content.Load<Texture2D>("64x64/Door_Mid_Bot_Top");
+            Texture2D Door_Right_Bot_Top = content.Load<Texture2D>("64x64/Door_Right_Bot_Top");
+            //Right Door
+            Texture2D Door_Left_Top_Right = content.Load<Texture2D>("64x64/Door_Left_Top_Right");
+            Texture2D Door_Mid_Top_Right = content.Load<Texture2D>("64x64/Door_Mid_Top_Right");
+            Texture2D Door_Right_Top_Right = content.Load<Texture2D>("64x64/Door_Right_Top_Right");
+            Texture2D Door_Left_Bot_Right = content.Load<Texture2D>("64x64/Door_Left_Bot_Right");
+            Texture2D Door_Mid_Bot_Right = content.Load<Texture2D>("64x64/Door_Mid_Bot_Right");
+            Texture2D Door_Right_Bot_Right = content.Load<Texture2D>("64x64/Door_Right_Bot_Right");
+            //Bottom Door
+            Texture2D Door_Left_Top_Bottom = content.Load<Texture2D>("64x64/Door_Left_Top_Bottom");
+            Texture2D Door_Mid_Top_Bottom = content.Load<Texture2D>("64x64/Door_Mid_Top_Bottom");
+            Texture2D Door_Right_Top_Bottom = content.Load<Texture2D>("64x64/Door_Right_Top_Bottom");
+            Texture2D Door_Left_Bot_Bottom = content.Load<Texture2D>("64x64/Door_Left_Bot_Bottom");
+            Texture2D Door_Mid_Bot_Bottom = content.Load<Texture2D>("64x64/Door_Mid_Bot_Bottom");
+            Texture2D Door_Right_Bot_Bottom = content.Load<Texture2D>("64x64/Door_Right_Bot_Bottom");
+            //Left Door
+            Texture2D Door_Left_Top_Left = content.Load<Texture2D>("64x64/Door_Left_Top_Left");
+            Texture2D Door_Mid_Top_Left = content.Load<Texture2D>("64x64/Door_Mid_Top_Left");
+            Texture2D Door_Right_Top_Left = content.Load<Texture2D>("64x64/Door_Right_Top_Left");
+            Texture2D Door_Left_Bot_Left = content.Load<Texture2D>("64x64/Door_Left_Bot_Left");
+            Texture2D Door_Mid_Bot_Left = content.Load<Texture2D>("64x64/Door_Mid_Bot_Left");
+            Texture2D Door_Right_Bot_Left = content.Load<Texture2D>("64x64/Door_Right_Bot_Left");
+
+            //Carpet
+            Texture2D Carpet_Top_Left = content.Load<Texture2D>("64x64/Carpet_Left_Top_Corner");
+            Texture2D Carpet_Top_Mid = content.Load<Texture2D>("64x64/Carpet_Top_Mid");
+            Texture2D Carpet_Top_Right = content.Load<Texture2D>("64x64/Carpet_Top_Right_Corner");
+            Texture2D Carpet_Left_Mid = content.Load<Texture2D>("64x64/Carpet_Left_Mid");
+            Texture2D Carpet_Left_Bot = content.Load<Texture2D>("64x64/Carpet_Left_Bot_Corner");
+            Texture2D Carpet_Bot_Mid = content.Load<Texture2D>("64x64/Carpet_Bot_Mid");
+            Texture2D Carpet_Bot_Right = content.Load<Texture2D>("64x64/Carpet_Bot_Right_Corner");
+            Texture2D Carpet_Right_Mid = content.Load<Texture2D>("64x64/Carpet_Right_Mid");
+            Texture2D Carpet_Mid = content.Load<Texture2D>("64x64/Carpet_Mid");
+
+
             //Misc.
+            Texture2D Brazier = content.Load<Texture2D>("64x64/Brazier");
+            Texture2D Rocks = content.Load<Texture2D>("64x64/Rocks");
+            Texture2D ShieldTop = content.Load<Texture2D>("64x64/Wall_Right_Top_Low_Shield");
+            Texture2D ShieldRight = content.Load<Texture2D>("64x64/Wall_Right_Right_Low_Shield");
+            Texture2D ShieldBot = content.Load<Texture2D>("64x64/Wall_Right_Bot_Low_Shield");
+            Texture2D ShieldLeft = content.Load<Texture2D>("64x64/Wall_Right_Left_Low_Shield");
+            Texture2D ShieldAndSwordTop = content.Load<Texture2D>("64x64/Wall_Right_Top_Low_SwordShield");
+            Texture2D ShieldAndSwordRight = content.Load<Texture2D>("64x64/Wall_Right_Right_Low_SwordShield");
+            Texture2D ShieldAndSwordBot = content.Load<Texture2D>("64x64/Wall_Right_Bot_Low_SwordShield");
+            Texture2D ShieldAndSwordLeft = content.Load<Texture2D>("64x64/Wall_Right_Left_Low_SwordShield");
             Texture2D wall = content.Load<Texture2D>("Wall");
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
@@ -359,7 +650,7 @@ namespace Rogue_Like
 
             var shop = new Button(Shop, buttonFont)
             {
-                Position = new Vector2(100, 200),
+                Position = new Vector2(200, 200),
                 
             };
             shop.Click += Shop_Click;
@@ -409,9 +700,49 @@ namespace Rogue_Like
             AddTexture(wallLeftTopLow);
             AddTexture(wallRightTopLow);
             AddTexture(floorPattern2);
-
-
-
+            AddTexture(Door_Left_Top_Top);
+            AddTexture(Door_Mid_Top_Top);
+            AddTexture(Door_Right_Top_Top);
+            AddTexture(Door_Left_Bot_Top);
+            AddTexture(Door_Mid_Bot_Top);
+            AddTexture(Door_Right_Bot_Top);
+            AddTexture(Door_Left_Top_Right);
+            AddTexture(Door_Mid_Top_Right);
+            AddTexture(Door_Right_Top_Right);
+            AddTexture(Door_Left_Bot_Right);
+            AddTexture(Door_Mid_Bot_Right);
+            AddTexture(Door_Right_Bot_Right);
+            AddTexture(Door_Left_Top_Bottom);
+            AddTexture(Door_Mid_Top_Bottom);
+            AddTexture(Door_Right_Top_Bottom);
+            AddTexture(Door_Left_Bot_Bottom);
+            AddTexture(Door_Mid_Bot_Bottom);
+            AddTexture(Door_Right_Bot_Bottom);
+            AddTexture(Door_Left_Top_Left);
+            AddTexture(Door_Mid_Top_Left);
+            AddTexture(Door_Right_Top_Left);
+            AddTexture(Door_Left_Bot_Left);
+            AddTexture(Door_Mid_Bot_Left);
+            AddTexture(Door_Right_Bot_Left);
+            AddTexture(Brazier);
+            AddTexture(Rocks);
+            AddTexture(ShieldTop);
+            AddTexture(ShieldRight);
+            AddTexture(ShieldBot);
+            AddTexture(ShieldLeft);
+            AddTexture(ShieldAndSwordTop);
+            AddTexture(ShieldAndSwordRight);
+            AddTexture(ShieldAndSwordBot);
+            AddTexture(ShieldAndSwordLeft);
+            AddTexture(Carpet_Top_Left);
+            AddTexture(Carpet_Top_Mid);
+            AddTexture(Carpet_Top_Right);
+            AddTexture(Carpet_Left_Mid);
+            AddTexture(Carpet_Left_Bot);
+            AddTexture(Carpet_Bot_Mid);
+            AddTexture(Carpet_Bot_Right);
+            AddTexture(Carpet_Right_Mid);
+            AddTexture(Carpet_Mid);
 
             _component = new List<Component>()
             {
@@ -423,7 +754,7 @@ namespace Rogue_Like
 
         private void Shop_Click(object sender, EventArgs e)
         {
-            _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+            _gameWorld.ChangeState(new Map2(_gameWorld, _graphichsDevice, _content));
         }
 
         /// <summary>
@@ -434,6 +765,20 @@ namespace Rogue_Like
         public override void Draw(GameTime gameTime, SpriteBatch spritebatch)
         {
             spritebatch.Begin();
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    int textureIndex = mapBackground[y, x];
+                    if (textureIndex == -1)
+                    {
+                        continue;
+                    }
+                    Texture2D texture = tileTextures[textureIndex];
+                    spritebatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
+                }
+
+            }
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)

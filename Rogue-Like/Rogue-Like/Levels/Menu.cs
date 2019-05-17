@@ -84,7 +84,7 @@ namespace Rogue_Like
         private void NewGameButton_Click(object sender, EventArgs e)
         {
             controller.newPlayer();
-            _gameWorld.ChangeState(new Map1(_gameWorld, _graphichsDevice, _content));
+            _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
         }
         //Makes a HighScorebutton
         private void HighScoreButton_Click(object sender, EventArgs e)
