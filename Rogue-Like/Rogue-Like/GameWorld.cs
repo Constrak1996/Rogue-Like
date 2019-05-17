@@ -81,7 +81,7 @@ namespace Rogue_Like
             collisionTexture = Content.Load<Texture2D>("OnePixel");
 
             //Player
-            player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
+            player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0),0,0);
             gameObjectsAdd.Add(player);
         }
 
@@ -160,7 +160,7 @@ namespace Rogue_Like
                 DrawCollisionBox(go);
 #endif
             }
-            spriteBatch.DrawString(Font, $": {Player.Name} Health: {Player.health} Damage: {Player.damage}", new Vector2(0, 20), Color.White);
+            spriteBatch.DrawString(Font, $": {Player.Name} Gold: {Player.coin} Health: {Player.health} Damage: {Player.damage}, Score: {Player.score}", Vector2.Zero, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);

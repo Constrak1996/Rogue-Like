@@ -13,10 +13,14 @@ namespace Rogue_Like
         public static string Name;
         public static int health;
         public static int damage;
+        public static int score;
+        public static float coin;
         public Random randomPlayerDamage = new Random();
         public Random randomPlayerHealth = new Random();
-        public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
+        public Player(string spriteName, Transform Transform,float coin, int score) : base(spriteName, Transform)
         {
+            Player.coin = coin;
+            Player.score = score;
             Player.Name = "Bob";
             Player.health = randomPlayerHealth.Next(50, 75);
             Player.damage = randomPlayerDamage.Next(10, 120);

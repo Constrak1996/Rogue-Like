@@ -20,7 +20,7 @@ namespace Rogue_Like
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(textFont, $"Welcome {Player.Name} Here you can upgrade your gear if you got the coin, if not Hit 1 to go to level1", Vector2.Zero, Color.White);
+            spriteBatch.DrawString(textFont, $"Welcome {Player.Name}: As this moment your Wallet should contain {Player.coin} pieces of gold\nSeach the shelf for the item of your dreams \n Should it happend your wallet is too heavy spend it here for more happiness\n Do you not have the coin, hit the key 1 and seach the dungeons for the needs to aquire the item that you desire", new Vector2(200,200), Color.Black);
         }
 
         public override void PostUpdate(GameTime gameTime)
