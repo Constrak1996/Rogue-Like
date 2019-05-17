@@ -8,10 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rogue_Like.Stages.Levels
+namespace Rogue_Like
 {
-    class Level2 : State
+    public class Level2 : State
     {
+        private Player player;
         private SpriteFont Font;
         private Texture2D _playerTexture;
 
@@ -722,10 +723,6 @@ namespace Rogue_Like.Stages.Levels
             {
                 component.Draw(gameTime, spriteBatch);
             }
-
-
-
-
         }
 
         public override void PostUpdate(GameTime gameTime)
