@@ -20,7 +20,7 @@ namespace Rogue_Like
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(textFont, $"Welcome Here you can upgrade your gear if you got the coin, if not Hit 1 to go to level1", Vector2.Zero, Color.White);
+            spriteBatch.DrawString(textFont, $"Welcome {Player.Name} Here you can upgrade your gear if you got the coin, if not Hit 1 to go to level1", Vector2.Zero, Color.White);
         }
 
         public override void PostUpdate(GameTime gameTime)
