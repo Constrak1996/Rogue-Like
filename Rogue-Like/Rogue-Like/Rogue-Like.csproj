@@ -43,29 +43,22 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Button.cs" />
+    <Compile Include="Button\Button.cs" />
     <Compile Include="Component.cs" />
-    <Compile Include="HighScore.cs" />
-    <Compile Include="Levels\EndScreen.cs" />
-    <Compile Include="Equipment.cs" />
+    <Compile Include="Enemy\Enemy.cs" />
     <Compile Include="GameObject.cs" />
-    <Compile Include="Levels\Menu.cs" />
-    <Compile Include="MVC\Controller.cs" />
     <Compile Include="GameWorld.cs" />
-    <Compile Include="MVC\Model.cs" />
+    <Compile Include="Stages\Levels\Level1.cs" />
+    <Compile Include="Enemy\Melee.cs" />
     <Compile Include="Player\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MVC\View.cs" />
-    <Compile Include="Rooms\Map1.cs" />
-    <Compile Include="Rooms\Map2.cs" />
-    <Compile Include="Rooms\Map3.cs" />
-    <Compile Include="Rooms\Map4.cs" />
-    <Compile Include="Levels\Shop.cs" />
-    <Compile Include="Rooms\Shop.cs" />
-    <Compile Include="State.cs" />
+    <Compile Include="Enemy\Ranged.cs" />
+    <Compile Include="Stages\Levels\Level2.cs" />
+    <Compile Include="Stages\Menu.cs" />
+    <Compile Include="Stages\Shop.cs" />
+    <Compile Include="Stages\State.cs" />
     <Compile Include="Transform.cs" />
-    <Compile Include="Ënemy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -100,6 +93,9 @@
     <None Include="app.manifest" />
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MVC\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

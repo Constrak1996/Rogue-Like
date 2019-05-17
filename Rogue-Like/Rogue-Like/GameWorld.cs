@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 
 namespace Rogue_Like
 {
@@ -12,15 +14,34 @@ namespace Rogue_Like
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        Player player;
-
+        SpriteFont Font;
         private TimeSpan timeSinceStart;
         private State _currentState;
         private State _nextState;
         private float time;
+
+        private static ContentManager _content;
+        public static ContentManager ContentManager { get => _content; }
+
+        //The lists used for loading and removing items
+        public static List<GameObject> gameObjects = new List<GameObject>();
+        public static List<GameObject> gameObjectsAdd = new List<GameObject>();
+        public static List<GameObject> gameObjectsRemove = new List<GameObject>();
+
+        //Graphics
         public static int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
         public static int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+
+
+        //Player
+        Player player;
+
+        //Collision
+        private Texture2D collisionTexture;
+
+        //Enemy
+        Enemy enemy;
+
         public void ChangeState(State state)
         {
             _nextState = state;
@@ -30,6 +51,8 @@ namespace Rogue_Like
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            _content = Content;
+            IsMouseVisible = true;
             graphics.PreferredBackBufferWidth = Width;
             graphics.PreferredBackBufferHeight = Height;
         }
@@ -42,8 +65,6 @@ namespace Rogue_Like
         /// </summary>
         protected override void Initialize()
         {
-            IsMouseVisible = true;
-            // TODO: Add your initialization logic here
 
             base.Initialize();
         }
@@ -54,10 +75,17 @@ namespace Rogue_Like
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             _currentState = new Menu(this, GraphicsDevice, Content);
-            // TODO: use this.Content to load your game content here
+            Font = Content.Load<SpriteFont>("Font");
+            //Collisionbox texture
+            collisionTexture = Content.Load<Texture2D>("OnePixel");
+
+            //Player
+            player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
+            gameObjectsAdd.Add(player);
+
+            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0);
         }
 
         /// <summary>
@@ -66,7 +94,7 @@ namespace Rogue_Like
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+
         }
 
         /// <summary>
@@ -78,6 +106,7 @@ namespace Rogue_Like
         {
             //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             //    Exit();
+
             if (_nextState != null)
             {
                 _currentState = _nextState;
@@ -88,13 +117,26 @@ namespace Rogue_Like
 
             timeSinceStart += gameTime.ElapsedGameTime;
             time = (int)timeSinceStart.Seconds;
-            // TODO: Add your update logic here
-
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            //Updates gameobjects
+            foreach (GameObject go in gameObjects)
             {
-                
+                go.Update();
             }
-            
+
+            //Adds gameobjects to the gameobjects list
+            if (gameObjectsAdd.Count > 0)
+            {
+                for (int i = 0; i < gameObjectsAdd.Count; i++)
+                {
+                    gameObjects.Add(gameObjectsAdd[i]);
+                }
+                gameObjectsAdd.Clear();
+            }
+
+            //Player movement
+            player.PlayerMovement(3);
+
+            enemy.Update();
             base.Update(gameTime);
         }
 
@@ -104,11 +146,46 @@ namespace Rogue_Like
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.DarkGray);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
-            // TODO: Add your drawing code here
+            //Draws sprites in gameObjects list
+            foreach (GameObject go in gameObjects)
+            {
+                go.Draw(spriteBatch);
+            }
+
+            //Collision texture draw
+            foreach (GameObject go in gameObjects)
+            {
+                go.Draw(spriteBatch);
+#if DEBUG
+                DrawCollisionBox(go);
+#endif
+            }
+            spriteBatch.DrawString(Font, $"Player Name: {player.Name} Health: {Player.health} Damage: {Player.damage}", new Vector2(0, 20), Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private void DrawCollisionBox(GameObject go)
+        {
+            //Creating a box around the object
+            Rectangle collisionBox = go.Hitbox;
+
+            //Definening each side
+            Rectangle topLine = new Rectangle(collisionBox.Center.X - collisionBox.Width, collisionBox.Center.Y - collisionBox.Height, collisionBox.Width, 1);
+            Rectangle bottomLine = new Rectangle(collisionBox.Center.X - collisionBox.Width, collisionBox.Center.Y + collisionBox.Height / 30, collisionBox.Width, 1);
+            Rectangle rightLine = new Rectangle(collisionBox.Center.X + collisionBox.Width / 30, collisionBox.Center.Y - collisionBox.Height, 1, collisionBox.Height);
+            Rectangle leftLine = new Rectangle(collisionBox.Center.X - collisionBox.Width, collisionBox.Center.Y - collisionBox.Height, 1, collisionBox.Height);
+
+            //Draw each side
+            spriteBatch.Draw(collisionTexture, topLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, bottomLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
     }
 }

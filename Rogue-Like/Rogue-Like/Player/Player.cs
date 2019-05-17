@@ -1,57 +1,53 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Rogue_Like
 {
     public class Player : GameObject
     {
-        private Texture2D playersprite;
-
-        public int score;
-        SpriteFont Font;
-        private int speed;
-        private string name;
-        public static Transform playerTransform = new Transform(new Vector2(200, 100), new Vector2(), 1f);
-
-        public string Name { get => name; set => name = value; }
-        public Player(Texture2D playersprite, string textureName, ContentManager Content, Transform Transform):base(textureName,Content,Transform)
+        public string Name;
+        public static int health;
+        public static int damage;
+        public Random randomPlayerDamage = new Random();
+        public Random randomPlayerHealth = new Random();
+        public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
-            Font = Content.Load<SpriteFont>("Font");
-            this.playersprite = playersprite;
-            this.Transform = playerTransform;
-            this.name = "Bob";
-            speed = 5;
-        }
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(playersprite, position, Color.White);
+            this.Name = "Bob";
+            Player.health = randomPlayerHealth.Next(50, 75);
+            Player.damage = randomPlayerDamage.Next(10, 120);
         }
 
-        public override void Update(GameTime gameTime)
+        /// <summary>
+        /// Player hitbox
+        /// </summary>
+        public override Rectangle Hitbox
+        {
+            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
+        }
+
+        public void PlayerMovement(int speed)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                position.Y -= 2;
+                Transform.Position.Y -= 1 * speed;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                position.X -= 2;
+                Transform.Position.X -= 1 * speed;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                position.Y += 2;
+                Transform.Position.Y += 1 * speed;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                position.X += 2;
+                Transform.Position.X += 1 * speed;
             }
         }
     }
-    
 }

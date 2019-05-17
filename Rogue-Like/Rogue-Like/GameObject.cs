@@ -10,46 +10,44 @@ namespace Rogue_Like
 {
     public class GameObject
     {
-        protected Vector2 position;
-        protected Vector2 velocity;
-        protected Vector2 center;
-        protected Vector2 origin;
-        protected ContentManager Content;
-        protected Transform Transform;
-        protected Texture2D sprite;
-        public Vector2 Center
-        {
-            get { return center; }
-        }
-        public Vector2 Position
-        {
-            get { return position; }
-        }
+        public Transform Transform;
+        public Texture2D Sprite;
+        public Vector2 spriteCenter;
+        public string spriteName;
+
+        /// <summary>
+        /// Makes a rectangle that will be made into the objects hitbox
+        /// </summary>
         public virtual Rectangle Hitbox
         {
-            get { return new Rectangle((int)Transform.Position.X, (int)Transform.Position.Y, sprite.Width, sprite.Height); }
-        }
-        public GameObject(string textureName, ContentManager Content, Transform Transform)
-        {
-            this.Content = Content;
-            sprite = Content.Load<Texture2D>(textureName);
-            this.position = Transform.Position;
-            velocity = Vector2.Zero;
-            center = new Vector2(Transform.Position.X + sprite.Width / 2, Transform.Position.Y + sprite.Height / 2);
-            origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
-        }
-        public virtual void Update(GameTime gameTime)
-        {
-            this.center = new Vector2(position.X + sprite.Width / 2, position.Y + sprite.Height / 2);
-        }
-        /// <summary>
-        /// Draws the GameObject
-        /// </summary>
-        /// <param name="spriteBatch"></param>
-        public virtual void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(sprite, position, Color.White);
+            get { return new Rectangle((int)Transform.Position.X, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
         }
 
+        /// <summary>
+        /// Constructor for our GameObject
+        /// </summary>
+        /// <param name="Sprite">The sprite for the specific object</param>
+        /// <param name="Transform">All positions and such is held in here</param>
+        public GameObject(string spriteName, Transform Transform)
+        {
+            this.Sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
+            this.Transform = Transform;
+            spriteCenter = new Vector2(Sprite.Width * 0.5f, Sprite.Height * 0.5f);
+        }
+        public GameObject(Transform transform)
+        {
+            this.Transform = transform;
+
+        }
+
+        public virtual void Update()
+        {
+
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(Sprite, new Vector2(Transform.Position.X, Transform.Position.Y - 1), null, Color.White, 0f, spriteCenter, 1f, SpriteEffects.None, 1f);
+        }
     }
 }
