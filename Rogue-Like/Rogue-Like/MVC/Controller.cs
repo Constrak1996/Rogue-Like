@@ -28,8 +28,8 @@ namespace Rogue_Like
             //Fill the Tables
             {
                 //bait.fillBaitTable();
-                model.fillHighscoreTable();
-                item.fillitemTable();
+                //model.fillHighscoreTable();
+                //item.fillitemTable();
             }
         }
 
