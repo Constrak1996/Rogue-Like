@@ -83,6 +83,8 @@ namespace Rogue_Like
             get { return map.GetLength(1); }
 
         }
+
+        #region Numeral Texture
         //Height of Dungeon map
         public int Height
         {
@@ -523,7 +525,7 @@ namespace Rogue_Like
         {
             get { return map.GetLength(88); }
         }
-
+        #endregion
 
 
         public Level1(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
@@ -645,12 +647,8 @@ namespace Rogue_Like
             //player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
 
 
-            var shop = new Button(Shop, buttonFont)
-            {
-                Position = new Vector2(200, 200),
-
-            };
-            shop.Click += Level2_TP;
+            
+            
             AddTexture(wall);
             AddTexture(piller);
             AddTexture(ground);
@@ -741,17 +739,17 @@ namespace Rogue_Like
             AddTexture(Carpet_Right_Mid);
             AddTexture(Carpet_Mid);
 
-            _component = new List<Component>()
-            {
-                shop,
-
-            };
+            
 
         }
 
-        private void Level2_TP(object sender, EventArgs e)
+        public void Level2_Change()
         {
-            _gameWorld.ChangeState(new Level2(_gameWorld, _graphichsDevice, _content));
+            if (Keyboard.GetState().IsKeyDown(Keys.D2))
+            {
+                _gameWorld.ChangeState(new Level2(_gameWorld, _graphichsDevice, _content));
+            }
+
         }
 
         /// <summary>
@@ -790,10 +788,7 @@ namespace Rogue_Like
                 }
 
             }
-            foreach (var component in _component)
-            {
-                component.Draw(gameTime, spritebatch);
-            }
+            
             //Draws the player
             {
                 //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
@@ -822,11 +817,9 @@ namespace Rogue_Like
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
             }
 
-            foreach (var component in _component)
-            {
-                component.Update(gameTime);
-            }
+            
 
+            Level2_Change();
             //player.Update(gameTime);
         }
 

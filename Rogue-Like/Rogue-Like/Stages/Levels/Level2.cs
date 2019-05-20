@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rogue_Like.Stages.Levels
+namespace Rogue_Like
 {
     class Level2 : State
     {
@@ -588,12 +588,7 @@ namespace Rogue_Like.Stages.Levels
             Texture2D Shop = content.Load<Texture2D>("Shop");
             _playerTexture = content.Load<Texture2D>("Fisher_Bob");
 
-            var shop = new Button(Shop, buttonFont)
-            {
-                Position = new Vector2(200, 200),
-
-            };
-            shop.Click += Shop_Click;
+            
             AddTexture(wall);
             AddTexture(piller);
             AddTexture(ground);
@@ -675,16 +670,16 @@ namespace Rogue_Like.Stages.Levels
             AddTexture(ShieldAndSwordBot);
             AddTexture(ShieldAndSwordLeft);
 
-            _component = new List<Component>()
-            {
-                shop,
-
-            };
+            
         }
 
-        private void Shop_Click(object sender, EventArgs e)
+        public void Shop_Change()
         {
-            _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+            if (Keyboard.GetState().IsKeyDown(Keys.D3))
+            {
+                _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+            }
+
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -718,10 +713,7 @@ namespace Rogue_Like.Stages.Levels
                 }
 
             }
-            foreach (var component in _component)
-            {
-                component.Draw(gameTime, spriteBatch);
-            }
+            
 
 
 
@@ -741,10 +733,7 @@ namespace Rogue_Like.Stages.Levels
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
             }
 
-            foreach (var component in _component)
-            {
-                component.Update(gameTime);
-            }
+            Shop_Change();
 
 
         }
