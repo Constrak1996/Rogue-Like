@@ -21,8 +21,13 @@ namespace Rogue_Like
         public static bool room3;
         public static bool room4;
 
+        //Spawn Bool
+        public bool spawned;
+
         public int damage;
-        private int i;
+
+        public Vector2 enemyPos;
+        public float enemyMoveSpeed = 1;
 
         //Enemy hitbox
         public override Rectangle Hitbox
@@ -34,93 +39,164 @@ namespace Rogue_Like
         {
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
-            base.Update();
+            ChasePlayer();
+            EnemySpawner();
+            OnCollision();
+            base.Update(gameTime);
         }
 
         public void EnemySpawner()
         {
+            #region Level 1
             if (level1 == true)
             {
                 if (room1 == true)
                 {
-                    //while (i <= 5)
-                    //{
-                    //    SpawnEnemy();
-                    //    i++;
-                    //}
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room1 = false;
                 }
                 if (room2 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room2 = false;
                 }
                 if (room3 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room3 = false;
                 }
                 if (room4 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room4 = false;
                 }
             }
+            #endregion
+            #region Level 2
             if (level2 == true)
             {
                 if (room1 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room1 = false;
                 }
                 if (room2 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room2 = false;
                 }
                 if (room3 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room3 = false;
                 }
                 if (room4 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room4 = false;
                 }
             }
+            #endregion
+            #region Level 3
             if (level3 == true)
             {
                 if (room1 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room1 = false;
                 }
                 if (room2 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room2 = false;
                 }
                 if (room3 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room3 = false;
                 }
                 if (room4 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room4 = false;
                 }
             }
+            #endregion
+            #region Level 4
             if (level4 == true)
             {
                 if (room1 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room1 = false;
                 }
                 if (room2 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room2 = false;
                 }
                 if (room3 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room3 = false;
                 }
                 if (room4 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room4 = false;
                 }
             }
+            #endregion
         }
 
         public void SpawnEnemy()
@@ -129,12 +205,20 @@ namespace Rogue_Like
             GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5));
         }
 
-        public void OnCollision(GameObject player)
+        public void OnCollision()
         {
-            if (Hitbox.Intersects(player.Hitbox))
+            if (this.Hitbox.Intersects(GameWorld.player.Hitbox))
             {
                 GameWorld.gameObjectsRemove.Add(this);
             }
+        }
+
+        public void ChasePlayer()
+        {
+            Vector2 direction = GameWorld.player.Transform.Position - this.Transform.Position;
+            direction.Normalize();
+            Vector2 velocity = direction * enemyMoveSpeed;
+            this.Transform.Position += velocity;
         }
     }
 }
