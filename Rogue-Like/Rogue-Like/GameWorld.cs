@@ -32,7 +32,6 @@ namespace Rogue_Like
         public static int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
         public static int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
-
         //Player
         Player player;
 
@@ -82,10 +81,8 @@ namespace Rogue_Like
             collisionTexture = Content.Load<Texture2D>("OnePixel");
 
             //Player
-            player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
+            player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0),0,0);
             gameObjectsAdd.Add(player);
-
-            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0);
         }
 
         /// <summary>
@@ -136,7 +133,6 @@ namespace Rogue_Like
             //Player movement
             player.PlayerMovement(3);
 
-            enemy.Update();
             base.Update(gameTime);
         }
 
@@ -164,7 +160,7 @@ namespace Rogue_Like
                 DrawCollisionBox(go);
 #endif
             }
-            spriteBatch.DrawString(Font, $"Player Name: {player.Name} Health: {Player.health} Damage: {Player.damage}", new Vector2(0, 20), Color.White);
+            spriteBatch.DrawString(Font, $": {Player.Name} Gold: {Player.coin} Health: {Player.health} Damage: {Player.damage}, Score: {Player.score}", Vector2.Zero, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -187,5 +183,7 @@ namespace Rogue_Like
             spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
+
+        
     }
 }

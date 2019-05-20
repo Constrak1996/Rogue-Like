@@ -10,18 +10,40 @@ namespace Rogue_Like
 {
     public class Player : GameObject
     {
-        public string Name;
+        public static string Name;
         public static int health;
         public static int damage;
+        public static int score;
+        public static float coin;
         public Random randomPlayerDamage = new Random();
         public Random randomPlayerHealth = new Random();
-        public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
+        public Player(string spriteName, Transform Transform,float coin, int score) : base(spriteName, Transform)
         {
-            this.Name = "Bob";
+            Player.coin = coin;
+            Player.score = score;
+            Player.Name = "Bob";
             Player.health = randomPlayerHealth.Next(50, 75);
             Player.damage = randomPlayerDamage.Next(10, 120);
         }
-
+        public void PlayerMovement(int speed)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                Transform.Position.Y -= 1 * speed;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                Transform.Position.X -= 1 * speed;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                Transform.Position.Y += 1 * speed;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                Transform.Position.X += 1 * speed;
+            }
+        }
         /// <summary>
         /// Player hitbox
         /// </summary>
