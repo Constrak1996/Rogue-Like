@@ -80,7 +80,8 @@ namespace Rogue_Like
             Font = Content.Load<SpriteFont>("Font");
             //Collisionbox texture
             collisionTexture = Content.Load<Texture2D>("OnePixel");
-
+            //Enemy
+            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0,20,2);
             //Player
             player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
             gameObjectsAdd.Add(player);
@@ -159,25 +160,34 @@ namespace Rogue_Like
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
-            //Draws sprites in gameObjects list
-            foreach (GameObject go in gameObjects)
+            if (Shop.shop == true || Level1.lvl1 == true || Level2.lvl2 == true)
             {
-                go.Draw(spriteBatch);
-            }
 
-            //Collision texture draw
-            foreach (GameObject go in gameObjects)
-            {
-                go.Draw(spriteBatch);
+
+                //Draws sprites in gameObjects list
+                foreach (GameObject go in gameObjects)
+                {
+                    go.Draw(spriteBatch);
+
+                }
+
+                //Collision texture draw
+                foreach (GameObject go in gameObjects)
+                {
+                    go.Draw(spriteBatch);
+
 #if DEBUG
-                DrawCollisionBox(go);
+                    DrawCollisionBox(go);
 #endif
+                }
+                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.score}", new Vector2(1735, 0), Color.White);
+
             }
-            spriteBatch.DrawString(Font, $": {Player.Name} Health: {Player.health} Damage: {Player.damage}, Gold: {Player.coin}, Food: {Player.food} Score: {Player.score}", Vector2.Zero, Color.Black);
+            
             spriteBatch.End();
 
             base.Draw(gameTime);

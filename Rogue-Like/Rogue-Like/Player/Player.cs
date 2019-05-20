@@ -19,9 +19,14 @@ namespace Rogue_Like
         public static string food;
         public Random randomPlayerDamage = new Random();
         public Random randomPlayerHealth = new Random();
+        /// <summary>
+        /// The players Constructor
+        /// </summary>
+        /// <param name="spriteName"></param>
+        /// <param name="Transform"></param>
         public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
-            
+
             Player.coin = controller.getItem(4);
             Player.score = controller.getPlayerScore();
             Player.food = controller.getItem(5);
@@ -29,6 +34,17 @@ namespace Rogue_Like
             Player.health = randomPlayerHealth.Next(50, 75);
             Player.damage = randomPlayerDamage.Next(10, 120);
         }
+        /// <summary>
+        /// Allows the player to attack an enemy
+        /// </summary>
+        public void PlayerAttack()
+        {
+
+        }
+        /// <summary>
+        /// Allows the player to move around
+        /// </summary>
+        /// <param name="speed"></param>
         public void PlayerMovement(int speed)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.W))

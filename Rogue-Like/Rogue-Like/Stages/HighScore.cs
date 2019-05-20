@@ -26,10 +26,7 @@ namespace Rogue_Like
         }
         public override void Draw(GameTime gameTime, SpriteBatch spritebatch)
         {
-
-            
-            spritebatch.DrawString(textFont, controller.getHighscore(), new Vector2(750, 300), Color.Black);
-            
+            spritebatch.DrawString(textFont, controller.getHighscore(), new Vector2(750, 300), Color.White);
         }
         public override void PostUpdate(GameTime gameTime)
         {

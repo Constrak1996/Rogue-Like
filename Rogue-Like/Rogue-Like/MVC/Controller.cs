@@ -55,7 +55,6 @@ namespace Rogue_Like
         }
         public void newPlayer()
         {
-            Player.score = "0";
             model.newPlayerScore();
         }
         public String getBestscore()

@@ -15,7 +15,7 @@ namespace Rogue_Like
         private Player player;
         private SpriteFont Font;
         private Texture2D _playerTexture;
-
+        public static bool lvl2;
         private List<Component> _component;
 
         private int[,] mapBackground = new int[,]
@@ -690,7 +690,7 @@ namespace Rogue_Like
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-
+           
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -736,6 +736,7 @@ namespace Rogue_Like
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
+                Shop.shop = false;
             }
 
             foreach (var component in _component)

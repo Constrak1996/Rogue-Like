@@ -14,7 +14,7 @@ namespace Rogue_Like
     {
         private SpriteFont Font;
         private Texture2D _playerTexture;
-
+        public static bool shop;
         private List<Component> _component;
 
         private int[,] mapBackground = new int[,]
@@ -45,7 +45,7 @@ namespace Rogue_Like
 
             return mapBackground[cellY, cellX];
         }
-        //Tilemap of Lake Map
+        //Tilemap of Shop
         private int[,] map = new int[,]
        {
             {4,41,42,42,42,42,42,39,42,42,42,42,89,90,91,38,38,38,38,39,38,38,38,38,38,37,33},
@@ -807,7 +807,7 @@ namespace Rogue_Like
         /// <param name="spritebatch"></param>
         public override void Draw(GameTime gameTime, SpriteBatch spritebatch)
         {
-
+            
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -866,6 +866,7 @@ namespace Rogue_Like
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
+                shop = false;
             }
 
             foreach (var component in _component)
