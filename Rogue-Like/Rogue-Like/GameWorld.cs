@@ -143,7 +143,6 @@ namespace Rogue_Like
                 enemy.SpawnEnemy();
                 i++;
             }
-            
             enemy.Update(gameTime);
             base.Update(gameTime);
         }
@@ -195,5 +194,7 @@ namespace Rogue_Like
             spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
+
+        
     }
 }

@@ -27,9 +27,7 @@ namespace Rogue_Like
         public int damage;
 
         public Vector2 enemyPos;
-        public Player player;
         public float enemyMoveSpeed = 1;
-        private int i;
 
         //Enemy hitbox
         public override Rectangle Hitbox
@@ -45,6 +43,7 @@ namespace Rogue_Like
         {
             ChasePlayer();
             EnemySpawner();
+            OnCollision();
             base.Update(gameTime);
         }
 
@@ -55,38 +54,35 @@ namespace Rogue_Like
             {
                 if (room1 == true)
                 {
-                    while (i <= 4)
+                    for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
-                        i++;
                     }
+                    room1 = false;
                 }
                 if (room2 == true)
                 {
-                    i = 0;
-                    while (i <= 5)
+                    for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
-                        i++;
                     }
+                    room2 = false;
                 }
                 if (room3 == true)
                 {
-                    i = 0;
-                    while (i <= 6)
+                    for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
-                        i++;
                     }
+                    room3 = false;
                 }
                 if (room4 == true)
                 {
-                    i = 0;
-                    while (i <= 7)
+                    for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
-                        i++;
                     }
+                    room4 = false;
                 }
             }
             #endregion
@@ -95,39 +91,35 @@ namespace Rogue_Like
             {
                 if (room1 == true)
                 {
-                    i = 0;
-                    while (i <= 5)
+                    for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
-                        i++;
                     }
+                    room1 = false;
                 }
                 if (room2 == true)
                 {
-                    i = 0;
-                    while (i <= 5)
+                    for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
-                        i++;
                     }
+                    room2 = false;
                 }
                 if (room3 == true)
                 {
-                    i = 0;
-                    while (i <= 5)
+                    for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
-                        i++;
                     }
+                    room3 = false;
                 }
                 if (room4 == true)
                 {
-                    i = 0;
-                    while (i <= 5)
+                    for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
-                        i++;
                     }
+                    room4 = false;
                 }
             }
             #endregion
@@ -136,19 +128,35 @@ namespace Rogue_Like
             {
                 if (room1 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room1 = false;
                 }
                 if (room2 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room2 = false;
                 }
                 if (room3 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room3 = false;
                 }
                 if (room4 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room4 = false;
                 }
             }
             #endregion
@@ -157,19 +165,35 @@ namespace Rogue_Like
             {
                 if (room1 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room1 = false;
                 }
                 if (room2 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room2 = false;
                 }
                 if (room3 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room3 = false;
                 }
                 if (room4 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room4 = false;
                 }
             }
             #endregion
@@ -181,9 +205,9 @@ namespace Rogue_Like
             GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5));
         }
 
-        public void OnCollision(GameObject player)
+        public void OnCollision()
         {
-            if (Hitbox.Intersects(player.Hitbox))
+            if (this.Hitbox.Intersects(GameWorld.player.Hitbox))
             {
                 GameWorld.gameObjectsRemove.Add(this);
             }
