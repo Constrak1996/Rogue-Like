@@ -10,17 +10,21 @@ namespace Rogue_Like
 {
     public class Player : GameObject
     {
+        Controller controller = new Controller();
         public static string Name;
         public static int health;
         public static int damage;
-        public static int score;
-        public static float coin;
+        public static string score;
+        public static string coin;
+        public static string food;
         public Random randomPlayerDamage = new Random();
         public Random randomPlayerHealth = new Random();
-        public Player(string spriteName, Transform Transform,float coin, int score) : base(spriteName, Transform)
+        public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
-            Player.coin = coin;
-            Player.score = score;
+            
+            Player.coin = controller.getItem(4);
+            Player.score = controller.getPlayerScore();
+            Player.food = controller.getItem(5);
             Player.Name = "Peter";
             Player.health = randomPlayerHealth.Next(50, 75);
             Player.damage = randomPlayerDamage.Next(10, 120);

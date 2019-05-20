@@ -35,16 +35,16 @@ namespace Rogue_Like
             cmd.ExecuteNonQuery();
             cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(4,'Gold', 1)";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(5,'Food', 40)";
+            cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(5,'Food', 1)";
             cmd.ExecuteNonQuery();
             cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(6,'Bones', 0)";
             cmd.ExecuteNonQuery();
             
         }
-        public String getscore(int id)
+        public String getItem(int id)
         {
-            String sqlexpItem = "SELECT score FROM item WHERE id ='" + id + "';";
-            SQLiteCommand cmd = new SQLiteCommand(sqlexpItem, m_dbConnection)
+            String sqlexpItem = "SELECT value FROM item WHERE id ='" + id + "'"; 
+              SQLiteCommand cmd = new SQLiteCommand(sqlexpItem, m_dbConnection)
             {
                 CommandText = sqlexpItem
             };
@@ -55,7 +55,7 @@ namespace Rogue_Like
             String slqItem = "";
             while (reader.Read())
             {
-                slqItem += reader["score"];
+                slqItem += reader["value"];
             }
             return slqItem;
         }

@@ -16,11 +16,7 @@ namespace Rogue_Like
         private Player player;
         private SpriteFont Font;
         private Texture2D _playerTexture;
-        Model model;
-       
         
-
-
         private List<Component> _component;
         /// <summary>
         /// 
@@ -77,8 +73,7 @@ namespace Rogue_Like
             {
                 component.Draw(gameTime, spritebatch);
             }
-
-
+            
             spritebatch.End();
         }
         /// <summary>

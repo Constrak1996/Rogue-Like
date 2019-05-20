@@ -29,7 +29,7 @@ namespace Rogue_Like
             {
                 //bait.fillBaitTable();
                 model.fillHighscoreTable();
-                //item.fillitemTable();
+                item.fillitemTable();
             }
         }
 
@@ -44,9 +44,9 @@ namespace Rogue_Like
         //    //return bait.getBait();
         //}
         //Get the games FishScore
-        public string getItem(int id)
+        public String getItem(int id)
         {
-            return item.getscore(id);
+            return item.getItem(id);
         }
 
         public String getNewHighscore()
@@ -55,6 +55,7 @@ namespace Rogue_Like
         }
         public void newPlayer()
         {
+            Player.score = "0";
             model.newPlayerScore();
         }
         public String getBestscore()
