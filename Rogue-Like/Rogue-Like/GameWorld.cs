@@ -34,13 +34,14 @@ namespace Rogue_Like
 
 
         //Player
-        Player player;
+        public static Player player;
 
         //Collision
         private Texture2D collisionTexture;
 
         //Enemy
         Enemy enemy;
+        private int i;
 
         public void ChangeState(State state)
         {
@@ -120,7 +121,7 @@ namespace Rogue_Like
             //Updates gameobjects
             foreach (GameObject go in gameObjects)
             {
-                go.Update();
+                go.Update(gameTime);
             }
 
             //Adds gameobjects to the gameobjects list
@@ -136,7 +137,14 @@ namespace Rogue_Like
             //Player movement
             player.PlayerMovement(3);
 
-            enemy.Update();
+            
+            if (i <= 2)
+            {
+                enemy.SpawnEnemy();
+                i++;
+            }
+            
+            enemy.Update(gameTime);
             base.Update(gameTime);
         }
 

@@ -21,7 +21,14 @@ namespace Rogue_Like
         public static bool room3;
         public static bool room4;
 
+        //Spawn Bool
+        public bool spawned;
+
         public int damage;
+
+        public Vector2 enemyPos;
+        public Player player;
+        public float enemyMoveSpeed = 1;
         private int i;
 
         //Enemy hitbox
@@ -34,55 +41,97 @@ namespace Rogue_Like
         {
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
-            base.Update();
+            ChasePlayer();
+            EnemySpawner();
+            base.Update(gameTime);
         }
 
         public void EnemySpawner()
         {
+            #region Level 1
             if (level1 == true)
             {
                 if (room1 == true)
                 {
-                    //while (i <= 5)
-                    //{
-                    //    SpawnEnemy();
-                    //    i++;
-                    //}
+                    while (i <= 4)
+                    {
+                        SpawnEnemy();
+                        i++;
+                    }
                 }
                 if (room2 == true)
                 {
-
+                    i = 0;
+                    while (i <= 5)
+                    {
+                        SpawnEnemy();
+                        i++;
+                    }
                 }
                 if (room3 == true)
                 {
-
+                    i = 0;
+                    while (i <= 6)
+                    {
+                        SpawnEnemy();
+                        i++;
+                    }
                 }
                 if (room4 == true)
                 {
-
+                    i = 0;
+                    while (i <= 7)
+                    {
+                        SpawnEnemy();
+                        i++;
+                    }
                 }
             }
+            #endregion
+            #region Level 2
             if (level2 == true)
             {
                 if (room1 == true)
                 {
-
+                    i = 0;
+                    while (i <= 5)
+                    {
+                        SpawnEnemy();
+                        i++;
+                    }
                 }
                 if (room2 == true)
                 {
-
+                    i = 0;
+                    while (i <= 5)
+                    {
+                        SpawnEnemy();
+                        i++;
+                    }
                 }
                 if (room3 == true)
                 {
-
+                    i = 0;
+                    while (i <= 5)
+                    {
+                        SpawnEnemy();
+                        i++;
+                    }
                 }
                 if (room4 == true)
                 {
-
+                    i = 0;
+                    while (i <= 5)
+                    {
+                        SpawnEnemy();
+                        i++;
+                    }
                 }
             }
+            #endregion
+            #region Level 3
             if (level3 == true)
             {
                 if (room1 == true)
@@ -102,6 +151,8 @@ namespace Rogue_Like
 
                 }
             }
+            #endregion
+            #region Level 4
             if (level4 == true)
             {
                 if (room1 == true)
@@ -121,6 +172,7 @@ namespace Rogue_Like
 
                 }
             }
+            #endregion
         }
 
         public void SpawnEnemy()
@@ -135,6 +187,14 @@ namespace Rogue_Like
             {
                 GameWorld.gameObjectsRemove.Add(this);
             }
+        }
+
+        public void ChasePlayer()
+        {
+            Vector2 direction = GameWorld.player.Transform.Position - this.Transform.Position;
+            direction.Normalize();
+            Vector2 velocity = direction * enemyMoveSpeed;
+            this.Transform.Position += velocity;
         }
     }
 }
