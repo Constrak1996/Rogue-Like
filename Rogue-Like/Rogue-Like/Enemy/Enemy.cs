@@ -41,8 +41,8 @@ namespace Rogue_Like
 
         public override void Update(GameTime gameTime)
         {
-            ChasePlayer();
             EnemySpawner();
+            ChasePlayer();
             OnCollision();
             base.Update(gameTime);
         }

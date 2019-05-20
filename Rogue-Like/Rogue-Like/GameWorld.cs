@@ -84,6 +84,8 @@ namespace Rogue_Like
             //Player
             player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
             gameObjectsAdd.Add(player);
+
+            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0);
         }
 
         /// <summary>
@@ -130,6 +132,13 @@ namespace Rogue_Like
                 }
                 gameObjectsAdd.Clear();
             }
+
+            // Remove all game objects in removeList
+            foreach (GameObject obj in gameObjectsRemove)
+            {
+                gameObjects.Remove(obj);
+            }
+            gameObjectsRemove.Clear();
 
             //Player movement
             player.PlayerMovement(3);
