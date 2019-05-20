@@ -9,6 +9,7 @@ namespace Rogue_Like
 {
     public class Enemy : GameObject
     {
+        Controller controller = new Controller();
         //Level bools
         public static bool level1;
         public static bool level2;
@@ -204,7 +205,7 @@ namespace Rogue_Like
             Random r = new Random();
             GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5,20,2));
         }
-
+        
         public void OnCollision()
         {
             if (this.Hitbox.Intersects(GameWorld.player.Hitbox))
