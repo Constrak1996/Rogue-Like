@@ -20,34 +20,30 @@ namespace Rogue_Like
         }
         public void itemStructure()
         {
-            string sql = "CREATE TABLE IF NOT EXISTS fish (id INT, name VARCHAR(40), score INT)";
+            string sql = "CREATE TABLE IF NOT EXISTS item (id INT, name VARCHAR(40), value INT)";
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             command.ExecuteNonQuery();
         }
         public void fillitemTable()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
-            cmd.CommandText = "INSERT INTO fish (id, name, score) VALUES(1,'Brasen', 20)";
+            cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(1,'Sword', 4)";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO fish (id, name, score) VALUES(2,'Sterlet', 50)";
+            cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(2,'Shield', 5)";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO fish (id, name, score) VALUES(3,'Sturgeon', 40)";
+            cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(3,'Trinket', 40)";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO fish (id, name, score) VALUES(4,'Bighead carp', 30)";
+            cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(4,'Gold', 1)";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO fish (id, name, score) VALUES(5,'White bream', 40)";
+            cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(5,'Food', 40)";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO fish (id, name, score) VALUES(6,'Goldfish', 30)";
+            cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(6,'Bones', 0)";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO fish (id, name, score) VALUES(7,'Bullhead', 30)";
-            cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO fish (id, name, score) VALUES(8,'Gudgeon', 50)";
-            cmd.ExecuteNonQuery();
-
+            
         }
         public String getscore(int id)
         {
-            String sqlexpItem = "SELECT score FROM fish WHERE id ='" + id + "';";
+            String sqlexpItem = "SELECT score FROM item WHERE id ='" + id + "';";
             SQLiteCommand cmd = new SQLiteCommand(sqlexpItem, m_dbConnection)
             {
                 CommandText = sqlexpItem
@@ -56,12 +52,12 @@ namespace Rogue_Like
             SQLiteDataReader reader;
             reader = cmd.ExecuteReader();
 
-            String sqlItem = "";
+            String slqItem = "";
             while (reader.Read())
             {
-                sqlItem += reader["score"];
+                slqItem += reader["score"];
             }
-            return sqlItem;
+            return slqItem;
         }
     }
 }

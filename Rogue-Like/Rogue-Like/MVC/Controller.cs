@@ -28,8 +28,8 @@ namespace Rogue_Like
             //Fill the Tables
             {
                 //bait.fillBaitTable();
-                //model.fillHighscoreTable();
-                item.fillitemTable();
+                model.fillHighscoreTable();
+                //item.fillitemTable();
             }
         }
 
@@ -39,7 +39,7 @@ namespace Rogue_Like
             return model.getHighscore();
         }
         //Get the games BaitTabel
-        //public String getBait()
+        //public String getItem()
         //{
         //    //return bait.getBait();
         //}

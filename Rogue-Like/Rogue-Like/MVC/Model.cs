@@ -26,7 +26,7 @@ namespace Rogue_Like
         /// </summary>
         public void highscoreStructure()
         {
-            string sql = "CREATE TABLE IF NOT EXISTS highscores (id INTEGER PRIMARY KEY ASC,name VARCHAR(20), score INT)";
+            string sql = $"CREATE TABLE IF NOT EXISTS highscores (id INTEGER PRIMARY KEY ASC, name VARCHAR(20), score INT)";
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             command.ExecuteNonQuery();
         }
@@ -36,12 +36,7 @@ namespace Rogue_Like
         public void fillHighscoreTable()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
-            cmd.CommandText = "INSERT INTO highscores (id,name, score) VALUES(NULL,'Jens', 4000)";
-            cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO highscores (id,name, score) VALUES(NULL,'Peter', 5000)";
-            cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO highscores (id,name, score) VALUES(NULL,'Bob', 2500)";
-            cmd.ExecuteNonQuery();
+            
         }
         /// <summary>
         /// Get the HighScore from the DataBase
@@ -71,7 +66,7 @@ namespace Rogue_Like
         public void newPlayerScore()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
-            cmd.CommandText = "INSERT INTO highscores (id,name, score) VALUES(NULL,'Player', 0)";
+            cmd.CommandText = $"INSERT INTO highscores (id, name,score) VALUES(NULL,'{Player.Name}', '{Player.score}')";
             cmd.ExecuteNonQuery();
         }
         /// <summary>

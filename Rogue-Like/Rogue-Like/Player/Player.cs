@@ -21,7 +21,7 @@ namespace Rogue_Like
         {
             Player.coin = coin;
             Player.score = score;
-            Player.Name = "Bob";
+            Player.Name = "Peter";
             Player.health = randomPlayerHealth.Next(50, 75);
             Player.damage = randomPlayerDamage.Next(10, 120);
         }
@@ -50,26 +50,6 @@ namespace Rogue_Like
         public override Rectangle Hitbox
         {
             get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
-        }
-
-        public void PlayerMovement(int speed)
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
-            {
-                Transform.Position.Y -= 1 * speed;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
-            {
-                Transform.Position.X -= 1 * speed;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
-            {
-                Transform.Position.Y += 1 * speed;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
-            {
-                Transform.Position.X += 1 * speed;
-            }
         }
     }
 }
