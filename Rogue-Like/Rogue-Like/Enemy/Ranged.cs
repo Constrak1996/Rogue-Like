@@ -8,8 +8,9 @@ namespace Rogue_Like
 {
     public class RangedEnemy : Enemy
     {
-        public RangedEnemy(string spriteName, Transform Transform, int damage) : base(spriteName, Transform, damage)
+        public RangedEnemy(string spriteName, Transform Transform, int damage, int health, float range) : base(spriteName, Transform, damage, health, range)
         {
+
         }
     }
 }
