@@ -26,7 +26,7 @@ namespace Rogue_Like
         /// <param name="Transform"></param>
         public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
-            
+
             Player.coin = controller.getItem(4);
             Player.score = controller.getPlayerScore();
             Player.food = controller.getItem(5);

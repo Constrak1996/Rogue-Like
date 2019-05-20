@@ -11,7 +11,7 @@ namespace Rogue_Like
     {
         private SpriteFont Font;
         private Texture2D _playerTexture;
-
+        public static bool lvl1;
         private List<Component> _component;
 
         private int[,] mapBackground = new int[,]
@@ -761,7 +761,7 @@ namespace Rogue_Like
         /// <param name="spritebatch"></param>
         public override void Draw(GameTime gameTime, SpriteBatch spritebatch)
         {
-
+            
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)

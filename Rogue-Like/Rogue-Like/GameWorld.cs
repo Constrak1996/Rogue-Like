@@ -142,7 +142,7 @@ namespace Rogue_Like
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
@@ -150,17 +150,29 @@ namespace Rogue_Like
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
+                
             }
 
             //Collision texture draw
             foreach (GameObject go in gameObjects)
             {
                 go.Draw(spriteBatch);
+               
 #if DEBUG
                 DrawCollisionBox(go);
 #endif
             }
-            spriteBatch.DrawString(Font, $": {Player.Name} Health: {Player.health} Damage: {Player.damage}, Gold: {Player.coin}, Food: {Player.food} Score: {Player.score}", Vector2.Zero, Color.Black);
+
+            if (_currentState = Shop.shop)
+            {
+                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.score}", new Vector2(1735, 0), Color.White);
+
+            }
+            if (Level1.lvl1)
+            {
+                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.score}", new Vector2(1735, 0), Color.White);
+
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);
