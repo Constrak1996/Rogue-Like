@@ -21,7 +21,9 @@ namespace Rogue_Like
         public static bool room3;
         public static bool room4;
 
+        public int health;
         public int damage;
+        public float range;
         private int i;
 
         //Enemy hitbox
@@ -30,7 +32,7 @@ namespace Rogue_Like
             get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
         }
 
-        public Enemy(string spriteName, Transform Transform, int damage) : base(spriteName, Transform)
+        public Enemy(string spriteName, Transform Transform, int damage, int health, float range) : base(spriteName, Transform)
         {
         }
 
@@ -126,7 +128,7 @@ namespace Rogue_Like
         public void SpawnEnemy()
         {
             Random r = new Random();
-            GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5));
+            GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5,20,20));
         }
 
         public void OnCollision(GameObject player)
