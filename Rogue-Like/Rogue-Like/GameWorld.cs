@@ -146,6 +146,8 @@ namespace Rogue_Like
 
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
+            if (Shop.shop == true || Level1.lvl1 == true || Level2.lvl2 == true)
+            {  
             //Draws sprites in gameObjects list
             foreach (GameObject go in gameObjects)
             {
@@ -163,16 +165,11 @@ namespace Rogue_Like
 #endif
             }
 
-            if (_currentState = Shop.shop)
-            {
+            
                 spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.score}", new Vector2(1735, 0), Color.White);
 
             }
-            if (Level1.lvl1)
-            {
-                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.score}", new Vector2(1735, 0), Color.White);
-
-            }
+            
             spriteBatch.End();
 
             base.Draw(gameTime);
