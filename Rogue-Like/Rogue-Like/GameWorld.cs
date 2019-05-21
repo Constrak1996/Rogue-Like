@@ -41,6 +41,7 @@ namespace Rogue_Like
 
         //Enemy
         Enemy enemy;
+        private Texture2D arrow;
         private int i;
 
         public void ChangeState(State state)
@@ -79,6 +80,8 @@ namespace Rogue_Like
             spriteBatch = new SpriteBatch(GraphicsDevice);
             _currentState = new Menu(this, GraphicsDevice, Content);
             Font = Content.Load<SpriteFont>("Font");
+            //Bullets
+            arrow = Content.Load<Texture2D>("Arrow");
             //Collisionbox texture
             collisionTexture = Content.Load<Texture2D>("OnePixel");
             //Enemy

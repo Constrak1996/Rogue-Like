@@ -10,6 +10,11 @@ namespace Rogue_Like
 {
     public class GameObject
     {
+        protected Vector2 position;
+        protected Vector2 velocity;
+        protected Vector2 center;
+        protected Vector2 origin;
+        protected float rotation;
         public Transform Transform;
         public Texture2D Sprite;
         public Vector2 spriteCenter;
