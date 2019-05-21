@@ -27,6 +27,7 @@ namespace Rogue_Like
         public static List<GameObject> gameObjects = new List<GameObject>();
         public static List<GameObject> gameObjectsAdd = new List<GameObject>();
         public static List<GameObject> gameObjectsRemove = new List<GameObject>();
+        public static List<GameObject> gameObjectsIdle = new List<GameObject>();
 
         //Graphics
         public static int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
