@@ -87,6 +87,7 @@ namespace Rogue_Like
 
         }
         //Height of Dungeon map
+        #region
         public int Height
         {
             get { return map.GetLength(0); }
@@ -556,11 +557,12 @@ namespace Rogue_Like
         {
             get { return map.GetLength(94); }
         }
-
+        #endregion
 
 
         public Shop(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
+            
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
             Font = content.Load<SpriteFont>("Font");
@@ -691,6 +693,8 @@ namespace Rogue_Like
 
             };
             shop.Click += Shop_Click;
+            //Texture Added
+            #region
             AddTexture(wall);
             AddTexture(piller);
             AddTexture(ground);
@@ -786,7 +790,7 @@ namespace Rogue_Like
             AddTexture(Door_Left_Bot_Entry);
             AddTexture(Door_Mid_Bot_Entry);
             AddTexture(Door_Right_Bot_Entry);
-
+            #endregion
             _component = new List<Component>()
             {
                 shop,
@@ -798,6 +802,13 @@ namespace Rogue_Like
         private void Shop_Click(object sender, EventArgs e)
         {
             _gameWorld.ChangeState(new Level1(_gameWorld, _graphichsDevice, _content));
+            while (Enemy.level1 == true)
+            {
+                continue;
+
+            }
+            
+            
         }
 
         /// <summary>

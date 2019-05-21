@@ -13,9 +13,9 @@ namespace Rogue_Like
     public class Level2 : State
     {
         private Player player;
+        public static bool lvl2;
         private SpriteFont Font;
         private Texture2D _playerTexture;
-        public static bool lvl2;
         private List<Component> _component;
 
         private int[,] mapBackground = new int[,]
@@ -686,6 +686,12 @@ namespace Rogue_Like
         private void Shop_Click(object sender, EventArgs e)
         {
             _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+            if (Enemy.level1 == true || Enemy.level2 == true)
+            {
+                Enemy.level1 = false;
+                Enemy.level2 = false;
+            }
+            
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

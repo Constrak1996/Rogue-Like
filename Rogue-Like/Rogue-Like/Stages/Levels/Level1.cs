@@ -752,6 +752,7 @@ namespace Rogue_Like
         private void Level2_TP(object sender, EventArgs e)
         {
             _gameWorld.ChangeState(new Level2(_gameWorld, _graphichsDevice, _content));
+            
         }
 
         /// <summary>

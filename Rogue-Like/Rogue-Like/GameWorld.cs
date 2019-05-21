@@ -85,10 +85,7 @@ namespace Rogue_Like
             //Collisionbox texture
             collisionTexture = Content.Load<Texture2D>("OnePixel");
             //Enemy
-            for (int i = 0; i < 3; i++)
-            {
-                Enemy.SpawnEnemy();
-            }
+
             //enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0,20,2);
             //Player
             player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
@@ -150,15 +147,32 @@ namespace Rogue_Like
 
             //Player movement
             player.PlayerMovement(3);
+            //Spawn Enemy at Level
+            SpawnEnemyAtLevel();
 
-            
-            //if (i <= 2)
-            //{
-            //    enemy.SpawnEnemy();
-            //    i++;
-            //}
-            
             base.Update(gameTime);
+        }
+
+        private static void SpawnEnemyAtLevel()
+        {
+            if (Enemy.level1 == true)
+            {
+
+                for (int i = 0; i < 2; i++)
+                {
+                    Enemy.SpawnEnemy();
+
+                }
+
+            }
+            if (Enemy.level2 == true)
+            {
+
+                for (int i = 2; i < 4; i++)
+                {
+                    Enemy.SpawnEnemy();
+                }
+            }
         }
 
         /// <summary>

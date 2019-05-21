@@ -52,156 +52,163 @@ namespace Rogue_Like
 
         public void EnemySpawner()
         {
-                #region Level 1
-                if (level1 == true)
+
+            #region Level 1
+
+            if (level1 == true)
+            {
+                for (int i = 0; i <= 4; i++)
                 {
-                    if (room1 == true)
+                    SpawnEnemy();
+                    level1 = false;
+                }
+                
+
+                if (room1 == true)
+                {
+
+
+                    room1 = false;
+                    room2 = true;
+                }
+                if (room2 == true)
+                {
+                    for (int i = 0; i <= 3; i++)
                     {
+                        SpawnEnemy();
+                    }
+                    room2 = false;
+                }
+                if (room3 == true)
+                {
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room3 = false;
+                }
+                if (room4 == true)
+                {
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room4 = false;
+                }
+            }
+            #endregion
+            #region Level 2
+            if (level2 == true)
+            {
+                if (room1 == true)
+                {
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room1 = false;
+                }
+                if (room2 == true)
+                {
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room2 = false;
+                }
+                if (room3 == true)
+                {
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room3 = false;
+                }
+                if (room4 == true)
+                {
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room4 = false;
+                }
+            }
+            #endregion
+            #region Level 3
+            if (level3 == true)
+            {
+                if (room1 == true)
+                {
 
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
                     room1 = false;
-                    }
-                    if (room2 == true)
-                    {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room2 = false;
-                    }
-                    if (room3 == true)
-                    {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room3 = false;
-                    }
-                    if (room4 == true)
-                    {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room4 = false;
-                    }
                 }
-                #endregion
-                #region Level 2
-                if (level2 == true)
+                if (room2 == true)
                 {
-                    if (room1 == true)
+                    for (int i = 0; i <= 3; i++)
                     {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room1 = false;
+                        SpawnEnemy();
                     }
-                    if (room2 == true)
-                    {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room2 = false;
-                    }
-                    if (room3 == true)
-                    {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room3 = false;
-                    }
-                    if (room4 == true)
-                    {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room4 = false;
-                    }
+                    room2 = false;
                 }
-                #endregion
-                #region Level 3
-                if (level3 == true)
+                if (room3 == true)
                 {
-                    if (room1 == true)
+                    for (int i = 0; i <= 3; i++)
                     {
-
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room1 = false;
+                        SpawnEnemy();
                     }
-                    if (room2 == true)
-                    {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room2 = false;
-                    }
-                    if (room3 == true)
-                    {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room3 = false;
-                    }
-                    if (room4 == true)
-                    {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room4 = false;
-                    }
+                    room3 = false;
                 }
-                #endregion
-                #region Level 4
-                if (level4 == true)
+                if (room4 == true)
                 {
-                    if (room1 == true)
+                    for (int i = 0; i <= 3; i++)
                     {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room1 = false;
+                        SpawnEnemy();
                     }
-                    if (room2 == true)
-                    {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room2 = false;
-                    }
-                    if (room3 == true)
-                    {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room3 = false;
-                    }
-                    if (room4 == true)
-                    {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room4 = false;
-                    }
+                    room4 = false;
                 }
-                #endregion
+            }
+            #endregion
+            #region Level 4
+            if (level4 == true)
+            {
+                if (room1 == true)
+                {
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room1 = false;
+                }
+                if (room2 == true)
+                {
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room2 = false;
+                }
+                if (room3 == true)
+                {
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room3 = false;
+                }
+                if (room4 == true)
+                {
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room4 = false;
+                }
+            }
+            #endregion
         }
 
         public static void SpawnEnemy()
