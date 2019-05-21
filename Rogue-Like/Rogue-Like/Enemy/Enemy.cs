@@ -24,6 +24,7 @@ namespace Rogue_Like
 
         //Spawn Bool
         public bool spawned;
+        public static Random random = new Random();
         //Enemy Stats
         public int damage;
         public int health;
@@ -203,10 +204,10 @@ namespace Rogue_Like
                 #endregion
         }
 
-        public void SpawnEnemy()
+        public static void SpawnEnemy()
         {
-            Random r = new Random();
-            GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5,20,2));
+            
+            GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(random.Next(50, 500), random.Next(50, 500)), 0), 5,20,2));
         }
         
         public void OnCollision()
