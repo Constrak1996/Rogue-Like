@@ -14,7 +14,7 @@ namespace Rogue_Like
         public static string Name;
         public static int health;
         public static int damage;
-        public static int score;
+        public static int Score;
         public static string DataScore;
         public static string coin;
         public static string food;
@@ -29,7 +29,7 @@ namespace Rogue_Like
         {
 
             Player.coin = controller.getItem(4);
-            Int32.TryParse(DataScore, out score);
+            Int32.TryParse(DataScore, out Score);
             DataScore = controller.getPlayerScore();
             Player.food = controller.getItem(5);
             Player.Name = "Peter";

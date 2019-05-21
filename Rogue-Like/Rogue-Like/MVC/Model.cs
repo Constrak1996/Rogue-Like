@@ -67,7 +67,7 @@ namespace Rogue_Like
         public void newPlayerScore()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
-            cmd.CommandText = $"INSERT INTO highscores (id, name,score) VALUES(NULL,'{Player.Name}', '{Player.score}')";
+            cmd.CommandText = $"INSERT INTO highscores (id, name,score) VALUES(NULL,'{Player.Name}', '{Player.Score}')";
             cmd.ExecuteNonQuery();
         }
         /// <summary>

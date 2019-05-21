@@ -56,11 +56,12 @@ namespace Rogue_Like
                 {
                     if (room1 == true)
                     {
-                        for (int i = 0; i <= 3; i++)
-                        {
-                            SpawnEnemy();
-                        }
-                        room1 = false;
+
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    room1 = false;
                     }
                     if (room2 == true)
                     {
@@ -130,6 +131,7 @@ namespace Rogue_Like
                 {
                     if (room1 == true)
                     {
+
                         for (int i = 0; i <= 3; i++)
                         {
                             SpawnEnemy();
@@ -211,10 +213,8 @@ namespace Rogue_Like
         {
             if (this.Hitbox.Intersects(GameWorld.player.Hitbox))
             {
-                
                 GameWorld.gameObjectsRemove.Add(this);
-                Player.score++;
-                
+                Player.Score++;
             }
         }
 
