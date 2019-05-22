@@ -12,10 +12,12 @@ namespace Rogue_Like
 {
     public class Shop : State
     {
+       
         private SpriteFont Font;
         private Texture2D _playerTexture;
 
-        private List<Component> _component;
+       
+    
 
         //Tilemap of Dungeon Background Map
         private int[,] mapBackground = new int[,]
@@ -95,8 +97,8 @@ namespace Rogue_Like
         //    return level1Generate[cellY, cellX];
         //}
 
-        private List<Texture2D> tileTextures = new List<Texture2D>();
-        private List<Array> ArrayLevelGenerate = new List<Array>();
+        public static List<Texture2D> tileTextures = new List<Texture2D>();
+        //private List<Array> ArrayLevelGenerate = new List<Array>();
         //add Textures to the Dungeon map
         public void AddTexture(Texture2D texture)
         {
@@ -835,7 +837,6 @@ namespace Rogue_Like
             {
                 _gameWorld.ChangeState(new Level1(_gameWorld, _graphichsDevice, _content));
             }
-            
         }
 
         /// <summary>
@@ -843,9 +844,9 @@ namespace Rogue_Like
         /// </summary>
         /// <param name="gameTime"></param>
         /// <param name="spritebatch"></param>
-        public override void Draw(GameTime gameTime, SpriteBatch spritebatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-
+            
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -856,7 +857,7 @@ namespace Rogue_Like
                         continue;
                     }
                     Texture2D texture = tileTextures[textureIndex];
-                    spritebatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
+                    spriteBatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
                 }
             }
 
@@ -870,7 +871,7 @@ namespace Rogue_Like
                         continue;
                     }
                     Texture2D texture = tileTextures[textureIndex];
-                    spritebatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
+                    spriteBatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
                 }
             }
 
@@ -895,10 +896,8 @@ namespace Rogue_Like
                 //player.Draw(spritebatch);
             }
 
-
         }
         //Allows a NextStage Event to happen
-
 
         public override void PostUpdate(GameTime gameTime)
         {
@@ -920,6 +919,6 @@ namespace Rogue_Like
             Level1_Change();
             //player.Update(gameTime);
         }
-
+       
     }
 }

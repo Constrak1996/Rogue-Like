@@ -27,7 +27,7 @@ namespace Rogue_Like
         //Enemy hitbox
         public override Rectangle Hitbox
         {
-            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
+            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, sprite.Width, sprite.Height); }
         }
 
         public Enemy(string spriteName, Transform Transform, int damage) : base(spriteName, Transform)

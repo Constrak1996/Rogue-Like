@@ -12,7 +12,7 @@ namespace Rogue_Like
         private SpriteFont Font;
         private Texture2D _playerTexture;
 
-        private List<Component> _component;
+        
 
         private int[,] mapBackground = new int[,]
        {

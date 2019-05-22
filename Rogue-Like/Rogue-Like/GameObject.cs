@@ -11,7 +11,7 @@ namespace Rogue_Like
     public class GameObject
     {
         public Transform Transform;
-        public Texture2D Sprite;
+        public Texture2D sprite;
         public Vector2 spriteCenter;
         public string spriteName;
 
@@ -20,7 +20,7 @@ namespace Rogue_Like
         /// </summary>
         public virtual Rectangle Hitbox
         {
-            get { return new Rectangle((int)Transform.Position.X, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
+            get { return new Rectangle((int)Transform.Position.X, (int)Transform.Position.Y, sprite.Width, sprite.Height); }
         }
 
         /// <summary>
@@ -30,9 +30,9 @@ namespace Rogue_Like
         /// <param name="Transform">All positions and such is held in here</param>
         public GameObject(string spriteName, Transform Transform)
         {
-            this.Sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
+            this.sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
             this.Transform = Transform;
-            spriteCenter = new Vector2(Sprite.Width * 0.5f, Sprite.Height * 0.5f);
+            spriteCenter = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
         }
         public GameObject(Transform transform)
         {
@@ -47,7 +47,7 @@ namespace Rogue_Like
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Sprite, new Vector2(Transform.Position.X, Transform.Position.Y - 1), null, Color.White, 0f, spriteCenter, 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(sprite, new Vector2(Transform.Position.X, Transform.Position.Y - 1), null, Color.White, 0f, spriteCenter, 1f, SpriteEffects.None, 1f);
         }
     }
 }

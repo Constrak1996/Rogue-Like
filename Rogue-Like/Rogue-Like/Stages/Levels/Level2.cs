@@ -15,7 +15,7 @@ namespace Rogue_Like
         private SpriteFont Font;
         private Texture2D _playerTexture;
 
-        private List<Component> _component;
+        
 
         private int[,] mapBackground = new int[,]
        {
@@ -711,13 +711,7 @@ namespace Rogue_Like
                     Texture2D texture = tileTextures[textureIndex];
                     spriteBatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
                 }
-
             }
-            
-
-
-
-
         }
 
         public override void PostUpdate(GameTime gameTime)
