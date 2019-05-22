@@ -58,6 +58,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Bullet.cs" />
     <Compile Include="Button\Button.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="Stages\EndScreen.cs" />

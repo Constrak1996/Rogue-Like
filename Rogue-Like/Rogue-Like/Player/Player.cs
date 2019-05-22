@@ -19,6 +19,8 @@ namespace Rogue_Like
         public static string food;
         public Random randomPlayerDamage = new Random();
         public Random randomPlayerHealth = new Random();
+        private double lastAttack;
+
         /// <summary>
         /// The players Constructor
         /// </summary>
@@ -34,12 +36,17 @@ namespace Rogue_Like
             Player.health = randomPlayerHealth.Next(50, 75);
             Player.damage = randomPlayerDamage.Next(10, 120);
         }
-        /// <summary>
-        /// Allows the player to attack an enemy
-        /// </summary>
-        public void PlayerAttack()
-        {
 
+        public override void Update(GameTime gameTime)
+        {
+            //Attack cooldown
+            lastAttack += gameTime.ElapsedGameTime.TotalSeconds;
+
+            PlayerMovement(3);
+            PlayerRanged();
+            PlayerMelee();
+
+            base.Update(gameTime);
         }
         /// <summary>
         /// Allows the player to move around
@@ -79,7 +86,15 @@ namespace Rogue_Like
 
         public void PlayerRanged()
         {
+            ////Cooldown control to control the rate of which the bullets are fired when pressing the shoot button
+            //if (Keyboard.GetState().IsKeyDown(Keys.Space) && lastAttack > 0.7f)
+            //{
 
+            //    Vector2 shootDirection = Mouse.GetState().Position.ToVector2() - position;
+            //    Bullet gameBullet = new Bullet(content, GameWorld.bulletTexture, position, shootDirection, speed, rotation);
+            //    GameWorld.gameObjectsAdd.Add(gameBullet);
+            //    lastShot = 0;
+            //}
         }
     }
 }

@@ -35,6 +35,9 @@ namespace Rogue_Like
         //Player
         public static Player player;
 
+        //Bullet
+        private Bullet bullet;
+
         //Collision
         private Texture2D collisionTexture;
 
@@ -96,11 +99,18 @@ namespace Rogue_Like
             Font = Content.Load<SpriteFont>("Font");
             //Collisionbox texture
             collisionTexture = Content.Load<Texture2D>("OnePixel");
+            
             //Enemy
             enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0,20,2);
+            
             //Player
             player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
             gameObjectsAdd.Add(player);
+
+            //Bullet Texture
+            bullet = new Bullet("BulletTest", new Transform(new Vector2(0, 0), 0));
+
+            gameObjectsRemove.Add(enemy);
 
             //Level bools running once
             L1 = true;
@@ -159,8 +169,8 @@ namespace Rogue_Like
             }
             gameObjectsRemove.Clear();
 
-            //Player movement
-            player.PlayerMovement(3);
+            ////Player movement
+            //player.PlayerMovement(3);
 
             
             //if (i <= 2)
@@ -202,7 +212,7 @@ namespace Rogue_Like
                     DrawCollisionBox(go);
 #endif
                 }
-                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.score}", new Vector2(1735, 0), Color.White);
+                spriteBatch.DrawString(Font, $"{Player.Name}\nHealth: {Player.health}\nDamage: {Player.damage}\nGold: {Player.coin}\nFood: {Player.food}\nScore: {Player.score}", new Vector2(1735, 0), Color.White);
 
             }
             
