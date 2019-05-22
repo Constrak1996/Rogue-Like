@@ -17,7 +17,6 @@ namespace Rogue_Like
         public static int Score;
         public static string DataScore;
         public static string coin;
-        public static int Coin;
         public static string food;
         public Random randomPlayerDamage = new Random();
         public Random randomPlayerHealth = new Random();
@@ -29,7 +28,7 @@ namespace Rogue_Like
         public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
 
-            coin = controller.getItem(4);
+            Player.coin = controller.getItem(4);
             DataScore = controller.getPlayerScore();
             Int32.TryParse(DataScore, out Score);
             Player.food = controller.getItem(5);
@@ -44,12 +43,7 @@ namespace Rogue_Like
         {
 
         }
-        public void PickUp()
-        {
-            coin = controller.getItem(4);
-            Int32.TryParse(coin, out Player.Coin);
-            Player.Coin++;
-        }
+        
         /// <summary>
         /// Allows the player to move around
         /// </summary>
