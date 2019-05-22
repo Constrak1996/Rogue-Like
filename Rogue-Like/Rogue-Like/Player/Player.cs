@@ -71,5 +71,15 @@ namespace Rogue_Like
         {
             get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
         }
+
+        public void PlayerMelee()
+        {
+
+        }
+
+        public void PlayerRanged()
+        {
+
+        }
     }
 }

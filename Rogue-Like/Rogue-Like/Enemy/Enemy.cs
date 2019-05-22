@@ -10,17 +10,6 @@ namespace Rogue_Like
     public class Enemy : GameObject
     {
         Controller controller = new Controller();
-        //Level bools
-        public static bool level1;
-        public static bool level2;
-        public static bool level3;
-        public static bool level4;
-
-        //Room bools
-        public static bool room1;
-        public static bool room2;
-        public static bool room3;
-        public static bool room4;
 
         //Spawn Bool
         public bool spawned;
@@ -29,6 +18,9 @@ namespace Rogue_Like
 
         public Vector2 enemyPos;
         public float enemyMoveSpeed = 1;
+        private double lastAttack;
+
+
 
         //Enemy hitbox
         public override Rectangle Hitbox
@@ -42,6 +34,9 @@ namespace Rogue_Like
 
         public override void Update(GameTime gameTime)
         {
+            //Attack cooldown
+            lastAttack += gameTime.ElapsedGameTime.TotalSeconds;
+
             EnemySpawner();
             ChasePlayer();
             OnCollision();
@@ -51,150 +46,150 @@ namespace Rogue_Like
         public void EnemySpawner()
         {
             #region Level 1
-            if (level1 == true)
+            if (GameWorld.level1 == true)
             {
-                if (room1 == true)
+                if (GameWorld.room1 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room1 = false;
+                    GameWorld.room1 = false;
                 }
-                if (room2 == true)
+                if (GameWorld.room2 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room2 = false;
+                    GameWorld.room2 = false;
                 }
-                if (room3 == true)
+                if (GameWorld.room3 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room3 = false;
+                    GameWorld.room3 = false;
                 }
-                if (room4 == true)
+                if (GameWorld.room4 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room4 = false;
+                    GameWorld.room4 = false;
                 }
             }
             #endregion
             #region Level 2
-            if (level2 == true)
+            if (GameWorld.level2 == true)
             {
-                if (room1 == true)
+                if (GameWorld.room1 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room1 = false;
+                    GameWorld.room1 = false;
                 }
-                if (room2 == true)
+                if (GameWorld.room2 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room2 = false;
+                    GameWorld.room2 = false;
                 }
-                if (room3 == true)
+                if (GameWorld.room3 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room3 = false;
+                    GameWorld.room3 = false;
                 }
-                if (room4 == true)
+                if (GameWorld.room4 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room4 = false;
+                    GameWorld.room4 = false;
                 }
             }
             #endregion
             #region Level 3
-            if (level3 == true)
+            if (GameWorld.level3 == true)
             {
-                if (room1 == true)
+                if (GameWorld.room1 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room1 = false;
+                    GameWorld.room1 = false;
                 }
-                if (room2 == true)
+                if (GameWorld.room2 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room2 = false;
+                    GameWorld.room2 = false;
                 }
-                if (room3 == true)
+                if (GameWorld.room3 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room3 = false;
+                    GameWorld.room3 = false;
                 }
-                if (room4 == true)
+                if (GameWorld.room4 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room4 = false;
+                    GameWorld.room4 = false;
                 }
             }
             #endregion
             #region Level 4
-            if (level4 == true)
+            if (GameWorld.level4 == true)
             {
-                if (room1 == true)
+                if (GameWorld.room1 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room1 = false;
+                    GameWorld.room1 = false;
                 }
-                if (room2 == true)
+                if (GameWorld.room2 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room2 = false;
+                    GameWorld.room2 = false;
                 }
-                if (room3 == true)
+                if (GameWorld.room3 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room3 = false;
+                    GameWorld.room3 = false;
                 }
-                if (room4 == true)
+                if (GameWorld.room4 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
                     }
-                    room4 = false;
+                    GameWorld.room4 = false;
                 }
             }
             #endregion
@@ -210,7 +205,11 @@ namespace Rogue_Like
         {
             if (this.Hitbox.Intersects(GameWorld.player.Hitbox))
             {
-                GameWorld.gameObjectsRemove.Add(this);
+                if (lastAttack > 1f)
+                {
+                    Player.health -= 1;
+                    lastAttack = 0;
+                }
             }
         }
 

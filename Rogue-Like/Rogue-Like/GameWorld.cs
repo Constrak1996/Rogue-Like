@@ -42,6 +42,22 @@ namespace Rogue_Like
         Enemy enemy;
         private int i;
 
+        //Level bools
+        public static bool level1;
+        public static bool level2;
+        public static bool level3;
+        public static bool level4;
+
+        //Room bools
+        public static bool room1;
+        public static bool room2;
+        public static bool room3;
+        public static bool room4;
+
+        //Spawn once checks
+        public static bool L1;
+        public static bool L2;
+
         public void ChangeState(State state)
         {
             _nextState = state;
@@ -85,6 +101,10 @@ namespace Rogue_Like
             //Player
             player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
             gameObjectsAdd.Add(player);
+
+            //Level bools running once
+            L1 = true;
+            L2 = true;
         }
 
         /// <summary>
@@ -143,11 +163,11 @@ namespace Rogue_Like
             player.PlayerMovement(3);
 
             
-            if (i <= 2)
-            {
-                enemy.SpawnEnemy();
-                i++;
-            }
+            //if (i <= 2)
+            //{
+            //    enemy.SpawnEnemy();
+            //    i++;
+            //}
             enemy.Update(gameTime);
             base.Update(gameTime);
         }
