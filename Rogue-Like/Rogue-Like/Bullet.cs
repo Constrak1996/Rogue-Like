@@ -8,22 +8,27 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Rogue_Like
 {
-    class Bullet : GameObject
+    public class Bullet : GameObject
     {
-        public float velocity;
-        public float speed;
+        private Vector2 direction;
+        public static Vector2 pos;
 
-        public Bullet(string spriteName, Transform Transform) : base(spriteName, Transform)
+        public Bullet(string spriteName, Transform Transform, Vector2 direction) : base(spriteName, Transform)
         {
-            this.velocity = 2.5f;
-            this.speed = 20;
+            this.direction = direction;
+            pos = this.Transform.Position;
         }
 
-        public override Rectangle Hitbox => base.Hitbox;
 
         public override void Update(GameTime gameTime)
         {
+            Movement();
             base.Update(gameTime);
+        }
+
+        public void Movement()
+        {
+            this.Transform.Position -= direction * 10;
         }
     }
 }

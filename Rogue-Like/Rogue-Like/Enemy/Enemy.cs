@@ -211,6 +211,11 @@ namespace Rogue_Like
                     lastAttack = 0;
                 }
             }
+
+            if (this.Hitbox.Intersects(GameWorld.bullet.Hitbox))
+            {
+                Console.WriteLine();
+            }
         }
 
         public void ChasePlayer()

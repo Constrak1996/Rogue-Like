@@ -36,7 +36,7 @@ namespace Rogue_Like
         public static Player player;
 
         //Bullet
-        private Bullet bullet;
+        public static Bullet bullet;
 
         //Collision
         private Texture2D collisionTexture;
@@ -101,16 +101,17 @@ namespace Rogue_Like
             collisionTexture = Content.Load<Texture2D>("OnePixel");
             
             //Enemy
-            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0,20,2);
+            enemy = new Enemy("Worker", new Transform(Vector2.Zero, 0), 0, 0, 0);
             
             //Player
             player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
             gameObjectsAdd.Add(player);
 
             //Bullet Texture
-            bullet = new Bullet("BulletTest", new Transform(new Vector2(0, 0), 0));
+            bullet = new Bullet("BulletTest", new Transform(new Vector2(100,100), 0), Vector2.Zero);
 
             gameObjectsRemove.Add(enemy);
+            gameObjectsRemove.Add(bullet);
 
             //Level bools running once
             L1 = true;
@@ -213,6 +214,9 @@ namespace Rogue_Like
 #endif
                 }
                 spriteBatch.DrawString(Font, $"{Player.Name}\nHealth: {Player.health}\nDamage: {Player.damage}\nGold: {Player.coin}\nFood: {Player.food}\nScore: {Player.score}", new Vector2(1735, 0), Color.White);
+
+                //Test mouse position
+                spriteBatch.DrawString(Font, $"MouseX: {Mouse.GetState().X}\nMouseY: {Mouse.GetState().Y}", new Vector2(1735, 800), Color.White);
 
             }
             
