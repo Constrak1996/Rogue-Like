@@ -54,20 +54,18 @@ namespace Rogue_Like
         {
 
             #region Level 1
-
+            level1 = true;
             if (level1 == true)
             {
-                for (int i = 0; i <= 4; i++)
-                {
-                    SpawnEnemy();
-                    level1 = false;
-                }
-                
-
+                room1 = true;
                 if (room1 == true)
                 {
 
-
+                    for (int i = 0; i <= 4; i++)
+                    {
+                        SpawnEnemy();
+                        level1 = false;
+                    }
                     room1 = false;
                     room2 = true;
                 }

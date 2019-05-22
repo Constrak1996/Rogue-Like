@@ -29,8 +29,8 @@ namespace Rogue_Like
         {
 
             Player.coin = controller.getItem(4);
-            Int32.TryParse(DataScore, out Score);
             DataScore = controller.getPlayerScore();
+            Int32.TryParse(DataScore, out Score);
             Player.food = controller.getItem(5);
             Player.Name = "Peter";
             Player.health = randomPlayerHealth.Next(50, 75);

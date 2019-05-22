@@ -802,12 +802,7 @@ namespace Rogue_Like
         private void Shop_Click(object sender, EventArgs e)
         {
             _gameWorld.ChangeState(new Level1(_gameWorld, _graphichsDevice, _content));
-            while (Enemy.level1 == true)
-            {
-                continue;
-
-            }
-            
+            Enemy.level1 = true;
             
         }
 
@@ -878,6 +873,7 @@ namespace Rogue_Like
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
                 shop = false;
+                
             }
 
             foreach (var component in _component)

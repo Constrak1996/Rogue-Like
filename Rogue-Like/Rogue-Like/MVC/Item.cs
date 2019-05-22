@@ -12,7 +12,7 @@ namespace Rogue_Like
     {
         private SQLiteConnection m_dbConnection;
         private const String CONNECTIONSTRING = @"Data Source=testtabel.db;version=3";
-        public SpriteFont textFont;
+        
         public Item()
         {
             m_dbConnection = new SQLiteConnection(CONNECTIONSTRING);
@@ -20,30 +20,30 @@ namespace Rogue_Like
         }
         public void itemStructure()
         {
-            string sql = "CREATE TABLE IF NOT EXISTS item (id INT, name VARCHAR(40), value INT)";
+            string sql = "CREATE TABLE IF NOT EXISTS item (id INT, name VARCHAR(40), Piece INT)";
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             command.ExecuteNonQuery();
         }
         public void fillitemTable()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
-            cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(1,'Sword', 4)";
+            cmd.CommandText = "INSERT INTO item (id, name, Piece) VALUES(1,'Sword', 4)";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(2,'Shield', 5)";
+            cmd.CommandText = "INSERT INTO item (id, name, Piece) VALUES(2,'Shield', 5)";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(3,'Trinket', 40)";
+            cmd.CommandText = "INSERT INTO item (id, name, Piece) VALUES(3,'Trinket', 40)";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(4,'Gold', 1)";
+            cmd.CommandText = "INSERT INTO item (id, name, Piece) VALUES(4,'Gold', '1')";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(5,'Food', 1)";
+            cmd.CommandText = "INSERT INTO item (id, name, Piece) VALUES(5,'Food', 1)";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO item (id, name, value) VALUES(6,'Bones', 0)";
+            cmd.CommandText = "INSERT INTO item (id, name, Piece) VALUES(6,'Bones', 0)";
             cmd.ExecuteNonQuery();
             
         }
         public String getItem(int id)
         {
-            String sqlexpItem = "SELECT value FROM item WHERE id ='" + id + "'"; 
+            String sqlexpItem = "SELECT Piece FROM item WHERE id =" + id + ""; 
               SQLiteCommand cmd = new SQLiteCommand(sqlexpItem, m_dbConnection)
             {
                 CommandText = sqlexpItem
@@ -55,7 +55,8 @@ namespace Rogue_Like
             String slqItem = "";
             while (reader.Read())
             {
-                slqItem += reader["value"];
+                slqItem += reader["Piece"];
+                break;
             }
             return slqItem;
         }

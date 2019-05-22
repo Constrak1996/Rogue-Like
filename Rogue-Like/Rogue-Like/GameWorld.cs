@@ -148,32 +148,32 @@ namespace Rogue_Like
             //Player movement
             player.PlayerMovement(3);
             //Spawn Enemy at Level
-            SpawnEnemyAtLevel();
+            //SpawnEnemyAtLevel();
 
             base.Update(gameTime);
         }
 
-        private static void SpawnEnemyAtLevel()
-        {
-            if (Enemy.level1 == true)
-            {
+        //private static void SpawnEnemyAtLevel()
+        //{
+        //    if (Enemy.level1 == true)
+        //    {
 
-                for (int i = 0; i < 2; i++)
-                {
-                    Enemy.SpawnEnemy();
+        //        for (int i = 0; i < 2; i++)
+        //        {
+        //            Enemy.SpawnEnemy();
 
-                }
+        //        }
 
-            }
-            if (Enemy.level2 == true)
-            {
+        //    }
+        //    if (Enemy.level2 == true)
+        //    {
 
-                for (int i = 2; i < 4; i++)
-                {
-                    Enemy.SpawnEnemy();
-                }
-            }
-        }
+        //        for (int i = 2; i < 4; i++)
+        //        {
+        //            Enemy.SpawnEnemy();
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -205,7 +205,7 @@ namespace Rogue_Like
                     DrawCollisionBox(go);
 #endif
                 }
-                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.Score}", new Vector2(1735, 0), Color.White);
+                spriteBatch.DrawString(Font, $" {Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.Score}", new Vector2(1735, 0), Color.White);
 
             }
             
