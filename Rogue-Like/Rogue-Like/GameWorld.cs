@@ -101,15 +101,16 @@ namespace Rogue_Like
             collisionTexture = Content.Load<Texture2D>("OnePixel");
             
             //Enemy
-            enemy = new Enemy("Worker", new Transform(Vector2.Zero, 0), 0, 0, 0);
+            enemy = new Enemy("Worker", new Transform(Vector2.Zero, 0), 0, 0, null);
             
             //Player
             player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
             gameObjectsAdd.Add(player);
 
             //Bullet Texture
-            bullet = new Bullet("BulletTest", new Transform(new Vector2(100,100), 0), Vector2.Zero);
-
+            bullet = new Bullet("BulletTest", new Transform(new Vector2(100,100), 0), new Vector2(1,1));
+            
+            
             gameObjectsRemove.Add(enemy);
             gameObjectsRemove.Add(bullet);
 

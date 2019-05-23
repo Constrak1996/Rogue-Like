@@ -13,6 +13,11 @@ namespace Rogue_Like
         private Vector2 direction;
         public static Vector2 pos;
 
+        public override Rectangle Hitbox
+        {
+            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
+        }
+
         public Bullet(string spriteName, Transform Transform, Vector2 direction) : base(spriteName, Transform)
         {
             this.direction = direction;

@@ -20,7 +20,10 @@ namespace Rogue_Like
         public float enemyMoveSpeed = 1;
         private double lastAttack;
 
-
+        string[] enemies = { "melee", "ranged" };
+        Random r = new Random();
+        //int index = r.Next(enemies.Length);
+        private string enemyType;
 
         //Enemy hitbox
         public override Rectangle Hitbox
@@ -28,8 +31,9 @@ namespace Rogue_Like
             get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
         }
 
-        public Enemy(string spriteName, Transform Transform, int damage, int health, float range) : base(spriteName, Transform)
+        public Enemy(string spriteName, Transform Transform, int damage, int health, string enemyType) : base(spriteName, Transform)
         {
+            this.enemyType = enemyType;
         }
 
         public override void Update(GameTime gameTime)
@@ -37,9 +41,16 @@ namespace Rogue_Like
             //Attack cooldown
             lastAttack += gameTime.ElapsedGameTime.TotalSeconds;
 
+
+            //Spawns enemies in the given rooms
             EnemySpawner();
-            ChasePlayer();
+
+            //Determines what enemy type it is, melee or ranged
+            Type();
+
+            //Determines what happens on collision
             OnCollision();
+
             base.Update(gameTime);
         }
 
@@ -198,7 +209,7 @@ namespace Rogue_Like
         public void SpawnEnemy()
         {
             Random r = new Random();
-            GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5,20,2));
+            GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5, 20, "ranged"));
         }
         
         public void OnCollision()
@@ -214,7 +225,30 @@ namespace Rogue_Like
 
             if (this.Hitbox.Intersects(GameWorld.bullet.Hitbox))
             {
-                Console.WriteLine();
+                GameWorld.gameObjectsRemove.Add(this);
+            }
+        }
+
+        public void Type()
+        {
+            if (enemyType == "melee")
+            {
+                ChasePlayer();
+            }
+
+            if (enemyType == "ranged")
+            {
+                ChasePlayer();
+
+                Bullet.pos = this.Transform.Position;
+                Vector2 direction = Vector2.Subtract(Bullet.pos, new Vector2(GameWorld.player.Transform.Position.X, GameWorld.player.Transform.Position.Y));
+                direction.Normalize();
+
+                if (lastAttack >= 1)
+                {
+                    GameWorld.gameObjectsAdd.Add(new Bullet("BulletTest", new Transform(Bullet.pos, 0), direction));
+                    lastAttack = 0;
+                }                
             }
         }
 
