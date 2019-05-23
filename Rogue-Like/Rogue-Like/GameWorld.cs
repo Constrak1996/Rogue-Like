@@ -36,6 +36,11 @@ namespace Rogue_Like
         public static int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
         public static int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
+        //Dungeon rooms
+        public Texture2D Shop;
+        public Texture2D Level1;
+        public Texture2D Level2;
+
 
         //Player
         Player player;
@@ -81,9 +86,13 @@ namespace Rogue_Like
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             _currentState = new Menu(this, GraphicsDevice, Content);
+            
             Font = Content.Load<SpriteFont>("Font");
             //Collisionbox texture
             collisionTexture = Content.Load<Texture2D>("OnePixel");
+
+            //Shop
+            Shop = Content.Load<Texture2D>("Shop");
 
             //Player
             player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
@@ -171,9 +180,10 @@ namespace Rogue_Like
                 go.Draw(spriteBatch);
 #if DEBUG
                 DrawCollisionBox(go);
-                DungeonCollisionBox();
-                //ShopCollisionBox();
-                DoorCollision();
+                //DungeonCollisionBox();
+                ShopCollisionBox();
+                ShopDoorCollision();
+                //AllDoorCollision();
 #endif
             }
             spriteBatch.DrawString(Font, $"Player Name: {player.Name} Health: {Player.health} Damage: {Player.damage}", new Vector2(0, 20), Color.White);
@@ -278,14 +288,25 @@ namespace Rogue_Like
             spriteBatch.Draw(collisionTexture, leftLine1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
 
-        private void DoorCollision()
+        private void ShopDoorCollision()
+        {
+            //Defining each side
+            topLineDoor = new Rectangle(833, 65, 62, 1);
+            bottomLineDoor = new Rectangle(833, 974, 62, 1);
+
+            //Draw each side
+            spriteBatch.Draw(collisionTexture, topLineDoor, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, bottomLineDoor, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+        }
+
+        private void AllDoorCollision()
         {
             //Defining each side
             topLineDoor = new Rectangle(833, 65, 62, 1);
             bottomLineDoor = new Rectangle(833, 974, 62, 1);
             rightLineDoor = new Rectangle(1635, 512, 1, 63);
             leftLineDoor = new Rectangle(92, 512, 1, 63);
-
+            
             //Draw each side
             spriteBatch.Draw(collisionTexture, topLineDoor, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, bottomLineDoor, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);

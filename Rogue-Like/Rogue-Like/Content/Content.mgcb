@@ -529,6 +529,30 @@
 /processorParam:TextureFormat=Color
 /build:64x64/Dungeon@64x64.png
 
+#begin 64x64/Dungeon_Room1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:64x64/Dungeon_Room1.png
+
+#begin 64x64/Dungeon_Room2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:64x64/Dungeon_Room2.png
+
 #begin 64x64/DungeonColor2@64x64.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -648,6 +672,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:64x64/Shadows@64x64.png
+
+#begin 64x64/Shop.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:64x64/Shop.png
+
+#begin 64x64/ShopRoom.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:64x64/ShopRoom.png
 
 #begin 64x64/Wall_Corner_Bot_Left_1.png
 /importer:TextureImporter

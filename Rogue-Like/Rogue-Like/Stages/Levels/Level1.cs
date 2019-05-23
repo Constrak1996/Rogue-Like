@@ -10,7 +10,7 @@ namespace Rogue_Like
     public class Level1 : State
     {
         private SpriteFont Font;
-        private Texture2D _playerTexture;
+        private Texture2D collisionTexture;
 
         
 
@@ -534,6 +534,7 @@ namespace Rogue_Like
             var buttonFont = _content.Load<SpriteFont>("Font");
             Font = content.Load<SpriteFont>("Font");
             Texture2D piller = content.Load<Texture2D>("Pillar1");
+            collisionTexture = content.Load<Texture2D>("OnePixel");
             //Wall Textures start
             //Left Wall
             Texture2D wallTopCorLeft = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left");
@@ -643,7 +644,7 @@ namespace Rogue_Like
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
-            _playerTexture = content.Load<Texture2D>("Fisher_Bob");
+            
             //player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
 
 
@@ -759,7 +760,7 @@ namespace Rogue_Like
         /// <param name="spritebatch"></param>
         public override void Draw(GameTime gameTime, SpriteBatch spritebatch)
         {
-
+            spritebatch.Begin();
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -794,7 +795,7 @@ namespace Rogue_Like
                 //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
                 //player.Draw(spritebatch);
             }
-
+            spritebatch.End();
 
         }
         //Allows a NextStage Event to happen
@@ -821,6 +822,53 @@ namespace Rogue_Like
 
             Level2_Change();
             //player.Update(gameTime);
+        }
+
+        private void DungeonCollisionBox()
+        {
+            //Defining each side
+            Rectangle topLine1 = new Rectangle(108, 75, 725, 1);
+            Rectangle topLine2 = new Rectangle(896, 75, 723, 1);
+            Rectangle topLineDoor1 = new Rectangle(832, 30, 63, 1);
+            Rectangle topLineDoor2 = new Rectangle(832, 30, 1, 45);
+            Rectangle topLineDoor3 = new Rectangle(895, 30, 1, 45);
+            Rectangle bottomLine1 = new Rectangle(108, 960, 724, 1);
+            Rectangle bottomLine2 = new Rectangle(896, 960, 723, 1);
+            Rectangle bottomLineDoor1 = new Rectangle(832, 1005, 63, 1);
+            Rectangle bottomLineDoor2 = new Rectangle(832, 960, 1, 45);
+            Rectangle bottomLineDoor3 = new Rectangle(895, 960, 1, 45);
+            Rectangle rightLine1 = new Rectangle(1618, 75, 1, 437);
+            Rectangle rightLine2 = new Rectangle(1618, 576, 1, 385);
+            Rectangle rightLineDoor1 = new Rectangle(1670, 512, 1, 63);
+            Rectangle rightLineDoor2 = new Rectangle(1618, 512, 53, 1);
+            Rectangle rightLineDoor3 = new Rectangle(1618, 575, 53, 1);
+            Rectangle leftLine1 = new Rectangle(108, 75, 1, 437);
+            Rectangle leftLine2 = new Rectangle(108, 576, 1, 385);
+            Rectangle leftLineDoor1 = new Rectangle(50, 512, 1, 63);
+            Rectangle leftLineDoor2 = new Rectangle(50, 512, 59, 1);
+            Rectangle leftLineDoor3 = new Rectangle(50, 575, 59, 1);
+            
+            //Draw each side
+            spriteBatch.Draw(collisionTexture, topLine1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, topLine2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, topLineDoor1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, topLineDoor2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, topLineDoor3, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, bottomLine1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, bottomLine2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, bottomLineDoor1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, bottomLineDoor2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, bottomLineDoor3, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightLine1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightLine2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightLineDoor1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightLineDoor2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightLineDoor3, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftLine1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftLine2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftLineDoor1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftLineDoor2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftLineDoor3, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
 
     }
