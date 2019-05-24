@@ -691,6 +691,8 @@ namespace Rogue_Like
 
             };
             shop.Click += Shop_Click;
+            //AddTextures
+            #region
             AddTexture(wall);
             AddTexture(piller);
             AddTexture(ground);
@@ -786,6 +788,7 @@ namespace Rogue_Like
             AddTexture(Door_Left_Bot_Entry);
             AddTexture(Door_Mid_Bot_Entry);
             AddTexture(Door_Right_Bot_Entry);
+            #endregion
 
             _component = new List<Component>()
             {
@@ -866,7 +869,7 @@ namespace Rogue_Like
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
-                shop = false;
+                
             }
 
             foreach (var component in _component)

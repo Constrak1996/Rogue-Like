@@ -202,7 +202,7 @@ namespace Rogue_Like
                     DrawCollisionBox(go);
 #endif
                 }
-                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.score}", new Vector2(1735, 0), Color.White);
+                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
 
             }
             
