@@ -686,11 +686,7 @@ namespace Rogue_Like
         private void Shop_Click(object sender, EventArgs e)
         {
             _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
-            if (Enemy.level1 == true || Enemy.level2 == true)
-            {
-                Enemy.level1 = false;
-                Enemy.level2 = false;
-            }
+            
             
         }
 

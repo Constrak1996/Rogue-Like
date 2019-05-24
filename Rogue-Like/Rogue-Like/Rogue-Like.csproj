@@ -61,6 +61,14 @@
     <Compile Include="Bullet.cs" />
     <Compile Include="Button\Button.cs" />
     <Compile Include="Component.cs" />
+    <Compile Include="MVC\RogueLikeDataBase.cs">
+      <DependentUpon>RogueLikeDataBase.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MVC\RogueLikeDataBase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RogueLikeDataBase.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Stages\EndScreen.cs" />
     <Compile Include="Enemy\Enemy.cs" />
     <Compile Include="GameObject.cs" />
@@ -95,6 +103,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.SQLite, Version=1.0.110.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.110.0\lib\net45\System.Data.SQLite.dll</HintPath>
     </Reference>
@@ -115,6 +124,17 @@
     <None Include="app.manifest" />
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
+    <None Include="MVC\RogueLikeDataBase.xsc">
+      <DependentUpon>RogueLikeDataBase.xsd</DependentUpon>
+    </None>
+    <None Include="MVC\RogueLikeDataBase.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RogueLikeDataBase.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MVC\RogueLikeDataBase.xss">
+      <DependentUpon>RogueLikeDataBase.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
