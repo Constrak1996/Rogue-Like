@@ -27,7 +27,6 @@ namespace Rogue_Like
         public static List<GameObject> gameObjects = new List<GameObject>();
         public static List<GameObject> gameObjectsAdd = new List<GameObject>();
         public static List<GameObject> gameObjectsRemove = new List<GameObject>();
-        public static List<GameObject> gameObjectsIdle = new List<GameObject>();
 
         //Graphics
         public static int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
@@ -40,9 +39,24 @@ namespace Rogue_Like
         private Texture2D collisionTexture;
 
         //Enemy
-        //Enemy enemy;
-        private Texture2D arrow;
+        Enemy enemy;
         private int i;
+
+        //Level bools
+        public static bool level1;
+        public static bool level2;
+        public static bool level3;
+        public static bool level4;
+
+        //Room bools
+        public static bool room1;
+        public static bool room2;
+        public static bool room3;
+        public static bool room4;
+
+        //Spawn once checks
+        public static bool L1;
+        public static bool L2;
 
         public void ChangeState(State state)
         {
@@ -80,17 +94,17 @@ namespace Rogue_Like
             spriteBatch = new SpriteBatch(GraphicsDevice);
             _currentState = new Menu(this, GraphicsDevice, Content);
             Font = Content.Load<SpriteFont>("Font");
-            //Bullets
-            arrow = Content.Load<Texture2D>("Arrow");
             //Collisionbox texture
             collisionTexture = Content.Load<Texture2D>("OnePixel");
             //Enemy
-
-            //enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0,20,2);
+            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0,20,2);
             //Player
             player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
             gameObjectsAdd.Add(player);
-            
+
+            //Level bools running once
+            L1 = true;
+            L2 = true;
         }
 
         /// <summary>
@@ -147,33 +161,16 @@ namespace Rogue_Like
 
             //Player movement
             player.PlayerMovement(3);
-            //Spawn Enemy at Level
-            //SpawnEnemyAtLevel();
 
+            
+            //if (i <= 2)
+            //{
+            //    enemy.SpawnEnemy();
+            //    i++;
+            //}
+            enemy.Update(gameTime);
             base.Update(gameTime);
         }
-
-        //private static void SpawnEnemyAtLevel()
-        //{
-        //    if (Enemy.level1 == true)
-        //    {
-
-        //        for (int i = 0; i < 2; i++)
-        //        {
-        //            Enemy.SpawnEnemy();
-
-        //        }
-
-        //    }
-        //    if (Enemy.level2 == true)
-        //    {
-
-        //        for (int i = 2; i < 4; i++)
-        //        {
-        //            Enemy.SpawnEnemy();
-        //        }
-        //    }
-        //}
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -205,7 +202,7 @@ namespace Rogue_Like
                     DrawCollisionBox(go);
 #endif
                 }
-                spriteBatch.DrawString(Font, $" {Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.Score}", new Vector2(1735, 0), Color.White);
+                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
 
             }
             

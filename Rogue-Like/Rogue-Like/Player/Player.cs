@@ -14,8 +14,8 @@ namespace Rogue_Like
         public static string Name;
         public static int health;
         public static int damage;
-        public static int Score;
-        public static string DataScore;
+        public static string score;
+        public static int DataScore;
         public static string coin;
         public static string food;
         public Random randomPlayerDamage = new Random();
@@ -29,8 +29,8 @@ namespace Rogue_Like
         {
 
             Player.coin = controller.getItem(4);
-            DataScore = controller.getPlayerScore();
-            Int32.TryParse(DataScore, out Score);
+            Player.score = controller.getPlayerScore();
+            Int32.TryParse(score, out DataScore);
             Player.food = controller.getItem(5);
             Player.Name = "Peter";
             Player.health = randomPlayerHealth.Next(50, 75);
@@ -43,7 +43,6 @@ namespace Rogue_Like
         {
 
         }
-        
         /// <summary>
         /// Allows the player to move around
         /// </summary>
@@ -73,6 +72,16 @@ namespace Rogue_Like
         public override Rectangle Hitbox
         {
             get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
+        }
+
+        public void PlayerMelee()
+        {
+
+        }
+
+        public void PlayerRanged()
+        {
+
         }
     }
 }

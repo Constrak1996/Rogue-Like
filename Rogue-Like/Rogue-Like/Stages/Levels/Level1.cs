@@ -747,6 +747,7 @@ namespace Rogue_Like
 
             };
 
+            
         }
 
         private void Level2_TP(object sender, EventArgs e)
@@ -829,7 +830,21 @@ namespace Rogue_Like
                 component.Update(gameTime);
             }
 
-            //player.Update(gameTime);
+            level1Enemies();
+        }
+
+        /// <summary>
+        /// Controls when the enemies from level 1 should spawn, and only spawns them once
+        /// meaning if you head back to level 1 after they spawn, they wont spawn again
+        /// </summary>
+        public void level1Enemies()
+        {
+            if (GameWorld.L1 == true)
+            {
+                GameWorld.level1 = true;
+                GameWorld.room1 = true;
+                GameWorld.L1 = false;
+            }
         }
 
     }
