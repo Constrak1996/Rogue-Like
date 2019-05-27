@@ -16,7 +16,8 @@ namespace Rogue_Like
         public static int damage;
         public static string score;
         public static int DataScore;
-        public static string coin;
+        public string coin;
+        public static int Coin;
         public static string food;
         public Random randomPlayerDamage = new Random();
         public Random randomPlayerHealth = new Random();
@@ -27,14 +28,14 @@ namespace Rogue_Like
         /// <param name="Transform"></param>
         public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
-
-            Player.coin = controller.getItem(4);
-            Player.score = controller.getPlayerScore();
+            coin = controller.getItem(4);
+            Int32.TryParse(coin, out Coin);
+            score = controller.getPlayerScore();
             Int32.TryParse(score, out DataScore);
-            Player.food = controller.getItem(5);
-            Player.Name = "Peter";
-            Player.health = randomPlayerHealth.Next(50, 75);
-            Player.damage = randomPlayerDamage.Next(10, 120);
+            food = controller.getItem(5);
+            Name = "Peter";
+            health = randomPlayerHealth.Next(50, 75);
+            damage = randomPlayerDamage.Next(10, 120);
         }
         /// <summary>
         /// Allows the player to attack an enemy

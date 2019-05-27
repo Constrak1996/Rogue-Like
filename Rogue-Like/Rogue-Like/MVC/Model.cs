@@ -11,7 +11,7 @@ namespace Rogue_Like
     class Model
     {
         private SQLiteConnection m_dbConnection;
-        private const String CONNECTIONSTRING = @"Data Source=testtabel.db;version=3"; //Acces the DataBase
+        private const String CONNECTIONSTRING = @"Data Source=Roguetabel.db;version=3"; //Acces the DataBase
         public SpriteFont textFont;
         /// <summary>
         /// The Constructor of the model
@@ -67,7 +67,7 @@ namespace Rogue_Like
         public void newPlayerScore()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
-            cmd.CommandText = $"INSERT INTO highscores (id, name,score) VALUES(NULL,'{Player.Name}', '{Player.score}')";
+            cmd.CommandText = $"INSERT INTO highscores (id, name,score) VALUES(NULL,'{Player.Name}', '{Player.DataScore}')";
             cmd.ExecuteNonQuery();
         }
         /// <summary>

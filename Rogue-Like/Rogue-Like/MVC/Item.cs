@@ -11,7 +11,7 @@ namespace Rogue_Like
     class Item
     {
         private SQLiteConnection m_dbConnection;
-        private const String CONNECTIONSTRING = @"Data Source=testtabel.db;version=3";
+        private const String CONNECTIONSTRING = @"Data Source=Roguetabel.db;version=3";
         
         public Item()
         {
