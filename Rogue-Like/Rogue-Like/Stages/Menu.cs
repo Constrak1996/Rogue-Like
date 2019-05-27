@@ -11,7 +11,9 @@ namespace Rogue_Like
 {
     public class Menu : State
     {
+        private Controller controller = new Controller();
         private List<Component> _component;
+        private bool playernew;
         //private Thread idleIkon;
         /// <summary>
         /// The MenuStates Constructor
@@ -38,7 +40,7 @@ namespace Rogue_Like
                 Position = new Vector2(700, 400),
                 Text = "HighScore",
             };
-            //highScoreButton.Click += HighScoreButton_Click;
+            highScoreButton.Click += HighScoreButton_Click;
             var quitGameButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2(700, 600),
@@ -82,16 +84,16 @@ namespace Rogue_Like
         //Makes a Newgamebutton
         private void NewGameButton_Click(object sender, EventArgs e)
         {
-            //controller.newPlayer();
+            controller.newPlayer();
             _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
-            
+            Shop.shop = true;
         }
         //Makes a HighScorebutton
-        //private void HighScoreButton_Click(object sender, EventArgs e)
-        //{
-        //    controller.newPlayer();
-        //    _gameWorld.ChangeState(new HighScore(_gameWorld, _graphichsDevice, _content));
-        //}
+        private void HighScoreButton_Click(object sender, EventArgs e)
+        {
+            
+            _gameWorld.ChangeState(new HighScore(_gameWorld, _graphichsDevice, _content));
+        }
 
         public override void PostUpdate(GameTime gameTime)
         {

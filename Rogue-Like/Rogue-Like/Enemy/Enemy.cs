@@ -9,20 +9,18 @@ namespace Rogue_Like
 {
     public class Enemy : GameObject
     {
-        //Level bools
-        public static bool level1;
-        public static bool level2;
-        public static bool level3;
-        public static bool level4;
+        Controller controller = new Controller();
 
-        //Room bools
-        public static bool room1;
-        public static bool room2;
-        public static bool room3;
-        public static bool room4;
+        //Spawn Bool
+        public bool spawned;
 
         public int damage;
-        private int i;
+
+        public Vector2 enemyPos;
+        public float enemyMoveSpeed = 1;
+        private double lastAttack;
+
+
 
         //Enemy hitbox
         public override Rectangle Hitbox
@@ -30,111 +28,197 @@ namespace Rogue_Like
             get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, sprite.Width, sprite.Height); }
         }
 
-        public Enemy(string spriteName, Transform Transform, int damage) : base(spriteName, Transform)
+        public Enemy(string spriteName, Transform Transform, int damage, int health, float range) : base(spriteName, Transform)
         {
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
-            base.Update();
+            //Attack cooldown
+            lastAttack += gameTime.ElapsedGameTime.TotalSeconds;
+
+            EnemySpawner();
+            ChasePlayer();
+            OnCollision();
+            base.Update(gameTime);
         }
 
         public void EnemySpawner()
         {
-            if (level1 == true)
+            #region Level 1
+            if (GameWorld.level1 == true)
             {
-                if (room1 == true)
+                if (GameWorld.room1 == true)
                 {
-                    //while (i <= 5)
-                    //{
-                    //    SpawnEnemy();
-                    //    i++;
-                    //}
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room1 = false;
                 }
-                if (room2 == true)
+                if (GameWorld.room2 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room2 = false;
                 }
-                if (room3 == true)
+                if (GameWorld.room3 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room3 = false;
                 }
-                if (room4 == true)
+                if (GameWorld.room4 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room4 = false;
                 }
             }
-            if (level2 == true)
+            #endregion
+            #region Level 2
+            if (GameWorld.level2 == true)
             {
-                if (room1 == true)
+                if (GameWorld.room1 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room1 = false;
                 }
-                if (room2 == true)
+                if (GameWorld.room2 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room2 = false;
                 }
-                if (room3 == true)
+                if (GameWorld.room3 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room3 = false;
                 }
-                if (room4 == true)
+                if (GameWorld.room4 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room4 = false;
                 }
             }
-            if (level3 == true)
+            #endregion
+            #region Level 3
+            if (GameWorld.level3 == true)
             {
-                if (room1 == true)
+                if (GameWorld.room1 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room1 = false;
                 }
-                if (room2 == true)
+                if (GameWorld.room2 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room2 = false;
                 }
-                if (room3 == true)
+                if (GameWorld.room3 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room3 = false;
                 }
-                if (room4 == true)
+                if (GameWorld.room4 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room4 = false;
                 }
             }
-            if (level4 == true)
+            #endregion
+            #region Level 4
+            if (GameWorld.level4 == true)
             {
-                if (room1 == true)
+                if (GameWorld.room1 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room1 = false;
                 }
-                if (room2 == true)
+                if (GameWorld.room2 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room2 = false;
                 }
-                if (room3 == true)
+                if (GameWorld.room3 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room3 = false;
                 }
-                if (room4 == true)
+                if (GameWorld.room4 == true)
                 {
-
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        SpawnEnemy();
+                    }
+                    GameWorld.room4 = false;
                 }
             }
+            #endregion
         }
 
         public void SpawnEnemy()
         {
             Random r = new Random();
-            GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5));
+            GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5,20,2));
+        }
+        
+        public void OnCollision()
+        {
+            if (this.Hitbox.Intersects(GameWorld.player.Hitbox))
+            {
+                if (lastAttack > 1f)
+                {
+                    Player.health -= 1;
+                    lastAttack = 0;
+                }
+            }
         }
 
-        public void OnCollision(GameObject player)
+        public void ChasePlayer()
         {
-            if (Hitbox.Intersects(player.Hitbox))
-            {
-                GameWorld.gameObjectsRemove.Add(this);
-            }
+            Vector2 direction = GameWorld.player.Transform.Position - this.Transform.Position;
+            direction.Normalize();
+            Vector2 velocity = direction * enemyMoveSpeed;
+            this.Transform.Position += velocity;
         }
     }
 }

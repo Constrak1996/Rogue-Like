@@ -49,13 +49,30 @@ namespace Rogue_Like
 
 
         //Player
-        Player player;
+        public static Player player;
 
         //Collision
         private Texture2D collisionTexture;
 
         //Enemy
         Enemy enemy;
+        private int i;
+
+        //Level bools
+        public static bool level1;
+        public static bool level2;
+        public static bool level3;
+        public static bool level4;
+
+        //Room bools
+        public static bool room1;
+        public static bool room2;
+        public static bool room3;
+        public static bool room4;
+
+        //Spawn once checks
+        public static bool L1;
+        public static bool L2;
 
         public void ChangeState(State state)
         {
@@ -95,15 +112,15 @@ namespace Rogue_Like
             Font = Content.Load<SpriteFont>("Font");
             //Collisionbox texture
             collisionTexture = Content.Load<Texture2D>("OnePixel");
-
-            //Shop
-            shop = Content.Load<Texture2D>("64x64/Shop");
-
+            //Enemy
+            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0,20,2);
             //Player
             player = new Player("Fisher_Bob", new Transform(new Vector2(865, 150), 0));
             gameObjectsAdd.Add(player);
 
-            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0);
+            //Level bools running once
+            L1 = true;
+            L2 = true;
         }
 
         /// <summary>
@@ -141,7 +158,7 @@ namespace Rogue_Like
             //Updates gameobjects
             foreach (GameObject go in gameObjects)
             {
-                go.Update();
+                go.Update(gameTime);
             }
 
             //Adds gameobjects to the gameobjects list
@@ -154,10 +171,23 @@ namespace Rogue_Like
                 gameObjectsAdd.Clear();
             }
 
+            // Remove all game objects in removeList
+            foreach (GameObject obj in gameObjectsRemove)
+            {
+                gameObjects.Remove(obj);
+            }
+            gameObjectsRemove.Clear();
+
             //Player movement
             player.PlayerMovement(3);
 
-            enemy.Update();
+            
+            //if (i <= 2)
+            //{
+            //    enemy.SpawnEnemy();
+            //    i++;
+            //}
+            enemy.Update(gameTime);
             base.Update(gameTime);
 
             if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is Shop)
@@ -217,15 +247,20 @@ namespace Rogue_Like
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            
+            GraphicsDevice.Clear(Color.Black);
+
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
-            //Draws sprites in gameObjects list
-            foreach (GameObject go in gameObjects)
+            if (Shop.shop == true || Level1.lvl1 == true || Level2.lvl2 == true)
             {
-                go.Draw(spriteBatch);
-            }
+
+
+                //Draws sprites in gameObjects list
+                foreach (GameObject go in gameObjects)
+                {
+                    go.Draw(spriteBatch);
+
+                }
 
             //Collision texture draw
             
@@ -270,8 +305,11 @@ namespace Rogue_Like
                 }
                 
 #endif
+                }
+                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
+
             }
-            spriteBatch.DrawString(Font, $"Player Name: {player.Name} Health: {Player.health} Damage: {Player.damage}", new Vector2(0, 20), Color.White);
+            
             spriteBatch.End();
 
             base.Draw(gameTime);

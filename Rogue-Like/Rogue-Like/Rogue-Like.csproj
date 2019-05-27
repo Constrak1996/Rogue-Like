@@ -60,10 +60,16 @@
   <ItemGroup>
     <Compile Include="Button\Button.cs" />
     <Compile Include="Component.cs" />
+    <Compile Include="Stages\EndScreen.cs" />
     <Compile Include="Enemy\Enemy.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameWorld.cs" />
-    <Compile Include="Stages\Levels\Room1.cs" />
+    <Compile Include="MVC\Item.cs" />
+    <Compile Include="MVC\Controller.cs" />
+    <Compile Include="MVC\Model.cs" />
+    <Compile Include="MVC\View.cs" />
+    <Compile Include="Stages\HighScore.cs" />
+    <Compile Include="Stages\Levels\Level1.cs" />
     <Compile Include="Enemy\Melee.cs" />
     <Compile Include="Player\Player.cs" />
     <Compile Include="Program.cs" />
@@ -112,7 +118,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MVC\" />
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
