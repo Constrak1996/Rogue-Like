@@ -4,16 +4,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rogue_Like
 {
-    class Level2 : State
+    public class Room1 : State
     {
         private SpriteFont Font;
-        private Texture2D _playerTexture;
+        private Texture2D collisionTexture;
 
         
 
@@ -22,18 +19,18 @@ namespace Rogue_Like
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,14,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
             {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,45,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,45,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,45,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,45,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,45,-1,-1},
-            {-1,14,14,14,14,14,14,45,45,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1},
-            {-1,-1,14,14,14,14,14,14,45,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,45,14,14,14,14,14,45,14,14,14,14,14,14,14,14,-1,-1},
             {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,45,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
             {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,45,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,14,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
 
@@ -50,19 +47,19 @@ namespace Rogue_Like
        {
             {4,41,42,42,42,42,42,39,42,42,42,42,46,47,48,38,38,38,38,39,38,38,38,38,38,37,33},
             {6,5,43,43,43,43,43,40,43,43,76,43,49,50,51,44,76,44,44,40,44,44,44,44,44,34,32},
-            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,-1,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
-            {7,79,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,77,31},
-            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,71,-1,-1,-1,-1,-1,-1,36,31},
-            {8,9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,30,29},
-            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
-            {66,69,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,55,52},
-            {65,68,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,56,53},
-            {64,67,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,57,54},
-            {10,15,-1,-1,-1,-1,-1,-1,-1,-1,71,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
-            {8,9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,30,29},
-            {10,15,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
-            {10,79,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,77,28},
-            {10,15,71,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,-1,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
+            {7,16,14,14,14,14,14,14,14,14,14,14,70,14,70,14,14,14,14,14,14,14,14,14,14,36,31},
+            {7,16,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,31},
+            {7,16,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,31},
+            {8,9,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,30,29},
+            {7,79,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,77,31},
+            {7,16,70,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,70,36,31},
+            {7,16,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,28},
+            {10,15,70,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,70,36,28},
+            {10,79,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,77,28},
+            {8,9,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,30,29},
+            {10,15,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,28},
+            {10,15,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,28},
+            {10,15,14,14,14,14,14,14,14,14,14,14,70,14,70,14,14,14,14,14,14,14,14,14,14,36,28},
             {11,13,25,25,25,25,25,20,25,25,78,25,63,62,61,25,78,25,25,20,25,25,25,25,25,24,27},
             {12,17,18,18,18,18,18,19,18,18,18,18,60,59,58,21,21,21,21,19,21,21,21,21,21,22,23},
 
@@ -74,7 +71,6 @@ namespace Rogue_Like
 
             return map[cellY, cellX];
         }
-
         private List<Texture2D> tileTextures = new List<Texture2D>();
         //add Textures to the Dungeon map
         public void AddTexture(Texture2D texture)
@@ -87,6 +83,8 @@ namespace Rogue_Like
             get { return map.GetLength(1); }
 
         }
+
+        #region Numeral Texture
         //Height of Dungeon map
         public int Height
         {
@@ -483,13 +481,60 @@ namespace Rogue_Like
             get { return map.GetLength(79); }
         }
 
+        public int Carpet_Top_Left_Corner
+        {
+            get { return map.GetLength(80); }
+        }
 
-        public Level2(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
+        public int Carpet_Top_Mid
+        {
+            get { return map.GetLength(81); }
+        }
+
+        public int Carpet_Top_Right_Corner
+        {
+            get { return map.GetLength(82); }
+        }
+
+        public int Carpet_Left_Mid
+        {
+            get { return map.GetLength(83); }
+        }
+
+        public int Carpet_Left_Bot_Corner
+        {
+            get { return map.GetLength(84); }
+        }
+
+        public int Carpet_Bot_Mid
+        {
+            get { return map.GetLength(85); }
+        }
+
+        public int Carpet_Bot_Right_Corner
+        {
+            get { return map.GetLength(86); }
+        }
+
+        public int Carpet_Right_Mid
+        {
+            get { return map.GetLength(87); }
+        }
+
+        public int Carpet_Mid_Mid
+        {
+            get { return map.GetLength(88); }
+        }
+        #endregion
+
+
+        public Room1(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
             Font = content.Load<SpriteFont>("Font");
             Texture2D piller = content.Load<Texture2D>("Pillar1");
+            collisionTexture = content.Load<Texture2D>("OnePixel");
             //Wall Textures start
             //Left Wall
             Texture2D wallTopCorLeft = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left");
@@ -571,6 +616,19 @@ namespace Rogue_Like
             Texture2D Door_Left_Bot_Left = content.Load<Texture2D>("64x64/Door_Left_Bot_Left");
             Texture2D Door_Mid_Bot_Left = content.Load<Texture2D>("64x64/Door_Mid_Bot_Left");
             Texture2D Door_Right_Bot_Left = content.Load<Texture2D>("64x64/Door_Right_Bot_Left");
+
+            //Carpet
+            Texture2D Carpet_Top_Left = content.Load<Texture2D>("64x64/Carpet_Left_Top_Corner");
+            Texture2D Carpet_Top_Mid = content.Load<Texture2D>("64x64/Carpet_Top_Mid");
+            Texture2D Carpet_Top_Right = content.Load<Texture2D>("64x64/Carpet_Top_Right_Corner");
+            Texture2D Carpet_Left_Mid = content.Load<Texture2D>("64x64/Carpet_Left_Mid");
+            Texture2D Carpet_Left_Bot = content.Load<Texture2D>("64x64/Carpet_Left_Bot_Corner");
+            Texture2D Carpet_Bot_Mid = content.Load<Texture2D>("64x64/Carpet_Bot_Mid");
+            Texture2D Carpet_Bot_Right = content.Load<Texture2D>("64x64/Carpet_Bot_Right_Corner");
+            Texture2D Carpet_Right_Mid = content.Load<Texture2D>("64x64/Carpet_Right_Mid");
+            Texture2D Carpet_Mid = content.Load<Texture2D>("64x64/Carpet_Mid");
+
+
             //Misc.
             Texture2D Brazier = content.Load<Texture2D>("64x64/Brazier");
             Texture2D Rocks = content.Load<Texture2D>("64x64/Rocks");
@@ -586,8 +644,11 @@ namespace Rogue_Like
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
-            _playerTexture = content.Load<Texture2D>("Fisher_Bob");
+            
+            //player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
 
+
+            
             
             AddTexture(wall);
             AddTexture(piller);
@@ -669,22 +730,37 @@ namespace Rogue_Like
             AddTexture(ShieldAndSwordRight);
             AddTexture(ShieldAndSwordBot);
             AddTexture(ShieldAndSwordLeft);
+            AddTexture(Carpet_Top_Left);
+            AddTexture(Carpet_Top_Mid);
+            AddTexture(Carpet_Top_Right);
+            AddTexture(Carpet_Left_Mid);
+            AddTexture(Carpet_Left_Bot);
+            AddTexture(Carpet_Bot_Mid);
+            AddTexture(Carpet_Bot_Right);
+            AddTexture(Carpet_Right_Mid);
+            AddTexture(Carpet_Mid);
 
             
+
         }
 
-        public void Shop_Change()
+        public void Level2_Change()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.D3))
+            if (Keyboard.GetState().IsKeyDown(Keys.D2))
             {
-                _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+                _gameWorld.ChangeState(new Room2(_gameWorld, _graphichsDevice, _content));
             }
 
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        /// <summary>
+        /// Draws the Lake
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="spritebatch"></param>
+        public override void Draw(GameTime gameTime, SpriteBatch spritebatch)
         {
-
+            
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -695,7 +771,7 @@ namespace Rogue_Like
                         continue;
                     }
                     Texture2D texture = tileTextures[textureIndex];
-                    spriteBatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
+                    spritebatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
                 }
 
             }
@@ -709,27 +785,46 @@ namespace Rogue_Like
                         continue;
                     }
                     Texture2D texture = tileTextures[textureIndex];
-                    spriteBatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
+                    spritebatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
                 }
+
             }
+            
+            //Draws the player
+            {
+                //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
+                //player.Draw(spritebatch);
+            }
+           
+
         }
+        //Allows a NextStage Event to happen
+
 
         public override void PostUpdate(GameTime gameTime)
         {
 
             //remove sprite if they are not needen no more
         }
-
+        /// <summary>
+        /// Update the lake map
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
+
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
             }
 
-            Shop_Change();
+            
 
-
+            Level2_Change();
+            //player.Update(gameTime);
         }
+
+        
+
     }
 }

@@ -10,33 +10,33 @@ using System.Threading.Tasks;
 
 namespace Rogue_Like
 {
-    public class Shop : State
+    class NextLevelRoom : State
     {
-       
+
         private SpriteFont Font;
         private Texture2D _playerTexture;
 
-       
-    
+
+
 
         //Tilemap of Dungeon Background Map
         private int[,] mapBackground = new int[,]
        {
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,14,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
-            {-1,-1,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,104,105,106,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,95,96,96,96,96,96,96,96,96,97,14,14,14,95,96,96,96,96,96,96,96,96,97,-1,-1},
+            {-1,-1,100,99,99,99,99,99,99,99,99,98,14,14,14,100,99,99,99,99,99,99,99,99,98,-1,-1},
+            {-1,-1,100,99,99,99,99,99,99,99,99,98,14,14,14,100,99,99,99,99,99,99,99,99,98,-1,-1},
+            {-1,-1,100,99,99,99,99,99,99,99,99,98,14,14,14,100,99,99,99,99,99,99,99,99,98,-1,-1},
+            {-1,-1,100,99,99,99,99,99,99,99,99,98,14,14,14,100,99,99,99,99,99,99,99,99,98,-1,-1},
+            {-1,-1,100,99,99,99,99,99,99,99,99,98,14,14,14,100,99,99,99,99,99,99,99,99,98,-1,-1},
+            {-1,14,100,99,99,99,99,99,99,99,99,98,14,14,14,100,99,99,99,99,99,99,99,99,98,14,-1},
+            {-1,-1,100,99,99,99,99,99,99,99,99,98,14,14,14,100,99,99,99,99,99,99,99,99,98,-1,-1},
+            {-1,-1,100,99,99,99,99,99,99,99,99,98,14,14,14,100,99,99,99,99,99,99,99,99,98,-1,-1},
+            {-1,-1,100,99,99,99,99,99,99,99,99,98,14,14,14,100,99,99,99,99,99,99,99,99,98,-1,-1},
+            {-1,-1,100,99,99,99,99,99,99,99,99,98,14,14,14,100,99,99,99,99,99,99,99,99,98,-1,-1},
+            {-1,-1,100,99,99,99,99,99,99,99,99,98,14,14,14,100,99,99,99,99,99,99,99,99,98,-1,-1},
+            {-1,-1,101,102,102,102,102,102,102,102,102,103,14,14,14,101,102,102,102,102,102,102,102,102,103,-1,-1},
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,14,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
 
@@ -51,21 +51,21 @@ namespace Rogue_Like
         //Tilemap of Dungeon Map
         public static int[,] map = new int[,]
        {
-            {4,41,42,42,42,42,42,39,42,42,42,42,89,90,91,38,38,38,38,39,38,38,38,38,38,37,33},
-            {6,5,43,43,43,43,43,40,43,43,76,43,92,93,94,44,76,44,44,40,44,44,44,44,44,34,32},
-            {7,16,70,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,70,36,31},
-            {7,79,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,77,31},
-            {7,16,14,14,14,14,14,14,14,70,14,14,14,14,14,14,14,70,14,14,14,14,14,14,14,36,31},
-            {8,9,14,14,14,14,14,14,14,14,80,81,81,81,81,81,82,14,14,14,14,14,14,14,14,30,29},
-            {7,16,14,14,14,14,14,14,14,14,83,88,88,88,88,88,87,14,14,14,14,14,14,14,14,36,31},
-            {7,16,14,14,14,14,14,14,14,14,83,88,88,88,88,88,87,14,14,14,14,14,14,14,14,36,31},
-            {10,16,14,14,14,14,14,14,14,14,83,88,88,88,88,88,87,14,14,14,14,14,14,14,14,36,28},
-            {10,15,14,14,14,14,14,14,14,14,83,88,88,88,88,88,87,14,14,14,14,14,14,14,14,36,28},
-            {10,15,14,14,14,14,14,14,14,14,84,85,85,85,85,85,86,14,14,14,14,14,14,14,14,36,28},
-            {8,9,14,14,14,14,14,14,14,70,14,14,14,14,14,14,14,70,14,14,14,14,14,14,14,30,29},
-            {10,15,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,36,28},
-            {10,79,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,77,28},
-            {10,15,70,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,70,36,28},
+            {4,41,42,42,42,42,42,39,42,42,42,42,46,47,48,38,38,38,38,39,38,38,38,38,38,37,33},
+            {6,5,43,43,43,43,43,40,43,43,76,43,49,50,51,44,76,44,44,40,44,44,44,44,44,34,32},
+            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,-1,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,36,31},
+            {7,79,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,77,31},
+            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
+            {8,9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,30,29},
+            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
+            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
+            {10,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
+            {10,15,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
+            {10,15,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
+            {8,9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,30,29},
+            {10,15,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
+            {10,79,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,77,28},
+            {10,15,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,-1,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,36,28},
             {11,13,25,25,25,25,25,20,25,25,78,25,63,62,61,25,78,25,25,20,25,25,25,25,25,24,27},
             {12,17,18,18,18,18,18,19,18,18,18,18,60,59,58,21,21,21,21,19,21,21,21,21,21,22,23},
 
@@ -590,12 +590,87 @@ namespace Rogue_Like
         {
             get { return map.GetLength(94); }
         }
+
+        public int Hole_Top_Left
+        {
+            get { return map.GetLength(95); }
+        }
+
+        public int Hole_Top_Mid
+        {
+            get { return map.GetLength(96); }
+        }
+
+        public int Hole_Top_Right
+        {
+            get { return map.GetLength(97); }
+        }
+
+        public int Hole_Right_Mid
+        {
+            get { return map.GetLength(98); }
+        }
+
+        public int Hole_Mid
+        {
+            get { return map.GetLength(99); }
+        }
+
+        public int Hole_Left_Mid
+        {
+            get { return map.GetLength(100); }
+        }
+
+        public int Hole_Bottom_Left
+        {
+            get { return map.GetLength(101); }
+        }
+
+        public int Hole_Bottom_Mid
+        {
+            get { return map.GetLength(102); }
+        }
+
+        public int Hole_Bottom_Right
+        {
+            get { return map.GetLength(103); }
+        }
+
+        public int Stair_Top_Left
+        {
+            get { return map.GetLength(104); }
+        }
+
+        public int Stair_Top_Mid
+        {
+            get { return map.GetLength(105); }
+        }
+
+        public int Stair_Top_Right
+        {
+            get { return map.GetLength(106); }
+        }
+
+        public int Stair_Bot_Left
+        {
+            get { return map.GetLength(107); }
+        }
+
+        public int Stair_Bot_Mid
+        {
+            get { return map.GetLength(108); }
+        }
+
+        public int Stair_Bot_Right
+        {
+            get { return map.GetLength(109); }
+        }
         #endregion
 
 
 
 
-        public Shop(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
+        public NextLevelRoom(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
@@ -701,6 +776,24 @@ namespace Rogue_Like
             Texture2D Carpet_Right_Mid = content.Load<Texture2D>("64x64/Carpet_Right_Mid");
             Texture2D Carpet_Mid = content.Load<Texture2D>("64x64/Carpet_Mid");
 
+            //Hole
+            Texture2D Hole_Top_Left = content.Load<Texture2D>("64x64/Hole_Top_Left");
+            Texture2D Hole_Top_Mid = content.Load<Texture2D>("64x64/Hole_Top_Mid");
+            Texture2D Hole_Top_Right = content.Load<Texture2D>("64x64/Hole_Top_Right");
+            Texture2D Hole_Left_Mid = content.Load<Texture2D>("64x64/Hole_Left_Mid");
+            Texture2D Hole_Bottom_Left = content.Load<Texture2D>("64x64/Hole_Bottom_Left");
+            Texture2D Hole_Bottom_Mid = content.Load<Texture2D>("64x64/Hole_Bottom_Mid");
+            Texture2D Hole_Bottom_Right = content.Load<Texture2D>("64x64/Hole_Bottom_Right");
+            Texture2D Hole_Right_Mid = content.Load<Texture2D>("64x64/Hole_Right_Mid");
+            Texture2D Hole_Mid = content.Load<Texture2D>("64x64/Hole_Mid");
+
+            //Stairs
+            Texture2D Stair_Top_Left = content.Load<Texture2D>("64x64/Stair_Top_Left");
+            Texture2D Stair_Top_Mid = content.Load<Texture2D>("64x64/Stair_Top_Mid");
+            Texture2D Stair_Top_Right = content.Load<Texture2D>("64x64/Stair_Top_Right");
+            Texture2D Stair_Bot_Left = content.Load<Texture2D>("64x64/Stair_Bot_Left");
+            Texture2D Stair_Bot_Mid = content.Load<Texture2D>("64x64/Stair_Bot_Mid");
+            Texture2D Stair_Bot_Right = content.Load<Texture2D>("64x64/Stair_Bot_Right");
 
             //Misc.
             Texture2D Brazier = content.Load<Texture2D>("64x64/Brazier");
@@ -721,8 +814,8 @@ namespace Rogue_Like
             //player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
 
 
-            
-            
+
+
 
             //Rooms
             //AddRoom(mapBackground);
@@ -824,12 +917,27 @@ namespace Rogue_Like
             AddTexture(Door_Left_Bot_Entry);
             AddTexture(Door_Mid_Bot_Entry);
             AddTexture(Door_Right_Bot_Entry);
+            AddTexture(Hole_Top_Left);
+            AddTexture(Hole_Top_Mid);
+            AddTexture(Hole_Top_Right);
+            AddTexture(Hole_Right_Mid);
+            AddTexture(Hole_Mid);
+            AddTexture(Hole_Left_Mid);
+            AddTexture(Hole_Bottom_Left);
+            AddTexture(Hole_Bottom_Mid);
+            AddTexture(Hole_Bottom_Right);
+            AddTexture(Stair_Top_Left);
+            AddTexture(Stair_Top_Mid);
+            AddTexture(Stair_Top_Right);
+            AddTexture(Stair_Bot_Left);
+            AddTexture(Stair_Bot_Mid);
+            AddTexture(Stair_Bot_Right);
             #endregion
 
-            
+
 
         }
-        
+
 
         public void Level1_Change()
         {
@@ -846,7 +954,7 @@ namespace Rogue_Like
         /// <param name="spritebatch"></param>
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            
+
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -889,7 +997,7 @@ namespace Rogue_Like
             //    }
             //}
 
-            
+
             //Draws the player
             {
                 //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
@@ -919,6 +1027,6 @@ namespace Rogue_Like
             Level1_Change();
             //player.Update(gameTime);
         }
-       
+
     }
 }
