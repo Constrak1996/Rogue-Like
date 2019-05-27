@@ -14,11 +14,12 @@ namespace Rogue_Like
         public static string Name;
         public static int health;
         public static int damage;
-        public static string score;
+        public string score;
         public static int DataScore;
         public string coin;
         public static int Coin;
-        public static string food;
+        public string food;
+        public static int Food;
         public Random randomPlayerDamage = new Random();
         public Random randomPlayerHealth = new Random();
         /// <summary>
@@ -33,6 +34,7 @@ namespace Rogue_Like
             score = controller.getPlayerScore();
             Int32.TryParse(score, out DataScore);
             food = controller.getItem(5);
+            Int32.TryParse(food, out Food);
             Name = "Peter";
             health = randomPlayerHealth.Next(50, 75);
             damage = randomPlayerDamage.Next(10, 120);

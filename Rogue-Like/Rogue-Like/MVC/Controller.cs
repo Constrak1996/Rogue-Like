@@ -27,7 +27,7 @@ namespace Rogue_Like
             }
             //Fill the Tables
             {
-                //bait.fillBaitTable();
+                
                 model.fillHighscoreTable();
                 item.fillitemTable();
             }
@@ -38,12 +38,8 @@ namespace Rogue_Like
         {
             return model.getHighscore();
         }
-        //Get the games BaitTabel
-        //public String getItem()
-        //{
-        //    //return bait.getBait();
-        //}
-        //Get the games FishScore
+       
+        //Get a item from the itemsList
         public string getItem(int id)
         {
             return item.getItem(id);
