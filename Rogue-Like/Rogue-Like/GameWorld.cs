@@ -32,15 +32,31 @@ namespace Rogue_Like
         public static int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
         public static int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
-
         //Player
-        Player player;
+        public static Player player;
 
         //Collision
         private Texture2D collisionTexture;
 
         //Enemy
         Enemy enemy;
+        private int i;
+
+        //Level bools
+        public static bool level1;
+        public static bool level2;
+        public static bool level3;
+        public static bool level4;
+
+        //Room bools
+        public static bool room1;
+        public static bool room2;
+        public static bool room3;
+        public static bool room4;
+
+        //Spawn once checks
+        public static bool L1;
+        public static bool L2;
 
         public void ChangeState(State state)
         {
@@ -80,12 +96,15 @@ namespace Rogue_Like
             Font = Content.Load<SpriteFont>("Font");
             //Collisionbox texture
             collisionTexture = Content.Load<Texture2D>("OnePixel");
-
+            //Enemy
+            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0,20,2);
             //Player
             player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
             gameObjectsAdd.Add(player);
 
-            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0);
+            //Level bools running once
+            L1 = true;
+            L2 = true;
         }
 
         /// <summary>
@@ -120,7 +139,7 @@ namespace Rogue_Like
             //Updates gameobjects
             foreach (GameObject go in gameObjects)
             {
-                go.Update();
+                go.Update(gameTime);
             }
 
             //Adds gameobjects to the gameobjects list
@@ -133,10 +152,23 @@ namespace Rogue_Like
                 gameObjectsAdd.Clear();
             }
 
+            // Remove all game objects in removeList
+            foreach (GameObject obj in gameObjectsRemove)
+            {
+                gameObjects.Remove(obj);
+            }
+            gameObjectsRemove.Clear();
+
             //Player movement
             player.PlayerMovement(3);
 
-            enemy.Update();
+            
+            //if (i <= 2)
+            //{
+            //    enemy.SpawnEnemy();
+            //    i++;
+            //}
+            enemy.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -146,25 +178,34 @@ namespace Rogue_Like
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
-            //Draws sprites in gameObjects list
-            foreach (GameObject go in gameObjects)
+            if (Shop.shop == true || Level1.lvl1 == true || Level2.lvl2 == true)
             {
-                go.Draw(spriteBatch);
-            }
 
-            //Collision texture draw
-            foreach (GameObject go in gameObjects)
-            {
-                go.Draw(spriteBatch);
+
+                //Draws sprites in gameObjects list
+                foreach (GameObject go in gameObjects)
+                {
+                    go.Draw(spriteBatch);
+
+                }
+
+                //Collision texture draw
+                foreach (GameObject go in gameObjects)
+                {
+                    go.Draw(spriteBatch);
+
 #if DEBUG
-                DrawCollisionBox(go);
+                    DrawCollisionBox(go);
 #endif
+                }
+                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
+
             }
-            spriteBatch.DrawString(Font, $"Player Name: {player.Name} Health: {Player.health} Damage: {Player.damage}", new Vector2(0, 20), Color.White);
+            
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -187,5 +228,7 @@ namespace Rogue_Like
             spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
+
+        
     }
 }

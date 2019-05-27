@@ -40,7 +40,7 @@ namespace Rogue_Like
 
         }
 
-        public virtual void Update()
+        public virtual void Update(GameTime gameTime)
         {
 
         }

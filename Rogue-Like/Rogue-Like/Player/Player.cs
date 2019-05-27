@@ -10,26 +10,43 @@ namespace Rogue_Like
 {
     public class Player : GameObject
     {
-        public string Name;
+        Controller controller = new Controller();
+        public static string Name;
         public static int health;
         public static int damage;
+        public static string score;
+        public static int DataScore;
+        public static string coin;
+        public static string food;
         public Random randomPlayerDamage = new Random();
         public Random randomPlayerHealth = new Random();
+        /// <summary>
+        /// The players Constructor
+        /// </summary>
+        /// <param name="spriteName"></param>
+        /// <param name="Transform"></param>
         public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
-            this.Name = "Bob";
+
+            Player.coin = controller.getItem(4);
+            Player.score = controller.getPlayerScore();
+            Int32.TryParse(score, out DataScore);
+            Player.food = controller.getItem(5);
+            Player.Name = "Peter";
             Player.health = randomPlayerHealth.Next(50, 75);
             Player.damage = randomPlayerDamage.Next(10, 120);
         }
-
         /// <summary>
-        /// Player hitbox
+        /// Allows the player to attack an enemy
         /// </summary>
-        public override Rectangle Hitbox
+        public void PlayerAttack()
         {
-            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
-        }
 
+        }
+        /// <summary>
+        /// Allows the player to move around
+        /// </summary>
+        /// <param name="speed"></param>
         public void PlayerMovement(int speed)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.W))
@@ -48,6 +65,23 @@ namespace Rogue_Like
             {
                 Transform.Position.X += 1 * speed;
             }
+        }
+        /// <summary>
+        /// Player hitbox
+        /// </summary>
+        public override Rectangle Hitbox
+        {
+            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
+        }
+
+        public void PlayerMelee()
+        {
+
+        }
+
+        public void PlayerRanged()
+        {
+
         }
     }
 }
