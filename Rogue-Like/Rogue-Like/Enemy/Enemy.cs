@@ -24,6 +24,7 @@ namespace Rogue_Like
         Random r = new Random();
         //int index = r.Next(enemies.Length);
         private string enemyType;
+        private double deleteBullet;
 
         //Enemy hitbox
         public override Rectangle Hitbox
@@ -40,6 +41,7 @@ namespace Rogue_Like
         {
             //Attack cooldown
             lastAttack += gameTime.ElapsedGameTime.TotalSeconds;
+            deleteBullet +=gameTime.ElapsedGameTime.TotalSeconds;
 
 
             //Spawns enemies in the given rooms
@@ -49,7 +51,7 @@ namespace Rogue_Like
             Type();
 
             //Determines what happens on collision
-            OnCollision();
+            //OnCollision();
 
             base.Update(gameTime);
         }
@@ -212,22 +214,22 @@ namespace Rogue_Like
             GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5, 20, "ranged"));
         }
         
-        public void OnCollision()
-        {
-            if (this.Hitbox.Intersects(GameWorld.player.Hitbox))
-            {
-                if (lastAttack > 1f)
-                {
-                    Player.health -= 1;
-                    lastAttack = 0;
-                }
-            }
+        //public void OnCollision()
+        //{
+        //    if (this.Hitbox.Intersects(GameWorld.player.Hitbox))
+        //    {
+        //        if (lastAttack > 1f)
+        //        {
+        //            Player.health -= 1;
+        //            lastAttack = 0;
+        //        }
+        //    }
 
-            if (this.Hitbox.Intersects(GameWorld.bullet.Hitbox))
-            {
-                GameWorld.gameObjectsRemove.Add(this);
-            }
-        }
+        //    if (this.Hitbox.Intersects(GameWorld.bullet.Hitbox))
+        //    {
+        //        GameWorld.gameObjectsRemove.Add(this);
+        //    }
+        //}
 
         public void Type()
         {
@@ -240,15 +242,22 @@ namespace Rogue_Like
             {
                 ChasePlayer();
 
-                Bullet.pos = this.Transform.Position;
-                Vector2 direction = Vector2.Subtract(Bullet.pos, new Vector2(GameWorld.player.Transform.Position.X, GameWorld.player.Transform.Position.Y));
+                
+                Vector2 direction = Vector2.Subtract(this.Transform.Position, new Vector2(GameWorld.player.Transform.Position.X, GameWorld.player.Transform.Position.Y));
                 direction.Normalize();
 
                 if (lastAttack >= 1)
                 {
-                    GameWorld.gameObjectsAdd.Add(new Bullet("BulletTest", new Transform(Bullet.pos, 0), direction));
+                    EnemyBullet bullet = new EnemyBullet("BulletTest", new Transform(this.Transform.Position, 0), direction);
+                    GameWorld.gameObjectsAdd.Add(bullet);
                     lastAttack = 0;
-                }                
+
+                    if (deleteBullet >= 3)
+                    {
+                        GameWorld.gameObjectsRemove.Add(bullet);
+                        deleteBullet = 0;
+                    }
+                }                  
             }
         }
 

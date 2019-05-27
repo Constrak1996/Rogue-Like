@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Rogue_Like
 {
-    public class Bullet : GameObject
+    public class PlayerBullet : GameObject
     {
         private Vector2 direction;
         public static Vector2 pos;
@@ -18,7 +18,7 @@ namespace Rogue_Like
             get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
         }
 
-        public Bullet(string spriteName, Transform Transform, Vector2 direction) : base(spriteName, Transform)
+        public PlayerBullet(string spriteName, Transform Transform, Vector2 direction) : base(spriteName, Transform)
         {
             this.direction = direction;
             pos = this.Transform.Position;

@@ -22,7 +22,7 @@ namespace Rogue_Like
         private double lastAttack;
         private MouseState mouse;
         Vector2 distance;
-        private Bullet bullet;
+        private PlayerBullet bullet;
 
         /// <summary>
         /// The players Constructor
@@ -39,7 +39,7 @@ namespace Rogue_Like
             Player.health = randomPlayerHealth.Next(50, 75);
             Player.damage = randomPlayerDamage.Next(10, 120);
 
-            bullet = new Bullet("BulletTest", new Transform(new Vector2(0, 0), 0), Vector2.Zero);
+            bullet = new PlayerBullet("BulletTest", new Transform(new Vector2(0, 0), 0), Vector2.Zero);
         }
 
         public override void Update(GameTime gameTime)
@@ -106,14 +106,13 @@ namespace Rogue_Like
 
         public void PlayerRanged()
         {
-            Bullet.pos = this.Transform.Position;
-            Vector2 direction = Vector2.Subtract(Bullet.pos, new Vector2(mouse.X, mouse.Y));
+            Vector2 direction = Vector2.Subtract(this.Transform.Position, new Vector2(mouse.X, mouse.Y));
             direction.Normalize();
 
             //Cooldown control to control the rate of which the bullets are fired when pressing the shoot button
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && lastAttack > 0.7f)
             {
-                GameWorld.gameObjectsAdd.Add(new Bullet("BulletTest", new Transform(Bullet.pos, 0), direction));                
+                GameWorld.gameObjectsAdd.Add(new PlayerBullet("BulletTest", new Transform(this.Transform.Position, 0), direction));                
                 lastAttack = 0;
             }
         }

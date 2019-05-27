@@ -19,6 +19,7 @@ namespace Rogue_Like
         private State _currentState;
         private State _nextState;
         private float time;
+        public double lastAttack;
 
         private static ContentManager _content;
         public static ContentManager ContentManager { get => _content; }
@@ -35,8 +36,9 @@ namespace Rogue_Like
         //Player
         public static Player player;
 
-        //Bullet
-        public static Bullet bullet;
+        //Bullets
+        public PlayerBullet playerBullet;
+        public EnemyBullet enemyBullet;
 
         //Collision
         private Texture2D collisionTexture;
@@ -108,11 +110,13 @@ namespace Rogue_Like
             gameObjectsAdd.Add(player);
 
             //Bullet Texture
-            bullet = new Bullet("BulletTest", new Transform(new Vector2(100,100), 0), new Vector2(1,1));
-            
-            
+            playerBullet = new PlayerBullet("BulletTest", new Transform(new Vector2(100,100), 0), new Vector2(1,1));
+            enemyBullet = new EnemyBullet("BulletTest", new Transform(new Vector2(100, 100), 0), new Vector2(1, 1));
+
+
             gameObjectsRemove.Add(enemy);
-            gameObjectsRemove.Add(bullet);
+            gameObjectsRemove.Add(playerBullet);
+            gameObjectsRemove.Add(enemyBullet);
 
             //Level bools running once
             L1 = true;
@@ -148,6 +152,10 @@ namespace Rogue_Like
 
             timeSinceStart += gameTime.ElapsedGameTime;
             time = (int)timeSinceStart.Seconds;
+
+            //Attack cooldown
+            lastAttack += gameTime.ElapsedGameTime.TotalSeconds;
+
             //Updates gameobjects
             foreach (GameObject go in gameObjects)
             {
@@ -171,15 +179,8 @@ namespace Rogue_Like
             }
             gameObjectsRemove.Clear();
 
-            ////Player movement
-            //player.PlayerMovement(3);
+            OnBulletCollision();
 
-            
-            //if (i <= 2)
-            //{
-            //    enemy.SpawnEnemy();
-            //    i++;
-            //}
             enemy.Update(gameTime);
             base.Update(gameTime);
         }
@@ -244,6 +245,23 @@ namespace Rogue_Like
             spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
 
-        
+        public void OnBulletCollision()
+        {
+            if (enemy.Hitbox.Intersects(player.Hitbox))
+            {
+                if (lastAttack > 1f)
+                {
+                    Player.health -= 1;
+                    lastAttack = 0;
+                }
+            }
+
+            if (enemy.Hitbox.Intersects(playerBullet.Hitbox))
+            {
+                gameObjectsRemove.Add(enemy);
+            }
+        }
+
+
     }
 }
