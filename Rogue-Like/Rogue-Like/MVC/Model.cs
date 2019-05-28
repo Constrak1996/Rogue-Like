@@ -20,6 +20,7 @@ namespace Rogue_Like
         {
             m_dbConnection = new SQLiteConnection(CONNECTIONSTRING);
             m_dbConnection.Open();
+            
         }
 
         /// <summary>
