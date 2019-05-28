@@ -61,14 +61,6 @@
     <Compile Include="Bullet.cs" />
     <Compile Include="Button\Button.cs" />
     <Compile Include="Component.cs" />
-    <Compile Include="MVC\RogueLikeDataBase.cs">
-      <DependentUpon>RogueLikeDataBase.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="MVC\RogueLikeDataBase.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RogueLikeDataBase.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Stages\EndScreen.cs" />
     <Compile Include="Enemy\Enemy.cs" />
     <Compile Include="GameObject.cs" />
@@ -123,17 +115,6 @@
     <None Include="app.manifest" />
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
-    <None Include="MVC\RogueLikeDataBase.xsc">
-      <DependentUpon>RogueLikeDataBase.xsd</DependentUpon>
-    </None>
-    <None Include="MVC\RogueLikeDataBase.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>RogueLikeDataBase.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="MVC\RogueLikeDataBase.xss">
-      <DependentUpon>RogueLikeDataBase.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
