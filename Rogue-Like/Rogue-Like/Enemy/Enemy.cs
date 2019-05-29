@@ -25,11 +25,12 @@ namespace Rogue_Like
         //int index = r.Next(enemies.Length);
         private string enemyType;
         private double deleteBullet;
+        private readonly Player player;
 
         //Enemy hitbox
         public override Rectangle Hitbox
         {
-            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
+            get { return new Rectangle((int)Transform.Position.X, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
         }
 
         public Enemy(string spriteName, Transform Transform, int damage, int health, string enemyType) : base(spriteName, Transform)
@@ -49,9 +50,6 @@ namespace Rogue_Like
 
             //Determines what enemy type it is, melee or ranged
             Type();
-
-            //Determines what happens on collision
-            //OnCollision();
 
             base.Update(gameTime);
         }
@@ -213,23 +211,6 @@ namespace Rogue_Like
             Random r = new Random();
             GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5, 20, "ranged"));
         }
-        
-        //public void OnCollision()
-        //{
-        //    if (this.Hitbox.Intersects(GameWorld.player.Hitbox))
-        //    {
-        //        if (lastAttack > 1f)
-        //        {
-        //            Player.health -= 1;
-        //            lastAttack = 0;
-        //        }
-        //    }
-
-        //    if (this.Hitbox.Intersects(GameWorld.bullet.Hitbox))
-        //    {
-        //        GameWorld.gameObjectsRemove.Add(this);
-        //    }
-        //}
 
         public void Type()
         {
@@ -268,5 +249,21 @@ namespace Rogue_Like
             Vector2 velocity = direction * enemyMoveSpeed;
             this.Transform.Position += velocity;
         }
-    }
+
+        public override void OnCollision(Player player)
+        {
+            if (this.Hitbox.Intersects(player.Hitbox) && lastAttack >= 1)
+            {
+                Player.health -= 1;
+                lastAttack = 0;
+            }
+            base.OnCollision(player);
+        }
+
+        public override void OnCollision(PlayerBullet bullet)
+        {
+
+            base.OnCollision(bullet);
+        }
+    }    
 }

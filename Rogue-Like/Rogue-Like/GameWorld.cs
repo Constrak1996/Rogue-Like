@@ -179,7 +179,41 @@ namespace Rogue_Like
             }
             gameObjectsRemove.Clear();
 
-            OnBulletCollision();
+            //Player collision
+            foreach (GameObject obj in gameObjects)
+            {
+                if (obj is Player)
+                {
+                    obj.OnCollision(player);
+                }
+            }
+
+            //Enemy collision
+            foreach (GameObject obj in gameObjects)
+            {
+                if (obj is Enemy)
+                {
+                    obj.OnCollision(enemy);
+                }
+            }
+
+            //Enemy bullet collision
+            foreach (GameObject obj in gameObjects)
+            {
+                if (obj is EnemyBullet)
+                {
+                    obj.OnCollision(enemyBullet);
+                }
+            }
+
+            //Player bullet collision
+            foreach (GameObject obj in gameObjects)
+            {
+                if (obj is PlayerBullet)
+                {
+                    obj.OnCollision(playerBullet);
+                }
+            }
 
             enemy.Update(gameTime);
             base.Update(gameTime);
@@ -244,24 +278,5 @@ namespace Rogue_Like
             spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
-
-        public void OnBulletCollision()
-        {
-            if (enemy.Hitbox.Intersects(player.Hitbox))
-            {
-                if (lastAttack > 1f)
-                {
-                    Player.health -= 1;
-                    lastAttack = 0;
-                }
-            }
-
-            if (enemy.Hitbox.Intersects(playerBullet.Hitbox))
-            {
-                gameObjectsRemove.Add(enemy);
-            }
-        }
-
-
     }
 }

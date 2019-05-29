@@ -116,5 +116,24 @@ namespace Rogue_Like
                 lastAttack = 0;
             }
         }
+
+        public override void OnCollision(EnemyBullet bullet)
+        {
+            if (this.Hitbox.Intersects(bullet.Hitbox) && lastAttack >= 1)
+            {
+                health -= 1;
+                lastAttack = 0;
+            }
+            base.OnCollision(bullet);
+        }
+
+        public override void OnCollision(Enemy enemy)
+        {
+            if (this.Hitbox.Intersects(enemy.Hitbox))
+            {
+                health -= 1;
+            }
+            base.OnCollision(enemy);
+        }
     }
 }
