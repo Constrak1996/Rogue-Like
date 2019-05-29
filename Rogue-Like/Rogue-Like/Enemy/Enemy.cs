@@ -13,7 +13,7 @@ namespace Rogue_Like
 
         //Spawn Bool
         public bool spawned;
-        Bullet bullet;
+        
         public int damage;
         Random r = new Random();
         public Vector2 enemyPos;
@@ -30,7 +30,7 @@ namespace Rogue_Like
 
         public Enemy(string spriteName, Transform Transform, int damage, int health, float range) : base(spriteName, Transform)
         {
-            bullet = new Bullet(bullettexture,)
+            
         }
 
         public override void Update(GameTime gameTime)
@@ -226,6 +226,8 @@ namespace Rogue_Like
                 
                 GameWorld.gameObjectsRemove.Add(this);
                 GameWorld.gameObjectsRemove.Add(otherObject);
+                Player.DataScore++;
+                
             }
 
             base.DoCollision(otherObject);

@@ -100,7 +100,7 @@ namespace Rogue_Like
             //Enemy
             enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0,20,2);
             //Player
-            player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
+            player = new Player("SwordBob", new Transform(new Vector2(400, 50), 0));
             gameObjectsAdd.Add(player);
 
             //Level bools running once
@@ -211,7 +211,7 @@ namespace Rogue_Like
                     DrawCollisionBox(go);
 #endif
                 }
-                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.Coin}\n Food: {Player.Food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
+                spriteBatch.DrawString(Font, $" {Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.Coin}\n Food: {Player.Food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
 
             }
             
