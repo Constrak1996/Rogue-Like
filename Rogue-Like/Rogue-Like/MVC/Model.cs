@@ -77,11 +77,14 @@ namespace Rogue_Like
             SQLiteDataReader reader;
             reader = cmd.ExecuteReader();
 
-            String slqItem = "";
+            String slqItem = string.Empty;
             while (reader.Read())
             {
-                slqItem += reader["Value"];
-                break;
+                if (slqItem == string.Empty)
+                {
+                    slqItem += reader["Value"]; 
+                }
+                
             }
 
             return slqItem;
