@@ -212,12 +212,18 @@ namespace Rogue_Like
         {
             if (otherObject is Player)
             {
-                Player.health -= 1;
+                if (lastAttack > 1.5f)
+                {
+                    Player.health -= 1;
+                    lastAttack = 0;
+                }
             }
 
+            //Bullet collision
             if (otherObject is Bullet)
             {
                 GameWorld.gameObjectsRemove.Add(this);
+                GameWorld.gameObjectsRemove.Add(otherObject);
             }
 
             base.DoCollision(otherObject);
