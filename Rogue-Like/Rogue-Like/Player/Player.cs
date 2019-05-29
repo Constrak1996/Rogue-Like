@@ -99,5 +99,20 @@ namespace Rogue_Like
                 lastShot = 0;
             }
         }
+        public override void DoCollision(GameObject otherObject)
+        {
+            if (otherObject is Coin)
+            {
+                Coin++;
+                GameWorld.gameObjectsRemove.Add(otherObject);
+            }
+            if (otherObject is Food)
+            {
+                Food++;
+                GameWorld.gameObjectsRemove.Add(otherObject);
+            }
+           
+        }
+        
     }
 }

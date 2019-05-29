@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,12 @@ namespace Rogue_Like
 
         //Spawn Bool
         public bool spawned;
-        
         public int damage;
         Random r = new Random();
         public Vector2 enemyPos;
         public float enemyMoveSpeed = 1;
         private double lastAttack;
+        
 
 
 
@@ -227,6 +228,22 @@ namespace Rogue_Like
                 GameWorld.gameObjectsRemove.Add(this);
                 GameWorld.gameObjectsRemove.Add(otherObject);
                 Player.DataScore++;
+                int lootpool = r.Next(0,3);
+
+                switch (lootpool)
+                {
+                    case 0:
+                        GameWorld.gameObjectsAdd.Add(new Bones("Bone", new Transform(Transform.Position, 0)));
+                        break;
+                    case 1:
+                        GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
+
+                        break;
+                    case 2:
+                        GameWorld.gameObjectsAdd.Add(new Food("Food", new Transform(Transform.Position, 0)));
+                        break;
+                    
+                }
                 
             }
 

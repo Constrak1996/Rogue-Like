@@ -58,9 +58,12 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Bones.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="Button\Button.cs" />
+    <Compile Include="Coin.cs" />
     <Compile Include="Component.cs" />
+    <Compile Include="Food.cs" />
     <Compile Include="Stages\EndScreen.cs" />
     <Compile Include="Enemy\Enemy.cs" />
     <Compile Include="GameObject.cs" />
