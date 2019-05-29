@@ -63,7 +63,7 @@ namespace Rogue_Like
 
         public override void Update(GameTime gameTime)
         {
-            //age++;
+            age++;
             this.Transform.Position += velocity;
             base.Update(gameTime);
         }

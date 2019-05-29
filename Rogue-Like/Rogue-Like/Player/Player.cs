@@ -99,5 +99,7 @@ namespace Rogue_Like
                 lastShot = 0;
             }
         }
+
+
     }
 }
