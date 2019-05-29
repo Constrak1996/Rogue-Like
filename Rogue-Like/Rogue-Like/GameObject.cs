@@ -39,20 +39,31 @@ namespace Rogue_Like
             this.Transform = Transform;
             spriteCenter = new Vector2(Sprite.Width * 0.5f, Sprite.Height * 0.5f);
         }
-        public GameObject(Transform transform)
-        {
-            this.Transform = transform;
-
-        }
 
         public virtual void Update(GameTime gameTime)
         {
-            
+
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Sprite, new Vector2(Transform.Position.X, Transform.Position.Y - 1), null, Color.White, 0f, spriteCenter, 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(Sprite, new Vector2(Transform.Position.X, Transform.Position.Y), null, Color.White, 0f, spriteCenter, 1f, SpriteEffects.None, 1f);
+        }
+
+        /// <summary>
+        /// IsColliding checks if there are other object colliding with the current one
+        /// </summary>
+        /// <param name="otherObject"></param>
+        /// <returns></returns>
+        public bool IsColliding(GameObject otherObject)
+        {
+            //A method used to determine when a object collides with another
+            return Hitbox.Intersects(otherObject.Hitbox);
+        }
+
+        public virtual void DoCollision(GameObject otherObject)
+        {
+
         }
     }
 }

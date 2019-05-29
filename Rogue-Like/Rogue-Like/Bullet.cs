@@ -39,11 +39,11 @@ namespace Rogue_Like
         /// allows the bullet to bend, so it dosen´t fly in a straight line so that we will be allowed to hit the target
         /// </summary>
         /// <param name="value"></param>
-        public void SetRotation(float value)
-        {
-            rotation = value;
-            velocity = Vector2.Transform(new Vector2(0, -speed), Matrix.CreateRotationZ(rotation));
-        }
+        //public void SetRotation(float value)
+        //{
+        //    rotation = value;
+        //    velocity = Vector2.Transform(new Vector2(0, -speed), Matrix.CreateRotationZ(rotation));
+        //}
         /// <summary>
         /// shows the stats of the bullet
         /// </summary>
@@ -52,18 +52,19 @@ namespace Rogue_Like
         /// <param name="damage"></param>
         /// <param name="speed"></param>
         /// <param name="rotation"></param>
-        public Bullet(string spriteName, Transform Transform, ContentManager content, Vector2 position, int damage, int speed, float rotation) : base(spriteName,Transform)
+        public Bullet(string spriteName, Transform Transform, Vector2 direction, int speed) : base(spriteName,Transform)
         {
             this.damage = damage;
             this.speed = speed;
             this.rotation = rotation;
-            this.velocity = velocity * speed;
+            this.velocity = direction * speed;
+            rotation = this.Transform.Rotation;
         }
 
         public override void Update(GameTime gameTime)
         {
-            age++;
-            position += velocity;
+            //age++;
+            this.Transform.Position += velocity;
             base.Update(gameTime);
         }
     }

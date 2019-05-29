@@ -100,14 +100,12 @@ namespace Rogue_Like
             //Enemy
             enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0,20,2);
             //Player
-            player = new Player("SwordBob", new Transform(new Vector2(400, 50), 0));
+            player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
             gameObjectsAdd.Add(player);
-            gameObjectsRemove.Add(enemy);
 
             //Level bools running once
             L1 = true;
             L2 = true;
-            
         }
 
         /// <summary>
@@ -165,12 +163,20 @@ namespace Rogue_Like
             //Player movement
             player.PlayerMovement(3);
 
+            //Check if gameobject is colliding, if it does run collision code
+            foreach (GameObject go in gameObjects)
+            {
+                go.Update(gameTime);
 
-            //if (i <= 2)
-            //{
-            //    enemy.SpawnEnemy();
-            //    i++;
-            //}
+                foreach (GameObject other in gameObjects)
+                {
+                    if (go != other && go.IsColliding(other))
+                    {
+                        go.DoCollision(other);
+                    }
+                }
+            }
+            
             enemy.Update(gameTime);
             base.Update(gameTime);
         }
@@ -185,33 +191,29 @@ namespace Rogue_Like
 
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
-            if (Menu.menu == false)
+            if (Shop.shop == true || Level1.lvl1 == true || Level2.lvl2 == true)
             {
-                if (Shop.shop == true || Level1.lvl1 == true || Level2.lvl2 == true)
+
+
+                //Draws sprites in gameObjects list
+                foreach (GameObject go in gameObjects)
                 {
-
-
-                    //Draws sprites in gameObjects list
-                    foreach (GameObject go in gameObjects)
-                    {
-                        go.Draw(spriteBatch);
-
-                    }
-
-                    //Collision texture draw
-                    foreach (GameObject go in gameObjects)
-                    {
-                        go.Draw(spriteBatch);
-
-#if DEBUG
-                        DrawCollisionBox(go);
-#endif
-                    }
-                    spriteBatch.DrawString(Font, $" {Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.Coin}\n Food: {Player.Food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
+                    go.Draw(spriteBatch);
 
                 }
+
+                //Collision texture draw
+                foreach (GameObject go in gameObjects)
+                {
+                    go.Draw(spriteBatch);
+
+#if DEBUG
+                    DrawCollisionBox(go);
+#endif
+                }
+                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.Coin}\n Food: {Player.Food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
+
             }
-            
             
             spriteBatch.End();
 
