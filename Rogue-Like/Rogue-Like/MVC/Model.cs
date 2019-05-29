@@ -139,7 +139,7 @@ namespace Rogue_Like
             {
                 sqlPlayerscore += "Name: " + reader["name"] + "     " + "Score:" + reader["score"];
             }
-            m_dbConnection.Close();return sqlPlayerscore;
+            return sqlPlayerscore;
         }
         /// <summary>
         /// Get the Best HighScore
@@ -206,6 +206,10 @@ namespace Rogue_Like
             }
             
             return sqlPlayerscore;
+        }
+        public void QuitGame()
+        {
+            m_dbConnection.Close();
         }
     }
 }

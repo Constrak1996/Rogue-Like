@@ -13,6 +13,7 @@ namespace Rogue_Like
     {
         private Controller controller = new Controller();
         private List<Component> _component;
+        private Model model;
         private bool playernew;
         //private Thread idleIkon;
         /// <summary>
@@ -23,7 +24,7 @@ namespace Rogue_Like
         /// <param name="content"></param>
         public Menu(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
-
+            model = new Model();
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
 
@@ -115,6 +116,7 @@ namespace Rogue_Like
         private void QuitGameButton_Click(object sender, EventArgs e)
         {
             _gameWorld.Exit();
+            model.QuitGame();
         }
     }
 }
