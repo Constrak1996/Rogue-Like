@@ -57,7 +57,7 @@ namespace Rogue_Like
             this.damage = damage;
             this.speed = speed;
             this.rotation = rotation;
-            this.velocity = direction;
+            this.velocity = direction * speed;
             rotation = this.Transform.Rotation;
         }
 
