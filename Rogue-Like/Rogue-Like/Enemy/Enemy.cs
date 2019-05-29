@@ -39,7 +39,6 @@ namespace Rogue_Like
 
             EnemySpawner();
             ChasePlayer();
-            OnCollision();
             base.Update(gameTime);
         }
 
@@ -200,18 +199,6 @@ namespace Rogue_Like
             Random r = new Random();
             GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5,20,2));
         }
-        
-        public void OnCollision()
-        {
-            if (this.Hitbox.Intersects(GameWorld.player.Hitbox))
-            {
-                if (lastAttack > 1f)
-                {
-                    Player.health -= 1;
-                    lastAttack = 0;
-                }
-            }
-        }
 
         public void ChasePlayer()
         {
@@ -219,6 +206,21 @@ namespace Rogue_Like
             direction.Normalize();
             Vector2 velocity = direction * enemyMoveSpeed;
             this.Transform.Position += velocity;
+        }
+
+        public override void DoCollision(GameObject otherObject)
+        {
+            if (otherObject is Player)
+            {
+                Player.health -= 1;
+            }
+
+            if (otherObject is Bullet)
+            {
+                GameWorld.gameObjectsRemove.Add(this);
+            }
+
+            base.DoCollision(otherObject);
         }
     }
 }

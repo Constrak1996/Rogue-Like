@@ -163,12 +163,20 @@ namespace Rogue_Like
             //Player movement
             player.PlayerMovement(3);
 
+            //Check if gameobject is colliding, if it does run collision code
+            foreach (GameObject go in gameObjects)
+            {
+                go.Update(gameTime);
+
+                foreach (GameObject other in gameObjects)
+                {
+                    if (go != other && go.IsColliding(other))
+                    {
+                        go.DoCollision(other);
+                    }
+                }
+            }
             
-            //if (i <= 2)
-            //{
-            //    enemy.SpawnEnemy();
-            //    i++;
-            //}
             enemy.Update(gameTime);
             base.Update(gameTime);
         }
