@@ -183,29 +183,33 @@ namespace Rogue_Like
 
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
-            if (Shop.shop == true || Level1.lvl1 == true || Level2.lvl2 == true)
+            if (Menu.menu == false)
             {
-
-
-                //Draws sprites in gameObjects list
-                foreach (GameObject go in gameObjects)
+                if (Shop.shop == true || Level1.lvl1 == true || Level2.lvl2 == true)
                 {
-                    go.Draw(spriteBatch);
 
-                }
 
-                //Collision texture draw
-                foreach (GameObject go in gameObjects)
-                {
-                    go.Draw(spriteBatch);
+                    //Draws sprites in gameObjects list
+                    foreach (GameObject go in gameObjects)
+                    {
+                        go.Draw(spriteBatch);
+
+                    }
+
+                    //Collision texture draw
+                    foreach (GameObject go in gameObjects)
+                    {
+                        go.Draw(spriteBatch);
 
 #if DEBUG
-                    DrawCollisionBox(go);
+                        DrawCollisionBox(go);
 #endif
-                }
-                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.Coin}\n Food: {Player.Food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
+                    }
+                    spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.Coin}\n Food: {Player.Food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
 
+                }
             }
+            
             
             spriteBatch.End();
 

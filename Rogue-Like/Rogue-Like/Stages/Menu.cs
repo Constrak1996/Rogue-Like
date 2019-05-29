@@ -15,6 +15,7 @@ namespace Rogue_Like
         private List<Component> _component;
         private Model model;
         private bool playernew;
+        public static bool menu;
         //private Thread idleIkon;
         /// <summary>
         /// The MenuStates Constructor
@@ -88,6 +89,7 @@ namespace Rogue_Like
             controller.newPlayer();
             _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
             Shop.shop = true;
+            menu = false;
             
         }
         //Makes a HighScorebutton

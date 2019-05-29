@@ -826,8 +826,9 @@ namespace Rogue_Like
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
                 Shop.shop = false;
-                Level1.lvl1 = false;
+                lvl1 = false;
                 Level2.lvl2 = false;
+                Menu.menu = true;
             }
 
             foreach (var component in _component)

@@ -47,6 +47,7 @@ namespace Rogue_Like
             return mapBackground[cellY, cellX];
         }
         //Tilemap of Lake Map
+        #region
         private int[,] map = new int[,]
        {
             {4,41,42,42,42,42,42,39,42,42,42,42,46,47,48,38,38,38,38,39,38,38,38,38,38,37,33},
@@ -484,13 +485,15 @@ namespace Rogue_Like
             get { return map.GetLength(79); }
         }
 
-
+        #endregion
         public Level2(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
             Font = content.Load<SpriteFont>("Font");
             Texture2D piller = content.Load<Texture2D>("Pillar1");
+            //Content Load
+            #region
             //Wall Textures start
             //Left Wall
             Texture2D wallTopCorLeft = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left");
@@ -588,13 +591,15 @@ namespace Rogue_Like
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
             _playerTexture = content.Load<Texture2D>("Fisher_Bob");
-
+            #endregion
             var shop = new Button(Shop, buttonFont)
             {
                 Position = new Vector2(200, 200),
 
             };
             shop.Click += Shop_Click;
+            //AddTextures
+            #region
             AddTexture(wall);
             AddTexture(piller);
             AddTexture(ground);
@@ -675,7 +680,7 @@ namespace Rogue_Like
             AddTexture(ShieldAndSwordRight);
             AddTexture(ShieldAndSwordBot);
             AddTexture(ShieldAndSwordLeft);
-
+            #endregion
             _component = new List<Component>()
             {
                 shop,
@@ -739,6 +744,9 @@ namespace Rogue_Like
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
                 Shop.shop = false;
+                Level1.lvl1 = false;
+                lvl2 = false;
+                Menu.menu = true;
             }
 
             foreach (var component in _component)
