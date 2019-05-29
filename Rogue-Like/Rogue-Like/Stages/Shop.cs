@@ -684,7 +684,7 @@ namespace Rogue_Like
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
-            _playerTexture = content.Load<Texture2D>("Fisher_Bob");
+            _playerTexture = content.Load<Texture2D>("SwordBob");
             //player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
 
             #endregion
@@ -846,11 +846,7 @@ namespace Rogue_Like
             {
                 component.Draw(gameTime, spritebatch);
             }
-            //Draws the player
-            {
-                //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
-                //player.Draw(spritebatch);
-            }
+            
 
 
         }

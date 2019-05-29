@@ -108,7 +108,7 @@ namespace Rogue_Like
             String sqlHigscore = "";
             while (reader.Read())
             {
-                sqlHigscore += "Name: " + reader["name"] + "     " + "Score:" + reader["score"] + Environment.NewLine;
+                sqlHigscore += "Name: " + reader["name"] + "     " + "Score:" + reader[$"{Player.score}"] + Environment.NewLine;
             }
             
             return sqlHigscore;

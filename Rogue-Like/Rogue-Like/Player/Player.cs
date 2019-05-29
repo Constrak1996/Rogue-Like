@@ -14,7 +14,7 @@ namespace Rogue_Like
         public static string Name;
         public static int health;
         public static int damage;
-        public string score;
+        public static string score;
         public static int DataScore;
         public string coin;
         public static int Coin;

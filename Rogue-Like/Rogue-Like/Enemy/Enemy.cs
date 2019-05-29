@@ -10,7 +10,7 @@ namespace Rogue_Like
     public class Enemy : GameObject
     {
         Controller controller = new Controller();
-
+        Random r = new Random();
         //Spawn Bool
         public bool spawned;
 
@@ -48,13 +48,16 @@ namespace Rogue_Like
             #region Level 1
             if (GameWorld.level1 == true)
             {
+                
                 if (GameWorld.room1 == true)
                 {
                     for (int i = 0; i <= 3; i++)
                     {
                         SpawnEnemy();
+                        
                     }
                     GameWorld.room1 = false;
+                    
                 }
                 if (GameWorld.room2 == true)
                 {
@@ -197,7 +200,7 @@ namespace Rogue_Like
 
         public void SpawnEnemy()
         {
-            Random r = new Random();
+            
             GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5,20,2));
         }
         
@@ -209,6 +212,10 @@ namespace Rogue_Like
                 {
                     Player.health -= 1;
                     lastAttack = 0;
+                    Player.Coin++;
+                    Player.Food++;
+                    Player.DataScore++;
+                    GameWorld.gameObjectsRemove.Add(this);
                 }
             }
         }
