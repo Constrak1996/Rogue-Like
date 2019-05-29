@@ -13,7 +13,7 @@ namespace Rogue_Like
 
         //Spawn Bool
         public bool spawned;
-
+        
         public int damage;
 
         public Vector2 enemyPos;
@@ -217,6 +217,7 @@ namespace Rogue_Like
 
             if (otherObject is Bullet)
             {
+                
                 GameWorld.gameObjectsRemove.Add(this);
             }
 
