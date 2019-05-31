@@ -30,9 +30,8 @@ namespace Rogue_Like
             get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
         }
 
-        public Enemy(string spriteName, Transform Transform, int health, string type) : base(spriteName, Transform)
+        public Enemy(string spriteName, Transform Transform, int health) : base(spriteName, Transform)
         {
-            this.type = "ranged";
         }
 
         public override void Update(GameTime gameTime)
@@ -41,7 +40,6 @@ namespace Rogue_Like
             lastAttack += gameTime.ElapsedGameTime.TotalSeconds;
 
             EnemySpawner();
-            EnemyRanged();
             ChasePlayer();
             base.Update(gameTime);
         }
@@ -200,16 +198,24 @@ namespace Rogue_Like
 
         public void SpawnEnemy()
         {
-            if (type == "ranged")
-            {
-                Random r = new Random();
-                GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 50, "ranged"));
-            }
+            int enemyType = GameWorld.r.Next(0,3); 
 
-            if (type == "melee")
+            switch (enemyType)
             {
-                Random r = new Random();
-                GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 50, "melee"));
+                case 0:
+                    GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
+                    break;
+                case 1:
+                    GameWorld.gameObjectsAdd.Add(new RangedEnemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
+                    break;
+                case 2:
+                    GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
+                    break;
+                case 3:
+                    GameWorld.gameObjectsAdd.Add(new RangedEnemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -242,16 +248,16 @@ namespace Rogue_Like
             base.DoCollision(otherObject);
         }
 
-        public void EnemyRanged()
-        {
-            if (lastAttack > 0.5f)
-            {
-                Vector2 direction =  GameWorld.player.Transform.Position - this.Transform.Position;
-                direction.Normalize();
-                EnemyBullet bullet = new EnemyBullet("BulletTest", new Transform(new Vector2(this.Transform.Position.X, this.Transform.Position.Y), 0), direction, 5);
-                GameWorld.gameObjectsAdd.Add(bullet);
-                lastAttack = 0;
-            }
-        }
+        //public void EnemyRanged()
+        //{
+        //    if (lastAttack > 0.5f)
+        //    {
+        //        Vector2 direction =  GameWorld.player.Transform.Position - this.Transform.Position;
+        //        direction.Normalize();
+        //        EnemyBullet bullet = new EnemyBullet("BulletTest", new Transform(new Vector2(this.Transform.Position.X, this.Transform.Position.Y), 0), direction, 5);
+        //        GameWorld.gameObjectsAdd.Add(bullet);
+        //        lastAttack = 0;
+        //    }
+        //}
     }
 }

@@ -55,6 +55,9 @@ namespace Rogue_Like
         public static bool room3;
         public static bool room4;
 
+        //Random static
+        public static Random r = new Random();
+
         //Spawn once checks
         public static bool L1;
         public static bool L2;
@@ -98,7 +101,7 @@ namespace Rogue_Like
             //Collisionbox texture
             collisionTexture = Content.Load<Texture2D>("OnePixel");
             //Enemy
-            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0, "melee");
+            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0);
 
             //Player
             player = new Player("Fisher_Bob", new Transform(new Vector2(400, 50), 0));
@@ -213,7 +216,9 @@ namespace Rogue_Like
 #endif
                 }
                 spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.Coin}\n Food: {Player.Food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
-
+#if DEBUG
+                spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
+#endif
             }
             
             spriteBatch.End();
