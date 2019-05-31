@@ -198,7 +198,6 @@ namespace Rogue_Like
 
         public void SpawnEnemy()
         {
-            
             GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5,20,2));
         }
 
@@ -228,7 +227,7 @@ namespace Rogue_Like
                 GameWorld.gameObjectsRemove.Add(this);
                 GameWorld.gameObjectsRemove.Add(otherObject);
                 Player.DataScore++;
-                int lootpool = r.Next(0,3);
+                int lootpool = r.Next(0,4);
 
                 switch (lootpool)
                 {
@@ -241,6 +240,9 @@ namespace Rogue_Like
                         break;
                     case 2:
                         GameWorld.gameObjectsAdd.Add(new Food("Food", new Transform(Transform.Position, 0)));
+                        break;
+                    case 3:
+                        GameWorld.gameObjectsAdd.Add(new Ammo("BulletTest", new Transform(Transform.Position, 0)));
                         break;
                     
                 }

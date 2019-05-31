@@ -21,7 +21,7 @@ namespace Rogue_Like
         {
             m_dbConnection = new SQLiteConnection(CONNECTIONSTRING);
             m_dbConnection.Open();
-            
+
         }
         public void itemStructure()
         {
@@ -38,7 +38,7 @@ namespace Rogue_Like
             string sql = $"CREATE TABLE IF NOT EXISTS highscores (id INTEGER PRIMARY KEY ASC, name VARCHAR(20), score INT)";
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             command.ExecuteNonQuery();
-            
+
         }
         public void fillitemTable()
         {
@@ -64,7 +64,7 @@ namespace Rogue_Like
         public void fillHighscoreTable()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
-            
+
         }
         public String getItem(int id)
         {
@@ -82,9 +82,9 @@ namespace Rogue_Like
             {
                 if (slqItem == string.Empty)
                 {
-                    slqItem += reader["Value"]; 
+                    slqItem += reader["Value"];
                 }
-                
+
             }
 
             return slqItem;
@@ -105,13 +105,17 @@ namespace Rogue_Like
             SQLiteDataReader reader;
             reader = cmd.ExecuteReader();
 
-            String sqlHigscore = "";
+            String sqlHighScore = string.Empty;
             while (reader.Read())
             {
-                sqlHigscore += "Name: " + reader["name"] + "     " + "Score:" + reader[$"{Player.score}"] + Environment.NewLine;
+                if (sqlHighScore == string.Empty)
+                {
+                    sqlHighScore += $"PlayerName {Player.Name}"+ "     " + $"Score {Player.score}" + Environment.NewLine;
+                }
+                
             }
             
-            return sqlHigscore;
+            return sqlHighScore;
         }
         /// <summary>
         /// Get a new Score for a player

@@ -58,6 +58,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Ammo.cs" />
     <Compile Include="Bones.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="Button\Button.cs" />
