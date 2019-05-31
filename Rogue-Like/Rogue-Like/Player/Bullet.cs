@@ -20,21 +20,7 @@ namespace Rogue_Like
         {
             get { return damage; }
         }
-        /// <summary>
-        /// sees if the bullet is dead or not
-        /// </summary>
-        /// <returns></returns>
-        public bool IsDead()
-        {
-            return age > 100;
-        }
-        /// <summary>
-        /// kills the bullet
-        /// </summary>
-        public void Kill()
-        {
-            this.age = 200;
-        }
+
         /// <summary>
         /// allows the bullet to bend, so it dosen´t fly in a straight line so that we will be allowed to hit the target
         /// </summary>
@@ -44,6 +30,7 @@ namespace Rogue_Like
         //    rotation = value;
         //    velocity = Vector2.Transform(new Vector2(0, -speed), Matrix.CreateRotationZ(rotation));
         //}
+
         /// <summary>
         /// shows the stats of the bullet
         /// </summary>
@@ -64,6 +51,10 @@ namespace Rogue_Like
         public override void Update(GameTime gameTime)
         {
             age++;
+            if (age > 100)
+            {
+                GameWorld.gameObjectsRemove.Add(this);
+            }
             this.Transform.Position += velocity;
             base.Update(gameTime);
         }

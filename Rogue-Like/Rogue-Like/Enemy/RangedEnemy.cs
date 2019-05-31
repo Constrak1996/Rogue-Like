@@ -29,6 +29,9 @@ namespace Rogue_Like
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Logic on how enemies chase the player
+        /// </summary>
         public void ChasePlayer()
         {
             Vector2 direction = GameWorld.player.Transform.Position - this.Transform.Position;
@@ -37,6 +40,10 @@ namespace Rogue_Like
             this.Transform.Position += velocity;
         }
 
+        /// <summary>
+        /// Handles collision 
+        /// </summary>
+        /// <param name="otherObject"></param>
         public override void DoCollision(GameObject otherObject)
         {
             if (otherObject is Player)
@@ -58,6 +65,9 @@ namespace Rogue_Like
             base.DoCollision(otherObject);
         }
 
+        /// <summary>
+        /// Enemy ranged attack method
+        /// </summary>
         public void EnemyRanged()
         {
             if (lastAttack > 0.5f)

@@ -20,11 +20,12 @@ namespace Rogue_Like
         public Vector2 enemyPos;
         public float enemyMoveSpeed = 1;
         private double lastAttack;
-        private string type;
 
 
 
-        //Enemy hitbox
+        /// <summary>
+        /// Enemy hitbox
+        /// </summary>
         public override Rectangle Hitbox
         {
             get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
@@ -44,6 +45,10 @@ namespace Rogue_Like
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Keeps track of how many enemies spawn in each room, and doesn't respawn if you already
+        /// cleared the room
+        /// </summary>
         public void EnemySpawner()
         {
             #region Level 1
@@ -196,6 +201,9 @@ namespace Rogue_Like
             #endregion
         }
 
+        /// <summary>
+        /// Enemy spawn type and location
+        /// </summary>
         public void SpawnEnemy()
         {
             int enemyType = GameWorld.r.Next(0,3); 
@@ -219,6 +227,9 @@ namespace Rogue_Like
             }
         }
 
+        /// <summary>
+        /// Method that handles how the enemies chase the player
+        /// </summary>
         public void ChasePlayer()
         {
             Vector2 direction = GameWorld.player.Transform.Position - this.Transform.Position;
@@ -227,6 +238,10 @@ namespace Rogue_Like
             this.Transform.Position += velocity;
         }
 
+        /// <summary>
+        /// OnCollision is where the collision logic is located
+        /// </summary>
+        /// <param name="otherObject"></param>
         public override void DoCollision(GameObject otherObject)
         {
             if (otherObject is Player)
@@ -247,17 +262,5 @@ namespace Rogue_Like
 
             base.DoCollision(otherObject);
         }
-
-        //public void EnemyRanged()
-        //{
-        //    if (lastAttack > 0.5f)
-        //    {
-        //        Vector2 direction =  GameWorld.player.Transform.Position - this.Transform.Position;
-        //        direction.Normalize();
-        //        EnemyBullet bullet = new EnemyBullet("BulletTest", new Transform(new Vector2(this.Transform.Position.X, this.Transform.Position.Y), 0), direction, 5);
-        //        GameWorld.gameObjectsAdd.Add(bullet);
-        //        lastAttack = 0;
-        //    }
-        //}
     }
 }
