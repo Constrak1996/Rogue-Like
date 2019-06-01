@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 
 namespace Rogue_Like
 {
@@ -90,6 +91,9 @@ namespace Rogue_Like
         public static bool room3;
         public static bool room4;
 
+        //Random static
+        public static Random r = new Random();
+
         //Spawn once checks
         public static bool L1;
         public static bool L2;
@@ -133,7 +137,8 @@ namespace Rogue_Like
             //Collisionbox texture
             collisionTexture = Content.Load<Texture2D>("OnePixel");
             //Enemy
-            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0,20,2);
+            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0);
+
             //Player
             player = new Player("Fisher_Bob", new Transform(new Vector2(865, 150), 0));
             gameObjectsAdd.Add(player);
@@ -161,7 +166,7 @@ namespace Rogue_Like
         {
             //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             //    Exit();
-
+            
             if (_nextState != null)
             {
                 _currentState = _nextState;
@@ -201,12 +206,20 @@ namespace Rogue_Like
             //Player movement
             player.PlayerMovement(8);
 
+            //Check if gameobject is colliding, if it does run collision code
+            foreach (GameObject go in gameObjects)
+            {
+                go.Update(gameTime);
+
+                foreach (GameObject other in gameObjects)
+                {
+                    if (go != other && go.IsColliding(other))
+                    {
+                        go.DoCollision(other);
+                    }
+                }
+            }
             
-            //if (i <= 2)
-            //{
-            //    enemy.SpawnEnemy();
-            //    i++;
-            //}
             enemy.Update(gameTime);
             base.Update(gameTime);
 
@@ -395,6 +408,7 @@ namespace Rogue_Like
                     }
                     
                 }
+
             }
             
             spriteBatch.End();

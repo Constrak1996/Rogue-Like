@@ -10,6 +10,11 @@ namespace Rogue_Like
 {
     public class GameObject
     {
+        protected Vector2 position;
+        protected Vector2 velocity;
+        protected Vector2 center;
+        protected Vector2 origin;
+        protected float rotation;
         public Transform Transform;
         public Texture2D sprite;
         public Vector2 spriteCenter;
@@ -42,7 +47,23 @@ namespace Rogue_Like
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, new Vector2(Transform.Position.X, Transform.Position.Y - 1), null, Color.White, 0f, spriteCenter, 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(sprite, new Vector2(Transform.Position.X, Transform.Position.Y), null, Color.White, 0f, spriteCenter, 1f, SpriteEffects.None, 1f);
+        }
+
+        /// <summary>
+        /// IsColliding checks if there are other object colliding with the current one
+        /// </summary>
+        /// <param name="otherObject"></param>
+        /// <returns></returns>
+        public bool IsColliding(GameObject otherObject)
+        {
+            //A method used to determine when a object collides with another
+            return Hitbox.Intersects(otherObject.Hitbox);
+        }
+
+        public virtual void DoCollision(GameObject otherObject)
+        {
+
         }
     }
 }

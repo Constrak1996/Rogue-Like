@@ -14,12 +14,16 @@ namespace Rogue_Like
         public static string Name;
         public static int health;
         public static int damage;
-        public static string score;
+        public string score;
         public static int DataScore;
-        public static string coin;
-        public static string food;
+        public string coin;
+        public static int Coin;
+        public string food;
+        public static int Food;
         public Random randomPlayerDamage = new Random();
         public Random randomPlayerHealth = new Random();
+        private double lastShot;
+
         /// <summary>
         /// The players Constructor
         /// </summary>
@@ -27,22 +31,17 @@ namespace Rogue_Like
         /// <param name="Transform"></param>
         public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
-
-            //Player.coin = controller.getItem(4);
-            Player.score = controller.getPlayerScore();
+            coin = controller.getItem(4);
+            Int32.TryParse(coin, out Coin);
+            score = controller.getPlayerScore();
             Int32.TryParse(score, out DataScore);
-            //Player.food = controller.getItem(5);
-            Player.Name = "Peter";
-            Player.health = randomPlayerHealth.Next(50, 75);
-            Player.damage = randomPlayerDamage.Next(10, 120);
+            food = controller.getItem(5);
+            Int32.TryParse(food, out Food);
+            Name = "Peter";
+            health = randomPlayerHealth.Next(50, 75);
+            damage = randomPlayerDamage.Next(10, 120);
         }
-        /// <summary>
-        /// Allows the player to attack an enemy
-        /// </summary>
-        public void PlayerAttack()
-        {
 
-        }
         /// <summary>
         /// Allows the player to move around
         /// </summary>
@@ -74,14 +73,40 @@ namespace Rogue_Like
             get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, sprite.Width, sprite.Height); }
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            lastShot += gameTime.ElapsedGameTime.TotalSeconds;
+
+            PlayerRanged();
+
+            base.Update(gameTime);
+        }
+
         public void PlayerMelee()
         {
-
+            
         }
 
         public void PlayerRanged()
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && lastShot > 0.5f)
+            {
+                Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+                Vector2 direction = mousePos - this.Transform.Position;
+                direction.Normalize();
+                Bullet bullet = new Bullet("BulletTest", new Transform(new Vector2(this.Transform.Position.X, this.Transform.Position.Y), 0), direction, 5);
+                GameWorld.gameObjectsAdd.Add(bullet);
+                lastShot = 0;
+            }
+        }
 
+        public override void DoCollision(GameObject otherObject)
+        {
+            if (otherObject is EnemyBullet)
+            {
+                health -= 1;
+            }
+            base.DoCollision(otherObject);
         }
     }
 }
