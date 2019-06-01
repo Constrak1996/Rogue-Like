@@ -46,7 +46,7 @@ namespace Rogue_Like
         public void EnemySpawner()
         {
             #region Level 1
-            if (GameWorld.level1 == true)
+            if (GameWorld.level_1 == true)
             {
                 if (GameWorld.room1 == true)
                 {
@@ -83,7 +83,7 @@ namespace Rogue_Like
             }
             #endregion
             #region Level 2
-            if (GameWorld.level2 == true)
+            if (GameWorld.level_2 == true)
             {
                 if (GameWorld.room1 == true)
                 {
@@ -120,7 +120,7 @@ namespace Rogue_Like
             }
             #endregion
             #region Level 3
-            if (GameWorld.level3 == true)
+            if (GameWorld.level_3 == true)
             {
                 if (GameWorld.room1 == true)
                 {
@@ -157,7 +157,7 @@ namespace Rogue_Like
             }
             #endregion
             #region Level 4
-            if (GameWorld.level4 == true)
+            if (GameWorld.level_4 == true)
             {
                 if (GameWorld.room1 == true)
                 {

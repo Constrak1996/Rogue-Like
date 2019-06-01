@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Rogue_Like
 {
-    public class Level2 : State
+    public class Room2 : State
     {
         private Player player;
         private SpriteFont Font;
@@ -82,6 +82,8 @@ namespace Rogue_Like
         {
             tileTextures.Add(texture);
         }
+
+        #region Numeral Textures
         //The Width of Dungeon map
         public int Width
         {
@@ -484,6 +486,7 @@ namespace Rogue_Like
             get { return map.GetLength(79); }
         }
 
+        #endregion
 
         public Room2(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
@@ -674,11 +677,11 @@ namespace Rogue_Like
             
         }
 
-        public void Shop_Change()
+        public void Level3_Change()
         {
             if (Keyboard.GetState().IsKeyDown(Keys.D3))
             {
-                _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+                _gameWorld.ChangeState(new Room3(_gameWorld, _graphichsDevice, _content));
             }
 
         }
@@ -729,7 +732,7 @@ namespace Rogue_Like
                 Shop.shop = false;
             }
 
-            Shop_Change();
+            Level3_Change();
 
             level2Enemies();
         }
@@ -742,7 +745,7 @@ namespace Rogue_Like
         {
             if (GameWorld.L2 == true)
             {
-                GameWorld.level1 = true;
+                GameWorld.level_2 = true;
                 GameWorld.room1 = true;
                 GameWorld.L2 = false;
             }

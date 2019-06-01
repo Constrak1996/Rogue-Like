@@ -87,6 +87,7 @@ namespace Rogue_Like
             controller.newPlayer();
             _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
             Shop.shop = true;
+            GameWorld.isShop = true;
         }
         //Makes a HighScorebutton
         private void HighScoreButton_Click(object sender, EventArgs e)

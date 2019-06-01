@@ -939,12 +939,13 @@ namespace Rogue_Like
         }
 
 
-        public void Level1_Change()
+        public void Shop_Change()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.D1))
+            if (Keyboard.GetState().IsKeyDown(Keys.D4))
             {
-                _gameWorld.ChangeState(new Room1(_gameWorld, _graphichsDevice, _content));
+                _gameWorld.ChangeState(new NextLevelRoom(_gameWorld, _graphichsDevice, _content));
             }
+
         }
 
         /// <summary>
@@ -1024,7 +1025,7 @@ namespace Rogue_Like
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
             }
 
-            Level1_Change();
+            Shop_Change();
             //player.Update(gameTime);
         }
 

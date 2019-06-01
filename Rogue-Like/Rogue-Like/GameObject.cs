@@ -34,11 +34,6 @@ namespace Rogue_Like
             this.Transform = Transform;
             spriteCenter = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
         }
-        public GameObject(Transform transform)
-        {
-            this.Transform = transform;
-
-        }
 
         public virtual void Update(GameTime gameTime)
         {

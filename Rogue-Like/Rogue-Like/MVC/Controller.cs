@@ -9,7 +9,7 @@ namespace Rogue_Like
     class Controller
     {
         private Model model;
-        private Item item;
+        //private Item item;
         
         /// <summary>
         /// The Controllers Constructor
@@ -17,12 +17,12 @@ namespace Rogue_Like
         public Controller()
         {
             model = new Model();
-            item = new Item();
+            //item = new Item();
             
             //Structure the Tables
             {
                 model.highscoreStructure();
-                item.itemStructure();
+                //item.itemStructure();
                 
             }
             //Fill the Tables
@@ -44,10 +44,10 @@ namespace Rogue_Like
         //    //return bait.getBait();
         //}
         //Get the games FishScore
-        public String getItem(int id)
-        {
-            return item.getItem(id);
-        }
+        //public String getItem(int id)
+        //{
+        //    return item.getItem(id);
+        //}
 
         public String getNewHighscore()
         {

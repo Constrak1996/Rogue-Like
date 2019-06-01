@@ -28,10 +28,10 @@ namespace Rogue_Like
         public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
 
-            Player.coin = controller.getItem(4);
+            //Player.coin = controller.getItem(4);
             Player.score = controller.getPlayerScore();
             Int32.TryParse(score, out DataScore);
-            Player.food = controller.getItem(5);
+            //Player.food = controller.getItem(5);
             Player.Name = "Peter";
             Player.health = randomPlayerHealth.Next(50, 75);
             Player.damage = randomPlayerDamage.Next(10, 120);
@@ -71,7 +71,7 @@ namespace Rogue_Like
         /// </summary>
         public override Rectangle Hitbox
         {
-            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
+            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, sprite.Width, sprite.Height); }
         }
 
         public void PlayerMelee()
