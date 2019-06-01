@@ -43,6 +43,7 @@ namespace Rogue_Like
             return mapBackground[cellY, cellX];
         }
         //Tilemap of Lake Map
+        #region
         private int[,] map = new int[,]
        {
             {4,41,42,42,42,42,42,39,42,42,42,42,46,47,48,38,38,38,38,39,38,38,38,38,38,37,33},
@@ -523,7 +524,7 @@ namespace Rogue_Like
         {
             get { return map.GetLength(88); }
         }
-
+        #endregion
 
 
         public Level1(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
@@ -651,6 +652,8 @@ namespace Rogue_Like
 
             };
             shop.Click += Level2_TP;
+            //Addtextues
+            #region
             AddTexture(wall);
             AddTexture(piller);
             AddTexture(ground);
@@ -740,7 +743,7 @@ namespace Rogue_Like
             AddTexture(Carpet_Bot_Right);
             AddTexture(Carpet_Right_Mid);
             AddTexture(Carpet_Mid);
-
+            #endregion
             _component = new List<Component>()
             {
                 shop,
@@ -753,6 +756,7 @@ namespace Rogue_Like
         private void Level2_TP(object sender, EventArgs e)
         {
             _gameWorld.ChangeState(new Level2(_gameWorld, _graphichsDevice, _content));
+            
         }
 
         /// <summary>
@@ -822,6 +826,8 @@ namespace Rogue_Like
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
                 Shop.shop = false;
+                Level1.lvl1 = false;
+                Level2.lvl2 = false;
             }
 
             foreach (var component in _component)

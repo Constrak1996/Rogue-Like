@@ -13,9 +13,9 @@ namespace Rogue_Like
     public class Level2 : State
     {
         private Player player;
+        public static bool lvl2;
         private SpriteFont Font;
         private Texture2D _playerTexture;
-        public static bool lvl2;
         private List<Component> _component;
 
         private int[,] mapBackground = new int[,]
@@ -686,6 +686,8 @@ namespace Rogue_Like
         private void Shop_Click(object sender, EventArgs e)
         {
             _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+            
+            
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

@@ -46,6 +46,7 @@ namespace Rogue_Like
             return mapBackground[cellY, cellX];
         }
         //Tilemap of Shop
+        #region
         private int[,] map = new int[,]
        {
             {4,41,42,42,42,42,42,39,42,42,42,42,89,90,91,38,38,38,38,39,38,38,38,38,38,37,33},
@@ -556,7 +557,7 @@ namespace Rogue_Like
         {
             get { return map.GetLength(94); }
         }
-
+        #endregion
 
 
         public Shop(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
