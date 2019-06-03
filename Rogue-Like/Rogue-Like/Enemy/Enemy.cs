@@ -54,7 +54,7 @@ namespace Rogue_Like
         public void EnemySpawner()
         {
             #region Level 1
-            if (GameWorld.level_1 == true)
+            if (GameWorld.room1 == true)
             {
                 if (GameWorld.room1 == true)
                 {
@@ -91,7 +91,7 @@ namespace Rogue_Like
             }
             #endregion
             #region Level 2
-            if (GameWorld.level_2 == true)
+            if (GameWorld.room2 == true)
             {
                 if (GameWorld.room1 == true)
                 {
@@ -128,7 +128,7 @@ namespace Rogue_Like
             }
             #endregion
             #region Level 3
-            if (GameWorld.level_3 == true)
+            if (GameWorld.room3 == true)
             {
                 if (GameWorld.room1 == true)
                 {
@@ -165,7 +165,7 @@ namespace Rogue_Like
             }
             #endregion
             #region Level 4
-            if (GameWorld.level_4 == true)
+            if (GameWorld.room4 == true)
             {
                 if (GameWorld.room1 == true)
                 {
@@ -246,6 +246,7 @@ namespace Rogue_Like
         /// <param name="otherObject"></param>
         public override void DoCollision(GameObject otherObject)
         {
+            //Player collision
             if (otherObject is Player)
             {
                 if (lastAttack > 1.5f)
@@ -258,6 +259,7 @@ namespace Rogue_Like
             //Bullet collision
             if (otherObject is Bullet)
             {
+                Player.health--;
                 
                 GameWorld.gameObjectsRemove.Add(this);
                 GameWorld.gameObjectsRemove.Add(otherObject);
@@ -278,6 +280,12 @@ namespace Rogue_Like
                         break;
                     
                 }
+            }
+
+            //PlayerMelee collision
+            if (otherObject is PlayerMeleeAttack)
+            {
+                GameWorld.gameObjectsRemove.Add(this);
             }
 
             base.DoCollision(otherObject);

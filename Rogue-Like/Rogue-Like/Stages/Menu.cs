@@ -14,7 +14,8 @@ namespace Rogue_Like
         private Controller controller = new Controller();
         private List<Component> _component;
         private Model model;
-        private bool playernew;
+        public static bool newgame;
+        public static bool resume;
         public static bool menu;
         //private Thread idleIkon;
         /// <summary>
@@ -25,6 +26,7 @@ namespace Rogue_Like
         /// <param name="content"></param>
         public Menu(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
+            menu = true;
             model = new Model();
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
@@ -35,17 +37,22 @@ namespace Rogue_Like
                 Text = "New Game",
             };
             newGameButton.Click += NewGameButton_Click;
-
+            var resumeButton = new Button(buttonTexture, buttonFont)
+            {
+                Position = new Vector2(700, 400),
+                Text = "Resume",
+            };
+            resumeButton.Click += ResumeButton_Click;
 
             var highScoreButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(700, 400),
+                Position = new Vector2(700, 600),
                 Text = "HighScore",
             };
             highScoreButton.Click += HighScoreButton_Click;
             var quitGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(700, 600),
+                Position = new Vector2(700, 800),
                 Text = "Quit",
             };
             quitGameButton.Click += QuitGameButton_Click;
@@ -53,7 +60,7 @@ namespace Rogue_Like
             _component = new List<Component>()
             {
                 newGameButton,
-
+                resumeButton,
                 highScoreButton,
                 quitGameButton,
             };
@@ -86,11 +93,29 @@ namespace Rogue_Like
         //Makes a Newgamebutton
         private void NewGameButton_Click(object sender, EventArgs e)
         {
-            controller.newPlayer();
-            _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
-            Shop.shop = true;
-            menu = false;
+            if (newgame)
+            {
+                controller.newPlayer();
+                _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+                Shop.shop = true;
+                menu = false;
+                newgame = false;
+                resume = true;
+            }
             
+            
+        }
+        //Makes a Resumebutton
+        private void ResumeButton_Click(object sender, EventArgs e)
+        {
+            if (resume)
+            {
+                _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+                Shop.shop = true;
+                menu = false;
+            }
+            
+
         }
         //Makes a HighScorebutton
         private void HighScoreButton_Click(object sender, EventArgs e)

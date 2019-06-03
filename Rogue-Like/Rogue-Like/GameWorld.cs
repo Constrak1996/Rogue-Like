@@ -158,12 +158,14 @@ namespace Rogue_Like
             enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0);
 
             //Player
-            player = new Player("SwordBob", new Transform(new Vector2(400, 50), 0));
+            player = new Player("SwordBob", new Transform(new Vector2(700, 200), 0));
             gameObjectsAdd.Add(player);
 
             //Level bools running once
             L1 = true;
             L2 = true;
+            Menu.newgame = true;
+            Menu.resume = false;
         }
 
         /// <summary>
@@ -198,11 +200,7 @@ namespace Rogue_Like
 
             enteredRoom += gameTime.ElapsedGameTime;
             roomTime = enteredRoom.Seconds;
-            //Updates gameobjects
-            foreach (GameObject go in gameObjects)
-            {
-                go.Update(gameTime);
-            }
+            
 
             //Adds gameobjects to the gameobjects list
             if (gameObjectsAdd.Count > 0)
@@ -222,6 +220,7 @@ namespace Rogue_Like
             gameObjectsRemove.Clear();
 
             //Player movement
+            player.PlayerMovement(3);
             player.PlayerMovement(8);
             
             //Check if gameobject is colliding, if it does run collision code
@@ -255,61 +254,61 @@ namespace Rogue_Like
 
             }
 
-            if (player.Hitbox.Intersects(topLineDoor) && _currentState is Room1)
-            {
-                _nextState = new Shop(this, GraphicsDevice, Content);
-                player.Transform = new Transform(new Vector2(865, 910), 1);
-                isMap1 = false;
-                isShop = true;
-            }
+                if (player.Hitbox.Intersects(topLineDoor) && _currentState is Room1)
+                {
+                    _nextState = new Shop(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 910), 1);
+                    isMap1 = false;
+                    isShop = true;
+                }
 
-            if (player.Hitbox.Intersects(bottomLineDoor) && _currentState is Room1)
-            {
-                _nextState = new Room2(this, GraphicsDevice, Content);
-                player.Transform = new Transform(new Vector2(865, 150), 1);
-                isMap1 = false;
-                isMap2 = true;
-            }
+                if (player.Hitbox.Intersects(bottomLineDoor) && _currentState is Room1)
+                {
+                    _nextState = new Room2(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 150), 1);
+                    isMap1 = false;
+                    isMap2 = true;
+                }
 
-            if (player.Hitbox.Intersects(topLineDoor) && _currentState is Room2)
-            {
-                _nextState = new Room1(this, GraphicsDevice, Content);
-                player.Transform = new Transform(new Vector2(865, 910), 1);
-                isMap1 = true;
-                isMap2 = false;
-            }
+                if (player.Hitbox.Intersects(topLineDoor) && _currentState is Room2)
+                {
+                    _nextState = new Room1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 910), 1);
+                    isMap1 = true;
+                    isMap2 = false;
+                }
 
-            if (player.Hitbox.Intersects(rightLineDoor) && _currentState is Room2)
-            {
-                _nextState = new Room3(this, GraphicsDevice, Content);
-                player.Transform = new Transform(new Vector2(147, 545), 1);
-                isMap3 = true;
-                isMap2 = false;
-            }
+                if (player.Hitbox.Intersects(rightLineDoor) && _currentState is Room2)
+                {
+                    _nextState = new Room3(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(147, 545), 1);
+                    isMap3 = true;
+                    isMap2 = false;
+                }
 
-            if (player.Hitbox.Intersects(leftLineDoor) && _currentState is Room3)
-            {
-                _nextState = new Room2(this, GraphicsDevice, Content);
-                player.Transform = new Transform(new Vector2(1585, 545), 1);
-                isMap3 = false;
-                isMap2 = true;
-            }
+                if (player.Hitbox.Intersects(leftLineDoor) && _currentState is Room3)
+                {
+                    _nextState = new Room2(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(1585, 545), 1);
+                    isMap3 = false;
+                    isMap2 = true;
+                }
 
-            if (player.Hitbox.Intersects(topLineDoor) & _currentState is Room3)
-            {
-                _nextState = new NextLevelRoom(this, GraphicsDevice, Content);
-                player.Transform = new Transform(new Vector2(865, 910), 1);
-                isNextLevelRoom = true;
-                isMap3 = false;
-            }
+                if (player.Hitbox.Intersects(topLineDoor) & _currentState is Room3)
+                {
+                    _nextState = new NextLevelRoom(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 910), 1);
+                    isNextLevelRoom = true;
+                    isMap3 = false;
+                }
 
-            if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is NextLevelRoom)
-            {
-                _nextState = new Room3(this, GraphicsDevice, Content);
-                player.Transform = new Transform(new Vector2(865, 150), 1);
-                isNextLevelRoom = false;
-                isMap3 = true;
-            }
+                if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is NextLevelRoom)
+                {
+                    _nextState = new Room3(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 150), 1);
+                    isNextLevelRoom = false;
+                    isMap3 = true;
+                }
 
             if (player.Hitbox.Intersects(topLineDoor) & _currentState is NextLevelRoom)
             {
@@ -334,7 +333,7 @@ namespace Rogue_Like
             _currentState.Draw(gameTime, spriteBatch);
             if (Menu.menu == false)
             {
-                if (Shop.shop == true || room1 == true || room2 == true)
+                if (Shop.shop == true)
                 {
 
 
@@ -438,10 +437,8 @@ namespace Rogue_Like
                     }
                     
                 }
-                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.Coin}\n Food: {Player.Food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
-#if DEBUG
-                spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
-#endif
+                
+
             }
 
             spriteBatch.End();
