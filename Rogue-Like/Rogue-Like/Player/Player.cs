@@ -99,6 +99,11 @@ namespace Rogue_Like
         }
         public override void DoCollision(GameObject otherObject)
         {
+            if (otherObject is EnemyBullet)
+            {
+                health--;
+                GameWorld.gameObjectsRemove.Add(otherObject);
+            }
             if (otherObject is Coin)
             {
                 Coin++;

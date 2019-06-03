@@ -258,6 +258,7 @@ namespace Rogue_Like
             //Bullet collision
             if (otherObject is Bullet)
             {
+                Player.health--;
                 
                 GameWorld.gameObjectsRemove.Add(this);
                 GameWorld.gameObjectsRemove.Add(otherObject);
