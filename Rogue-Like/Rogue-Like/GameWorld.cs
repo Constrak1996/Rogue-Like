@@ -23,6 +23,7 @@ namespace Rogue_Like
         private State _nextState;
         private float roomTime;
         //Collision boxes for encasing the player in the map and to interact with doors.
+        #region Rectangles
         public Rectangle topLineDoor;
         public Rectangle shopTopLineDoor;
         public Rectangle bottomLineDoor;
@@ -40,6 +41,23 @@ namespace Rogue_Like
         public Rectangle leftLine;
         public Rectangle bottomLine;
         public Rectangle rightLine;
+        public Rectangle leftTopCollideable1;
+        public Rectangle leftTopCollideable2;
+        public Rectangle leftTopCollideable3;
+        public Rectangle leftTopCollideable4;
+        public Rectangle rightTopCollideable1;
+        public Rectangle rightTopCollideable2;
+        public Rectangle rightTopCollideable3;
+        public Rectangle rightTopCollideable4;
+        public Rectangle leftBotCollideable1;
+        public Rectangle leftBotCollideable2;
+        public Rectangle leftBotCollideable3;
+        public Rectangle leftBotCollideable4;
+        public Rectangle rightBotCollideable1;
+        public Rectangle rightBotCollideable2;
+        public Rectangle rightBotCollideable3;
+        public Rectangle rightBotCollideable4;
+        #endregion
 
         public static bool isShop = false;
         public static bool isMap1 = false;
@@ -325,33 +343,32 @@ namespace Rogue_Like
                 go.Draw(spriteBatch);
 #if DEBUG
                 DrawCollisionBox(go);
+                
                 //DungeonCollisionBox();
                 if (_currentState is Shop)
                 {
                     ShopCollisionBox();
                     ShopDoorCollision();
+                    CornersCollideableObjects();
                 }
                 
                 //AllDoorCollision();
 
                 if (_currentState is Room1)
                 {
-                   if (isMap1 == true)
-                   {
-                      TopDoorCollision();
-                      BottomDoorCollision();
-                      
-                   }
+                  
+                   TopDoorCollision();
+                   BottomDoorCollision();
+                   CornersCollideableObjects();
+
                 }
 
                 if (_currentState is Room2)
                 { 
-                   if (isMap2 == true)
-                   {
-                      TopDoorCollision();
-                      RightDoorCollision();
-                      TopAndRightCollisionBox();
-                   }
+                   TopDoorCollision();
+                   RightDoorCollision();
+                   TopAndRightCollisionBox();
+                   
                 }
 
                 if (_currentState is Room3)
@@ -359,6 +376,9 @@ namespace Rogue_Like
                     TopDoorCollision();
                     LeftDoorCollision();
                     TopAndLeftCollisionBox();
+                    LeftSideCollideableObjects1();
+                    LeftSideCollideableObjects2();
+                    CornersCollideableObjects();
                 }
 
                 if (_currentState is NextLevelRoom)
@@ -370,7 +390,7 @@ namespace Rogue_Like
                 
 #endif
                 }
-                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.coin}\n Food: {Player.food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
+
                 if (player.Hitbox.Intersects(topLine) || player.Hitbox.Intersects(topLine1) || player.Hitbox.Intersects(topLine2))
                 {
                     player.Transform.Position.Y = 105;
@@ -408,9 +428,12 @@ namespace Rogue_Like
                     }
                     
                 }
-
+                spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Damage: {Player.damage}\n Gold: {Player.Coin}\n Food: {Player.Food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
+#if DEBUG
+                spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
+#endif
             }
-            
+
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -535,7 +558,7 @@ namespace Rogue_Like
             Rectangle rightLineDoor1 = new Rectangle(1670, 512, 1, 63);
             Rectangle rightLineDoor2 = new Rectangle(1618, 512, 53, 1);
             Rectangle rightLineDoor3 = new Rectangle(1618, 575, 53, 1);
-            leftLine = new Rectangle(108, 75, 1, 906);
+            leftLine = new Rectangle(158, 105, 1, 906);
             
 
             //Draw each side
@@ -704,5 +727,80 @@ namespace Rogue_Like
             }
         }
 
+        private void LeftSideCollideableObjects1()
+        {
+            Rectangle leftCollideable1 = new Rectangle(128, 450, 1, 64);
+            Rectangle leftCollideable2 = new Rectangle(128, 450, 64, 1);
+            Rectangle leftCollideable3 = new Rectangle(128, 513, 64, 1);
+            Rectangle leftCollideable4 = new Rectangle(192, 450, 1, 64);
+
+            spriteBatch.Draw(collisionTexture, leftCollideable1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftCollideable2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftCollideable3, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftCollideable4, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+
+
+        }
+
+        private void LeftSideCollideableObjects2()
+        {
+            Rectangle leftCollideable1 = new Rectangle(128, 578, 1, 64);
+            Rectangle leftCollideable2 = new Rectangle(128, 578, 64, 1);
+            Rectangle leftCollideable3 = new Rectangle(128, 641, 64, 1);
+            Rectangle leftCollideable4 = new Rectangle(192, 578, 1, 64);
+
+            spriteBatch.Draw(collisionTexture, leftCollideable1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftCollideable2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftCollideable3, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftCollideable4, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+
+
+        }
+
+        private void CornersCollideableObjects()
+        {
+           leftTopCollideable1 = new Rectangle(128, 128, 1, 64);
+           leftTopCollideable2 = new Rectangle(128, 128, 64, 1);
+           leftTopCollideable3 = new Rectangle(128, 192, 64, 1);
+           leftTopCollideable4 = new Rectangle(192, 128, 1, 64);
+
+           rightTopCollideable1 = new Rectangle(1536, 128, 1, 64);
+           rightTopCollideable2 = new Rectangle(1536, 128, 64, 1);
+           rightTopCollideable3 = new Rectangle(1536, 192, 64, 1);
+           rightTopCollideable4 = new Rectangle(1600, 128, 1, 64);
+
+           leftBotCollideable1 = new Rectangle(128, 896, 1, 64);
+           leftBotCollideable2 = new Rectangle(128, 896, 64, 1);
+           leftBotCollideable3 = new Rectangle(128, 960, 64, 1);
+           leftBotCollideable4 = new Rectangle(192, 896, 1, 64);
+
+           rightBotCollideable1 = new Rectangle(1536, 896, 1, 64);
+           rightBotCollideable2 = new Rectangle(1536, 896, 64, 1);
+           rightBotCollideable3 = new Rectangle(1536, 960, 64, 1);
+           rightBotCollideable4 = new Rectangle(1600, 896, 1, 64);
+
+            spriteBatch.Draw(collisionTexture, leftTopCollideable1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftTopCollideable2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftTopCollideable3, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftTopCollideable4, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+
+            spriteBatch.Draw(collisionTexture, rightTopCollideable1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightTopCollideable2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightTopCollideable3, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightTopCollideable4, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+
+            spriteBatch.Draw(collisionTexture, leftBotCollideable1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftBotCollideable2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftBotCollideable3, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, leftBotCollideable4, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+
+            spriteBatch.Draw(collisionTexture, rightBotCollideable1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightBotCollideable2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightBotCollideable3, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(collisionTexture, rightBotCollideable4, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
+
+
+
+        }
     }
 }
