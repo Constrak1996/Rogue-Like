@@ -87,7 +87,7 @@ namespace Rogue_Like
         /// </summary>
         public void EnemyRanged()
         {
-            if (lastAttack > 0.5f)
+            if (lastAttack > 1f)
             {
                 Vector2 direction = GameWorld.player.Transform.Position - this.Transform.Position;
                 direction.Normalize();

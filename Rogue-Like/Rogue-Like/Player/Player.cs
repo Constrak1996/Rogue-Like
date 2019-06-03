@@ -101,6 +101,7 @@ namespace Rogue_Like
             {
                 Food++;
                 GameWorld.gameObjectsRemove.Add(otherObject);
+                GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
             }
             if (otherObject is Ammo)
             {
