@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,34 +13,33 @@ namespace Rogue_Like
     {
         Controller controller = new Controller();
         Thread enemyThread;
-        
         //Spawn Bool
         public bool spawned;
+        
         public int damage;
-        Random r = new Random();
+
         public Vector2 enemyPos;
         public float enemyMoveSpeed = 1;
         private double lastAttack;
-        
 
 
 
-        //Enemy hitbox
+        /// <summary>
+        /// Enemy hitbox
+        /// </summary>
         public override Rectangle Hitbox
         {
             get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
         }
 
-        public Enemy(string spriteName, Transform Transform, int damage, int health, float range) : base(spriteName, Transform)
+        public Enemy(string spriteName, Transform Transform, int health) : base(spriteName, Transform)
         {
-           
-
+            
         }
 
         public override void Update(GameTime gameTime)
         {
             //Attack cooldown
-            
             lastAttack += gameTime.ElapsedGameTime.TotalSeconds;
 
             EnemySpawner();
@@ -48,6 +47,10 @@ namespace Rogue_Like
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Keeps track of how many enemies spawn in each room, and doesn't respawn if you already
+        /// cleared the room
+        /// </summary>
         public void EnemySpawner()
         {
             #region Level 1
@@ -200,11 +203,35 @@ namespace Rogue_Like
             #endregion
         }
 
+        /// <summary>
+        /// Enemy spawn type and location
+        /// </summary>
         public void SpawnEnemy()
         {
-            GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(r.Next(50, 500), r.Next(50, 500)), 0), 5,20,2));
+            int enemyType = GameWorld.r.Next(0,3); 
+
+            switch (enemyType)
+            {
+                case 0:
+                    GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
+                    break;
+                case 1:
+                    GameWorld.gameObjectsAdd.Add(new RangedEnemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
+                    break;
+                case 2:
+                    GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
+                    break;
+                case 3:
+                    GameWorld.gameObjectsAdd.Add(new RangedEnemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
+                    break;
+                default:
+                    break;
+            }
         }
 
+        /// <summary>
+        /// Method that handles how the enemies chase the player
+        /// </summary>
         public void ChasePlayer()
         {
             Vector2 direction = GameWorld.player.Transform.Position - this.Transform.Position;
@@ -213,6 +240,10 @@ namespace Rogue_Like
             this.Transform.Position += velocity;
         }
 
+        /// <summary>
+        /// OnCollision is where the collision logic is located
+        /// </summary>
+        /// <param name="otherObject"></param>
         public override void DoCollision(GameObject otherObject)
         {
             if (otherObject is Player)
@@ -230,17 +261,14 @@ namespace Rogue_Like
                 
                 GameWorld.gameObjectsRemove.Add(this);
                 GameWorld.gameObjectsRemove.Add(otherObject);
-                Player.DataScore++;
-                int lootpool = r.Next(0,4);
-
+                int lootpool = GameWorld.r.Next(1, 3);
                 switch (lootpool)
                 {
-                    case 0:
-                        GameWorld.gameObjectsAdd.Add(new Bones("Bone", new Transform(Transform.Position, 0)));
-                        break;
+                    //case 0:
+                    //    GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
+                    //    break;
                     case 1:
                         GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
-
                         break;
                     case 2:
                         GameWorld.gameObjectsAdd.Add(new Food("Food", new Transform(Transform.Position, 0)));
@@ -250,7 +278,6 @@ namespace Rogue_Like
                         break;
                     
                 }
-                
             }
 
             base.DoCollision(otherObject);

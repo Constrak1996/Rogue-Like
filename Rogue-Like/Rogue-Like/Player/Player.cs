@@ -81,7 +81,10 @@ namespace Rogue_Like
             lastShot += gameTime.ElapsedGameTime.TotalSeconds;
 
             PlayerRanged();
-
+            if (health <= 0)
+            {
+                Restart();
+            }
             base.Update(gameTime);
         }
 
@@ -90,6 +93,31 @@ namespace Rogue_Like
             
         }
 
+        public void Restart()
+        {
+            new Player("SwordBob", new Transform(new Vector2(400, 50),0));
+        }
+        public override void DoCollision(GameObject otherObject)
+        {
+            if (otherObject is Coin)
+            {
+                Coin++;
+                GameWorld.gameObjectsRemove.Add(otherObject);
+            }
+            if (otherObject is Food)
+            {
+                Food++;
+                GameWorld.gameObjectsRemove.Add(otherObject);
+                GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
+                
+            }
+            if (otherObject is Ammo)
+            {
+                bulletCount += 10;
+                GameWorld.gameObjectsRemove.Add(otherObject);
+            }
+
+        }
         public void PlayerRanged()
         {
             if (shoot)
@@ -116,25 +144,5 @@ namespace Rogue_Like
             }
 
         }
-        public override void DoCollision(GameObject otherObject)
-        {
-            if (otherObject is Coin)
-            {
-                Coin++;
-                GameWorld.gameObjectsRemove.Add(otherObject);
-            }
-            if (otherObject is Food)
-            {
-                Food++;
-                GameWorld.gameObjectsRemove.Add(otherObject);
-            }
-            if (otherObject is Ammo)
-            {
-                bulletCount += 10;
-                GameWorld.gameObjectsRemove.Add(otherObject);
-            }
-
-        }
-        
     }
 }
