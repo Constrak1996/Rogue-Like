@@ -58,13 +58,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Ammo.cs" />
-    <Compile Include="Bones.cs" />
+    <Compile Include="Ressource\Ammo.cs" />
+    <Compile Include="Ressource\Bones.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="Button\Button.cs" />
-    <Compile Include="Coin.cs" />
+    <Compile Include="Ressource\Coin.cs" />
     <Compile Include="Component.cs" />
-    <Compile Include="Food.cs" />
+    <Compile Include="Ressource\Food.cs" />
     <Compile Include="Stages\EndScreen.cs" />
     <Compile Include="Enemy\Enemy.cs" />
     <Compile Include="GameObject.cs" />
@@ -127,6 +127,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.110.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.110.0\build\net45\System.Data.SQLite.Core.targets')" />

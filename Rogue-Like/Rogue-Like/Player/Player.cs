@@ -128,7 +128,7 @@ namespace Rogue_Like
                 Food++;
                 GameWorld.gameObjectsRemove.Add(otherObject);
             }
-            if (otherObject is Ammo)
+            if (otherObject is Bullet)
             {
                 bulletCount+=10;
                 GameWorld.gameObjectsRemove.Add(otherObject);
