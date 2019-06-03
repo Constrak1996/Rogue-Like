@@ -107,6 +107,7 @@ namespace Rogue_Like
         {
             new Player("SwordBob", new Transform(new Vector2(400, 50),0));
         }
+
         public override void DoCollision(GameObject otherObject)
         {
             if (otherObject is EnemyBullet)
@@ -131,23 +132,22 @@ namespace Rogue_Like
                 bulletCount += 10;
                 GameWorld.gameObjectsRemove.Add(otherObject);
             }
-
         }
+
+        /// <summary>
+        /// Player ranged method
+        /// </summary>
         public void PlayerRanged()
         {
-            if (shoot)
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && lastShot > 1f && shoot == true)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Space) && lastShot > 1f)
-                {
-                    Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-                    Vector2 direction = mousePos - this.Transform.Position;
-                    direction.Normalize();
-                    Bullet bullet = new Bullet("BulletTest", new Transform(new Vector2(this.Transform.Position.X, this.Transform.Position.Y), 0), direction, 5);
-                    GameWorld.gameObjectsAdd.Add(bullet);
-                    lastShot = 0;
-                    bulletCount--;
-                }
-                
+                Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+                Vector2 direction = mousePos - this.Transform.Position;
+                direction.Normalize();
+                Bullet bullet = new Bullet("BulletTest", new Transform(new Vector2(this.Transform.Position.X, this.Transform.Position.Y), 0), direction, 5);
+                GameWorld.gameObjectsAdd.Add(bullet);
+                lastShot = 0;
+                bulletCount--;              
             }
             if (bulletCount <= 0)
             {
@@ -157,15 +157,6 @@ namespace Rogue_Like
             {
                 shoot = true;
             }
-        }
-        public override void DoCollision(GameObject otherObject)
-        {
-            if (otherObject is EnemyBullet)
-            {
-                health -= 1;
-                GameWorld.gameObjectsRemove.Add(otherObject);
-            }
-            base.DoCollision(otherObject);
         }
     }
 }
