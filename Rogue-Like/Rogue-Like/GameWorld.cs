@@ -479,12 +479,14 @@ namespace Rogue_Like
                     if (_currentState is NextLevelRoom)
                     {
                         player.Transform.Position.X = 770;
-                    }
-                    
+                    }   
                 }
-                
-
             }
+
+            spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Ammo: {Player.bulletCount}\n Damage: {Player.damage}\n Gold: {Player.Coin}\n Food: {Player.Food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
+#if DEBUG
+            spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
+#endif
 
             spriteBatch.End();
 
