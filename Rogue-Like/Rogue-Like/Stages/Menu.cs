@@ -14,10 +14,9 @@ namespace Rogue_Like
         private Controller controller = new Controller();
         private List<Component> _component;
         private Model model;
-        private bool playernew;
-        public static bool menu;
-        public static bool resume;
         public static bool newgame;
+        public static bool resume;
+        public static bool menu;
         //private Thread idleIkon;
         /// <summary>
         /// The MenuStates Constructor
@@ -27,6 +26,7 @@ namespace Rogue_Like
         /// <param name="content"></param>
         public Menu(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
+            menu = true;
             model = new Model();
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
@@ -36,14 +36,13 @@ namespace Rogue_Like
                 Position = new Vector2(700, 200),
                 Text = "New Game",
             };
-
             newGameButton.Click += NewGameButton_Click;
             var resumeButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2(700, 400),
                 Text = "Resume",
             };
-            resumeButton.Click += Resume_Click;
+            resumeButton.Click += ResumeButton_Click;
 
             var highScoreButton = new Button(buttonTexture, buttonFont)
             {
@@ -60,7 +59,6 @@ namespace Rogue_Like
 
             _component = new List<Component>()
             {
-
                 newGameButton,
                 resumeButton,
                 highScoreButton,
@@ -107,7 +105,8 @@ namespace Rogue_Like
             
             
         }
-        private void Resume_Click(object sender, EventArgs e)
+        //Makes a Resumebutton
+        private void ResumeButton_Click(object sender, EventArgs e)
         {
             if (resume)
             {
@@ -116,6 +115,7 @@ namespace Rogue_Like
                 menu = false;
             }
             
+
         }
         //Makes a HighScorebutton
         private void HighScoreButton_Click(object sender, EventArgs e)

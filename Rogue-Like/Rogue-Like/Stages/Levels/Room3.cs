@@ -1,21 +1,19 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 namespace Rogue_Like
 {
-    public class Shop : State
+    class Room3 : State
     {
-       
         private SpriteFont Font;
         private Texture2D _playerTexture;
-        public static bool shop;
+        public static bool lvl1;
         private List<Component> _component;
 
         private int[,] mapBackground = new int[,]
@@ -46,29 +44,28 @@ namespace Rogue_Like
 
             return mapBackground[cellY, cellX];
         }
-        //Tilemap of Shop
+        //Tilemap of Lake Map
         private int[,] map = new int[,]
        {
-            {4,41,42,42,42,42,42,39,42,42,42,42,89,90,91,38,38,38,38,39,38,38,38,38,38,37,33},
-            {6,5,43,43,43,43,43,40,43,43,76,43,92,93,94,44,76,44,44,40,44,44,44,44,44,34,32},
-            {7,16,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,36,31},
+            {4,41,42,42,42,42,42,39,42,42,42,42,46,47,48,38,38,38,38,39,38,38,38,38,38,37,33},
+            {6,5,43,43,43,43,43,40,43,43,76,43,49,50,51,44,76,44,44,40,44,44,44,44,44,34,32},
+            {7,16,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,-1,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,36,31},
+            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
+            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
+            {8,9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,30,29},
             {7,79,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,77,31},
-            {7,16,-1,-1,-1,-1,-1,-1,-1,70,-1,-1,-1,-1,-1,-1,-1,70,-1,-1,-1,-1,-1,-1,-1,36,31},
-            {8,9,-1,-1,-1,-1,-1,-1,-1,-1,80,81,81,81,81,81,82,-1,-1,-1,-1,-1,-1,-1,-1,30,29},
-            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,83,88,88,88,88,88,87,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
-            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,83,88,88,88,88,88,87,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
-            {10,16,-1,-1,-1,-1,-1,-1,-1,-1,83,88,88,88,88,88,87,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
-            {10,15,-1,-1,-1,-1,-1,-1,-1,-1,83,88,88,88,88,88,87,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
-            {10,15,-1,-1,-1,-1,-1,-1,-1,-1,84,85,85,85,85,85,86,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
-            {8,9,-1,-1,-1,-1,-1,-1,-1,70,-1,-1,-1,-1,-1,-1,-1,70,-1,-1,-1,-1,-1,-1,-1,30,29},
-            {10,15,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
+            {66,69,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
+            {65,68,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
+            {64,67,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
             {10,79,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,77,28},
+            {8,9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,30,29},
+            {10,15,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
+            {10,15,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
             {10,15,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,36,28},
-            {11,13,25,25,25,25,25,20,25,25,78,25,63,62,61,25,78,25,25,20,25,25,25,25,25,24,27},
-            {12,17,18,18,18,18,18,19,18,18,18,18,60,59,58,21,21,21,21,19,21,21,21,21,21,22,23},
+            {11,13,25,25,25,25,25,20,25,25,78,25,25,25,25,25,78,25,25,20,25,25,25,25,25,24,27},
+            {12,17,18,18,18,18,18,19,18,18,18,18,18,18,21,21,21,21,21,19,21,21,21,21,21,22,23},
 
        };
-
         public int GetIndex(int cellX, int cellY)
         {
             if (cellX < 0 || cellX > Width - 1 || cellY < 0 || cellY > Height - 1)
@@ -76,48 +73,20 @@ namespace Rogue_Like
 
             return map[cellY, cellX];
         }
-        //Generate levels
-        //private int[,] level1Generate = new int[,]
-        //{
-        //    {-1,-1,-1,-1,-1,0,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //};
-
-        //public int GetIndexLevelGenerate(int cellX, int cellY)
-        //{
-        //    if (cellX < 0 || cellX > Width - 1 || cellY < 0 || cellY > Height - 1)
-        //        return 0;
-
-        //    return level1Generate[cellY, cellX];
-        //}
-
-        public static List<Texture2D> tileTextures = new List<Texture2D>();
-        //private List<Array> ArrayLevelGenerate = new List<Array>();
+        private List<Texture2D> tileTextures = new List<Texture2D>();
         //add Textures to the Dungeon map
         public void AddTexture(Texture2D texture)
         {
             tileTextures.Add(texture);
         }
-        //public void AddRoom(Array array)
-        //{
-        //    ArrayLevelGenerate.Add(array);
-        //}
-
-        //public int ShopBackground
-        //{
-        //    get { return level1Generate.GetLength(0); }
-        //}
-
-        #region Numeral Texture
         //The Width of Dungeon map
         public int Width
         {
             get { return map.GetLength(1); }
+
         }
+
+        #region Numeral Texture
         //Height of Dungeon map
         public int Height
         {
@@ -558,49 +527,16 @@ namespace Rogue_Like
         {
             get { return map.GetLength(88); }
         }
-
-        public int Door_Left_Top_Entry
-        {
-            get { return map.GetLength(89); }
-        }
-
-        public int Door_Mid_Top_Entry
-        {
-            get { return map.GetLength(90); }
-        }
-
-        public int Door_Right_Top_Entry
-        {
-            get { return map.GetLength(91); }
-        }
-
-        public int Door_Left_Bot_Entry
-        {
-            get { return map.GetLength(92); }
-        }
-
-        public int Door_Mid_Bot_Entry
-        {
-            get { return map.GetLength(93); }
-        }
-
-        public int Door_Right_Bot_Entry
-        {
-            get { return map.GetLength(94); }
-        }
         #endregion
 
 
-
-
-        public Shop(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
+        public Room3(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
             Font = content.Load<SpriteFont>("Font");
             Texture2D piller = content.Load<Texture2D>("Pillar1");
             //Wall Textures start
-            #region
             //Left Wall
             Texture2D wallTopCorLeft = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left");
             Texture2D wallTopCorLeft2 = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left_2");
@@ -653,13 +589,6 @@ namespace Rogue_Like
             Texture2D floorPlainGray = content.Load<Texture2D>("64x64/Plain_Floor_Gray");
             Texture2D floorRockyGray = content.Load<Texture2D>("64x64/Rocky_Floor_Gray");
             //Door
-            //Door Entry
-            Texture2D Door_Left_Top_Entry = content.Load<Texture2D>("64x64/Door_Left_Top_Entry");
-            Texture2D Door_Mid_Top_Entry = content.Load<Texture2D>("64x64/Door_Mid_Top_Entry");
-            Texture2D Door_Right_Top_Entry = content.Load<Texture2D>("64x64/Door_Right_Top_Entry");
-            Texture2D Door_Left_Bot_Entry = content.Load<Texture2D>("64x64/Door_Left_Bot_Entry");
-            Texture2D Door_Mid_Bot_Entry = content.Load<Texture2D>("64x64/Door_Mid_Bot_Entry");
-            Texture2D Door_Right_Bot_Entry = content.Load<Texture2D>("64x64/Door_Right_Bot_Entry");
             //Top Door
             Texture2D Door_Left_Top_Top = content.Load<Texture2D>("64x64/Door_Left_Top_Top");
             Texture2D Door_Mid_Top_Top = content.Load<Texture2D>("64x64/Door_Mid_Top_Top");
@@ -716,18 +645,12 @@ namespace Rogue_Like
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
-            #endregion
+
             //player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
 
 
 
-
-
-            //Rooms
-            //AddRoom(mapBackground);
-            //AddRoom(map);
-
-            #region Added Textures to list
+            #region Added textures to list
             AddTexture(wall);
             AddTexture(piller);
             AddTexture(ground);
@@ -817,25 +740,19 @@ namespace Rogue_Like
             AddTexture(Carpet_Bot_Right);
             AddTexture(Carpet_Right_Mid);
             AddTexture(Carpet_Mid);
-            AddTexture(Door_Left_Top_Entry);
-            AddTexture(Door_Mid_Top_Entry);
-            AddTexture(Door_Right_Top_Entry);
-            AddTexture(Door_Left_Bot_Entry);
-            AddTexture(Door_Mid_Bot_Entry);
-            AddTexture(Door_Right_Bot_Entry);
             #endregion
 
-            
+
 
         }
-        
 
-        public void Level1_Change()
+        public void NextLevelRoom_Change()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.D1))
+            if (Keyboard.GetState().IsKeyDown(Keys.D4))
             {
-                _gameWorld.ChangeState(new Room1(_gameWorld, _graphichsDevice, _content));
+                _gameWorld.ChangeState(new NextLevelRoom(_gameWorld, _graphichsDevice, _content));
             }
+
         }
 
         /// <summary>
@@ -843,7 +760,7 @@ namespace Rogue_Like
         /// </summary>
         /// <param name="gameTime"></param>
         /// <param name="spritebatch"></param>
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spritebatch)
         {
             
             for (int x = 0; x < Width; x++)
@@ -856,10 +773,10 @@ namespace Rogue_Like
                         continue;
                     }
                     Texture2D texture = tileTextures[textureIndex];
-                    spriteBatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
+                    spritebatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
                 }
-            }
 
+            }
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -870,33 +787,21 @@ namespace Rogue_Like
                         continue;
                     }
                     Texture2D texture = tileTextures[textureIndex];
-                    spriteBatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
+                    spritebatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
                 }
+
             }
 
-            //for (int x = 0; x < Width; x++)
-            //{
-            //    for (int y = 0; y < Height; y++)
-            //    {
-            //        int textureIndex = level1Generate[y, x];
-            //        if (textureIndex == -1)
-            //        {
-            //            continue;
-            //        }
-            //        Array array = ArrayLevelGenerate[textureIndex];
-            //        spritebatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
-            //    }
-            //}
-
-            
             //Draws the player
             {
                 //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
                 //player.Draw(spritebatch);
             }
 
+
         }
         //Allows a NextStage Event to happen
+
 
         public override void PostUpdate(GameTime gameTime)
         {
@@ -913,12 +818,27 @@ namespace Rogue_Like
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
-                
+                Shop.shop = false;
             }
 
-            Level1_Change();
-            //player.Update(gameTime);
+
+
+            level1Enemies();
+            NextLevelRoom_Change();
         }
-       
+
+        /// <summary>
+        /// Controls when the enemies from level 1 should spawn, and only spawns them once
+        /// meaning if you head back to level 1 after they spawn, they wont spawn again
+        /// </summary>
+        public void level1Enemies()
+        {
+            if (GameWorld.L1 == true)
+            {
+                GameWorld.level_3 = true;
+                GameWorld.room1 = true;
+                GameWorld.L1 = false;
+            }
+        }
     }
 }

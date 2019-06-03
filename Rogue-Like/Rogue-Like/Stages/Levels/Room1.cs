@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 
 namespace Rogue_Like
 {
-    public class Shop : State
+    class Room1 : State
     {
-       
+
         private SpriteFont Font;
         private Texture2D _playerTexture;
         public static bool shop;
+        public static bool lvl1;
         private List<Component> _component;
 
         private int[,] mapBackground = new int[,]
@@ -49,21 +50,21 @@ namespace Rogue_Like
         //Tilemap of Shop
         private int[,] map = new int[,]
        {
-            {4,41,42,42,42,42,42,39,42,42,42,42,89,90,91,38,38,38,38,39,38,38,38,38,38,37,33},
-            {6,5,43,43,43,43,43,40,43,43,76,43,92,93,94,44,76,44,44,40,44,44,44,44,44,34,32},
-            {7,16,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,36,31},
+            {4,41,42,42,42,42,42,39,42,42,42,42,46,47,48,38,38,38,38,39,38,38,38,38,38,37,33},
+            {6,5,43,43,43,43,43,40,43,43,76,43,49,50,51,44,76,44,44,40,44,44,44,44,44,34,32},
+            {7,16,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,-1,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,36,31},
             {7,79,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,77,31},
-            {7,16,-1,-1,-1,-1,-1,-1,-1,70,-1,-1,-1,-1,-1,-1,-1,70,-1,-1,-1,-1,-1,-1,-1,36,31},
-            {8,9,-1,-1,-1,-1,-1,-1,-1,-1,80,81,81,81,81,81,82,-1,-1,-1,-1,-1,-1,-1,-1,30,29},
-            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,83,88,88,88,88,88,87,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
-            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,83,88,88,88,88,88,87,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
-            {10,16,-1,-1,-1,-1,-1,-1,-1,-1,83,88,88,88,88,88,87,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
-            {10,15,-1,-1,-1,-1,-1,-1,-1,-1,83,88,88,88,88,88,87,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
-            {10,15,-1,-1,-1,-1,-1,-1,-1,-1,84,85,85,85,85,85,86,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
-            {8,9,-1,-1,-1,-1,-1,-1,-1,70,-1,-1,-1,-1,-1,-1,-1,70,-1,-1,-1,-1,-1,-1,-1,30,29},
+            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
+            {8,9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,30,29},
+            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
+            {7,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,31},
+            {10,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
+            {10,15,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
+            {10,15,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
+            {8,9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,30,29},
             {10,15,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,36,28},
             {10,79,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,77,28},
-            {10,15,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,36,28},
+            {10,15,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,-1,70,-1,-1,-1,-1,-1,-1,-1,-1,-1,70,36,28},
             {11,13,25,25,25,25,25,20,25,25,78,25,63,62,61,25,78,25,25,20,25,25,25,25,25,24,27},
             {12,17,18,18,18,18,18,19,18,18,18,18,60,59,58,21,21,21,21,19,21,21,21,21,21,22,23},
 
@@ -593,7 +594,7 @@ namespace Rogue_Like
 
 
 
-        public Shop(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
+        public Room1(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
@@ -716,9 +717,9 @@ namespace Rogue_Like
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
-            #endregion
+            _playerTexture = content.Load<Texture2D>("SwordBob");
             //player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
-
+            #endregion
 
 
 
@@ -825,16 +826,16 @@ namespace Rogue_Like
             AddTexture(Door_Right_Bot_Entry);
             #endregion
 
-            
+
 
         }
-        
 
-        public void Level1_Change()
+
+        public void Level2_Change()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.D1))
+            if (Keyboard.GetState().IsKeyDown(Keys.D2))
             {
-                _gameWorld.ChangeState(new Room1(_gameWorld, _graphichsDevice, _content));
+                _gameWorld.ChangeState(new Room2(_gameWorld, _graphichsDevice, _content));
             }
         }
 
@@ -845,7 +846,7 @@ namespace Rogue_Like
         /// <param name="spritebatch"></param>
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            
+
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -888,7 +889,7 @@ namespace Rogue_Like
             //    }
             //}
 
-            
+
             //Draws the player
             {
                 //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
@@ -916,9 +917,19 @@ namespace Rogue_Like
                 
             }
 
-            Level1_Change();
+            Level2_Change();
             //player.Update(gameTime);
         }
-       
+
+
+        public void level1Enemies()
+        {
+            if (GameWorld.L1 == true)
+            {
+                GameWorld.level_1 = true;
+                GameWorld.room1 = true;
+                GameWorld.L1 = false;
+            }
+        }
     }
 }

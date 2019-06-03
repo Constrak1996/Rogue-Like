@@ -29,7 +29,7 @@ namespace Rogue_Like
         /// </summary>
         public override Rectangle Hitbox
         {
-            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
+            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, sprite.Width, sprite.Height); }
         }
 
         public Enemy(string spriteName, Transform Transform, int health) : base(spriteName, Transform)
@@ -54,7 +54,7 @@ namespace Rogue_Like
         public void EnemySpawner()
         {
             #region Level 1
-            if (GameWorld.level1 == true)
+            if (GameWorld.room1 == true)
             {
                 if (GameWorld.room1 == true)
                 {
@@ -91,7 +91,7 @@ namespace Rogue_Like
             }
             #endregion
             #region Level 2
-            if (GameWorld.level2 == true)
+            if (GameWorld.room2 == true)
             {
                 if (GameWorld.room1 == true)
                 {
@@ -128,7 +128,7 @@ namespace Rogue_Like
             }
             #endregion
             #region Level 3
-            if (GameWorld.level3 == true)
+            if (GameWorld.room3 == true)
             {
                 if (GameWorld.room1 == true)
                 {
@@ -165,7 +165,7 @@ namespace Rogue_Like
             }
             #endregion
             #region Level 4
-            if (GameWorld.level4 == true)
+            if (GameWorld.room4 == true)
             {
                 if (GameWorld.room1 == true)
                 {
@@ -258,17 +258,21 @@ namespace Rogue_Like
             //Bullet collision
             if (otherObject is Bullet)
             {
-                Player.DataScore++;
+                Player.health--;
+                
                 GameWorld.gameObjectsRemove.Add(this);
                 GameWorld.gameObjectsRemove.Add(otherObject);
                 int lootpool = GameWorld.r.Next(1, 3);
                 switch (lootpool)
                 {
+                    //case 0:
+                    //    GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
+                    //    break;
                     case 1:
                         GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
                         break;
                     case 2:
-                        GameWorld.gameObjectsAdd.Add(new Food("Meat", new Transform(Transform.Position, 0)));
+                        GameWorld.gameObjectsAdd.Add(new Food("Food", new Transform(Transform.Position, 0)));
                         break;
                     case 3:
                         GameWorld.gameObjectsAdd.Add(new Ammo("BulletTest", new Transform(Transform.Position, 0)));

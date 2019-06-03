@@ -8,11 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rogue_Like
+namespace Rogue_Like.Stages.Levels
 {
-    public class Shop : State
+    public class Shop_Level1 : State
     {
-       
+
         private SpriteFont Font;
         private Texture2D _playerTexture;
         public static bool shop;
@@ -593,14 +593,13 @@ namespace Rogue_Like
 
 
 
-        public Shop(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
+        public Shop_Level1(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
             Font = content.Load<SpriteFont>("Font");
             Texture2D piller = content.Load<Texture2D>("Pillar1");
             //Wall Textures start
-            #region
             //Left Wall
             Texture2D wallTopCorLeft = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left");
             Texture2D wallTopCorLeft2 = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left_2");
@@ -716,7 +715,7 @@ namespace Rogue_Like
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
-            #endregion
+            _playerTexture = content.Load<Texture2D>("Fisher_Bob");
             //player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
 
 
@@ -825,10 +824,10 @@ namespace Rogue_Like
             AddTexture(Door_Right_Bot_Entry);
             #endregion
 
-            
+
 
         }
-        
+
 
         public void Level1_Change()
         {
@@ -845,7 +844,7 @@ namespace Rogue_Like
         /// <param name="spritebatch"></param>
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            
+
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -888,7 +887,7 @@ namespace Rogue_Like
             //    }
             //}
 
-            
+
             //Draws the player
             {
                 //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
@@ -913,12 +912,13 @@ namespace Rogue_Like
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
-                
+
             }
 
             Level1_Change();
             //player.Update(gameTime);
         }
-       
+
     }
 }
+

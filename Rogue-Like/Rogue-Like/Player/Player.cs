@@ -73,7 +73,7 @@ namespace Rogue_Like
         /// </summary>
         public override Rectangle Hitbox
         {
-            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
+            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, sprite.Width, sprite.Height); }
         }
 
         public override void Update(GameTime gameTime)
@@ -99,6 +99,11 @@ namespace Rogue_Like
         }
         public override void DoCollision(GameObject otherObject)
         {
+            if (otherObject is EnemyBullet)
+            {
+                health--;
+                GameWorld.gameObjectsRemove.Add(otherObject);
+            }
             if (otherObject is Coin)
             {
                 Coin++;
