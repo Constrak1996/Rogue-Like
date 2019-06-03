@@ -249,7 +249,8 @@ namespace Rogue_Like
                     {
                         gameObjectsRemove.Add(enemy);
                     }
-                    
+                    LoadContent();
+
                     _nextState = new Shop(this, GraphicsDevice, Content);
                     
                 }

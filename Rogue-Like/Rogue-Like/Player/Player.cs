@@ -23,8 +23,6 @@ namespace Rogue_Like
         public static int Coin;
         public string food;
         public static int Food;
-        public Random randomPlayerDamage = new Random();
-        public Random randomPlayerHealth = new Random();
         private double lastShot;
 
         /// <summary>
@@ -41,8 +39,8 @@ namespace Rogue_Like
             food = controller.getItem(5);
             Int32.TryParse(food, out Food);
             Name = "Peter";
-            health = randomPlayerHealth.Next(50, 75);
-            damage = randomPlayerDamage.Next(10, 120);
+            health = 20;
+            damage = 10;
             bulletCount = 20;
         }
 

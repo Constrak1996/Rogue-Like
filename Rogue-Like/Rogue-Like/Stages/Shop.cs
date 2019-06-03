@@ -913,7 +913,7 @@ namespace Rogue_Like
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
-                
+                Menu.menu = true;
             }
 
             Level1_Change();
