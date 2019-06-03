@@ -346,9 +346,6 @@ namespace Rogue_Like
                 shopItems.Update(gameTime);
             }
         }
-        
-
-        }
 
         public void Restart()
         {
