@@ -601,6 +601,7 @@ namespace Rogue_Like
             Font = content.Load<SpriteFont>("Font");
             Texture2D piller = content.Load<Texture2D>("Pillar1");
             //Wall Textures start
+            #region
             //Left Wall
             Texture2D wallTopCorLeft = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left");
             Texture2D wallTopCorLeft2 = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left_2");
@@ -716,9 +717,9 @@ namespace Rogue_Like
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
-            _playerTexture = content.Load<Texture2D>("Fisher_Bob");
+            _playerTexture = content.Load<Texture2D>("SwordBob");
             //player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
-
+            #endregion
 
 
 
@@ -913,7 +914,7 @@ namespace Rogue_Like
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
-
+                
             }
 
             Level2_Change();

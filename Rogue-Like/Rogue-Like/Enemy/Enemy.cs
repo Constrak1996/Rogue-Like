@@ -29,7 +29,7 @@ namespace Rogue_Like
         /// </summary>
         public override Rectangle Hitbox
         {
-            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, Sprite.Width, Sprite.Height); }
+            get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, sprite.Width, sprite.Height); }
         }
 
         public Enemy(string spriteName, Transform Transform, int health) : base(spriteName, Transform)
@@ -54,7 +54,7 @@ namespace Rogue_Like
         public void EnemySpawner()
         {
             #region Level 1
-            if (GameWorld.level1 == true)
+            if (GameWorld.room1 == true)
             {
                 if (GameWorld.room1 == true)
                 {
@@ -91,7 +91,7 @@ namespace Rogue_Like
             }
             #endregion
             #region Level 2
-            if (GameWorld.level2 == true)
+            if (GameWorld.room2 == true)
             {
                 if (GameWorld.room1 == true)
                 {
@@ -128,7 +128,7 @@ namespace Rogue_Like
             }
             #endregion
             #region Level 3
-            if (GameWorld.level3 == true)
+            if (GameWorld.room3 == true)
             {
                 if (GameWorld.room1 == true)
                 {
@@ -165,7 +165,7 @@ namespace Rogue_Like
             }
             #endregion
             #region Level 4
-            if (GameWorld.level4 == true)
+            if (GameWorld.room4 == true)
             {
                 if (GameWorld.room1 == true)
                 {
