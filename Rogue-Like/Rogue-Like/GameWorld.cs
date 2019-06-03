@@ -158,7 +158,7 @@ namespace Rogue_Like
             enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0);
 
             //Player
-            player = new Player("Fisher_Bob", new Transform(new Vector2(865, 150), 0));
+            player = new Player("SwordBob", new Transform(new Vector2(400, 50), 0));
             gameObjectsAdd.Add(player);
 
             //Level bools running once
@@ -223,6 +223,11 @@ namespace Rogue_Like
 
             //Player movement
             player.PlayerMovement(8);
+
+            //Check if gameobject is colliding, if it does run collision code
+            foreach (GameObject go in gameObjects)
+            {
+                go.Update(gameTime);
 
             //Check if gameobject is colliding, if it does run collision code
             foreach (GameObject go in gameObjects)
@@ -323,24 +328,24 @@ namespace Rogue_Like
 
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
-            if (Shop.shop == true || Room1.lvl1 == true || Room2.lvl2 == true)
+            if (Menu.menu == false)
             {
-
-
-                //Draws sprites in gameObjects list
-                foreach (GameObject go in gameObjects)
+                if (Shop.shop == true || Level1.lvl1 == true || Level2.lvl2 == true)
                 {
-                    go.Draw(spriteBatch);
 
-                }
 
-            //Collision texture draw
-            
-            //spriteBatch.Draw(shop, new Rectangle(0,0,Width,Height), Color.White);
+                    //Draws sprites in gameObjects list
+                    foreach (GameObject go in gameObjects)
+                    {
+                        go.Draw(spriteBatch);
 
-            foreach (GameObject go in gameObjects)
-            {
-                go.Draw(spriteBatch);
+                    }
+
+                    //Collision texture draw
+                    foreach (GameObject go in gameObjects)
+                    {
+                        go.Draw(spriteBatch);
+
 #if DEBUG
                 DrawCollisionBox(go);
                 
@@ -388,6 +393,11 @@ namespace Rogue_Like
                     NextLevelRoomCollisionBox();
                 }
                 
+#endif
+                    }
+                    spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Ammo: {Player.bulletCount}\n Damage: {Player.damage}\n Gold: {Player.Coin}\n Food: {Player.Food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
+#if DEBUG
+                    spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
 #endif
                 }
 
