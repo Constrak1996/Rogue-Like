@@ -90,11 +90,25 @@ namespace Rogue_Like
             
         }
 
-        public override void DoCollision(GameObject gameObject)
-        {
-            
+        //public override void DoCollision(GameObject otherObject)
+        //{
+        //    if (otherObject is Coin)
+        //    {
+        //        Coin++;
+        //        GameWorld.gameObjectsRemove.Add(otherObject);
+        //    }
+        //    if (otherObject is Food)
+        //    {
+        //        Food++;
+        //        GameWorld.gameObjectsRemove.Add(otherObject);
+        //    }
+        //    if (otherObject is Bullet)
+        //    {
+        //        bulletCount+=10;
+        //        GameWorld.gameObjectsRemove.Add(otherObject);
+        //    }
 
-        }
+        //}
         public void PlayerRanged()
         {
             if (shoot)
