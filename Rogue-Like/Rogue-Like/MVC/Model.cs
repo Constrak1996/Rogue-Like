@@ -30,6 +30,19 @@ namespace Rogue_Like
             command.ExecuteNonQuery();
 
         }
+
+        public void itemselection()
+        {
+            string sql = "CREATE TABLE IF NOT EXISTS itemselect (id INT, name VARCHAR(40), Value INT)";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+        }
+        public void fillitemSelectionTable()
+        {
+            SQLiteCommand cmd = m_dbConnection.CreateCommand();
+            cmd.CommandText = "SELECT id from item where id = 4";
+
+        }
         /// <summary>
         /// Constructs the HighScore in DataBase
         /// </summary>
@@ -110,7 +123,7 @@ namespace Rogue_Like
             {
                 if (sqlHighScore == string.Empty)
                 {
-                    sqlHighScore += $"PlayerName {Player.Name}"+ "     " + $"Score {Player.score}" + Environment.NewLine;
+                    sqlHighScore += $"Name {Player.Name}"+ "     " + $"Score {Player.score}" + Environment.NewLine;
                 }
                 
             }
