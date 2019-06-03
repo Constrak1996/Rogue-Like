@@ -272,7 +272,7 @@ namespace Rogue_Like
                         GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
                         break;
                     case 2:
-                        GameWorld.gameObjectsAdd.Add(new Food("Food", new Transform(Transform.Position, 0)));
+                        GameWorld.gameObjectsAdd.Add(new Food("Meat", new Transform(Transform.Position, 0)));
                         break;
                     case 3:
                         GameWorld.gameObjectsAdd.Add(new Ammo("BulletTest", new Transform(Transform.Position, 0)));
