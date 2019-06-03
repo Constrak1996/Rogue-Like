@@ -112,7 +112,7 @@ namespace Rogue_Like
         {
             if (otherObject is EnemyBullet)
             {
-                health--;
+                health -= Enemy.damage;
                 GameWorld.gameObjectsRemove.Add(otherObject);
             }
             if (otherObject is Coin)

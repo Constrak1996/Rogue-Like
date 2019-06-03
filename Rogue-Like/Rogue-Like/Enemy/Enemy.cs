@@ -16,7 +16,7 @@ namespace Rogue_Like
         //Spawn Bool
         public bool spawned;
         
-        public int damage;
+        public static int damage = 1;
 
         public Vector2 enemyPos;
         public float enemyMoveSpeed = 1;
@@ -251,7 +251,7 @@ namespace Rogue_Like
             {
                 if (lastAttack > 1.5f)
                 {
-                    Player.health -= 1;
+                    Player.health -= Enemy.damage;
                     lastAttack = 0;
                 }
             }
@@ -259,7 +259,7 @@ namespace Rogue_Like
             //Bullet collision
             if (otherObject is Bullet)
             {
-                Player.health--;
+                Player.health -= Enemy.damage;
                 
                 GameWorld.gameObjectsRemove.Add(this);
                 GameWorld.gameObjectsRemove.Add(otherObject);
