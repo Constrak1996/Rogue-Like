@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Threading;
 
 namespace Rogue_Like
 {
@@ -20,7 +21,7 @@ namespace Rogue_Like
         private State _currentState;
         private State _nextState;
         private float time;
-
+        
         private static ContentManager _content;
         public static ContentManager ContentManager { get => _content; }
 
@@ -92,6 +93,7 @@ namespace Rogue_Like
         /// </summary>
         protected override void LoadContent()
         {
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
             _currentState = new Menu(this, GraphicsDevice, Content);
             Font = Content.Load<SpriteFont>("Font");
@@ -102,7 +104,8 @@ namespace Rogue_Like
             //Player
             player = new Player("SwordBob", new Transform(new Vector2(400, 50), 0));
             gameObjectsAdd.Add(player);
-
+            
+            
             //Level bools running once
             L1 = true;
             L2 = true;

@@ -13,7 +13,7 @@ namespace Rogue_Like
 
         public static SQLiteConnection m_dbConnection;
         private const String CONNECTIONSTRING = @"Data Source=Roguetabel2.db;version=3"; //Acces the DataBase
-        public SpriteFont textFont;
+        
         /// <summary>
         /// The Constructor of the model
         /// </summary>

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Rogue_Like
@@ -11,7 +12,8 @@ namespace Rogue_Like
     public class Enemy : GameObject
     {
         Controller controller = new Controller();
-
+        Thread enemyThread;
+        
         //Spawn Bool
         public bool spawned;
         public int damage;
@@ -31,12 +33,14 @@ namespace Rogue_Like
 
         public Enemy(string spriteName, Transform Transform, int damage, int health, float range) : base(spriteName, Transform)
         {
-            
+           
+
         }
 
         public override void Update(GameTime gameTime)
         {
             //Attack cooldown
+            
             lastAttack += gameTime.ElapsedGameTime.TotalSeconds;
 
             EnemySpawner();

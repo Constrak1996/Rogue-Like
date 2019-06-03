@@ -29,7 +29,7 @@ namespace Rogue_Like
             {
 
                 model.fillHighscoreTable();
-                //model.fillitemTable();
+                model.fillitemTable();
             }
         }
 
