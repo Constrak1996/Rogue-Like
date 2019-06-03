@@ -61,5 +61,6 @@ namespace Rogue_Like
         {
             return model.getUpdateNewScore();
         }
+        
     }
 }

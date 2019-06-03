@@ -30,7 +30,13 @@ namespace Rogue_Like
             command.ExecuteNonQuery();
 
         }
-
+        public void PlayerHealth()
+        {
+            string sql = "CREATE TABLE IF NOT EXISTS playerhealth (name VARCHAR(40), health INT)";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+        }
+        
         
         /// <summary>
         /// Constructs the HighScore in DataBase
@@ -51,9 +57,9 @@ namespace Rogue_Like
             cmd.ExecuteNonQuery();
             cmd.CommandText = "INSERT INTO item (id, name, Value) VALUES(3,'Trinket', 40)";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO item (id, name, Value) VALUES(4,'Gold', '1')";
+            cmd.CommandText = "INSERT INTO item (id, name, Value) VALUES(4,'Gold', '0')";
             cmd.ExecuteNonQuery();
-            cmd.CommandText = "INSERT INTO item (id, name, Value) VALUES(5,'Food', 1)";
+            cmd.CommandText = "INSERT INTO item (id, name, Value) VALUES(5,'Food', 0)";
             cmd.ExecuteNonQuery();
             cmd.CommandText = "INSERT INTO item (id, name, Value) VALUES(6,'Bones', 0)";
             cmd.ExecuteNonQuery();
