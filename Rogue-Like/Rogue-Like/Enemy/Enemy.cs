@@ -259,7 +259,7 @@ namespace Rogue_Like
                 
                 GameWorld.gameObjectsRemove.Add(this);
                 GameWorld.gameObjectsRemove.Add(otherObject);
-                int lootpool = GameWorld.r.Next(0, 4);
+                int lootpool = GameWorld.r.Next(0, 3);
                 switch (lootpool)
                 {
                     case 0:
