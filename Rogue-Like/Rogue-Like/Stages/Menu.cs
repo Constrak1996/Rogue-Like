@@ -16,6 +16,8 @@ namespace Rogue_Like
         private Model model;
         private bool playernew;
         public static bool menu;
+        public static bool resume;
+        public static bool newgame;
         //private Thread idleIkon;
         /// <summary>
         /// The MenuStates Constructor
@@ -34,26 +36,33 @@ namespace Rogue_Like
                 Position = new Vector2(700, 200),
                 Text = "New Game",
             };
-            newGameButton.Click += NewGameButton_Click;
 
+            newGameButton.Click += NewGameButton_Click;
+            var resumeButton = new Button(buttonTexture, buttonFont)
+            {
+                Position = new Vector2(700, 400),
+                Text = "Resume",
+            };
+            resumeButton.Click += Resume_Click;
 
             var highScoreButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(700, 400),
+                Position = new Vector2(700, 600),
                 Text = "HighScore",
             };
             highScoreButton.Click += HighScoreButton_Click;
             var quitGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(700, 600),
+                Position = new Vector2(700, 800),
                 Text = "Quit",
             };
             quitGameButton.Click += QuitGameButton_Click;
 
             _component = new List<Component>()
             {
-                newGameButton,
 
+                newGameButton,
+                resumeButton,
                 highScoreButton,
                 quitGameButton,
             };
@@ -86,10 +95,26 @@ namespace Rogue_Like
         //Makes a Newgamebutton
         private void NewGameButton_Click(object sender, EventArgs e)
         {
-            controller.newPlayer();
-            _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
-            Shop.shop = true;
-            menu = false;
+            if (newgame)
+            {
+                controller.newPlayer();
+                _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+                Shop.shop = true;
+                menu = false;
+                newgame = false;
+                resume = true;
+            }
+            
+            
+        }
+        private void Resume_Click(object sender, EventArgs e)
+        {
+            if (resume)
+            {
+                _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+                Shop.shop = true;
+                menu = false;
+            }
             
         }
         //Makes a HighScorebutton

@@ -258,15 +258,12 @@ namespace Rogue_Like
             //Bullet collision
             if (otherObject is Bullet)
             {
-                
+                Player.DataScore++;
                 GameWorld.gameObjectsRemove.Add(this);
                 GameWorld.gameObjectsRemove.Add(otherObject);
                 int lootpool = GameWorld.r.Next(1, 3);
                 switch (lootpool)
                 {
-                    //case 0:
-                    //    GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
-                    //    break;
                     case 1:
                         GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
                         break;

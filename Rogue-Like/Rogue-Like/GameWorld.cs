@@ -113,6 +113,8 @@ namespace Rogue_Like
             //Level bools running once
             L1 = true;
             L2 = true;
+            Menu.newgame = true;
+            Menu.resume = false;
         }
 
         /// <summary>
