@@ -60,20 +60,21 @@ namespace Rogue_Like
             {
                 GameWorld.gameObjectsRemove.Add(this);
                 GameWorld.gameObjectsRemove.Add(otherObject);
-                int lootpool = GameWorld.r.Next(0, 3);
+                int lootpool = GameWorld.r.Next(1, 3);
                 switch (lootpool)
                 {
-                    case 0:
-                        GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
-                        break;
+                    //case 0:
+                    //    GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
+                    //    break;
                     case 1:
                         GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
                         break;
                     case 2:
-                        GameWorld.gameObjectsAdd.Add(new Food("Food", new Transform(Transform.Position, 0)));
+                        GameWorld.gameObjectsAdd.Add(new Ammo("BulletTest", new Transform(Transform.Position, 0)));
+                        
                         break;
                     case 3:
-                        GameWorld.gameObjectsAdd.Add(new Ammo("BulletTest", new Transform(Transform.Position, 0)));
+                        GameWorld.gameObjectsAdd.Add(new Food("Food", new Transform(Transform.Position, 0)));
                         break;
 
                 }
