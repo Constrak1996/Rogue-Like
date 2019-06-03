@@ -15,7 +15,7 @@ namespace Rogue_Like
         protected ContentManager _content;
         protected GraphicsDevice _graphichsDevice;
         protected GameWorld _gameWorld;
-
+        
 
         #endregion
 
@@ -31,5 +31,6 @@ namespace Rogue_Like
         }
         public abstract void Update(GameTime gameTime);
         #endregion
+        
     }
 }

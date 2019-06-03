@@ -166,8 +166,10 @@ namespace Rogue_Like
             L2 = true;
             Menu.newgame = true;
             Menu.resume = false;
+            EndScreen.endScreen = false;
         }
 
+        
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
@@ -200,6 +202,7 @@ namespace Rogue_Like
 
             enteredRoom += gameTime.ElapsedGameTime;
             roomTime = enteredRoom.Seconds;
+            
             
 
             //Adds gameobjects to the gameobjects list
@@ -239,6 +242,17 @@ namespace Rogue_Like
                 enemy.Update(gameTime);
                 base.Update(gameTime);
 
+                if (Player.health <= 0)
+                {
+
+                    foreach (GameObject enemy in gameObjects)
+                    {
+                        gameObjectsRemove.Add(enemy);
+                    }
+                    
+                    _nextState = new Shop(this, GraphicsDevice, Content);
+                    
+                }
                 if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is Shop)
                 {
                     _nextState = new Room1(this, GraphicsDevice, Content);
@@ -322,7 +336,7 @@ namespace Rogue_Like
 
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
-            if (Menu.menu == false)
+            if (Menu.menu == false || EndScreen.endScreen == false)
             {
                 if (Shop.shop == true)
                 {

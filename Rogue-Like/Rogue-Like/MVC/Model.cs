@@ -31,18 +31,7 @@ namespace Rogue_Like
 
         }
 
-        public void itemselection()
-        {
-            string sql = "CREATE TABLE IF NOT EXISTS itemselect (id INT, name VARCHAR(40), Value INT)";
-            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
-            command.ExecuteNonQuery();
-        }
-        public void fillitemSelectionTable()
-        {
-            SQLiteCommand cmd = m_dbConnection.CreateCommand();
-            cmd.CommandText = "SELECT id from item where id = 4";
-
-        }
+        
         /// <summary>
         /// Constructs the HighScore in DataBase
         /// </summary>
