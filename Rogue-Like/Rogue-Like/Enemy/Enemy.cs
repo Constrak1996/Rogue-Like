@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Rogue_Like
@@ -11,10 +12,10 @@ namespace Rogue_Like
     public class Enemy : GameObject
     {
         Controller controller = new Controller();
-
+        Thread enemyThread;
         //Spawn Bool
         public bool spawned;
-
+        
         public int damage;
 
         public Vector2 enemyPos;
@@ -33,6 +34,7 @@ namespace Rogue_Like
 
         public Enemy(string spriteName, Transform Transform, int health) : base(spriteName, Transform)
         {
+            
         }
 
         public override void Update(GameTime gameTime)
@@ -256,8 +258,26 @@ namespace Rogue_Like
             //Bullet collision
             if (otherObject is Bullet)
             {
+                
                 GameWorld.gameObjectsRemove.Add(this);
                 GameWorld.gameObjectsRemove.Add(otherObject);
+                int lootpool = GameWorld.r.Next(1, 3);
+                switch (lootpool)
+                {
+                    //case 0:
+                    //    GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
+                    //    break;
+                    case 1:
+                        GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
+                        break;
+                    case 2:
+                        GameWorld.gameObjectsAdd.Add(new Food("Food", new Transform(Transform.Position, 0)));
+                        break;
+                    case 3:
+                        GameWorld.gameObjectsAdd.Add(new Ammo("BulletTest", new Transform(Transform.Position, 0)));
+                        break;
+                    
+                }
             }
 
             base.DoCollision(otherObject);
