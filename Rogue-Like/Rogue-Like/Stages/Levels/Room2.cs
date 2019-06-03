@@ -590,7 +590,7 @@ namespace Rogue_Like
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
-
+            
 
             #region Added textures to list
             AddTexture(wall);
@@ -730,7 +730,6 @@ namespace Rogue_Like
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
                 Shop.shop = false;
-                
             }
 
             Level3_Change();

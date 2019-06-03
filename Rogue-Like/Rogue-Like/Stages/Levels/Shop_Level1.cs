@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rogue_Like.Stages.Levels
+namespace Rogue_Like
 {
     public class Shop_Level1 : State
     {
@@ -601,52 +601,52 @@ namespace Rogue_Like.Stages.Levels
             Texture2D piller = content.Load<Texture2D>("Pillar1");
             //Wall Textures start
             //Left Wall
-            Texture2D wallTopCorLeft = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left");
-            Texture2D wallTopCorLeft2 = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left_2");
-            Texture2D wallTopLeft = content.Load<Texture2D>("64x64/Wall_Left_Up_1");
-            Texture2D wallTopLeft2 = content.Load<Texture2D>("64x64/Wall_Left_Up_2");
-            Texture2D wallMidLeftTop = content.Load<Texture2D>("64x64/Wall_Mid_Left_Top");
-            Texture2D wallMidLeftLow = content.Load<Texture2D>("64x64/Wall_Mid_Left_Low");
-            Texture2D wallBotLeft2 = content.Load<Texture2D>("64x64/Wall_Left_Bottom_2");
-            Texture2D wallBotLeft1 = content.Load<Texture2D>("64x64/Wall_Left_Bottom_1");
-            Texture2D wallBotCorLeft1 = content.Load<Texture2D>("64x64/Wall_Corner_Bot_Left_1");
-            Texture2D wallBotCorLeft2 = content.Load<Texture2D>("64x64/Wall_Corner_Bot_Left_2");
-            Texture2D wallBotLow = content.Load<Texture2D>("64x64/Wall_Left_Left_Low_2");
-            Texture2D wallTopLow = content.Load<Texture2D>("64x64/Wall_Right_Left_Low_1");
+            Texture2D wallTopCorLeft = content.Load<Texture2D>("64x64/Purple_Wall_Corner_Top_Left");
+            Texture2D wallTopCorLeft2 = content.Load<Texture2D>("64x64/Purple_Wall_Corner_Top_Left_2");
+            Texture2D wallTopLeft = content.Load<Texture2D>("64x64/Purple_Wall_Left_Up_1");
+            Texture2D wallTopLeft2 = content.Load<Texture2D>("64x64/Purple_Wall_Left_Up_2");
+            Texture2D wallMidLeftTop = content.Load<Texture2D>("64x64/Purple_Wall_Mid_Left_Top");
+            Texture2D wallMidLeftLow = content.Load<Texture2D>("64x64/Purple_Wall_Mid_Left_Low");
+            Texture2D wallBotLeft2 = content.Load<Texture2D>("64x64/Purple_Wall_Left_Bottom_2");
+            Texture2D wallBotLeft1 = content.Load<Texture2D>("64x64/Purple_Wall_Left_Bottom_1");
+            Texture2D wallBotCorLeft1 = content.Load<Texture2D>("64x64/Purple_Wall_Corner_Bot_Left_1");
+            Texture2D wallBotCorLeft2 = content.Load<Texture2D>("64x64/Purple_Wall_Corner_Bot_Left_2");
+            Texture2D wallBotLow = content.Load<Texture2D>("64x64/Purple_Wall_Left_Left_Low_2");
+            Texture2D wallTopLow = content.Load<Texture2D>("64x64/Purple_Wall_Right_Left_Low_1");
             //Bottom Wall
-            Texture2D wallBottomLeft1 = content.Load<Texture2D>("64x64/Wall_Left_Bottom_Up_1");
-            Texture2D wallBottomLeft2 = content.Load<Texture2D>("64x64/Wall_Left_Bot_2");
-            Texture2D wallBottomMiddle1 = content.Load<Texture2D>("64x64/Wall_Mid_Bottom_Up");
-            Texture2D wallBottomMiddle2 = content.Load<Texture2D>("64x64/Wall_Mid_Bottom_Low");
-            Texture2D wallBottomRight2 = content.Load<Texture2D>("64x64/Wall_Right_Bottom_2");
-            Texture2D wallBottomRight1 = content.Load<Texture2D>("64x64/Wall_Right_Bottom_1");
-            Texture2D wallCornerBottomRight1 = content.Load<Texture2D>("64x64/Wall_Corner_Bot_Right_1");
-            Texture2D wallCornerBottomRight2 = content.Load<Texture2D>("64x64/Wall_Corner_Bot_Right_2");
-            Texture2D wallLeftBotLow = content.Load<Texture2D>("64x64/Wall_Left_Bottom_Low_2");
-            Texture2D wallRightBotLow = content.Load<Texture2D>("64x64/Wall_Right_Bottom_Low_1");
+            Texture2D wallBottomLeft1 = content.Load<Texture2D>("64x64/Purple_Wall_Left_Bottom_Up_1");
+            Texture2D wallBottomLeft2 = content.Load<Texture2D>("64x64/Purple_Wall_Left_Bot_2");
+            Texture2D wallBottomMiddle1 = content.Load<Texture2D>("64x64/Purple_Wall_Mid_Bottom_Up");
+            Texture2D wallBottomMiddle2 = content.Load<Texture2D>("64x64/Purple_Wall_Mid_Bottom_Low");
+            Texture2D wallBottomRight2 = content.Load<Texture2D>("64x64/Purple_Wall_Right_Bottom_2");
+            Texture2D wallBottomRight1 = content.Load<Texture2D>("64x64/Purple_Wall_Right_Bottom_1");
+            Texture2D wallCornerBottomRight1 = content.Load<Texture2D>("64x64/Purple_Wall_Corner_Bot_Right_1");
+            Texture2D wallCornerBottomRight2 = content.Load<Texture2D>("64x64/Purple_Wall_Corner_Bot_Right_2");
+            Texture2D wallLeftBotLow = content.Load<Texture2D>("64x64/Purple_Wall_Left_Bottom_Low_2");
+            Texture2D wallRightBotLow = content.Load<Texture2D>("64x64/Purple_Wall_Right_Bottom_Low_1");
             //Right Wall
-            Texture2D wallRightLeft1 = content.Load<Texture2D>("64x64/Wall_Right_Bottom_Up_1");
-            Texture2D wallRightLeft2 = content.Load<Texture2D>("64x64/Wall_Right_Bottom_Up_2");
-            Texture2D wallRightMiddle1 = content.Load<Texture2D>("64x64/Wall_Mid_Right_Up");
-            Texture2D wallRightMiddle2 = content.Load<Texture2D>("64x64/Wall_Mid_Right_Low");
-            Texture2D wallRightTop2 = content.Load<Texture2D>("64x64/Wall_Right_Top_2");
-            Texture2D wallRightTop1 = content.Load<Texture2D>("64x64/Wall_Right_Top_1");
-            Texture2D wallCornerTopRight1 = content.Load<Texture2D>("64x64/Wall_Corner_Top_Right_1");
-            Texture2D wallCornerTopRight2 = content.Load<Texture2D>("64x64/Wall_Corner_Top_Right_2");
-            Texture2D wallLeftRightLow = content.Load<Texture2D>("64x64/Wall_Right_Right_Low_1");
-            Texture2D wallRightRightLow = content.Load<Texture2D>("64x64/Wall_Left_Right_Low_2");
+            Texture2D wallRightLeft1 = content.Load<Texture2D>("64x64/Purple_Wall_Right_Bottom_Up_1");
+            Texture2D wallRightLeft2 = content.Load<Texture2D>("64x64/Purple_Wall_Right_Bottom_Up_2");
+            Texture2D wallRightMiddle1 = content.Load<Texture2D>("64x64/Purple_Wall_Mid_Right_Up");
+            Texture2D wallRightMiddle2 = content.Load<Texture2D>("64x64/Purple_Wall_Mid_Right_Low");
+            Texture2D wallRightTop2 = content.Load<Texture2D>("64x64/Purple_Wall_Right_Top_2");
+            Texture2D wallRightTop1 = content.Load<Texture2D>("64x64/Purple_Wall_Right_Top_1");
+            Texture2D wallCornerTopRight1 = content.Load<Texture2D>("64x64/Purple_Wall_Corner_Top_Right_1");
+            Texture2D wallCornerTopRight2 = content.Load<Texture2D>("64x64/Purple_Wall_Corner_Top_Right_2");
+            Texture2D wallLeftRightLow = content.Load<Texture2D>("64x64/Purple_Wall_Right_Right_Low_1");
+            Texture2D wallRightRightLow = content.Load<Texture2D>("64x64/Purple_Wall_Left_Right_Low_2");
             //Top Wall
-            Texture2D wallTopRight1 = content.Load<Texture2D>("64x64/Wall_Top_Right_1");
-            Texture2D wallTopRight2 = content.Load<Texture2D>("64x64/Wall_Top_Right_2");
-            Texture2D wallTopMiddle1 = content.Load<Texture2D>("64x64/Wall_Mid_Top_Up");
-            Texture2D wallTopMiddle2 = content.Load<Texture2D>("64x64/Wall_Mid_Top_Low");
-            Texture2D wallTopLeft_2 = content.Load<Texture2D>("64x64/Wall_Top_Left_1");
-            Texture2D wallTopLeft_1 = content.Load<Texture2D>("64x64/Wall_Top_Left_2");
-            Texture2D wallLeftTopLow = content.Load<Texture2D>("64x64/Wall_Right_Top_Low_2");
-            Texture2D wallRightTopLow = content.Load<Texture2D>("64x64/Wall_Right_Top_Low_1");
+            Texture2D wallTopRight1 = content.Load<Texture2D>("64x64/Purple_Wall_Top_Right_1");
+            Texture2D wallTopRight2 = content.Load<Texture2D>("64x64/Purple_Wall_Top_Right_2");
+            Texture2D wallTopMiddle1 = content.Load<Texture2D>("64x64/Purple_Wall_Mid_Top_Up");
+            Texture2D wallTopMiddle2 = content.Load<Texture2D>("64x64/Purple_Wall_Mid_Top_Low");
+            Texture2D wallTopLeft_2 = content.Load<Texture2D>("64x64/Purple_Wall_Top_Left_1");
+            Texture2D wallTopLeft_1 = content.Load<Texture2D>("64x64/Purple_Wall_Top_Left_2");
+            Texture2D wallLeftTopLow = content.Load<Texture2D>("64x64/Purple_Wall_Right_Top_Low_2");
+            Texture2D wallRightTopLow = content.Load<Texture2D>("64x64/Purple_Wall_Right_Top_Low_1");
             //Floor
-            Texture2D floorPattern1 = content.Load<Texture2D>("64x64/Floor_1");
-            Texture2D floorPattern2 = content.Load<Texture2D>("64x64/Floor_2");
+            Texture2D floorPattern1 = content.Load<Texture2D>("64x64/Purple_Floor_1");
+            Texture2D floorPattern2 = content.Load<Texture2D>("64x64/Purple_Floor_2");
             Texture2D floorPlain = content.Load<Texture2D>("64x64/Plain_Floor");
             Texture2D floorBrick = content.Load<Texture2D>("64x64/Brick_Floor");
             Texture2D floorPlainGray = content.Load<Texture2D>("64x64/Plain_Floor_Gray");
@@ -660,33 +660,33 @@ namespace Rogue_Like.Stages.Levels
             Texture2D Door_Mid_Bot_Entry = content.Load<Texture2D>("64x64/Door_Mid_Bot_Entry");
             Texture2D Door_Right_Bot_Entry = content.Load<Texture2D>("64x64/Door_Right_Bot_Entry");
             //Top Door
-            Texture2D Door_Left_Top_Top = content.Load<Texture2D>("64x64/Door_Left_Top_Top");
-            Texture2D Door_Mid_Top_Top = content.Load<Texture2D>("64x64/Door_Mid_Top_Top");
-            Texture2D Door_Right_Top_Top = content.Load<Texture2D>("64x64/Door_Right_Top_Top");
-            Texture2D Door_Left_Bot_Top = content.Load<Texture2D>("64x64/Door_Left_Bot_Top");
-            Texture2D Door_Mid_Bot_Top = content.Load<Texture2D>("64x64/Door_Mid_Bot_Top");
-            Texture2D Door_Right_Bot_Top = content.Load<Texture2D>("64x64/Door_Right_Bot_Top");
+            Texture2D Door_Left_Top_Top = content.Load<Texture2D>("64x64/Purple_Door_Left_Top_Top");
+            Texture2D Door_Mid_Top_Top = content.Load<Texture2D>("64x64/Purple_Door_Mid_Top_Top");
+            Texture2D Door_Right_Top_Top = content.Load<Texture2D>("64x64/Purple_Door_Right_Top_Top");
+            Texture2D Door_Left_Bot_Top = content.Load<Texture2D>("64x64/Purple_Door_Left_Bot_Top");
+            Texture2D Door_Mid_Bot_Top = content.Load<Texture2D>("64x64/Purple_Door_Mid_Bot_Top");
+            Texture2D Door_Right_Bot_Top = content.Load<Texture2D>("64x64/Purple_Door_Right_Bot_Top");
             //Right Door
-            Texture2D Door_Left_Top_Right = content.Load<Texture2D>("64x64/Door_Left_Top_Right");
-            Texture2D Door_Mid_Top_Right = content.Load<Texture2D>("64x64/Door_Mid_Top_Right");
-            Texture2D Door_Right_Top_Right = content.Load<Texture2D>("64x64/Door_Right_Top_Right");
-            Texture2D Door_Left_Bot_Right = content.Load<Texture2D>("64x64/Door_Left_Bot_Right");
-            Texture2D Door_Mid_Bot_Right = content.Load<Texture2D>("64x64/Door_Mid_Bot_Right");
-            Texture2D Door_Right_Bot_Right = content.Load<Texture2D>("64x64/Door_Right_Bot_Right");
+            Texture2D Door_Left_Top_Right = content.Load<Texture2D>("64x64/Purple_Door_Left_Top_Right");
+            Texture2D Door_Mid_Top_Right = content.Load<Texture2D>("64x64/Purple_Door_Mid_Top_Right");
+            Texture2D Door_Right_Top_Right = content.Load<Texture2D>("64x64/Purple_Door_Right_Top_Right");
+            Texture2D Door_Left_Bot_Right = content.Load<Texture2D>("64x64/Purple_Door_Left_Bot_Right");
+            Texture2D Door_Mid_Bot_Right = content.Load<Texture2D>("64x64/Purple_Door_Mid_Bot_Right");
+            Texture2D Door_Right_Bot_Right = content.Load<Texture2D>("64x64/Purple_Door_Right_Bot_Right");
             //Bottom Door
-            Texture2D Door_Left_Top_Bottom = content.Load<Texture2D>("64x64/Door_Left_Top_Bottom");
-            Texture2D Door_Mid_Top_Bottom = content.Load<Texture2D>("64x64/Door_Mid_Top_Bottom");
-            Texture2D Door_Right_Top_Bottom = content.Load<Texture2D>("64x64/Door_Right_Top_Bottom");
-            Texture2D Door_Left_Bot_Bottom = content.Load<Texture2D>("64x64/Door_Left_Bot_Bottom");
-            Texture2D Door_Mid_Bot_Bottom = content.Load<Texture2D>("64x64/Door_Mid_Bot_Bottom");
-            Texture2D Door_Right_Bot_Bottom = content.Load<Texture2D>("64x64/Door_Right_Bot_Bottom");
+            Texture2D Door_Left_Top_Bottom = content.Load<Texture2D>("64x64/Purple_Door_Left_Top_Bottom");
+            Texture2D Door_Mid_Top_Bottom = content.Load<Texture2D>("64x64/Purple_Door_Mid_Top_Bottom");
+            Texture2D Door_Right_Top_Bottom = content.Load<Texture2D>("64x64/Purple_Door_Right_Top_Bottom");
+            Texture2D Door_Left_Bot_Bottom = content.Load<Texture2D>("64x64/Purple_Door_Left_Bot_Bottom");
+            Texture2D Door_Mid_Bot_Bottom = content.Load<Texture2D>("64x64/Purple_Door_Mid_Bot_Bottom");
+            Texture2D Door_Right_Bot_Bottom = content.Load<Texture2D>("64x64/Purple_Door_Right_Bot_Bottom");
             //Left Door
-            Texture2D Door_Left_Top_Left = content.Load<Texture2D>("64x64/Door_Left_Top_Left");
-            Texture2D Door_Mid_Top_Left = content.Load<Texture2D>("64x64/Door_Mid_Top_Left");
-            Texture2D Door_Right_Top_Left = content.Load<Texture2D>("64x64/Door_Right_Top_Left");
-            Texture2D Door_Left_Bot_Left = content.Load<Texture2D>("64x64/Door_Left_Bot_Left");
-            Texture2D Door_Mid_Bot_Left = content.Load<Texture2D>("64x64/Door_Mid_Bot_Left");
-            Texture2D Door_Right_Bot_Left = content.Load<Texture2D>("64x64/Door_Right_Bot_Left");
+            Texture2D Door_Left_Top_Left = content.Load<Texture2D>("64x64/Purple_Door_Left_Top_Left");
+            Texture2D Door_Mid_Top_Left = content.Load<Texture2D>("64x64/Purple_Door_Mid_Top_Left");
+            Texture2D Door_Right_Top_Left = content.Load<Texture2D>("64x64/Purple_Door_Right_Top_Left");
+            Texture2D Door_Left_Bot_Left = content.Load<Texture2D>("64x64/Purple_Door_Left_Bot_Left");
+            Texture2D Door_Mid_Bot_Left = content.Load<Texture2D>("64x64/Purple_Door_Mid_Bot_Left");
+            Texture2D Door_Right_Bot_Left = content.Load<Texture2D>("64x64/Purple_Door_Right_Bot_Left");
 
             //Carpet
             Texture2D Carpet_Top_Left = content.Load<Texture2D>("64x64/Carpet_Left_Top_Corner");
@@ -715,7 +715,7 @@ namespace Rogue_Like.Stages.Levels
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
-            _playerTexture = content.Load<Texture2D>("Fisher_Bob");
+            
             //player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
 
 

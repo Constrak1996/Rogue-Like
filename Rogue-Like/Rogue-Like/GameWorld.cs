@@ -221,37 +221,38 @@ namespace Rogue_Like
 
             //Player movement
             player.PlayerMovement(3);
-
+            player.PlayerMovement(8);
+            
             //Check if gameobject is colliding, if it does run collision code
             foreach (GameObject go in gameObjects)
             {
-                go.Update(gameTime);
-                
-                    foreach (GameObject other in gameObjects)
-                    {
-                        if (go != other && go.IsColliding(other))
-                        {
+                 go.Update(gameTime);
+
+                 foreach (GameObject other in gameObjects)
+                 {
+                     if (go != other && go.IsColliding(other))
+                     {
                             go.DoCollision(other);
-                        }
-                    }
-                
+                     }
+                 }
+            }
 
                 enemy.Update(gameTime);
                 base.Update(gameTime);
 
-                if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is Shop)
-                {
-                    _nextState = new Room1(this, GraphicsDevice, Content);
-                    player.Transform = new Transform(new Vector2(865, 150), 1);
-                    isShop = false;
-                    isMap1 = true;
-                }
+            if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is Shop)
+            {
+                _nextState = new Room1(this, GraphicsDevice, Content);
+                player.Transform = new Transform(new Vector2(865, 150), 1);
+                isShop = false;
+                isMap1 = true;
+            }
 
-                if (player.Hitbox.Intersects(topLineDoor) && _currentState is Shop)
-                {
-                    _nextState = new Menu(this, GraphicsDevice, Content);
+            if (player.Hitbox.Intersects(topLineDoor) && _currentState is Shop)
+            {
+                _nextState = new Menu(this, GraphicsDevice, Content);
 
-                }
+            }
 
                 if (player.Hitbox.Intersects(topLineDoor) && _currentState is Room1)
                 {
@@ -309,8 +310,16 @@ namespace Rogue_Like
                     isMap3 = true;
                 }
 
+            if (player.Hitbox.Intersects(topLineDoor) & _currentState is NextLevelRoom)
+            {
+                _nextState = new Shop_Level1(this, GraphicsDevice, Content);
+                player.Transform = new Transform(new Vector2(865, 150), 1);
+                isShop = true;
+                isNextLevelRoom = false;
             }
+
         }
+        
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -341,58 +350,54 @@ namespace Rogue_Like
                         go.Draw(spriteBatch);
 
 #if DEBUG
-                DrawCollisionBox(go);
+                        DrawCollisionBox(go);
                 
-                //DungeonCollisionBox();
-                if (_currentState is Shop)
-                {
-                    ShopCollisionBox();
-                    ShopDoorCollision();
-                    CornersCollideableObjects();
-                }
+                        //DungeonCollisionBox();
+                        if (_currentState is Shop || _currentState is Shop_Level1)
+                        {
+                            ShopCollisionBox();
+                            ShopDoorCollision();
+                            CornersCollideableObjects();
+                        }
                 
-                //AllDoorCollision();
+                        //AllDoorCollision();
 
-                if (_currentState is Room1)
-                {
+                        if (_currentState is Room1)
+                        {
                   
-                   TopDoorCollision();
-                   BottomDoorCollision();
-                   CornersCollideableObjects();
+                            TopDoorCollision();
+                            BottomDoorCollision();
+                            CornersCollideableObjects();
 
-                }
+                        }
 
-                if (_currentState is Room2)
-                { 
-                   TopDoorCollision();
-                   RightDoorCollision();
-                   TopAndRightCollisionBox();
+                        if (_currentState is Room2)
+                        { 
+                            TopDoorCollision();
+                            RightDoorCollision();
+                            TopAndRightCollisionBox();
                    
-                }
+                        }
 
-                if (_currentState is Room3)
-                {
-                    TopDoorCollision();
-                    LeftDoorCollision();
-                    TopAndLeftCollisionBox();
-                    LeftSideCollideableObjects1();
-                    LeftSideCollideableObjects2();
-                    CornersCollideableObjects();
-                }
+                        if (_currentState is Room3)
+                        {
+                            TopDoorCollision();
+                            LeftDoorCollision();
+                            TopAndLeftCollisionBox();
+                            LeftSideCollideableObjects1();
+                            LeftSideCollideableObjects2();
+                            CornersCollideableObjects();
+                        }
 
-                if (_currentState is NextLevelRoom)
-                {
-                    TopDoorCollision();
-                    BottomDoorCollision();
-                    NextLevelRoomCollisionBox();
-                }
-                
+                        if (_currentState is NextLevelRoom)
+                        {
+                            TopDoorCollision();
+                            BottomDoorCollision();
+                            NextLevelRoomCollisionBox();
+                        }
 #endif
                     }
-                    spriteBatch.DrawString(Font, $"{Player.Name}\nHealth: {Player.health}\nAmmo: {Player.bulletCount}\nDamage: {Player.damage}\nGold: {Player.Coin}\nFood: {Player.Food}\nScore: {Player.DataScore}", new Vector2(1735, 0), Color.White);
-#if DEBUG
-                    spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
-#endif
+                    
                 }
 
                 if (player.Hitbox.Intersects(topLine) || player.Hitbox.Intersects(topLine1) || player.Hitbox.Intersects(topLine2))

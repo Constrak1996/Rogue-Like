@@ -646,8 +646,6 @@ namespace Rogue_Like
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
 
-            //player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
-
 
 
             #region Added textures to list
