@@ -565,6 +565,8 @@ namespace Rogue_Like
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
             Font = content.Load<SpriteFont>("Font");
+            //Content Load
+            #region
             Texture2D piller = content.Load<Texture2D>("Pillar1");
             //Wall Textures start
             //Left Wall
@@ -682,10 +684,10 @@ namespace Rogue_Like
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
-            _playerTexture = content.Load<Texture2D>("Fisher_Bob");
+            _playerTexture = content.Load<Texture2D>("SwordBob");
             //player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
 
-
+            #endregion
             var shop = new Button(Shop, buttonFont)
             {
                 Position = new Vector2(200, 200),
@@ -844,11 +846,7 @@ namespace Rogue_Like
             {
                 component.Draw(gameTime, spritebatch);
             }
-            //Draws the player
-            {
-                //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
-                //player.Draw(spritebatch);
-            }
+            
 
 
         }
@@ -870,7 +868,7 @@ namespace Rogue_Like
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
-                
+                Menu.menu = true;
             }
 
             foreach (var component in _component)
@@ -878,7 +876,7 @@ namespace Rogue_Like
                 component.Update(gameTime);
             }
 
-            //player.Update(gameTime);
+            
         }
 
     }

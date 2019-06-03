@@ -12,9 +12,11 @@ namespace Rogue_Like
     {
         Controller controller = new Controller();
         public static string Name;
+        public bool shoot;
         public static int health;
         public static int damage;
-        public string score;
+        public static int bulletCount;
+        public static string score;
         public static int DataScore;
         public string coin;
         public static int Coin;
@@ -40,6 +42,7 @@ namespace Rogue_Like
             Name = "Peter";
             health = randomPlayerHealth.Next(50, 75);
             damage = randomPlayerDamage.Next(10, 120);
+            bulletCount = 20;
         }
 
         /// <summary>
@@ -89,24 +92,29 @@ namespace Rogue_Like
 
         public void PlayerRanged()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) && lastShot > 0.5f)
+            if (shoot)
             {
-                Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-                Vector2 direction = mousePos - this.Transform.Position;
-                direction.Normalize();
-                Bullet bullet = new Bullet("BulletTest", new Transform(new Vector2(this.Transform.Position.X, this.Transform.Position.Y), 0), direction, 5);
-                GameWorld.gameObjectsAdd.Add(bullet);
-                lastShot = 0;
+                if (Keyboard.GetState().IsKeyDown(Keys.Space) && lastShot > 1f)
+                {
+                    Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+                    Vector2 direction = mousePos - this.Transform.Position;
+                    direction.Normalize();
+                    Bullet bullet = new Bullet("BulletTest", new Transform(new Vector2(this.Transform.Position.X, this.Transform.Position.Y), 0), direction, 5);
+                    GameWorld.gameObjectsAdd.Add(bullet);
+                    lastShot = 0;
+                    bulletCount--;
+                }
+                
             }
-        }
+            if (bulletCount <= 0)
+            {
+                shoot = false;
+            }
+            else
+            {
+                shoot = true;
+            }
 
-        public override void DoCollision(GameObject otherObject)
-        {
-            if (otherObject is EnemyBullet)
-            {
-                health -= 1;
-            }
-            base.DoCollision(otherObject);
         }
     }
 }
