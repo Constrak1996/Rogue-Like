@@ -90,6 +90,11 @@ namespace Rogue_Like
             
         }
 
+        public override void DoCollision(GameObject gameObject)
+        {
+            
+
+        }
         public void PlayerRanged()
         {
             if (shoot)
