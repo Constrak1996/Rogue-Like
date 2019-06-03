@@ -81,7 +81,10 @@ namespace Rogue_Like
             lastShot += gameTime.ElapsedGameTime.TotalSeconds;
 
             PlayerRanged();
-
+            if (health <= 0)
+            {
+                Restart();
+            }
             base.Update(gameTime);
         }
 
@@ -90,6 +93,10 @@ namespace Rogue_Like
             
         }
 
+        public void Restart()
+        {
+            new Player("SwordBob", new Transform(new Vector2(400, 50),0));
+        }
         public override void DoCollision(GameObject otherObject)
         {
             if (otherObject is Coin)
