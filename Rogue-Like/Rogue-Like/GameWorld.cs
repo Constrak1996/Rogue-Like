@@ -184,7 +184,7 @@ namespace Rogue_Like
         {
             //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             //    Exit();
-            
+
             if (_nextState != null)
             {
                 _currentState = _nextState;
@@ -223,33 +223,28 @@ namespace Rogue_Like
 
             //Player movement
             player.PlayerMovement(8);
-
-            //Check if gameobject is colliding, if it does run collision code
-            foreach (GameObject go in gameObjects)
-            {
-                go.Update(gameTime);
-
-            //Check if gameobject is colliding, if it does run collision code
-            foreach (GameObject go in gameObjects)
-            {
-                go.Update(gameTime);
-
-                foreach (GameObject other in gameObjects)
-                {
-                    if (go != other && go.IsColliding(other))
-                    {
-                        go.DoCollision(other);
-                    }
-                }
-            }
             
-            enemy.Update(gameTime);
-            base.Update(gameTime);
+            //Check if gameobject is colliding, if it does run collision code
+            foreach (GameObject go in gameObjects)
+            {
+                 go.Update(gameTime);
+
+                 foreach (GameObject other in gameObjects)
+                 {
+                     if (go != other && go.IsColliding(other))
+                     {
+                            go.DoCollision(other);
+                     }
+                 }
+            }
+
+                enemy.Update(gameTime);
+                base.Update(gameTime);
 
             if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is Shop)
             {
                 _nextState = new Room1(this, GraphicsDevice, Content);
-                player.Transform = new Transform(new Vector2(865,150),1);
+                player.Transform = new Transform(new Vector2(865, 150), 1);
                 isShop = false;
                 isMap1 = true;
             }
@@ -257,7 +252,7 @@ namespace Rogue_Like
             if (player.Hitbox.Intersects(topLineDoor) && _currentState is Shop)
             {
                 _nextState = new Menu(this, GraphicsDevice, Content);
-                
+
             }
 
             if (player.Hitbox.Intersects(topLineDoor) && _currentState is Room1)
@@ -316,7 +311,16 @@ namespace Rogue_Like
                 isMap3 = true;
             }
 
+            if (player.Hitbox.Intersects(topLineDoor) & _currentState is NextLevelRoom)
+            {
+                _nextState = new Shop_Level1(this, GraphicsDevice, Content);
+                player.Transform = new Transform(new Vector2(865, 150), 1);
+                isShop = true;
+                isNextLevelRoom = false;
+            }
+
         }
+        
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -330,7 +334,7 @@ namespace Rogue_Like
             _currentState.Draw(gameTime, spriteBatch);
             if (Menu.menu == false)
             {
-                if (Shop.shop == true || Level1.lvl1 == true || Level2.lvl2 == true)
+                if (Shop.shop == true || room1 == true || room2 == true)
                 {
 
 
@@ -347,58 +351,54 @@ namespace Rogue_Like
                         go.Draw(spriteBatch);
 
 #if DEBUG
-                DrawCollisionBox(go);
+                        DrawCollisionBox(go);
                 
-                //DungeonCollisionBox();
-                if (_currentState is Shop)
-                {
-                    ShopCollisionBox();
-                    ShopDoorCollision();
-                    CornersCollideableObjects();
-                }
+                        //DungeonCollisionBox();
+                        if (_currentState is Shop || _currentState is Shop_Level1)
+                        {
+                            ShopCollisionBox();
+                            ShopDoorCollision();
+                            CornersCollideableObjects();
+                        }
                 
-                //AllDoorCollision();
+                        //AllDoorCollision();
 
-                if (_currentState is Room1)
-                {
+                        if (_currentState is Room1)
+                        {
                   
-                   TopDoorCollision();
-                   BottomDoorCollision();
-                   CornersCollideableObjects();
+                            TopDoorCollision();
+                            BottomDoorCollision();
+                            CornersCollideableObjects();
 
-                }
+                        }
 
-                if (_currentState is Room2)
-                { 
-                   TopDoorCollision();
-                   RightDoorCollision();
-                   TopAndRightCollisionBox();
+                        if (_currentState is Room2)
+                        { 
+                            TopDoorCollision();
+                            RightDoorCollision();
+                            TopAndRightCollisionBox();
                    
-                }
+                        }
 
-                if (_currentState is Room3)
-                {
-                    TopDoorCollision();
-                    LeftDoorCollision();
-                    TopAndLeftCollisionBox();
-                    LeftSideCollideableObjects1();
-                    LeftSideCollideableObjects2();
-                    CornersCollideableObjects();
-                }
+                        if (_currentState is Room3)
+                        {
+                            TopDoorCollision();
+                            LeftDoorCollision();
+                            TopAndLeftCollisionBox();
+                            LeftSideCollideableObjects1();
+                            LeftSideCollideableObjects2();
+                            CornersCollideableObjects();
+                        }
 
-                if (_currentState is NextLevelRoom)
-                {
-                    TopDoorCollision();
-                    BottomDoorCollision();
-                    NextLevelRoomCollisionBox();
-                }
-                
+                        if (_currentState is NextLevelRoom)
+                        {
+                            TopDoorCollision();
+                            BottomDoorCollision();
+                            NextLevelRoomCollisionBox();
+                        }
 #endif
                     }
-                    spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Ammo: {Player.bulletCount}\n Damage: {Player.damage}\n Gold: {Player.Coin}\n Food: {Player.Food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
-#if DEBUG
-                    spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
-#endif
+                    
                 }
 
                 if (player.Hitbox.Intersects(topLine) || player.Hitbox.Intersects(topLine1) || player.Hitbox.Intersects(topLine2))
