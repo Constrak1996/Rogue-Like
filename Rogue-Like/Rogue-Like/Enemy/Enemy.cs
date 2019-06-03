@@ -244,6 +244,7 @@ namespace Rogue_Like
         /// <param name="otherObject"></param>
         public override void DoCollision(GameObject otherObject)
         {
+            //Player collision
             if (otherObject is Player)
             {
                 if (lastAttack > 1.5f)
@@ -258,6 +259,12 @@ namespace Rogue_Like
             {
                 GameWorld.gameObjectsRemove.Add(this);
                 GameWorld.gameObjectsRemove.Add(otherObject);
+            }
+
+            //PlayerMelee collision
+            if (otherObject is PlayerMeleeAttack)
+            {
+                GameWorld.gameObjectsRemove.Add(this);
             }
 
             base.DoCollision(otherObject);

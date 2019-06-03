@@ -47,7 +47,7 @@ namespace Rogue_Like
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Sprite, new Vector2(Transform.Position.X, Transform.Position.Y), null, Color.White, 0f, spriteCenter, 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(Sprite, new Vector2(Transform.Position.X, Transform.Position.Y), null, Color.White, rotation, spriteCenter, 1f, SpriteEffects.None, 1f);
         }
 
         /// <summary>

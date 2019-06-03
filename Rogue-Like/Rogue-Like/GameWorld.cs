@@ -141,11 +141,6 @@ namespace Rogue_Like
 
             timeSinceStart += gameTime.ElapsedGameTime;
             time = (int)timeSinceStart.Seconds;
-            //Updates gameobjects
-            foreach (GameObject go in gameObjects)
-            {
-                go.Update(gameTime);
-            }
 
             //Adds gameobjects to the gameobjects list
             if (gameObjectsAdd.Count > 0)

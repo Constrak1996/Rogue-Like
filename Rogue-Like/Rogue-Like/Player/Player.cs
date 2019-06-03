@@ -78,13 +78,22 @@ namespace Rogue_Like
             lastShot += gameTime.ElapsedGameTime.TotalSeconds;
 
             PlayerRanged();
+            PlayerMelee();
 
             base.Update(gameTime);
         }
 
         public void PlayerMelee()
         {
-            
+            if (Keyboard.GetState().IsKeyDown(Keys.E) && lastShot > 0.5f)
+            {
+                Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+                Vector2 direction = mousePos - this.Transform.Position;
+                direction.Normalize();
+                PlayerMeleeAttack playerMelee = new PlayerMeleeAttack("PlayerSwipeTemp", new Transform(new Vector2(this.Transform.Position.X, this.Transform.Position.Y), 0), direction, rotation);
+                GameWorld.gameObjectsAdd.Add(playerMelee);
+                lastShot = 0;
+            }
         }
 
         public void PlayerRanged()

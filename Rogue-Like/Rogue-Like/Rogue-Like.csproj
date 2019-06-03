@@ -63,6 +63,7 @@
     <Compile Include="Button\Button.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="Enemy\EnemyBullet.cs" />
+    <Compile Include="Player\PlayerMeleeAttack.cs" />
     <Compile Include="Stages\EndScreen.cs" />
     <Compile Include="Enemy\Enemy.cs" />
     <Compile Include="GameObject.cs" />
