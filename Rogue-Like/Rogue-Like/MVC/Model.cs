@@ -30,6 +30,8 @@ namespace Rogue_Like
             command.ExecuteNonQuery();
 
         }
+
+        
         /// <summary>
         /// Constructs the HighScore in DataBase
         /// </summary>
@@ -110,7 +112,7 @@ namespace Rogue_Like
             {
                 if (sqlHighScore == string.Empty)
                 {
-                    sqlHighScore += $"PlayerName {Player.Name}"+ "     " + $"Score {Player.score}" + Environment.NewLine;
+                    sqlHighScore += $"Name {Player.Name}"+ "     " + $"Score {Player.score}" + Environment.NewLine;
                 }
                 
             }
@@ -123,7 +125,7 @@ namespace Rogue_Like
         public void newPlayerScore()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
-            cmd.CommandText = $"INSERT INTO highscores (id, name,score) VALUES(NULL,'{Player.Name}', '{Player.DataScore}')";
+            cmd.CommandText = $"INSERT INTO highscores (id, name,score) VALUES(NULL,'name', 'score')";
             cmd.ExecuteNonQuery();
            
         }

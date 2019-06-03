@@ -13,7 +13,7 @@ namespace Rogue_Like
     class HighScore : State
     {
         private Controller controller;
-        public int getscore;
+        
         public SpriteFont textFont;
 
         public HighScore(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
