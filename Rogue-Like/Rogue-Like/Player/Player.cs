@@ -99,5 +99,14 @@ namespace Rogue_Like
                 lastShot = 0;
             }
         }
+
+        public override void DoCollision(GameObject otherObject)
+        {
+            if (otherObject is EnemyBullet)
+            {
+                health -= 1;
+            }
+            base.DoCollision(otherObject);
+        }
     }
 }
