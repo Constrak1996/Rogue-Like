@@ -166,8 +166,10 @@ namespace Rogue_Like
             L2 = true;
             Menu.newgame = true;
             Menu.resume = false;
+            EndScreen.endScreen = false;
         }
 
+        
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
@@ -200,6 +202,7 @@ namespace Rogue_Like
 
             enteredRoom += gameTime.ElapsedGameTime;
             roomTime = enteredRoom.Seconds;
+            
             
 
             //Adds gameobjects to the gameobjects list
@@ -247,6 +250,25 @@ namespace Rogue_Like
                 isShop = false;
                 isMap1 = true;
             }
+                if (Player.health <= 0)
+                {
+
+                    foreach (GameObject enemy in gameObjects)
+                    {
+                        gameObjectsRemove.Add(enemy);
+                    }
+                    LoadContent();
+
+                    _nextState = new Shop(this, GraphicsDevice, Content);
+                    
+                }
+                if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is Shop)
+                {
+                    _nextState = new Room1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 150), 1);
+                    isShop = false;
+                    isMap1 = true;
+                }
 
             if (player.Hitbox.Intersects(topLineDoor) && _currentState is Shop)
             {
@@ -331,7 +353,7 @@ namespace Rogue_Like
 
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
-            if (Menu.menu == false)
+            if (Menu.menu == false || EndScreen.endScreen == false)
             {
                 if (Shop.shop == true)
                 {
@@ -397,7 +419,10 @@ namespace Rogue_Like
                         }
 #endif
                     }
-                    
+                    spriteBatch.DrawString(Font, $":{Player.Name}\n Health: {Player.health}\n Ammo: {Player.bulletCount}\n Damage: {Player.damage}\n Gold: {Player.Coin}\n Food: {Player.Food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
+#if DEBUG
+                    spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
+#endif
                 }
 
                 if (player.Hitbox.Intersects(topLine) || player.Hitbox.Intersects(topLine1) || player.Hitbox.Intersects(topLine2))
