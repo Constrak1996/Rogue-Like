@@ -11,7 +11,7 @@ namespace Rogue_Like
 {
     class PlayerMeleeAttack : GameObject
     {
-        private float speed;
+        private float speed = 13;
         private int age;
 
         public override Rectangle Hitbox => base.Hitbox;
@@ -27,7 +27,7 @@ namespace Rogue_Like
             age++;
             this.Transform.Position += velocity;
             LookAtMouse();
-            if (age > 10)
+            if (age > 4)
             {
                 GameWorld.gameObjectsRemove.Add(this);
             }

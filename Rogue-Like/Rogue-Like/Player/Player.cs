@@ -114,6 +114,7 @@ namespace Rogue_Like
             if (otherObject is EnemyBullet)
             {
                 health -= 1;
+                GameWorld.gameObjectsRemove.Add(otherObject);
             }
             base.DoCollision(otherObject);
         }
