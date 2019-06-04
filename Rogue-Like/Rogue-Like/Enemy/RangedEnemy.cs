@@ -56,7 +56,7 @@ namespace Rogue_Like
             }
 
             //Bullet collision
-            if (otherObject is Bullet)
+            if (otherObject is Bullet || otherObject is PlayerMeleeAttack)
             {
                 Player.DataScore++;
                 GameWorld.gameObjectsRemove.Add(this);
@@ -76,6 +76,12 @@ namespace Rogue_Like
                         break;
 
                 }
+            }
+
+            //PlayerMelee collision
+            if (otherObject is PlayerMeleeAttack)
+            {
+                GameWorld.gameObjectsRemove.Add(this);
             }
 
             base.DoCollision(otherObject);

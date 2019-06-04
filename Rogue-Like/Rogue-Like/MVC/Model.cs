@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Rogue_Like
 {
     class Model
@@ -21,6 +22,14 @@ namespace Rogue_Like
         {
             m_dbConnection = new SQLiteConnection(CONNECTIONSTRING);
             m_dbConnection.Open();
+
+            //Sørg for at vores table eksiterer
+            characterTable();
+
+            //Sørg for at der altid er en entry med ID == 1
+            string sql = "INSERT or IGNORE into savechar(id, name, score, gold, food, health) VALUES(1,'peter', 0, 0, 0, 0); ";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
 
         }
         public void itemStructure()
@@ -48,6 +57,30 @@ namespace Rogue_Like
             command.ExecuteNonQuery();
 
         }
+        public void characterTable()
+        {
+            string sql = $"CREATE TABLE IF NOT EXISTS savechar (id INTEGER PRIMARY KEY ASC, name VARCHAR(20), score INT, gold INT, food INT, health INT, UNIQUE(id))";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+        }
+
+
+
+        public void fillcharTable()
+        {
+            SQLiteCommand cmd = m_dbConnection.CreateCommand();
+            cmd.CommandText = $"INSERT INTO savechar (id, name, score, gold, food, health) VALUES(null,'{Player.Name}',{Player.DataScore},{Player.Coin},{Player.Food},{Player.health})";
+            cmd.ExecuteNonQuery();
+        }
+
+        public void ThreadUpdate(int Food, int Coin, int DataScore, int health)
+
+        {
+            SQLiteCommand cmd = m_dbConnection.CreateCommand();
+            cmd.CommandText = $"UPDATE savechar set score = {Player.DataScore}, health = {Player.health}, food = {Player.Food}, gold = {Player.Coin};";
+            cmd.ExecuteNonQuery();
+        }
+
         public void fillitemTable()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();

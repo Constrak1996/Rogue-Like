@@ -58,6 +58,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Autosave.cs" />
     <Compile Include="Ammo.cs" />
     <Compile Include="Bone.cs" />
     <Compile Include="Coin.cs" />

@@ -10,13 +10,19 @@ namespace Rogue_Like
 {
     class ShopItems : GameObject
     {
-        private string[] shopItems = { "Slingshot", "Armor of The Gods", "Stick", "Sword", "Club", "Rock"};
+        private string[] shopItems = { "Slingshot", "ArmorOfTheGods", "Stick", "Sword", "Club", "Rock"};
+        private static bool spawnItem1 = true;
+        private static bool spawnItem2 = true;
+        private static bool spawnItem3 = true;
+        private static bool spawnItem4 = true;
+        private static bool spawnItem5 = true;
+        private static bool spawnitem6 = true;
 
         public override Rectangle Hitbox => base.Hitbox;
 
         public ShopItems(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
-            spriteName = shopItems[GameWorld.r.Next(0, 4)];
+            this.spriteName = spriteName;
         }
         
         public override void Update(GameTime gameTime)
@@ -34,32 +40,32 @@ namespace Rogue_Like
         {
             if (otherObject is Player && this.spriteName == "Slingshot" && Keyboard.GetState().IsKeyDown(Keys.E))
             {
-
+                GameWorld.gameObjectsRemove.Add(this);
             }
 
-            if (otherObject is Player && this.spriteName == "Armor of The Gods" && Keyboard.GetState().IsKeyDown(Keys.E))
+            if (otherObject is Player && this.spriteName == "ArmorOfTheGods" && Keyboard.GetState().IsKeyDown(Keys.E))
             {
-
+                GameWorld.gameObjectsRemove.Add(this);
             }
 
             if (otherObject is Player && this.spriteName == "Stick" && Keyboard.GetState().IsKeyDown(Keys.E))
             {
-
+                GameWorld.gameObjectsRemove.Add(this);
             }
 
             if (otherObject is Player && this.spriteName == "Sword" && Keyboard.GetState().IsKeyDown(Keys.E))
             {
-
+                GameWorld.gameObjectsRemove.Add(this);
             }
 
             if (otherObject is Player && this.spriteName == "Club" && Keyboard.GetState().IsKeyDown(Keys.E))
             {
-
+                GameWorld.gameObjectsRemove.Add(this);
             }
 
             if (otherObject is Player && this.spriteName == "Rock" && Keyboard.GetState().IsKeyDown(Keys.E))
             {
-
+                GameWorld.gameObjectsRemove.Add(this);
             }
             base.DoCollision(otherObject);
         }
@@ -69,24 +75,53 @@ namespace Rogue_Like
         /// </summary>
         public void SpawnShopItems()
         {
-            //Item positions
-            Vector2 pos1 = new Vector2(353, 386);
-            GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos1, 0)));
+            if (spawnItem1)
+            {
+                spriteName = shopItems[GameWorld.r.Next(0, 5)];
+                Vector2 pos1 = new Vector2(353, 386);
+                GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos1, 0)));
+                spawnItem1 = false;
+            }
 
-            Vector2 pos2 = new Vector2(542, 386);
-            GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos2, 0)));
+            if (spawnItem2)
+            {
+                spriteName = shopItems[GameWorld.r.Next(0, 5)];
+                Vector2 pos2 = new Vector2(542, 386);
+                GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos2, 0)));
+                spawnItem2 = false;
+            }
 
-            Vector2 pos3 = new Vector2(350, 701);
-            GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos3, 0)));
+            if (spawnItem3)
+            {
+                spriteName = shopItems[GameWorld.r.Next(0, 5)];
+                Vector2 pos3 = new Vector2(350, 701);
+                GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos3, 0)));
+                spawnItem3 = false;
+            }
 
-            Vector2 pos4 = new Vector2(544, 701);
-            GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos4, 0)));
+            if (spawnItem4)
+            {
+                spriteName = shopItems[GameWorld.r.Next(0, 5)];
+                Vector2 pos4 = new Vector2(544, 701);
+                GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos4, 0)));
+                spawnItem4 = false;
+            }
 
-            Vector2 pos5 = new Vector2(1183, 388);
-            GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos5, 0)));
+            if (spawnItem5)
+            {
+                spriteName = shopItems[GameWorld.r.Next(0, 5)];
+                Vector2 pos5 = new Vector2(1183, 388);
+                GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos5, 0)));
+                spawnItem5 = false;
+            }
 
-            Vector2 pos6 = new Vector2(1377, 388);
-            GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos6, 0)));
+            if (spawnitem6)
+            {
+                spriteName = shopItems[GameWorld.r.Next(0, 5)];
+                Vector2 pos6 = new Vector2(1377, 388);
+                GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos6, 0)));
+                spawnitem6 = false;
+            }
         }
     }
 }

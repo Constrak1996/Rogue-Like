@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Threading;
 
 namespace Rogue_Like
 {
@@ -73,6 +74,9 @@ namespace Rogue_Like
         private static ContentManager _content;
         public static ContentManager ContentManager { get => _content; }
 
+        
+        
+        
         //The lists used for loading and removing items
         public static List<GameObject> gameObjects = new List<GameObject>();
         public static List<GameObject> gameObjectsAdd = new List<GameObject>();
@@ -90,6 +94,9 @@ namespace Rogue_Like
 
         //Player
         public static Player player;
+
+        //Shopitems
+        ShopItems shopItems;
 
         //Collision
         private Texture2D collisionTexture;
@@ -130,6 +137,7 @@ namespace Rogue_Like
             IsMouseVisible = true;
             graphics.PreferredBackBufferWidth = Width;
             graphics.PreferredBackBufferHeight = Height;
+
         }
 
         /// <summary>
@@ -161,6 +169,8 @@ namespace Rogue_Like
             //Player
             player = new Player("SwordBob", new Transform(new Vector2(700, 200), 0));
             gameObjectsAdd.Add(player);
+
+            shopItems = new ShopItems("worker", new Transform(new Vector2(0, 0), 0));
 
             //Level bools running once
             L1 = true;
@@ -226,7 +236,6 @@ namespace Rogue_Like
 
             //Player movement
             player.PlayerMovement(3);
-            player.PlayerMovement(8);
 
             //Check if gameobject is colliding, if it does run collision code
             foreach (GameObject go in gameObjects)
@@ -242,8 +251,13 @@ namespace Rogue_Like
                 }
             }
 
-            enemy.Update(gameTime);
-            base.Update(gameTime);
+            if (_currentState is Shop)
+            {
+                isShop = true;
+            }
+
+                enemy.Update(gameTime);
+                base.Update(gameTime);
 
             if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is Shop)
             {
@@ -331,6 +345,10 @@ namespace Rogue_Like
                 isNextLevelRoom = false;
             }
 
+            if (Shop.shop == true)
+            {
+                shopItems.Update(gameTime);
+            }
         }
 
         public void Restart()
@@ -677,7 +695,6 @@ namespace Rogue_Like
                 topLine.Y = -1000;
             }
         }
-
 
         private void ShopDoorCollision()
         {
