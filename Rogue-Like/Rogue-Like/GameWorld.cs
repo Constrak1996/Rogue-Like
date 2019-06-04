@@ -235,7 +235,6 @@ namespace Rogue_Like
             gameObjectsRemove.Clear();
 
             //Player movement
-            player.PlayerMovement(3);
             player.PlayerMovement(8);
 
             //Check if gameobject is colliding, if it does run collision code

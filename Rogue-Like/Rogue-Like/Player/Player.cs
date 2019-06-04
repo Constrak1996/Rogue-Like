@@ -40,8 +40,8 @@ namespace Rogue_Like
             food = controller.getItem(5);
             Int32.TryParse(food, out Food);
             Name = "Peter";
-            health = randomPlayerHealth.Next(50, 75);
-            damage = randomPlayerDamage.Next(10, 120);
+            health = 20;
+            damage = 10;
 
             Thread t = new Thread(controller.SaveChar);
             t.IsBackground = true;
@@ -85,6 +85,7 @@ namespace Rogue_Like
             lastShot += gameTime.ElapsedGameTime.TotalSeconds;
 
             PlayerRanged();
+            PlayerMelee();
             
             base.Update(gameTime);
         }
