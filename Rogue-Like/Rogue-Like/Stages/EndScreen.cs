@@ -43,20 +43,15 @@ namespace Rogue_Like
                 Text = "Save Score to highscore",
 
             };
-            var nextcharButton = new Button(buttonTexture, buttonFont)
-            {
-                Position = new Vector2(600, 800),
-                Text = "Continue the journey",
-
-            };
+            
             saveScoreButton.Click += SaveScoreButton_Click;
-            nextcharButton.Click += NextcharButton_Click;
+            
 
 
             _component = new List<Component>()
             {
                 saveScoreButton,
-                nextcharButton,
+                
             };
         }
         /// <summary>
@@ -68,22 +63,7 @@ namespace Rogue_Like
         {
             controller.newPlayer();
         }
-        private void NextcharButton_Click(object sender, EventArgs e)
-        {
-            //if (Menu.newgame)
-            //{
-                
-            //    controller.newPlayer();
-            //    _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
-            //    GameWorld.gameObjectsAdd.Add(new Player("SwordBob", new Transform(new Vector2(700, 200), 0)));
-            //    GameWorld.L1 = true;
-            //    GameWorld.L2 = true;
-            //    Menu.newgame = true;
-            //    Menu.resume = false;
-            //    EndScreen.endScreen = false;
-            //}
-            
-        }
+        
         /// <summary>
         /// 
         /// </summary>
@@ -118,15 +98,15 @@ namespace Rogue_Like
         public override void Update(GameTime gameTime)
         {
 
-            //if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-            //{
-            //    _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
-            //}
-            //else if (Keyboard.GetState().IsKeyDown(Keys.Space))
-            //{
-            //    _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
-            //}
-            
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
+                _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            {
+                _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
+            }
+
             foreach (var component in _component)
             {
                 component.Update(gameTime);

@@ -17,7 +17,8 @@ namespace Rogue_Like
         private Texture2D _playerTexture;
         public static bool shop;
         private List<Component> _component;
-
+        //Map Drawings
+        #region
         private int[,] mapBackground = new int[,]
        {
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
@@ -111,7 +112,7 @@ namespace Rogue_Like
         //{
         //    get { return level1Generate.GetLength(0); }
         //}
-
+        #endregion
         #region Numeral Texture
         //The Width of Dungeon map
         public int Width
@@ -600,6 +601,7 @@ namespace Rogue_Like
             Font = content.Load<SpriteFont>("Font");
             Texture2D piller = content.Load<Texture2D>("Pillar1");
             //Wall Textures start
+            #region
             //Left Wall
             Texture2D wallTopCorLeft = content.Load<Texture2D>("64x64/Purple_Wall_Corner_Top_Left");
             Texture2D wallTopCorLeft2 = content.Load<Texture2D>("64x64/Purple_Wall_Corner_Top_Left_2");
@@ -715,13 +717,8 @@ namespace Rogue_Like
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
+            #endregion
             
-            //player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
-
-
-
-
-
             //Rooms
             //AddRoom(mapBackground);
             //AddRoom(map);
@@ -823,9 +820,7 @@ namespace Rogue_Like
             AddTexture(Door_Mid_Bot_Entry);
             AddTexture(Door_Right_Bot_Entry);
             #endregion
-
-
-
+            
         }
 
 
@@ -886,14 +881,7 @@ namespace Rogue_Like
             //        spritebatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
             //    }
             //}
-
-
-            //Draws the player
-            {
-                //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
-                //player.Draw(spritebatch);
-            }
-
+            
         }
         //Allows a NextStage Event to happen
 

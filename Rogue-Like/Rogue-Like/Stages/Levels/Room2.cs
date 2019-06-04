@@ -17,7 +17,8 @@ namespace Rogue_Like
         private Texture2D _playerTexture;
         public static bool lvl2;
         private List<Component> _component;
-
+        //Mapdrawings
+        #region
         private int[,] mapBackground = new int[,]
        {
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
@@ -82,7 +83,7 @@ namespace Rogue_Like
         {
             tileTextures.Add(texture);
         }
-
+        #endregion
         #region Numeral Textures
         //The Width of Dungeon map
         public int Width
@@ -495,6 +496,7 @@ namespace Rogue_Like
             Font = content.Load<SpriteFont>("Font");
             Texture2D piller = content.Load<Texture2D>("Pillar1");
             //Wall Textures start
+            #region
             //Left Wall
             Texture2D wallTopCorLeft = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left");
             Texture2D wallTopCorLeft2 = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left_2");
@@ -590,7 +592,7 @@ namespace Rogue_Like
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
-            
+            #endregion
 
             #region Added textures to list
             AddTexture(wall);
