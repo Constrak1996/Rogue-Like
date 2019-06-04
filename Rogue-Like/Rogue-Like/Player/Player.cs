@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Rogue_Like
@@ -24,6 +25,7 @@ namespace Rogue_Like
         public Random randomPlayerHealth = new Random();
         private double lastShot;
 
+
         /// <summary>
         /// The players Constructor
         /// </summary>
@@ -40,6 +42,11 @@ namespace Rogue_Like
             Name = "Peter";
             health = randomPlayerHealth.Next(50, 75);
             damage = randomPlayerDamage.Next(10, 120);
+
+            Thread t = new Thread(controller.SaveChar);
+            t.IsBackground = true;
+            t.Start();
+                        
         }
 
         /// <summary>
@@ -99,5 +106,7 @@ namespace Rogue_Like
                 lastShot = 0;
             }
         }
+
+        
     }
 }

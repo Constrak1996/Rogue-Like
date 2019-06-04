@@ -58,6 +58,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Autosave.cs" />
     <Compile Include="Bullet.cs" />
     <Compile Include="Button\Button.cs" />
     <Compile Include="Component.cs" />

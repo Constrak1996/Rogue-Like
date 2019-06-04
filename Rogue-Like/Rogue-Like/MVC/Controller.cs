@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Rogue_Like
@@ -23,13 +24,14 @@ namespace Rogue_Like
             {
                 model.highscoreStructure();
                 model.itemStructure();
+                model.characterTable();
                 
             }
             //Fill the Tables
             {
 
-                //model.fillHighscoreTable();
-                //model.fillitemTable();
+                model.fillHighscoreTable();
+                model.fillitemTable();
             }
         }
 
@@ -60,6 +62,18 @@ namespace Rogue_Like
         public String getPlayerScore()
         {
             return model.getUpdateNewScore();
+        }
+
+        public void SaveChar()
+        {
+            while (true)
+            {
+                model.ThreadUpdate(Player.Food, Player.Coin, Player.DataScore, Player.health);
+
+
+                Thread.Sleep(500);
+
+            }
         }
     }
 }

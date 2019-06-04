@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Threading;
 
 namespace Rogue_Like
 {
@@ -24,6 +25,9 @@ namespace Rogue_Like
         private static ContentManager _content;
         public static ContentManager ContentManager { get => _content; }
 
+        
+        
+        
         //The lists used for loading and removing items
         public static List<GameObject> gameObjects = new List<GameObject>();
         public static List<GameObject> gameObjectsAdd = new List<GameObject>();
@@ -72,6 +76,7 @@ namespace Rogue_Like
             IsMouseVisible = true;
             graphics.PreferredBackBufferWidth = Width;
             graphics.PreferredBackBufferHeight = Height;
+
         }
 
         /// <summary>
