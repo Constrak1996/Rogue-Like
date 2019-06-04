@@ -96,7 +96,7 @@ namespace Rogue_Like
         public static Player player;
 
         //Shopitems
-        ShopItems shopItems;
+        ShopItem shopItems;
 
         //Collision
         private Texture2D collisionTexture;
@@ -170,7 +170,7 @@ namespace Rogue_Like
             player = new Player("SwordBob", new Transform(new Vector2(700, 200), 0));
             gameObjectsAdd.Add(player);
 
-            shopItems = new ShopItems("worker", new Transform(new Vector2(0, 0), 0));
+            shopItems = new ShopItem("worker", new Transform(new Vector2(0, 0), 0));
 
             //Level bools running once
             L1 = true;
@@ -345,7 +345,7 @@ namespace Rogue_Like
                 isNextLevelRoom = false;
             }
 
-            if (Shop.shop == true)
+            if (isShop == true)
             {
                 shopItems.Update(gameTime);
             }

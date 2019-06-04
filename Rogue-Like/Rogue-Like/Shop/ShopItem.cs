@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Rogue_Like
 {
-    class ShopItems : GameObject
+    class ShopItem : GameObject
     {
         private string[] shopItems = { "Slingshot", "ArmorOfTheGods", "Stick", "Sword", "Club", "Rock"};
         private static bool spawnItem1 = true;
@@ -20,7 +20,7 @@ namespace Rogue_Like
 
         public override Rectangle Hitbox => base.Hitbox;
 
-        public ShopItems(string spriteName, Transform Transform) : base(spriteName, Transform)
+        public ShopItem(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
             this.spriteName = spriteName;
         }
@@ -75,52 +75,63 @@ namespace Rogue_Like
         /// </summary>
         public void SpawnShopItems()
         {
-            if (spawnItem1)
+            if (spawnItem1 && GameWorld.isShop == true)
             {
                 spriteName = shopItems[GameWorld.r.Next(0, 5)];
                 Vector2 pos1 = new Vector2(353, 386);
-                GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos1, 0)));
+                ShopItem item1 = new ShopItem(spriteName, new Transform(pos1, 0));
+                GameWorld.gameObjectsAdd.Add(item1);
                 spawnItem1 = false;
             }
 
-            if (spawnItem2)
+            if (spawnItem2 && GameWorld.isShop == true)
             {
                 spriteName = shopItems[GameWorld.r.Next(0, 5)];
                 Vector2 pos2 = new Vector2(542, 386);
-                GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos2, 0)));
+                ShopItem item2 = new ShopItem(spriteName, new Transform(pos2, 0));
+                GameWorld.gameObjectsAdd.Add(item2);
                 spawnItem2 = false;
             }
 
-            if (spawnItem3)
+            if (spawnItem3 && GameWorld.isShop == true)
             {
                 spriteName = shopItems[GameWorld.r.Next(0, 5)];
                 Vector2 pos3 = new Vector2(350, 701);
-                GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos3, 0)));
+                ShopItem item3 = new ShopItem(spriteName, new Transform(pos3, 0));
+                GameWorld.gameObjectsAdd.Add(item3);
                 spawnItem3 = false;
             }
 
-            if (spawnItem4)
+            if (spawnItem4 && GameWorld.isShop == true)
             {
                 spriteName = shopItems[GameWorld.r.Next(0, 5)];
                 Vector2 pos4 = new Vector2(544, 701);
-                GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos4, 0)));
+                ShopItem item4 = new ShopItem(spriteName, new Transform(pos4, 0));
+                GameWorld.gameObjectsAdd.Add(item4);
                 spawnItem4 = false;
             }
 
-            if (spawnItem5)
+            if (spawnItem5 && GameWorld.isShop == true)
             {
                 spriteName = shopItems[GameWorld.r.Next(0, 5)];
                 Vector2 pos5 = new Vector2(1183, 388);
-                GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos5, 0)));
+                ShopItem item5 = new ShopItem(spriteName, new Transform(pos5, 0));
+                GameWorld.gameObjectsAdd.Add(item5);
                 spawnItem5 = false;
             }
 
-            if (spawnitem6)
+            if (spawnitem6 && GameWorld.isShop == true)
             {
                 spriteName = shopItems[GameWorld.r.Next(0, 5)];
                 Vector2 pos6 = new Vector2(1377, 388);
-                GameWorld.gameObjectsAdd.Add(new ShopItems(spriteName, new Transform(pos6, 0)));
+                ShopItem item6 = new ShopItem(spriteName, new Transform(pos6, 0));
+                GameWorld.gameObjectsAdd.Add(item6);
                 spawnitem6 = false;
+            }
+
+            if (GameWorld.isShop != true)
+            {
+                GameWorld.gameObjectsRemove.Add(this);
             }
         }
     }
