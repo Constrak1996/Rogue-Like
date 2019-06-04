@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -124,6 +125,9 @@ namespace Rogue_Like
         public static bool L1;
         public static bool L2;
 
+        public static SoundEffect playerMeleeSound;
+        public static SoundEffect playerRangedSound;
+
         public void ChangeState(State state)
         {
             _nextState = state;
@@ -170,7 +174,12 @@ namespace Rogue_Like
             player = new Player("SwordBob", new Transform(new Vector2(700, 200), 0));
             gameObjectsAdd.Add(player);
 
+            //Instansiate shop
             shopItems = new ShopItem("worker", new Transform(new Vector2(0, 0), 0));
+
+            //Soundeffects
+            playerMeleeSound = Content.Load<SoundEffect>("SwordSlashSound");
+            playerRangedSound = Content.Load<SoundEffect>("PlayerBulletThrow");
 
             //Level bools running once
             L1 = true;

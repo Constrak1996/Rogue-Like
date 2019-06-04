@@ -2444,6 +2444,12 @@
 /processorParam:TextureFormat=Color
 /build:Pillar1.png
 
+#begin PlayerBulletThrow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:PlayerBulletThrow.wav
+
 #begin PlayerSwipeTemp.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2527,6 +2533,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:SwordBob.png
+
+#begin SwordSlashSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SwordSlashSound.wav
 
 #begin Wall.png
 /importer:TextureImporter

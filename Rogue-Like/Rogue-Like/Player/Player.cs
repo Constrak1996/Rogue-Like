@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace Rogue_Like
         public static int Food;
         private double lastShot;
 
-
+        
 
 
         /// <summary>
@@ -104,6 +105,7 @@ namespace Rogue_Like
                 PlayerMeleeAttack playerMelee = new PlayerMeleeAttack("PlayerSwipeTemp", new Transform(new Vector2(this.Transform.Position.X, this.Transform.Position.Y), 0), direction, rotation);
                 GameWorld.gameObjectsAdd.Add(playerMelee);
                 lastShot = 0;
+                GameWorld.playerMeleeSound.Play();
             }
         }
 
@@ -148,7 +150,8 @@ namespace Rogue_Like
                 Bullet bullet = new Bullet("BulletTest", new Transform(new Vector2(this.Transform.Position.X, this.Transform.Position.Y), 0), direction, 5);
                 GameWorld.gameObjectsAdd.Add(bullet);
                 lastShot = 0;
-                bulletCount--;              
+                bulletCount--;
+                GameWorld.playerRangedSound.Play();
             }
             if (bulletCount <= 0)
             {
