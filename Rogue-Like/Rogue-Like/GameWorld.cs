@@ -235,7 +235,7 @@ namespace Rogue_Like
             gameObjectsRemove.Clear();
 
             //Player movement
-            player.PlayerMovement(8);
+            player.PlayerMovement(3);
 
             //Check if gameobject is colliding, if it does run collision code
             foreach (GameObject go in gameObjects)

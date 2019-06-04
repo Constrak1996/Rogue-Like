@@ -78,6 +78,12 @@ namespace Rogue_Like
                 }
             }
 
+            //PlayerMelee collision
+            if (otherObject is PlayerMeleeAttack)
+            {
+                GameWorld.gameObjectsRemove.Add(this);
+            }
+
             base.DoCollision(otherObject);
         }
 

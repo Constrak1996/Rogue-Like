@@ -26,6 +26,8 @@ namespace Rogue_Like
         private double lastShot;
 
 
+
+
         /// <summary>
         /// The players Constructor
         /// </summary>
@@ -92,7 +94,8 @@ namespace Rogue_Like
 
         public void PlayerMelee()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.E) && lastShot > 0.5f)
+            var mouseState = Mouse.GetState();
+            if (Keyboard.GetState().IsKeyDown(Keys.E) && lastShot >= 0.5f || mouseState.LeftButton == ButtonState.Pressed && lastShot >= 0.5)
             {
                 Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
                 Vector2 direction = mousePos - this.Transform.Position;
@@ -135,7 +138,8 @@ namespace Rogue_Like
         /// </summary>
         public void PlayerRanged()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) && lastShot > 1f && shoot == true)
+            var mouseState = Mouse.GetState();
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && lastShot >= 1f && shoot == true || mouseState.RightButton == ButtonState.Pressed && lastShot >= 1f && shoot == true)
             {
                 Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
                 Vector2 direction = mousePos - this.Transform.Position;
