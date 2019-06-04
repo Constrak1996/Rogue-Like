@@ -12,7 +12,8 @@ namespace Rogue_Like
     public class Player : GameObject
     {
         Controller controller = new Controller();
-        public static string Name;
+        private string[] nameList = { "Bore Ragnerock", "Hilbo Maggins", "Pappy Poonter", "Michael the bicicle"};
+        public static string name;
         public bool shoot;
         public static int health;
         public static int damage;
@@ -41,7 +42,7 @@ namespace Rogue_Like
             Int32.TryParse(score, out DataScore);
             food = controller.getItem(5);
             Int32.TryParse(food, out Food);
-            Name = "Peter";
+            name = nameList[GameWorld.r.Next(0,3)];
             health = 20;
             damage = 10;
 
@@ -95,7 +96,7 @@ namespace Rogue_Like
         public void PlayerMelee()
         {
             var mouseState = Mouse.GetState();
-            if (Keyboard.GetState().IsKeyDown(Keys.E) && lastShot >= 0.5f || mouseState.LeftButton == ButtonState.Pressed && lastShot >= 0.5)
+            if (Keyboard.GetState().IsKeyDown(Keys.R) && lastShot >= 0.5f || mouseState.LeftButton == ButtonState.Pressed && lastShot >= 0.5)
             {
                 Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
                 Vector2 direction = mousePos - this.Transform.Position;

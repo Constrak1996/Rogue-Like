@@ -69,7 +69,7 @@ namespace Rogue_Like
         public void fillcharTable()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
-            cmd.CommandText = $"INSERT INTO savechar (id, name, score, gold, food, health) VALUES(null,'{Player.Name}',{Player.DataScore},{Player.Coin},{Player.Food},{Player.health})";
+            cmd.CommandText = $"INSERT INTO savechar (id, name, score, gold, food, health) VALUES(null,'{Player.name}',{Player.DataScore},{Player.Coin},{Player.Food},{Player.health})";
             cmd.ExecuteNonQuery();
         }
 
@@ -151,7 +151,7 @@ namespace Rogue_Like
             {
                 if (sqlHighScore == string.Empty)
                 {
-                    sqlHighScore += $"Name {Player.Name}"+ "     " + $"Score {Player.score}" + Environment.NewLine;
+                    sqlHighScore += $"Name {Player.name}"+ "     " + $"Score {Player.score}" + Environment.NewLine;
                 }
                 
             }
