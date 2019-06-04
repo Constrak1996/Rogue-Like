@@ -18,7 +18,8 @@ namespace Rogue_Like
         public static bool shop;
         public static bool lvl1;
         private List<Component> _component;
-
+        //Map Drawings
+        #region
         private int[,] mapBackground = new int[,]
        {
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
@@ -112,7 +113,7 @@ namespace Rogue_Like
         //{
         //    get { return level1Generate.GetLength(0); }
         //}
-
+        #endregion
         #region Numeral Texture
         //The Width of Dungeon map
         public int Width
@@ -601,6 +602,7 @@ namespace Rogue_Like
             Font = content.Load<SpriteFont>("Font");
             Texture2D piller = content.Load<Texture2D>("Pillar1");
             //Wall Textures start
+            #region
             //Left Wall
             Texture2D wallTopCorLeft = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left");
             Texture2D wallTopCorLeft2 = content.Load<Texture2D>("64x64/Wall_Corner_Top_Left_2");
@@ -716,8 +718,8 @@ namespace Rogue_Like
             Texture2D ground = content.Load<Texture2D>("Ground");
             Texture2D DoorFront = content.Load<Texture2D>("DoorFront1");
             Texture2D Shop = content.Load<Texture2D>("Shop");
+            #endregion
             
-            //player = new Player(_playerTexture, "Fisher_Bob", content, Player.playerTransform);
 
 
 

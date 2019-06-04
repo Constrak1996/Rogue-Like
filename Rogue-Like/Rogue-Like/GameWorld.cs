@@ -492,7 +492,7 @@ namespace Rogue_Like
 
             base.Draw(gameTime);
         }
-
+        #region CollisionDrawings
         private void DrawCollisionBox(GameObject go)
         {
             //Creating a box around the object
@@ -857,4 +857,5 @@ namespace Rogue_Like
 
         }
     }
+    #endregion
 }
