@@ -95,7 +95,7 @@ namespace Rogue_Like
         {
             if (newgame)
             {
-                controller.newPlayer();
+                controller.NewPlayer();
                 _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
                 Shop.shop = true;
                 menu = false;
