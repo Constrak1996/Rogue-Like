@@ -34,7 +34,9 @@ namespace Rogue_Like
 
         public Enemy(string spriteName, Transform Transform, int health) : base(spriteName, Transform)
         {
-            
+            //Thread EnemySpawnThread = new Thread(EnemySpawner);
+            //EnemySpawnThread.IsBackground = true;
+            //EnemySpawnThread.Start();
         }
 
         public override void Update(GameTime gameTime)

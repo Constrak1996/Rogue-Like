@@ -38,34 +38,40 @@ namespace Rogue_Like
         /// <param name="otherObject"></param>
         public override void DoCollision(GameObject otherObject)
         {
-            if (otherObject is Player && this.spriteName == "Slingshot" && Keyboard.GetState().IsKeyDown(Keys.E))
+            if (otherObject is Player && this.spriteName == "Slingshot" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
             {
                 GameWorld.gameObjectsRemove.Add(this);
+                Player.damage++;
             }
 
-            if (otherObject is Player && this.spriteName == "ArmorOfTheGods" && Keyboard.GetState().IsKeyDown(Keys.E))
+            if (otherObject is Player && this.spriteName == "ArmorOfTheGods" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
             {
                 GameWorld.gameObjectsRemove.Add(this);
+                Player.health++;
             }
 
-            if (otherObject is Player && this.spriteName == "Stick" && Keyboard.GetState().IsKeyDown(Keys.E))
+            if (otherObject is Player && this.spriteName == "Stick" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
             {
                 GameWorld.gameObjectsRemove.Add(this);
+                Player.damage++;
             }
 
-            if (otherObject is Player && this.spriteName == "Sword" && Keyboard.GetState().IsKeyDown(Keys.E))
+            if (otherObject is Player && this.spriteName == "Sword" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
             {
                 GameWorld.gameObjectsRemove.Add(this);
+                Player.damage += 3;
             }
 
-            if (otherObject is Player && this.spriteName == "Club" && Keyboard.GetState().IsKeyDown(Keys.E))
+            if (otherObject is Player && this.spriteName == "Club" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 4)
             {
                 GameWorld.gameObjectsRemove.Add(this);
+                Player.damage += 2;
             }
 
-            if (otherObject is Player && this.spriteName == "Rock" && Keyboard.GetState().IsKeyDown(Keys.E))
+            if (otherObject is Player && this.spriteName == "Rock" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
             {
                 GameWorld.gameObjectsRemove.Add(this);
+                Player.bulletCount += 5;
             }
             base.DoCollision(otherObject);
         }
