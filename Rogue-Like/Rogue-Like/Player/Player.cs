@@ -26,6 +26,7 @@ namespace Rogue_Like
         public string food;
         public static int Food;
         private double lastShot;
+        private TimeSpan time;
 
         
 
@@ -37,11 +38,11 @@ namespace Rogue_Like
         /// <param name="Transform"></param>
         public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
-            coin = controller.getItem(4);
+            coin = controller.GetItem(4);
             Int32.TryParse(coin, out Coin);
-            score = controller.getPlayerScore();
+            score = controller.GetPlayerScore();
             Int32.TryParse(score, out DataScore);
-            food = controller.getItem(5);
+            food = controller.GetItem(5);
             Int32.TryParse(food, out Food);
             name = nameList[GameWorld.r.Next(0,3)];
             health = 20;
@@ -127,6 +128,7 @@ namespace Rogue_Like
                 Food++;
                 GameWorld.gameObjectsRemove.Add(otherObject);
                 GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
+               
                 
             }
             if (otherObject is Ammo)

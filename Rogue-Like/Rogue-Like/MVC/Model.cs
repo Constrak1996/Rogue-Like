@@ -24,7 +24,7 @@ namespace Rogue_Like
             m_dbConnection.Open();
 
             //Sørg for at vores table eksiterer
-            characterTable();
+            CharacterTable();
 
             //Sørg for at der altid er en entry med ID == 1
             string sql = "INSERT or IGNORE into savechar(id, name, score, gold, food, health) VALUES(1,'peter', 0, 0, 0, 0); ";
@@ -32,14 +32,14 @@ namespace Rogue_Like
             command.ExecuteNonQuery();
 
         }
-        public void itemStructure()
+        public void ItemStructure()
         {
             string sql = "CREATE TABLE IF NOT EXISTS item (id INT, name VARCHAR(40), Value INT)";
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             command.ExecuteNonQuery();
 
         }
-        public void playerHealth()
+        public void PlayerHealth()
         {
             string sql = "CREATE TABLE IF NOT EXISTS playerhealth (name VARCHAR(40), health INT)";
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
@@ -50,14 +50,14 @@ namespace Rogue_Like
         /// <summary>
         /// Constructs the HighScore in DataBase
         /// </summary>
-        public void highscoreStructure()
+        public void HighScoreStructure()
         {
             string sql = $"CREATE TABLE IF NOT EXISTS highscores (id INTEGER PRIMARY KEY ASC, name VARCHAR(20), score INT)";
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             command.ExecuteNonQuery();
 
         }
-        public void characterTable()
+        public void CharacterTable()
         {
             string sql = $"CREATE TABLE IF NOT EXISTS savechar (id INTEGER PRIMARY KEY ASC, name VARCHAR(20), score INT, gold INT, food INT, health INT, UNIQUE(id))";
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
@@ -66,7 +66,7 @@ namespace Rogue_Like
 
 
 
-        public void fillcharTable()
+        public void FillCharTable()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
             cmd.CommandText = $"INSERT INTO savechar (id, name, score, gold, food, health) VALUES(null,'{Player.name}',{Player.DataScore},{Player.Coin},{Player.Food},{Player.health})";
@@ -81,7 +81,7 @@ namespace Rogue_Like
             cmd.ExecuteNonQuery();
         }
 
-        public void fillitemTable()
+        public void FillItemTable()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
             cmd.CommandText = "INSERT INTO item (id, name, Value) VALUES(1,'Sword', 4)";
@@ -102,12 +102,12 @@ namespace Rogue_Like
         /// <summary>
         /// Fills the HighScore in DataBase
         /// </summary>
-        public void fillHighscoreTable()
+        public void FillHighScoreTable()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
 
         }
-        public String getItem(int id)
+        public String GetItem(int id)
         {
             String sqlexpItem = "SELECT Value FROM item WHERE id =" + id + "";
             SQLiteCommand cmd = new SQLiteCommand(sqlexpItem, m_dbConnection)
@@ -135,7 +135,7 @@ namespace Rogue_Like
         /// Get the HighScore from the DataBase
         /// </summary>
         /// <returns></returns>
-        public String getHighscore()
+        public String GetHighScore()
         {
             String sqlexpHeigscore = "SELECT * FROM highscores ORDER BY score DESC;";
             SQLiteCommand cmd = new SQLiteCommand(sqlexpHeigscore, m_dbConnection)
@@ -161,7 +161,7 @@ namespace Rogue_Like
         /// <summary>
         /// Get a new Score for a player
         /// </summary>
-        public void newPlayerScore()
+        public void NewPlayerScore()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
             cmd.CommandText = $"INSERT INTO highscores (id, name,score) VALUES(NULL,'name', 'score')";
@@ -172,7 +172,7 @@ namespace Rogue_Like
         /// Get a new HighScore
         /// </summary>
         /// <returns></returns>
-        public String getNewHighScore()
+        public String GetNewHighScore()
         {
             String sqlexpPlayerscore = "SELECT * FROM highscores ORDER BY id DESC LIMIT 1;";
             SQLiteCommand cmd = new SQLiteCommand(sqlexpPlayerscore, m_dbConnection)
@@ -193,7 +193,7 @@ namespace Rogue_Like
         /// Get the Best HighScore
         /// </summary>
         /// <returns></returns>
-        public String getBestHeighscore()
+        public String GetBestHighScore()
         {
             String sqlexpPlayerscore = "SELECT * FROM highscores ORDER BY score DESC LIMIT 1;";
             SQLiteCommand cmd = new SQLiteCommand(sqlexpPlayerscore, m_dbConnection)
@@ -215,7 +215,7 @@ namespace Rogue_Like
         /// Update Score
         /// </summary>
         /// <returns></returns>
-        public String getUpdateNewScore()
+        public String GetUpdateNewScore()
         {
             String sqlexpPlayerscore = "SELECT score FROM highscores ORDER BY id DESC LIMIT 1;";
             SQLiteCommand cmd = new SQLiteCommand(sqlexpPlayerscore, m_dbConnection)
@@ -237,7 +237,7 @@ namespace Rogue_Like
         /// Skulle updatatere player score løbende, men bliv ikke helt færdig da den ikke for valuen fra vores Hooked klasse.
         /// </summary>
         /// <returns></returns>
-        public String updatePlayerScore()
+        public String UpdatePlayerScore()
         {
             String sqlexpPlayerscore = "UPDATE highscores SET score = score + {value} ORDER BY id DESC LIMIT 1;";
             SQLiteCommand cmd = new SQLiteCommand(sqlexpPlayerscore, m_dbConnection)

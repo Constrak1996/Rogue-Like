@@ -61,7 +61,7 @@ namespace Rogue_Like
         /// <param name="e"></param>
         private void SaveScoreButton_Click(object sender, EventArgs e)
         {
-            controller.newPlayer();
+            controller.NewPlayer();
         }
         
         /// <summary>
@@ -73,8 +73,8 @@ namespace Rogue_Like
         {
 
             
-            spritebatch.DrawString(Font, "Best score" + controller.getBestscore(), new Vector2(600, 400), Color.White);
-            spritebatch.DrawString(Font, "you'r score" + controller.getPlayerScore(), new Vector2(600, 500), Color.White);
+            spritebatch.DrawString(Font, "Best score" + controller.GetBestScore(), new Vector2(600, 400), Color.White);
+            spritebatch.DrawString(Font, "you'r score" + controller.GetPlayerScore(), new Vector2(600, 500), Color.White);
             foreach (var component in _component)
             {
                 component.Draw(gameTime, spritebatch);
