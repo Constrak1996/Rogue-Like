@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -125,8 +126,12 @@ namespace Rogue_Like
         public static bool L1;
         public static bool L2;
 
+        //Soundeffects
         public static SoundEffect playerMeleeSound;
         public static SoundEffect playerRangedSound;
+
+        //Music
+        public static Song backTrack;
 
         public void ChangeState(State state)
         {
