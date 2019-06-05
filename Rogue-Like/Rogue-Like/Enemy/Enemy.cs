@@ -286,6 +286,23 @@ namespace Rogue_Like
             if (otherObject is PlayerMeleeAttack)
             {
                 GameWorld.gameObjectsRemove.Add(this);
+                int lootpool = GameWorld.r.Next(1, 3);
+                switch (lootpool)
+                {
+                    //case 0:
+                    //    GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
+                    //    break;
+                    case 1:
+                        GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
+                        break;
+                    case 2:
+                        GameWorld.gameObjectsAdd.Add(new Food("Meat", new Transform(Transform.Position, 0)));
+                        break;
+                    case 3:
+                        GameWorld.gameObjectsAdd.Add(new Ammo("BulletTest", new Transform(Transform.Position, 0)));
+                        break;
+
+                }
             }
 
             base.DoCollision(otherObject);
