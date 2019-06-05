@@ -732,11 +732,6 @@ namespace Rogue_Like
             Texture2D Pedestal_Bot = content.Load<Texture2D>("64x64/Pedestal_Bot");
             #endregion
             
-
-
-
-
-
             //Rooms
             //AddRoom(mapBackground);
             //AddRoom(map);
@@ -903,14 +898,7 @@ namespace Rogue_Like
             //        spritebatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
             //    }
             //}
-
-            
-            //Draws the player
-            {
-                //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
-                //player.Draw(spritebatch);
-            }
-
+           
         }
         //Allows a NextStage Event to happen
 
@@ -933,7 +921,7 @@ namespace Rogue_Like
             }
 
             Level1_Change();
-            //player.Update(gameTime);
+            
         }
        
     }

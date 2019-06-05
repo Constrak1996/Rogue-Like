@@ -18,7 +18,7 @@ namespace Rogue_Like
         private static bool spawnItem5 = true;
         private static bool spawnitem6 = true;
 
-        public override Rectangle Hitbox => base.Hitbox;
+        public override Rectangle hitBox => base.hitBox;
 
         public ShopItem(string spriteName, Transform Transform) : base(spriteName, Transform)
         {

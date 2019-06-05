@@ -39,7 +39,7 @@ namespace Rogue_Like
             command.ExecuteNonQuery();
 
         }
-        public void PlayerHealth()
+        public void playerHealth()
         {
             string sql = "CREATE TABLE IF NOT EXISTS playerhealth (name VARCHAR(40), health INT)";
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);

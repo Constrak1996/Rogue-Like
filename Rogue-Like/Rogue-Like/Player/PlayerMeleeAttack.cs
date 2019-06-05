@@ -14,7 +14,7 @@ namespace Rogue_Like
         private float speed = 13;
         private int age;
 
-        public override Rectangle Hitbox => base.Hitbox;
+        public override Rectangle hitBox => base.hitBox;
 
         public PlayerMeleeAttack(string spriteName, Transform Transform, Vector2 direction, float rotation) : base(spriteName, Transform)
         {

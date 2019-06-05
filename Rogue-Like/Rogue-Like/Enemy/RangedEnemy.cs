@@ -16,7 +16,7 @@ namespace Rogue_Like
         {
         }
 
-        public override Rectangle Hitbox => base.Hitbox;
+        public override Rectangle hitBox => base.hitBox;
 
         public override void Update(GameTime gameTime)
         {
