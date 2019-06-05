@@ -13,6 +13,7 @@ namespace Rogue_Like
     public class Player : GameObject
     {
         Controller controller = new Controller();
+
         private string[] nameList = { "Bore Ragnerock", "Hilbo Maggins", "Pappy Poonter", "Michael the bicicle"};
         public static string name;
         public bool shoot;
@@ -26,7 +27,8 @@ namespace Rogue_Like
         public string food;
         public static int Food;
         private double lastShot;
-        private TimeSpan time;
+        private int time;
+        private TimeSpan timeBeforeBoneDies = new TimeSpan(0);
 
         
 
@@ -48,9 +50,9 @@ namespace Rogue_Like
             health = 20;
             damage = 10;
 
-            Thread t = new Thread(controller.SaveChar);
-            t.IsBackground = true;
-            t.Start();
+            Thread CheckPoint = new Thread(controller.SaveChar);
+            CheckPoint.IsBackground = true;
+            CheckPoint.Start();
                         
         }
 
@@ -88,7 +90,7 @@ namespace Rogue_Like
         public override void Update(GameTime gameTime)
         {
             lastShot += gameTime.ElapsedGameTime.TotalSeconds;
-
+            time += (int)gameTime.ElapsedGameTime.TotalSeconds;
             PlayerRanged();
             PlayerMelee();
             
@@ -125,10 +127,10 @@ namespace Rogue_Like
             }
             if (otherObject is Food)
             {
+                
                 Food++;
                 GameWorld.gameObjectsRemove.Add(otherObject);
                 GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
-               
                 
             }
             if (otherObject is Ammo)

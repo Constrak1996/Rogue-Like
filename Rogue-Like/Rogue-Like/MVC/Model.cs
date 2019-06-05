@@ -21,7 +21,10 @@ namespace Rogue_Like
         public Model()
         {
             m_dbConnection = new SQLiteConnection(CONNECTIONSTRING);
-            m_dbConnection.Open();
+            if(m_dbConnection.State != System.Data.ConnectionState.Open)
+            {
+                m_dbConnection.Open();
+            }
 
             //Sørg for at vores table eksiterer
             CharacterTable();
