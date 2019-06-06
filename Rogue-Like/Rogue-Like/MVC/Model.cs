@@ -25,10 +25,7 @@ namespace Rogue_Like
             {
                 m_dbConnection.Open();
             }
-
-            //Sørg for at vores table eksiterer
-            CharacterTable();
-
+            
             //Sørg for at der altid er en entry med ID == 1
             string sql = "INSERT or IGNORE into savechar(id, name, score, gold, food, health) VALUES(1,'peter', 0, 0, 0, 0); ";
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
