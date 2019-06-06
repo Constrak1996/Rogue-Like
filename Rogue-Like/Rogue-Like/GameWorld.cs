@@ -18,6 +18,7 @@ namespace Rogue_Like
     {
         Controller controller = new Controller();
         GraphicsDeviceManager graphics;
+        private int playerDeathCount;
         SpriteBatch spriteBatch;
         SpriteFont Font;
         private TimeSpan timeSinceStart;
@@ -363,27 +364,40 @@ namespace Rogue_Like
         {
             if (Player.health <= 0)
             {
-
-                foreach (GameObject enemy in gameObjects)
+                playerDeathCount++;
+                if (playerDeathCount >= 6)
                 {
-                    gameObjectsRemove.Add(enemy);
-                }
-                LoadContent();
-                
-                
-                if (Player.Food <= 0)
-                {
-                    Player.health -= 2;
+                    ChangeState(new EndScreen(this, GraphicsDevice, Content));
+                    foreach (GameObject enemy in gameObjects)
+                    {
+                        gameObjectsRemove.Add(enemy);
+                    }
                 }
                 else
                 {
-                    Player.health += 2;
+                    foreach (GameObject enemy in gameObjects)
+                    {
+                        gameObjectsRemove.Add(enemy);
+                    }
+                    LoadContent();
+
+
+                    if (Player.Food <= 0)
+                    {
+                        Player.health -= 2;
+                    }
+                    else
+                    {
+                        Player.health += 2;
+                    }
+
+                    Menu.newgame = false;
+                    Menu.resume = true;
+
+                    _nextState = new Shop(this, GraphicsDevice, Content);
+
                 }
 
-                Menu.newgame = false;
-                Menu.resume = true;
-                
-                _nextState = new Shop(this, GraphicsDevice, Content);
 
             }
         }

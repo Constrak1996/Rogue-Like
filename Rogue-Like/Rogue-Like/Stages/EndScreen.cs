@@ -14,11 +14,9 @@ namespace Rogue_Like
     {
         public static bool endScreen;
         private Controller controller;
-        private Player player;
+        
         private SpriteFont Font;
-        private Texture2D _playerTexture;
-        
-        
+       
         private List<Component> _component;
         /// <summary>
         /// 
@@ -35,8 +33,7 @@ namespace Rogue_Like
             
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
-
-
+            
             var saveScoreButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2(600, 600),
@@ -46,8 +43,6 @@ namespace Rogue_Like
             
             saveScoreButton.Click += SaveScoreButton_Click;
             
-
-
             _component = new List<Component>()
             {
                 saveScoreButton,
@@ -71,7 +66,6 @@ namespace Rogue_Like
         /// <param name="spritebatch"></param>
         public override void Draw(GameTime gameTime, SpriteBatch spritebatch)
         {
-
             
             spritebatch.DrawString(Font, "Best score" + controller.GetBestScore(), new Vector2(600, 400), Color.White);
             spritebatch.DrawString(Font, "you'r score" + controller.GetPlayerScore(), new Vector2(600, 500), Color.White);
@@ -79,7 +73,6 @@ namespace Rogue_Like
             {
                 component.Draw(gameTime, spritebatch);
             }
-            
             
         }
         /// <summary>
