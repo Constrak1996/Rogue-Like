@@ -218,13 +218,13 @@ namespace Rogue_Like
                     GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
                     break;
                 case 1:
-                    GameWorld.gameObjectsAdd.Add(new RangedEnemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
+                    GameWorld.gameObjectsAdd.Add(new RangedEnemy("RangedWorker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
                     break;
                 case 2:
                     GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
                     break;
                 case 3:
-                    GameWorld.gameObjectsAdd.Add(new RangedEnemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
+                    GameWorld.gameObjectsAdd.Add(new RangedEnemy("RangedWorker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
                     break;
                 default:
                     break;
