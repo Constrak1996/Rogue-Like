@@ -12,7 +12,7 @@ namespace Rogue_Like
     public class Enemy : GameObject
     {
         Controller controller = new Controller();
-        Thread enemyThread;
+        
         //Spawn Bool
         public bool spawned;
         private int health;
@@ -35,9 +35,7 @@ namespace Rogue_Like
         public Enemy(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
             health = 100;
-            //Thread EnemySpawnThread = new Thread(EnemySpawner);
-            //EnemySpawnThread.IsBackground = true;
-            //EnemySpawnThread.Start();
+            
         }
 
         public override void Update(GameTime gameTime)

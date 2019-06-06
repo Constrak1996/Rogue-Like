@@ -93,7 +93,9 @@ namespace Rogue_Like
             
             base.Update(gameTime);
         }
-
+        /// <summary>
+        /// Allows the player to melee attack
+        /// </summary>
         public void PlayerMelee()
         {
             var mouseState = Mouse.GetState();
@@ -109,7 +111,10 @@ namespace Rogue_Like
             }
         }
 
-        
+        /// <summary>
+        /// Collison between player and objects
+        /// </summary>
+        /// <param name="otherObject"></param>
         public override void DoCollision(GameObject otherObject)
         {
             if (otherObject is EnemyBullet)

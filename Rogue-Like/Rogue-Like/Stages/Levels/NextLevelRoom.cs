@@ -14,11 +14,7 @@ namespace Rogue_Like
     {
 
         private SpriteFont Font;
-        private Texture2D _playerTexture;
-
-
-
-
+        
         //Tilemap of Dungeon Background Map
         #region
         private int[,] mapBackground = new int[,]
@@ -79,25 +75,7 @@ namespace Rogue_Like
 
             return map[cellY, cellX];
         }
-        //Generate levels
-        //private int[,] level1Generate = new int[,]
-        //{
-        //    {-1,-1,-1,-1,-1,0,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //};
-
-        //public int GetIndexLevelGenerate(int cellX, int cellY)
-        //{
-        //    if (cellX < 0 || cellX > Width - 1 || cellY < 0 || cellY > Height - 1)
-        //        return 0;
-
-        //    return level1Generate[cellY, cellX];
-        //}
-
+        
         public static List<Texture2D> tileTextures = new List<Texture2D>();
         //private List<Array> ArrayLevelGenerate = new List<Array>();
         //add Textures to the Dungeon map
@@ -105,15 +83,7 @@ namespace Rogue_Like
         {
             tileTextures.Add(texture);
         }
-        //public void AddRoom(Array array)
-        //{
-        //    ArrayLevelGenerate.Add(array);
-        //}
-
-        //public int ShopBackground
-        //{
-        //    get { return level1Generate.GetLength(0); }
-        //}
+        
         #endregion
         #region Numeral Texture
         //The Width of Dungeon map
@@ -667,10 +637,7 @@ namespace Rogue_Like
             get { return map.GetLength(109); }
         }
         #endregion
-
-
-
-
+        
         public NextLevelRoom(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
             var buttonTexture = _content.Load<Texture2D>("Button");
@@ -814,11 +781,6 @@ namespace Rogue_Like
             Texture2D Shop = content.Load<Texture2D>("Shop");
             #endregion
             
-
-
-
-
-
             //Rooms
             //AddRoom(mapBackground);
             //AddRoom(map);
@@ -935,9 +897,7 @@ namespace Rogue_Like
             AddTexture(Stair_Bot_Mid);
             AddTexture(Stair_Bot_Right);
             #endregion
-
-
-
+            
         }
 
 
@@ -1000,12 +960,6 @@ namespace Rogue_Like
             //    }
             //}
 
-
-            //Draws the player
-            {
-                //spritebatch.Draw(_playerTexture, new Vector2(450, 80), Color.White); //draws the player and his position
-                //player.Draw(spritebatch);
-            }
 
         }
         //Allows a NextStage Event to happen
