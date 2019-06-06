@@ -47,7 +47,7 @@ namespace Rogue_Like
             if (otherObject is Player && this.spriteName == "ArmorOfTheGods" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
             {
                 GameWorld.gameObjectsRemove.Add(this);
-                Player.health++;
+                Player.currentHealth++;
             }
 
             if (otherObject is Player && this.spriteName == "Stick" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)

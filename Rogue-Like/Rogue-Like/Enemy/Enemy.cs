@@ -252,7 +252,7 @@ namespace Rogue_Like
             {
                 if (lastAttack > 1.5f)
                 {
-                    Player.health -= Enemy.damage;
+                    Player.currentHealth -= Enemy.damage;
                     lastAttack = 0;
                     GameWorld.playerMeleeSound.Play();
                 }

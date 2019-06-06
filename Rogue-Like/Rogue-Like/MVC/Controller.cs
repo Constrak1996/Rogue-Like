@@ -66,9 +66,9 @@ namespace Rogue_Like
        
         public void SaveChar()
         {
-            while (true)
+            while (GameWorld.isPlaying)
             {
-                model.ThreadUpdate(Player.Food, Player.Coin, Player.dataScore, Player.health);
+                model.ThreadUpdate(Player.Food, Player.Coin, Player.dataScore, Player.currentHealth);
 
 
                 Thread.Sleep(500);

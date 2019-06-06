@@ -16,6 +16,8 @@ namespace Rogue_Like
     /// </summary>
     public class GameWorld : Game
     {
+        private static GameWorld instance = null;
+        public static bool isPlaying;
         Controller controller = new Controller();
         GraphicsDeviceManager graphics;
         private int playerDeathCount;
@@ -70,10 +72,10 @@ namespace Rogue_Like
         public static bool isMap3 = false;
         public static bool isNextLevelRoom = false;
         public static bool Pitroom = false;
-        
+
         private static ContentManager _content;
         public static ContentManager ContentManager { get => _content; }
-        
+
         //The lists used for loading and removing items
         public static List<GameObject> gameObjects = new List<GameObject>();
         public static List<GameObject> gameObjectsAdd = new List<GameObject>();
@@ -127,6 +129,20 @@ namespace Rogue_Like
 
         //Music
         public static Song backTrack;
+        public static GameWorld Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameWorld();
+                }
+                return instance;
+            }
+
+        }
+
+        public static bool NewGame = false;
 
         public void ChangeState(State state)
         {
@@ -152,7 +168,7 @@ namespace Rogue_Like
         /// </summary>
         protected override void Initialize()
         {
-            
+
             base.Initialize();
         }
 
@@ -184,13 +200,17 @@ namespace Rogue_Like
             //Level bools running once
             L1 = true;
             L2 = true;
-            
+
             Menu.newgame = true;
             Menu.resume = false;
             EndScreen.endScreen = false;
         }
+        public void CALLLOADCONT()
+        {
+            LoadContent();
+        }
 
-        
+
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
@@ -259,8 +279,8 @@ namespace Rogue_Like
                     }
                 }
             }
-               enemy.Update(gameTime);
-                base.Update(gameTime);
+            enemy.Update(gameTime);
+            base.Update(gameTime);
 
             if (player.hitBox.Intersects(bottomLineDoor) & _currentState is Shop)
             {
@@ -269,7 +289,7 @@ namespace Rogue_Like
                 isShop = false;
                 isMap1 = true;
             }
-            
+
             if (player.hitBox.Intersects(bottomLineDoor) & _currentState is Shop)
             {
                 _nextState = new Room1(this, GraphicsDevice, Content);
@@ -296,7 +316,7 @@ namespace Rogue_Like
                 ShopItem.spawnItem4 = true;
                 ShopItem.spawnItem5 = true;
                 ShopItem.spawnitem6 = true;
-    }
+            }
 
             if (player.hitBox.Intersects(bottomLineDoor) && _currentState is Room1)
             {
@@ -362,16 +382,25 @@ namespace Rogue_Like
 
         public void Restart()
         {
-            if (Player.health <= 0)
+
+            if (NewGame)
             {
+                LoadContent();
+                NewGame = false;
+            }
+            else if (Player.currentHealth <= 0 && isPlaying)
+            {
+
                 playerDeathCount++;
-                if (playerDeathCount >= 6)
+                if (playerDeathCount >= 2)
                 {
                     ChangeState(new EndScreen(this, GraphicsDevice, Content));
                     foreach (GameObject enemy in gameObjects)
                     {
                         gameObjectsRemove.Add(enemy);
                     }
+                    isPlaying = false;
+                    playerDeathCount = 0;
                 }
                 else
                 {
@@ -379,16 +408,23 @@ namespace Rogue_Like
                     {
                         gameObjectsRemove.Add(enemy);
                     }
+                    int tempFood = Player.Food;
+                    int tempHealth = Player.maxHealth;
+
                     LoadContent();
 
+                    Player.Food = tempFood;
+                    Player.maxHealth = tempHealth;
 
-                    if (Player.Food <= 0)
+                    if (Player.Food <= 3)
                     {
-                        Player.health -= 2;
+                        Player.maxHealth -= 2;
+                        Player.currentHealth = Player.maxHealth;
                     }
                     else
                     {
-                        Player.health += 2;
+                        Player.maxHealth += 2;
+                        Player.currentHealth = Player.maxHealth;
                     }
 
                     Menu.newgame = false;
@@ -433,7 +469,7 @@ namespace Rogue_Like
 
 #if DEBUG
                         DrawCollisionBox(go);
-                
+
                         //DungeonCollisionBox();
                         if (_currentState is Shop || _currentState is Shop_Level1)
                         {
@@ -441,12 +477,12 @@ namespace Rogue_Like
                             ShopDoorCollision();
                             CornersCollideableObjects();
                         }
-                
+
                         //AllDoorCollision();
 
                         if (_currentState is Room1)
                         {
-                  
+
                             TopDoorCollision();
                             BottomDoorCollision();
                             CornersCollideableObjects();
@@ -454,11 +490,11 @@ namespace Rogue_Like
                         }
 
                         if (_currentState is Room2)
-                        { 
+                        {
                             TopDoorCollision();
                             RightDoorCollision();
                             TopAndRightCollisionBox();
-                   
+
                         }
 
                         if (_currentState is Room3)
@@ -497,7 +533,7 @@ namespace Rogue_Like
                     {
                         player.Transform.Position.X = 914;
                     }
-                    
+
                 }
 
                 if (player.hitBox.Intersects(bottomLine) || player.hitBox.Intersects(bottomLine1) || player.hitBox.Intersects(bottomLine2))
@@ -515,10 +551,10 @@ namespace Rogue_Like
                     if (_currentState is NextLevelRoom)
                     {
                         player.Transform.Position.X = 770;
-                    }   
+                    }
                 }
 
-                spriteBatch.DrawString(Font, $"{Player.name}\nHealth: {Player.health}\nAmmo: {Player.bulletCount}\nDamage: {Player.meleeDamage}\nRangeDamage: {Player.rangedDamage}\nGold: {Player.Coin}\nFood: {Player.Food}\nScore: {Player.dataScore}", new Vector2(1735, 0), Color.White);
+                spriteBatch.DrawString(Font, $"{Player.name}\nHealth: {Player.currentHealth}\nAmmo: {Player.bulletCount}\nDamage: {Player.meleeDamage}\nRangeDamage: {Player.rangedDamage}\nGold: {Player.Coin}\nFood: {Player.Food}\nScore: {Player.dataScore}", new Vector2(1735, 0), Color.White);
 #if DEBUG
                 spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
 #endif
@@ -534,20 +570,20 @@ namespace Rogue_Like
         {
             //Creating a box around the object
             Rectangle collisionBox = go.hitBox;
-            
+
             //Defining each side
             Rectangle topLine = new Rectangle(collisionBox.Center.X - collisionBox.Width, collisionBox.Center.Y - collisionBox.Height, collisionBox.Width, 1);
             Rectangle bottomLine = new Rectangle(collisionBox.Center.X - collisionBox.Width, collisionBox.Center.Y, collisionBox.Width, 1);
             Rectangle rightLine = new Rectangle(collisionBox.Center.X, collisionBox.Center.Y - collisionBox.Height, 1, collisionBox.Height);
             Rectangle leftLine = new Rectangle(collisionBox.Center.X - collisionBox.Width, collisionBox.Center.Y - collisionBox.Height, 1, collisionBox.Height);
-            
+
             //Draw each side
             spriteBatch.Draw(collisionTexture, topLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, bottomLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, rightLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, leftLine, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
-        
+
         private void DungeonCollisionBox()
         {
             //Defining each side
@@ -650,7 +686,7 @@ namespace Rogue_Like
             Rectangle rightLineDoor2 = new Rectangle(1618, 512, 53, 1);
             Rectangle rightLineDoor3 = new Rectangle(1618, 575, 53, 1);
             leftLine = new Rectangle(158, 105, 1, 906);
-            
+
 
             //Draw each side
             spriteBatch.Draw(collisionTexture, topLine1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
@@ -733,7 +769,7 @@ namespace Rogue_Like
             bottomLineDoor = new Rectangle(833, 974, 62, 1);
             rightLineDoor = new Rectangle(1635, 512, 1, 63);
             leftLineDoor = new Rectangle(92, 512, 1, 63);
-            
+
             //Draw each side
             spriteBatch.Draw(collisionTexture, topLineDoor, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, bottomLineDoor, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
@@ -776,10 +812,10 @@ namespace Rogue_Like
             //Draw each side
             spriteBatch.Draw(collisionTexture, rightLineDoor, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
-        
+
         private void NextLevelRoomCollisionBox()
         {
-            
+
             //Defining each side
             topLine1 = new Rectangle(108, 105, 724, 1);
             topLine2 = new Rectangle(925, 105, 723, 1);
@@ -849,25 +885,25 @@ namespace Rogue_Like
 
         private void CornersCollideableObjects()
         {
-           leftTopCollideable1 = new Rectangle(128, 128, 1, 64);
-           leftTopCollideable2 = new Rectangle(128, 128, 64, 1);
-           leftTopCollideable3 = new Rectangle(128, 192, 64, 1);
-           leftTopCollideable4 = new Rectangle(192, 128, 1, 64);
+            leftTopCollideable1 = new Rectangle(128, 128, 1, 64);
+            leftTopCollideable2 = new Rectangle(128, 128, 64, 1);
+            leftTopCollideable3 = new Rectangle(128, 192, 64, 1);
+            leftTopCollideable4 = new Rectangle(192, 128, 1, 64);
 
-           rightTopCollideable1 = new Rectangle(1536, 128, 1, 64);
-           rightTopCollideable2 = new Rectangle(1536, 128, 64, 1);
-           rightTopCollideable3 = new Rectangle(1536, 192, 64, 1);
-           rightTopCollideable4 = new Rectangle(1600, 128, 1, 64);
+            rightTopCollideable1 = new Rectangle(1536, 128, 1, 64);
+            rightTopCollideable2 = new Rectangle(1536, 128, 64, 1);
+            rightTopCollideable3 = new Rectangle(1536, 192, 64, 1);
+            rightTopCollideable4 = new Rectangle(1600, 128, 1, 64);
 
-           leftBotCollideable1 = new Rectangle(128, 896, 1, 64);
-           leftBotCollideable2 = new Rectangle(128, 896, 64, 1);
-           leftBotCollideable3 = new Rectangle(128, 960, 64, 1);
-           leftBotCollideable4 = new Rectangle(192, 896, 1, 64);
+            leftBotCollideable1 = new Rectangle(128, 896, 1, 64);
+            leftBotCollideable2 = new Rectangle(128, 896, 64, 1);
+            leftBotCollideable3 = new Rectangle(128, 960, 64, 1);
+            leftBotCollideable4 = new Rectangle(192, 896, 1, 64);
 
-           rightBotCollideable1 = new Rectangle(1536, 896, 1, 64);
-           rightBotCollideable2 = new Rectangle(1536, 896, 64, 1);
-           rightBotCollideable3 = new Rectangle(1536, 960, 64, 1);
-           rightBotCollideable4 = new Rectangle(1600, 896, 1, 64);
+            rightBotCollideable1 = new Rectangle(1536, 896, 1, 64);
+            rightBotCollideable2 = new Rectangle(1536, 896, 64, 1);
+            rightBotCollideable3 = new Rectangle(1536, 960, 64, 1);
+            rightBotCollideable4 = new Rectangle(1600, 896, 1, 64);
 
             spriteBatch.Draw(collisionTexture, leftTopCollideable1, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             spriteBatch.Draw(collisionTexture, leftTopCollideable2, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);

@@ -17,7 +17,8 @@ namespace Rogue_Like
         private string[] nameList = { "Bore Ragnerock", "Hilbo Maggins", "Pappy Poonter", "Michael the bicicle"};
         public static string name;
         public bool shoot;
-        public static int health;
+        public static int currentHealth;
+        public static int maxHealth;
         public static int meleeDamage;
         public static int rangedDamage;
         public static int bulletCount;
@@ -43,7 +44,8 @@ namespace Rogue_Like
             food = controller.GetItem(5);
             Int32.TryParse(food, out Food);
             name = nameList[GameWorld.r.Next(0,3)];
-            health = 20;
+            maxHealth = 20;
+            currentHealth = 20;
             meleeDamage = 10;
             rangedDamage = 5;
 
@@ -119,7 +121,7 @@ namespace Rogue_Like
         {
             if (otherObject is EnemyBullet)
             {
-                health -= RangedEnemy.damage;
+                currentHealth -= RangedEnemy.damage;
                 GameWorld.gameObjectsRemove.Add(otherObject);
             }
             if (otherObject is Coin)

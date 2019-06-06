@@ -53,7 +53,7 @@ namespace Rogue_Like
             {
                 if (lastAttack > 1.5f)
                 {
-                    Player.health -= 1;
+                    Player.currentHealth -= 1;
                     lastAttack = 0;
                 }
             }

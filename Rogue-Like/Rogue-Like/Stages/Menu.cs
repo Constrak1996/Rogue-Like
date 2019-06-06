@@ -101,9 +101,13 @@ namespace Rogue_Like
                 menu = false;
                 newgame = false;
                 resume = true;
+                GameWorld.isPlaying = true;
+                //GameWorld.NewGame = true;
+                
+                
             }
-            
-            
+
+
         }
         //Makes a Resumebutton
         private void ResumeButton_Click(object sender, EventArgs e)
@@ -114,13 +118,13 @@ namespace Rogue_Like
                 Shop.shop = true;
                 menu = false;
             }
-            
+
 
         }
         //Makes a HighScorebutton
         private void HighScoreButton_Click(object sender, EventArgs e)
         {
-            
+
             _gameWorld.ChangeState(new HighScore(_gameWorld, _graphichsDevice, _content));
         }
 
@@ -144,7 +148,7 @@ namespace Rogue_Like
         private void QuitGameButton_Click(object sender, EventArgs e)
         {
             _gameWorld.Exit();
-            model.QuitGame();
+            GameWorld.isPlaying = false;
         }
     }
 }
