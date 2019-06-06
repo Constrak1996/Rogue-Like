@@ -46,7 +46,6 @@ namespace Rogue_Like
             command.ExecuteNonQuery();
         }
         
-        
         /// <summary>
         /// Constructs the HighScore in DataBase
         /// </summary>
@@ -63,9 +62,7 @@ namespace Rogue_Like
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             command.ExecuteNonQuery();
         }
-
-
-
+        
         public void FillCharTable()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
@@ -77,7 +74,7 @@ namespace Rogue_Like
 
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
-            cmd.CommandText = $"UPDATE savechar set score = {Player.dataScore}, health = {Player.health}, food = {Player.Food}, gold = {Player.Coin};";
+            cmd.CommandText = $"UPDATE savechar set score = {Player.dataScore}, health = {Player.health}, food = {Player.Food}, gold = {Player.Coin}";
             cmd.ExecuteNonQuery();
         }
 
@@ -96,8 +93,6 @@ namespace Rogue_Like
             cmd.ExecuteNonQuery();
             cmd.CommandText = "INSERT INTO item (id, name, Value) VALUES(6,'Bones', 0)";
             cmd.ExecuteNonQuery();
-
-
         }
         
         /// <summary>
@@ -128,9 +123,7 @@ namespace Rogue_Like
                 }
 
             }
-
             return slqItem;
-
         }
         /// <summary>
         /// Get the HighScore from the DataBase

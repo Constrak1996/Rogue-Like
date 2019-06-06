@@ -741,9 +741,7 @@ namespace Rogue_Like
             AddTexture(Carpet_Right_Mid);
             AddTexture(Carpet_Mid);
             #endregion
-
-
-
+            
         }
 
         public void NextLevelRoom_Change()
@@ -820,9 +818,7 @@ namespace Rogue_Like
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
                 Shop.shop = false;
             }
-
-
-
+            
             level1Enemies();
             NextLevelRoom_Change();
         }

@@ -69,15 +69,9 @@ namespace Rogue_Like
         public static bool isMap3 = false;
         public static bool isNextLevelRoom = false;
         public static bool Pitroom = false;
-
-
-
-
+        
         private static ContentManager _content;
         public static ContentManager ContentManager { get => _content; }
-
-        
-        
         
         //The lists used for loading and removing items
         public static List<GameObject> gameObjects = new List<GameObject>();
