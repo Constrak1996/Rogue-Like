@@ -16,6 +16,7 @@ namespace Rogue_Like
         private SpriteFont Font;
         private Texture2D _playerTexture;
         public static bool shop;
+        
         private List<Component> _component;
         //Map Drawings
         #region
@@ -596,6 +597,8 @@ namespace Rogue_Like
 
         public Shop_Level1(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
+            GameWorld.isShop = true;
+            
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
             Font = content.Load<SpriteFont>("Font");
@@ -902,7 +905,7 @@ namespace Rogue_Like
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
 
             }
-
+            
             Level1_Change();
             //player.Update(gameTime);
         }

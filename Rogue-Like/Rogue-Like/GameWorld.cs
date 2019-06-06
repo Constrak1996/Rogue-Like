@@ -63,7 +63,7 @@ namespace Rogue_Like
         public Rectangle rightBotCollideable4;
         #endregion
 
-        public static bool isShop = false;
+        public static bool isShop;
         public static bool isMap1 = false;
         public static bool isMap2 = false;
         public static bool isMap3 = false;
@@ -264,13 +264,7 @@ namespace Rogue_Like
                     }
                 }
             }
-
-            if (_currentState is Shop)
-            {
-                isShop = true;
-            }
-
-                enemy.Update(gameTime);
+               enemy.Update(gameTime);
                 base.Update(gameTime);
 
             if (player.hitBox.Intersects(bottomLineDoor) & _currentState is Shop)
@@ -301,7 +295,13 @@ namespace Rogue_Like
                 player.Transform = new Transform(new Vector2(865, 910), 1);
                 isMap1 = false;
                 isShop = true;
-            }
+                ShopItem.spawnItem1 = true;
+                ShopItem.spawnItem2 = true;
+                ShopItem.spawnItem3 = true;
+                ShopItem.spawnItem4 = true;
+                ShopItem.spawnItem5 = true;
+                ShopItem.spawnitem6 = true;
+    }
 
             if (player.hitBox.Intersects(bottomLineDoor) && _currentState is Room1)
             {

@@ -11,12 +11,12 @@ namespace Rogue_Like
     class ShopItem : GameObject
     {
         private string[] shopItems = { "Slingshot", "ArmorOfTheGods", "Stick", "Sword", "Club", "Rock"};
-        private static bool spawnItem1 = true;
-        private static bool spawnItem2 = true;
-        private static bool spawnItem3 = true;
-        private static bool spawnItem4 = true;
-        private static bool spawnItem5 = true;
-        private static bool spawnitem6 = true;
+        public static bool spawnItem1 = true;
+        public static bool spawnItem2 = true;
+        public static bool spawnItem3 = true;
+        public static bool spawnItem4 = true;
+        public static bool spawnItem5 = true;
+        public static bool spawnitem6 = true;
 
         public override Rectangle hitBox => base.hitBox;
 
@@ -81,6 +81,7 @@ namespace Rogue_Like
         /// </summary>
         public void SpawnShopItems()
         {
+         
             if (spawnItem1 && GameWorld.isShop == true)
             {
                 spriteName = shopItems[GameWorld.r.Next(0, 5)];
