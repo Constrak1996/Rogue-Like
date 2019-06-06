@@ -11,9 +11,12 @@ namespace Rogue_Like
     {
         double lastAttack;
         float enemyMoveSpeed = 0.5f;
+        public static int damage = 1;
+        public int health;
 
-        public RangedEnemy(string spriteName, Transform Transform, int health) : base(spriteName, Transform)
+        public RangedEnemy(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
+            health = 100;
         }
 
         public override Rectangle hitBox => base.hitBox;
@@ -56,31 +59,65 @@ namespace Rogue_Like
             }
 
             //Bullet collision
-            if (otherObject is Bullet || otherObject is PlayerMeleeAttack)
+            if (otherObject is Bullet)
             {
                 Player.dataScore++;
-                GameWorld.gameObjectsRemove.Add(this);
+                health -= Player.rangedDamage;
                 GameWorld.gameObjectsRemove.Add(otherObject);
-                int lootpool = GameWorld.r.Next(1, 3);
-                switch (lootpool)
+                if (health <=0)
                 {
-                    case 1:
-                        GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
-                        break;
-                    case 2:
-                        GameWorld.gameObjectsAdd.Add(new Ammo("BulletTest", new Transform(Transform.Position, 0)));
-                        
-                        break;
-                    case 3:
-                        GameWorld.gameObjectsAdd.Add(new Food("Food", new Transform(Transform.Position, 0)));
-                        break;
+                    GameWorld.gameObjectsRemove.Add(this);
+                    
+                    int lootpool = GameWorld.r.Next(1, 3);
+                    switch (lootpool)
+                    {
+                        case 1:
+                            GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
+                            break;
+                        case 2:
+                            GameWorld.gameObjectsAdd.Add(new Ammo("BulletTest", new Transform(Transform.Position, 0)));
 
+                            break;
+                        case 3:
+                            GameWorld.gameObjectsAdd.Add(new Food("Food", new Transform(Transform.Position, 0)));
+                            break;
+
+                    }
                 }
+                
+            }
+            if (otherObject is PlayerMeleeAttack)
+            {
+                Player.dataScore++;
+                health -= Player.meleeDamage;
+                GameWorld.gameObjectsRemove.Add(otherObject);
+                if (health <=0)
+                {
+                    GameWorld.gameObjectsRemove.Add(this);
+                    
+                    int lootpool = GameWorld.r.Next(1, 3);
+                    switch (lootpool)
+                    {
+                        case 1:
+                            GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
+                            break;
+                        case 2:
+                            GameWorld.gameObjectsAdd.Add(new Ammo("BulletTest", new Transform(Transform.Position, 0)));
+
+                            break;
+                        case 3:
+                            GameWorld.gameObjectsAdd.Add(new Food("Food", new Transform(Transform.Position, 0)));
+                            break;
+
+                    }
+                }
+                
             }
 
             //PlayerMelee collision
             if (otherObject is PlayerMeleeAttack)
             {
+                
                 GameWorld.gameObjectsRemove.Add(this);
             }
 

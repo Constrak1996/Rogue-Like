@@ -173,7 +173,7 @@ namespace Rogue_Like
             //Collisionbox texture
             collisionTexture = Content.Load<Texture2D>("OnePixel");
             //Enemy
-            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0);
+            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0));
 
             //Player
             player = new Player("SwordBob", new Transform(new Vector2(700, 200), 0));
@@ -249,7 +249,7 @@ namespace Rogue_Like
             gameObjectsRemove.Clear();
 
             //Player movement
-            player.PlayerMovement(3);
+            player.PlayerMovement(8);
 
             //Check if gameobject is colliding, if it does run collision code
             foreach (GameObject go in gameObjects)
@@ -510,7 +510,7 @@ namespace Rogue_Like
                     }   
                 }
 
-                spriteBatch.DrawString(Font, $"{Player.name}\nHealth: {Player.health}\nAmmo: {Player.bulletCount}\nDamage: {Player.damage}\nGold: {Player.Coin}\nFood: {Player.Food}\nScore: {Player.dataScore}", new Vector2(1735, 0), Color.White);
+                spriteBatch.DrawString(Font, $"{Player.name}\nHealth: {Player.health}\nAmmo: {Player.bulletCount}\nDamage: {Player.meleeDamage}\nRangeDamage: {Player.rangedDamage}\nGold: {Player.Coin}\nFood: {Player.Food}\nScore: {Player.dataScore}", new Vector2(1735, 0), Color.White);
 #if DEBUG
                 spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
 #endif

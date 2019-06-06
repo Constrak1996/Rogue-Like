@@ -18,7 +18,8 @@ namespace Rogue_Like
         public static string name;
         public bool shoot;
         public static int health;
-        public static int damage;
+        public static int meleeDamage;
+        public static int rangedDamage;
         public static int bulletCount;
         public static string score;
         public static int dataScore;
@@ -43,7 +44,8 @@ namespace Rogue_Like
             Int32.TryParse(food, out Food);
             name = nameList[GameWorld.r.Next(0,3)];
             health = 20;
-            damage = 10;
+            meleeDamage = 10;
+            rangedDamage = 5;
 
             Thread CheckPoint = new Thread(controller.SaveChar);
             CheckPoint.IsBackground = true;
@@ -112,7 +114,7 @@ namespace Rogue_Like
         {
             if (otherObject is EnemyBullet)
             {
-                health -= Enemy.damage;
+                health -= RangedEnemy.damage;
                 GameWorld.gameObjectsRemove.Add(otherObject);
             }
             if (otherObject is Coin)

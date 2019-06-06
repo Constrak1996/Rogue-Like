@@ -41,7 +41,7 @@ namespace Rogue_Like
             if (otherObject is Player && this.spriteName == "Slingshot" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
             {
                 GameWorld.gameObjectsRemove.Add(this);
-                Player.damage++;
+                Player.meleeDamage++;
             }
 
             if (otherObject is Player && this.spriteName == "ArmorOfTheGods" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
@@ -53,19 +53,19 @@ namespace Rogue_Like
             if (otherObject is Player && this.spriteName == "Stick" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
             {
                 GameWorld.gameObjectsRemove.Add(this);
-                Player.damage++;
+                Player.meleeDamage++;
             }
 
             if (otherObject is Player && this.spriteName == "Sword" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
             {
                 GameWorld.gameObjectsRemove.Add(this);
-                Player.damage += 3;
+                Player.meleeDamage += 3;
             }
 
             if (otherObject is Player && this.spriteName == "Club" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 4)
             {
                 GameWorld.gameObjectsRemove.Add(this);
-                Player.damage += 2;
+                Player.meleeDamage += 2;
             }
 
             if (otherObject is Player && this.spriteName == "Rock" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
