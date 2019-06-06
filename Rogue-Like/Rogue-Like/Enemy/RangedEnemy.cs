@@ -58,7 +58,7 @@ namespace Rogue_Like
             //Bullet collision
             if (otherObject is Bullet || otherObject is PlayerMeleeAttack)
             {
-                Player.DataScore++;
+                Player.dataScore++;
                 GameWorld.gameObjectsRemove.Add(this);
                 GameWorld.gameObjectsRemove.Add(otherObject);
                 int lootpool = GameWorld.r.Next(1, 3);
@@ -99,6 +99,7 @@ namespace Rogue_Like
                 EnemyBullet bullet = new EnemyBullet("BulletTest", new Transform(new Vector2(this.Transform.Position.X, this.Transform.Position.Y), 0), direction, 5);
                 GameWorld.gameObjectsAdd.Add(bullet);
                 lastAttack = 0;
+                GameWorld.playerRangedSound.Play();
             }
         }
     }

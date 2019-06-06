@@ -69,7 +69,7 @@ namespace Rogue_Like
         public void FillCharTable()
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
-            cmd.CommandText = $"INSERT INTO savechar (id, name, score, gold, food, health) VALUES(null,'{Player.name}',{Player.DataScore},{Player.Coin},{Player.Food},{Player.health})";
+            cmd.CommandText = $"INSERT INTO savechar (id, name, score, gold, food, health) VALUES(null,'{Player.name}',{Player.dataScore},{Player.Coin},{Player.Food},{Player.health})";
             cmd.ExecuteNonQuery();
         }
 
@@ -77,7 +77,7 @@ namespace Rogue_Like
 
         {
             SQLiteCommand cmd = m_dbConnection.CreateCommand();
-            cmd.CommandText = $"UPDATE savechar set score = {Player.DataScore}, health = {Player.health}, food = {Player.Food}, gold = {Player.Coin};";
+            cmd.CommandText = $"UPDATE savechar set score = {Player.dataScore}, health = {Player.health}, food = {Player.Food}, gold = {Player.Coin};";
             cmd.ExecuteNonQuery();
         }
 
@@ -99,6 +99,7 @@ namespace Rogue_Like
 
 
         }
+        
         /// <summary>
         /// Fills the HighScore in DataBase
         /// </summary>

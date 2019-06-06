@@ -255,6 +255,7 @@ namespace Rogue_Like
                 {
                     Player.health -= Enemy.damage;
                     lastAttack = 0;
+                    GameWorld.playerMeleeSound.Play();
                 }
             }
 

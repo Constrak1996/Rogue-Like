@@ -63,12 +63,12 @@ namespace Rogue_Like
         {
             return model.GetUpdateNewScore();
         }
-
+       
         public void SaveChar()
         {
             while (true)
             {
-                model.ThreadUpdate(Player.Food, Player.Coin, Player.DataScore, Player.health);
+                model.ThreadUpdate(Player.Food, Player.Coin, Player.dataScore, Player.health);
 
 
                 Thread.Sleep(500);

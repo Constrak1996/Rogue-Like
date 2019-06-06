@@ -21,18 +21,13 @@ namespace Rogue_Like
         public static int damage;
         public static int bulletCount;
         public static string score;
-        public static int DataScore;
+        public static int dataScore;
         public string coin;
         public static int Coin;
         public string food;
         public static int Food;
         private double lastShot;
-        private int time;
-        private TimeSpan timeBeforeBoneDies = new TimeSpan(0);
-
-        
-
-
+       
         /// <summary>
         /// The players Constructor
         /// </summary>
@@ -43,7 +38,7 @@ namespace Rogue_Like
             coin = controller.GetItem(4);
             Int32.TryParse(coin, out Coin);
             score = controller.GetPlayerScore();
-            Int32.TryParse(score, out DataScore);
+            Int32.TryParse(score, out dataScore);
             food = controller.GetItem(5);
             Int32.TryParse(food, out Food);
             name = nameList[GameWorld.r.Next(0,3)];
@@ -90,7 +85,7 @@ namespace Rogue_Like
         public override void Update(GameTime gameTime)
         {
             lastShot += gameTime.ElapsedGameTime.TotalSeconds;
-            time += (int)gameTime.ElapsedGameTime.TotalSeconds;
+          
             PlayerRanged();
             PlayerMelee();
             
