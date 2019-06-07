@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rogue_Like.Stages.Levels
+namespace Rogue_Like.Stages.Levels.Level4
 {
-    class Room1_Level1
+    class Room4_Level4
     {
     }
 }

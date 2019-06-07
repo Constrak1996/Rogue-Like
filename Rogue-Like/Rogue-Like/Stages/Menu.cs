@@ -96,8 +96,8 @@ namespace Rogue_Like
             if (newgame)
             {
                 controller.newPlayer();
-                _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
-                Shop.shop = true;
+                _gameWorld.ChangeState(new Shop_Level1(_gameWorld, _graphichsDevice, _content));
+                Shop_Level1.shop = true;
                 menu = false;
                 newgame = false;
                 resume = true;
@@ -110,8 +110,8 @@ namespace Rogue_Like
         {
             if (resume)
             {
-                _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
-                Shop.shop = true;
+                _gameWorld.ChangeState(new Shop_Level1(_gameWorld, _graphichsDevice, _content));
+                Shop_Level1.shop = true;
                 menu = false;
             }
             
