@@ -17,7 +17,7 @@ namespace Rogue_Like
         public static bool spawnItem4 = true;
         public static bool spawnItem5 = true;
         public static bool spawnitem6 = true;
-
+        private int budget = Player.Coin;
         public override Rectangle hitBox => base.hitBox;
 
         public ShopItem(string spriteName, Transform Transform) : base(spriteName, Transform)
@@ -41,36 +41,42 @@ namespace Rogue_Like
             if (otherObject is Player && this.spriteName == "Slingshot" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
             {
                 GameWorld.gameObjectsRemove.Add(this);
-                Player.meleeDamage++;
+                Player.Coin -= 3;
+                Player.rangedDamage++;
             }
 
             if (otherObject is Player && this.spriteName == "ArmorOfTheGods" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
             {
                 GameWorld.gameObjectsRemove.Add(this);
-                Player.currentHealth++;
+                Player.Coin -= 3;
+                Player.currentHealth+=3;
             }
 
             if (otherObject is Player && this.spriteName == "Stick" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
             {
                 GameWorld.gameObjectsRemove.Add(this);
+                Player.Coin -= 3;
                 Player.meleeDamage++;
             }
 
             if (otherObject is Player && this.spriteName == "Sword" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
             {
                 GameWorld.gameObjectsRemove.Add(this);
+                Player.Coin -= 3;
                 Player.meleeDamage += 3;
             }
 
             if (otherObject is Player && this.spriteName == "Club" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 4)
             {
                 GameWorld.gameObjectsRemove.Add(this);
+                Player.Coin -= 4;
                 Player.meleeDamage += 2;
             }
 
             if (otherObject is Player && this.spriteName == "Rock" && Keyboard.GetState().IsKeyDown(Keys.E) && Player.Coin == 3)
             {
                 GameWorld.gameObjectsRemove.Add(this);
+                Player.Coin -= 3;
                 Player.bulletCount += 5;
             }
             base.DoCollision(otherObject);
