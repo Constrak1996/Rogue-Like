@@ -16,11 +16,12 @@ namespace Rogue_Like
     /// </summary>
     public class GameWorld : Game
     {
-        private static GameWorld instance = null;
+        private static GameWorld instance;
         public static bool isPlaying;
+        public static bool deathCounter = false; //Has the player died X Times
         Controller controller = new Controller();
         GraphicsDeviceManager graphics;
-        private int playerDeathCount;
+        private int playerDeathCount; //Counts the time the player died
         SpriteBatch spriteBatch;
         SpriteFont Font;
         private TimeSpan timeSinceStart;
@@ -142,8 +143,6 @@ namespace Rogue_Like
 
         }
 
-        public static bool NewGame = false;
-
         public void ChangeState(State state)
         {
             _nextState = state;
@@ -205,11 +204,13 @@ namespace Rogue_Like
             Menu.resume = false;
             EndScreen.endScreen = false;
         }
-        public void CALLLOADCONT()
+        
+        public void RestartGame(GameTime gameTime)
         {
             LoadContent();
+            Update(gameTime);
+            Draw(gameTime);
         }
-
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -219,7 +220,7 @@ namespace Rogue_Like
         {
 
         }
-
+        
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -281,7 +282,18 @@ namespace Rogue_Like
             }
             enemy.Update(gameTime);
             base.Update(gameTime);
+            HitBox();
 
+            if (isShop == true)
+            {
+                shopItems.Update(gameTime);
+            }
+        }
+        /// <summary>
+        /// DIfferent hitboxes for the player
+        /// </summary>
+        private void HitBox()
+        {
             if (player.hitBox.Intersects(bottomLineDoor) & _currentState is Shop)
             {
                 _nextState = new Room1(this, GraphicsDevice, Content);
@@ -373,22 +385,14 @@ namespace Rogue_Like
                 isShop = true;
                 isNextLevelRoom = false;
             }
-
-            if (isShop == true)
-            {
-                shopItems.Update(gameTime);
-            }
         }
-
+        /// <summary>
+        /// Start a second life for the player
+        /// </summary>
         public void Restart()
-        {
-
-            if (NewGame)
-            {
-                LoadContent();
-                NewGame = false;
-            }
-            else if (Player.currentHealth <= 0 && isPlaying)
+        { 
+            
+            if (Player.currentHealth <= 0 && isPlaying)
             {
 
                 playerDeathCount++;
@@ -399,6 +403,7 @@ namespace Rogue_Like
                     {
                         gameObjectsRemove.Add(enemy);
                     }
+                    LoadContent();
                     isPlaying = false;
                     playerDeathCount = 0;
                 }
@@ -407,10 +412,12 @@ namespace Rogue_Like
                     foreach (GameObject enemy in gameObjects)
                     {
                         gameObjectsRemove.Add(enemy);
+                        
                     }
+                    
                     int tempFood = Player.Food;
                     int tempHealth = Player.maxHealth;
-
+                    
                     LoadContent();
 
                     Player.Food = tempFood;
@@ -436,7 +443,9 @@ namespace Rogue_Like
 
 
             }
+
         }
+    
 
 
         /// <summary>
@@ -449,7 +458,7 @@ namespace Rogue_Like
 
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
-            if (Menu.menu == false)
+            if (Menu.menu == false && isPlaying)
             {
                 if (Shop.shop == true)
                 {

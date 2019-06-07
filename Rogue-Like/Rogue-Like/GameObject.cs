@@ -19,6 +19,7 @@ namespace Rogue_Like
         public Texture2D sprite;
         public Vector2 spriteCenter;
         public string spriteName;
+        
 
         /// <summary>
         /// Makes a rectangle that will be made into the objects hitbox
@@ -35,6 +36,7 @@ namespace Rogue_Like
         /// <param name="Transform">All positions and such is held in here</param>
         public GameObject(string spriteName, Transform Transform)
         {
+            
             this.sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
             this.Transform = Transform;
             spriteCenter = new Vector2(sprite.Width * 0.5f, sprite.Height * 0.5f);
