@@ -12,6 +12,7 @@ namespace Rogue_Like
     public class Menu : State
     {
         private Controller controller = new Controller();
+        Player player;
         private List<Component> _component;
         private Model model;
         public static bool newgame;
@@ -95,20 +96,28 @@ namespace Rogue_Like
         {
             if (newgame)
             {
+                
                 controller.NewPlayer();
                 _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
                 Shop.shop = true;
                 menu = false;
-                newgame = false;
+                Player.score = "0";
+                Player.currentHealth = 20;
                 resume = true;
                 GameWorld.isPlaying = true;
-                //GameWorld.NewGame = true;
-                
+                if (GameWorld.deathCounter)
+                {
+                    //player = new Player("SwordBob", new Transform(new Vector2(700, 200), 0));
+                    //GameWorld.gameObjectsAdd.Add(player);
+                    
+                }
                 
             }
+                
 
 
         }
+        
         //Makes a Resumebutton
         private void ResumeButton_Click(object sender, EventArgs e)
         {

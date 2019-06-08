@@ -918,6 +918,8 @@ namespace Rogue_Like
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
                 Menu.menu = true;
+                Menu.newgame = false;
+                Menu.resume = true;
             }
 
             Level1_Change();

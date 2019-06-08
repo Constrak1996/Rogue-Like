@@ -26,12 +26,14 @@ namespace Rogue_Like
                 model.ItemStructure();
                 model.CharacterTable();
                 
+                
             }
             //Fill the Tables
             {
 
                 model.FillHighScoreTable();
                 model.FillItemTable();
+                model.FillCharTable();
             }
         }
 

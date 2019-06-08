@@ -94,11 +94,14 @@ namespace Rogue_Like
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
+                GameWorld.deathCounter = true;
+                GameWorld.isPlaying = false;
+               
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Space))
-            {
-                _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
-            }
+            //else if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            //{
+            //    _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
+            //}
 
             foreach (var component in _component)
             {
