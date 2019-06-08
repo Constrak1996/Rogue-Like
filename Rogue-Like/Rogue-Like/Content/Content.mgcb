@@ -2420,6 +2420,12 @@
 /processorParam:TextureFormat=Color
 /build:Meat.png
 
+#begin MoneyPickup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:MoneyPickup.wav
+
 #begin OnePixel.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -126,6 +126,7 @@ namespace Rogue_Like
         //Soundeffects
         public static SoundEffect playerMeleeSound;
         public static SoundEffect playerRangedSound;
+        public static SoundEffect moneyPickupSound;
 
         //Music
         public static Song backTrack;
@@ -196,6 +197,7 @@ namespace Rogue_Like
             //Soundeffects
             playerMeleeSound = Content.Load<SoundEffect>("SwordSlashSound");
             playerRangedSound = Content.Load<SoundEffect>("PlayerBulletThrow");
+            moneyPickupSound = Content.Load<SoundEffect>("MoneyPickup");
 
             //Level bools running once
             L1 = true;

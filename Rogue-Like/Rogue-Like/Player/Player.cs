@@ -128,6 +128,7 @@ namespace Rogue_Like
             {
                 Coin++;
                 GameWorld.gameObjectsRemove.Add(otherObject);
+                GameWorld.moneyPickupSound.Play();
             }
             if (otherObject is Food)
             {
