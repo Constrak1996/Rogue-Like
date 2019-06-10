@@ -828,7 +828,7 @@ namespace Rogue_Like
         }
 
 
-        public void Level1_Change()
+        public void Level1_Change()//change the state with Key(1)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.D1))
             {
@@ -894,7 +894,7 @@ namespace Rogue_Like
             }
             
             Level1_Change();
-            //player.Update(gameTime);
+            
         }
 
     }

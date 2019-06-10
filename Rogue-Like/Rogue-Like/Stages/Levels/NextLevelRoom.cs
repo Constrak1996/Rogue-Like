@@ -781,10 +781,6 @@ namespace Rogue_Like
             Texture2D Shop = content.Load<Texture2D>("Shop");
             #endregion
             
-            //Rooms
-            //AddRoom(mapBackground);
-            //AddRoom(map);
-
             #region Added Textures to list
             AddTexture(wall);
             AddTexture(piller);
@@ -945,22 +941,7 @@ namespace Rogue_Like
                     spriteBatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
                 }
             }
-
-            //for (int x = 0; x < Width; x++)
-            //{
-            //    for (int y = 0; y < Height; y++)
-            //    {
-            //        int textureIndex = level1Generate[y, x];
-            //        if (textureIndex == -1)
-            //        {
-            //            continue;
-            //        }
-            //        Array array = ArrayLevelGenerate[textureIndex];
-            //        spritebatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
-            //    }
-            //}
-
-
+            
         }
         //Allows a NextStage Event to happen
 

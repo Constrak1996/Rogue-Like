@@ -679,7 +679,7 @@ namespace Rogue_Like
 
         }
 
-        public void Level3_Change()
+        public void Level3_Change()//Key(3) to change state
         {
             if (Keyboard.GetState().IsKeyDown(Keys.D3))
             {
