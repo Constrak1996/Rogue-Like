@@ -46,7 +46,10 @@ namespace Rogue_Like
         {
 
         }
-
+        /// <summary>
+        /// Draws the GameObjects
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(sprite, new Vector2(Transform.Position.X, Transform.Position.Y), null, Color.White, rotation, spriteCenter, 1f, SpriteEffects.None, 1f);

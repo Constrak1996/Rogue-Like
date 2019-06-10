@@ -14,7 +14,7 @@ namespace Rogue_Like
     {
         Controller controller = new Controller();
 
-        private string[] nameList = { "Bore Ragnerock", "Hilbo Maggins", "Pappy Poonter", "Michael the bicicle"};
+        private string[] nameList = { "Bore Ragnerock", "Hilbo Maggins", "Pappy Poonter", "Michael the bicicle", "Boris Boatman","Mr.X"};
         public static string name;
         public bool shoot;
         public static int currentHealth;
@@ -38,12 +38,12 @@ namespace Rogue_Like
         public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
             coin = controller.GetItem(4);
-            Int32.TryParse(coin, out Coin);
+            Int32.TryParse(coin, out Coin); //Converts the string coin to int Coin
             score = controller.GetPlayerScore();
-            Int32.TryParse(score, out dataScore);
+            Int32.TryParse(score, out dataScore); //string score to int dataScore
             food = controller.GetItem(5);
-            Int32.TryParse(food, out Food);
-            name = nameList[GameWorld.r.Next(0,3)];
+            Int32.TryParse(food, out Food); //Convert the string food to int Food
+            name = nameList[GameWorld.r.Next(0,3)]; //randomise a name after the player dies
             maxHealth = 20;
             currentHealth = 20;
             meleeDamage = 10;

@@ -16,7 +16,7 @@ namespace Rogue_Like
         //Spawn Bool
         public bool spawned;
         private int health;
-        public static int damage = 1;
+        public static int damage = 1; //static attack of the enemy
 
         public Vector2 enemyPos;
         public float enemyMoveSpeed = 1;
@@ -32,7 +32,7 @@ namespace Rogue_Like
 
         public Enemy(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
-            health = 100;
+            health = 100; //Enemys health
             
         }
 
@@ -299,9 +299,7 @@ namespace Rogue_Like
                     int lootpool = GameWorld.r.Next(1, 3);
                     switch (lootpool)
                     {
-                        //case 0:
-                        //    GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
-                        //    break;
+                        
                         case 1:
                             GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
                             break;

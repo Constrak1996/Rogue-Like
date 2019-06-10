@@ -17,6 +17,10 @@ namespace Rogue_Like
         {
             
         }
+        /// <summary>
+        /// Updates the bone to disappere after 2 seconds
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             time += (float)gameTime.ElapsedGameTime.TotalSeconds;

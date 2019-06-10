@@ -65,7 +65,9 @@ namespace Rogue_Like
         {
             return model.GetUpdateNewScore();
         }
-       
+       /// <summary>
+       /// Acces the savechar table and updates it
+       /// </summary>
         public void SaveChar()
         {
             while (GameWorld.isPlaying)

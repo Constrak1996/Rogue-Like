@@ -98,11 +98,7 @@ namespace Rogue_Like
                 GameWorld.isPlaying = false;
                
             }
-            //else if (Keyboard.GetState().IsKeyDown(Keys.Space))
-            //{
-            //    _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
-            //}
-
+            
             foreach (var component in _component)
             {
                 component.Update(gameTime);

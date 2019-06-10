@@ -817,9 +817,7 @@ namespace Rogue_Like
             AddTexture(Door_Mid_Bot_Entry);
             AddTexture(Door_Right_Bot_Entry);
             #endregion
-
-
-
+            
         }
 
 

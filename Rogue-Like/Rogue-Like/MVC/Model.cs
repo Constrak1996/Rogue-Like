@@ -71,6 +71,9 @@ namespace Rogue_Like
             }
 
         }
+        /// <summary>
+        /// Create savechar table
+        /// </summary>
         public void CharacterTable()
         {
             using (m_dbConnection = new SQLiteConnection(CONNECTIONSTRING))
@@ -81,7 +84,9 @@ namespace Rogue_Like
                 command.ExecuteNonQuery();
             }
         }
-
+        /// <summary>
+        /// Fills the savechar table
+        /// </summary>
         public void FillCharTable()
         {
             using (m_dbConnection = new SQLiteConnection(CONNECTIONSTRING))
@@ -92,7 +97,13 @@ namespace Rogue_Like
                 cmd.ExecuteNonQuery();
             }
         }
-
+        /// <summary>
+        /// Update the savechar Table
+        /// </summary>
+        /// <param name="Food"></param>
+        /// <param name="Coin"></param>
+        /// <param name="DataScore"></param>
+        /// <param name="health"></param>
         public void ThreadUpdate(int Food, int Coin, int DataScore, int health)
 
         {
@@ -104,7 +115,9 @@ namespace Rogue_Like
                 cmd.ExecuteNonQuery();
             }
         }
-
+        /// <summary>
+        /// Fill the item table with different item
+        /// </summary>
         public void FillItemTable()
         {
             using (m_dbConnection = new SQLiteConnection(CONNECTIONSTRING))
@@ -137,6 +150,11 @@ namespace Rogue_Like
                 SQLiteCommand cmd = m_dbConnection.CreateCommand();
             }
         }
+        /// <summary>
+        /// gets the item of the choosen id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public String GetItem(int id)
         {
             using (m_dbConnection = new SQLiteConnection(CONNECTIONSTRING))
@@ -285,10 +303,7 @@ namespace Rogue_Like
                 return sqlPlayerscore;
             }
         }
-        /// <summary>
-        /// Skulle updatatere player score løbende, men bliv ikke helt færdig da den ikke for valuen fra vores Hooked klasse.
-        /// </summary>
-        /// <returns></returns>
+       
         public String UpdatePlayerScore()
         {
             using (m_dbConnection = new SQLiteConnection(CONNECTIONSTRING))

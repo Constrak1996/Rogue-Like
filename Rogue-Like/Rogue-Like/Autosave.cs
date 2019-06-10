@@ -34,9 +34,7 @@ namespace Rogue_Like
                 Thread.Sleep(500);
 
             }
-
-
-
+            
         }
 
     }

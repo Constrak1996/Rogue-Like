@@ -11,12 +11,12 @@ namespace Rogue_Like
     {
         double lastAttack;
         float enemyMoveSpeed = 0.5f;
-        public static int damage = 1;
+        public static int damage = 1; //static attack of the ranged enemy
         public int health;
 
         public RangedEnemy(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
-            health = 100;
+            health = 100; //Rangedenemys health
         }
 
         public override Rectangle hitBox => base.hitBox;

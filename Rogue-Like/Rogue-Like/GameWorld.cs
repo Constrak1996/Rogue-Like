@@ -90,8 +90,7 @@ namespace Rogue_Like
         public Texture2D shop;
         public Texture2D level1;
         public Texture2D level2;
-
-
+        
         //Player
         public static Player player;
 
@@ -207,13 +206,6 @@ namespace Rogue_Like
             EndScreen.endScreen = false;
         }
         
-        public void RestartGame(GameTime gameTime)
-        {
-            LoadContent();
-            Update(gameTime);
-            Draw(gameTime);
-        }
-
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
@@ -398,7 +390,7 @@ namespace Rogue_Like
             {
 
                 playerDeathCount++;
-                if (playerDeathCount >= 2)
+                if (playerDeathCount >= 6) //check to see if the player died 6 times
                 {
                     ChangeState(new EndScreen(this, GraphicsDevice, Content));
                     foreach (GameObject enemy in gameObjects)
@@ -462,10 +454,7 @@ namespace Rogue_Like
             _currentState.Draw(gameTime, spriteBatch);
             if (Menu.menu == false && isPlaying)
             {
-                if (Shop.shop == true)
-                {
-
-
+              
                     //Draws sprites in gameObjects list
                     foreach (GameObject go in gameObjects)
                     {
@@ -526,7 +515,7 @@ namespace Rogue_Like
                         }
 #endif
                     }
-                }
+                
 
                 if (player.hitBox.Intersects(topLine) || player.hitBox.Intersects(topLine1) || player.hitBox.Intersects(topLine2))
                 {

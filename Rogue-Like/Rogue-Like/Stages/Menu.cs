@@ -18,7 +18,7 @@ namespace Rogue_Like
         public static bool newgame;
         public static bool resume;
         public static bool menu;
-        //private Thread idleIkon;
+        
         /// <summary>
         /// The MenuStates Constructor
         /// </summary>
@@ -66,16 +66,7 @@ namespace Rogue_Like
                 quitGameButton,
             };
         }
-        /// <summary>
-        /// Make a idleikon spinning around in the buttom right side of the screen attached to a thread
-        /// </summary>
-        //public void IdleIkon()
-        //{
-
-        //    //idleIkon = new Thread(new ThreadStart(IdleIkon));
-        //    idleIkon.Start();
-        //    idleIkon.IsBackground = true;
-        //}
+        
         /// <summary>
         /// Draws the MenuState
         /// </summary>
@@ -105,17 +96,9 @@ namespace Rogue_Like
                 Player.currentHealth = 20;
                 resume = true;
                 GameWorld.isPlaying = true;
-                if (GameWorld.deathCounter)
-                {
-                    //player = new Player("SwordBob", new Transform(new Vector2(700, 200), 0));
-                    //GameWorld.gameObjectsAdd.Add(player);
-                    
-                }
                 
             }
                 
-
-
         }
         
         //Makes a Resumebutton
