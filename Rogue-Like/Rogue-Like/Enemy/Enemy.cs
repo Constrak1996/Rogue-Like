@@ -21,9 +21,7 @@ namespace Rogue_Like
         public Vector2 enemyPos;
         public float enemyMoveSpeed = 1;
         private double lastAttack;
-
-
-
+        
         /// <summary>
         /// Enemy hitbox
         /// </summary>

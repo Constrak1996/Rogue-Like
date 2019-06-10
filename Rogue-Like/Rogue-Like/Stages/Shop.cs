@@ -77,24 +77,7 @@ namespace Rogue_Like
 
             return map[cellY, cellX];
         }
-        //Generate levels
-        //private int[,] level1Generate = new int[,]
-        //{
-        //    {-1,-1,-1,-1,-1,0,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //    {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-        //};
-
-        //public int GetIndexLevelGenerate(int cellX, int cellY)
-        //{
-        //    if (cellX < 0 || cellX > Width - 1 || cellY < 0 || cellY > Height - 1)
-        //        return 0;
-
-        //    return level1Generate[cellY, cellX];
-        //}
+       
 
         public static List<Texture2D> tileTextures = new List<Texture2D>();
         //private List<Array> ArrayLevelGenerate = new List<Array>();
@@ -103,15 +86,7 @@ namespace Rogue_Like
         {
             tileTextures.Add(texture);
         }
-        //public void AddRoom(Array array)
-        //{
-        //    ArrayLevelGenerate.Add(array);
-        //}
-
-        //public int ShopBackground
-        //{
-        //    get { return level1Generate.GetLength(0); }
-        //}
+        
         #endregion
         #region Numeral Texture
         //The Width of Dungeon map
@@ -732,10 +707,6 @@ namespace Rogue_Like
             Texture2D Pedestal_Bot = content.Load<Texture2D>("64x64/Pedestal_Bot");
             #endregion
             
-            //Rooms
-            //AddRoom(mapBackground);
-            //AddRoom(map);
-
             #region Added Textures to list
             AddTexture(wall);
             AddTexture(piller);
@@ -884,21 +855,7 @@ namespace Rogue_Like
                     spriteBatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
                 }
             }
-
-            //for (int x = 0; x < Width; x++)
-            //{
-            //    for (int y = 0; y < Height; y++)
-            //    {
-            //        int textureIndex = level1Generate[y, x];
-            //        if (textureIndex == -1)
-            //        {
-            //            continue;
-            //        }
-            //        Array array = ArrayLevelGenerate[textureIndex];
-            //        spritebatch.Draw(texture, new Rectangle(x * 64, y * 64, 64, 64), Color.White);
-            //    }
-            //}
-           
+            
         }
         //Allows a NextStage Event to happen
 

@@ -720,15 +720,6 @@ namespace Rogue_Like
             Texture2D Shop = content.Load<Texture2D>("Shop");
             #endregion
             
-
-
-
-
-
-            //Rooms
-            //AddRoom(mapBackground);
-            //AddRoom(map);
-
             #region Added Textures to list
             AddTexture(wall);
             AddTexture(piller);
