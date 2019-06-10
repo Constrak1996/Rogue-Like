@@ -86,8 +86,7 @@ namespace Rogue_Like
         /// Spawn shot items at locations
         /// </summary>
         public void SpawnShopItems()
-        {
-         
+        {         
             if (spawnItem1 && GameWorld.isShop == true)
             {
                 spriteName = shopItems[GameWorld.r.Next(0, 5)];
