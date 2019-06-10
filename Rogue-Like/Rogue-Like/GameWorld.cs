@@ -316,12 +316,7 @@ namespace Rogue_Like
                 player.Transform = new Transform(new Vector2(865, 910), 1);
                 isMap1 = false;
                 isShop = true;
-                ShopItem.spawnItem1 = true;
-                ShopItem.spawnItem2 = true;
-                ShopItem.spawnItem3 = true;
-                ShopItem.spawnItem4 = true;
-                ShopItem.spawnItem5 = true;
-                ShopItem.spawnitem6 = true;
+                
             }
 
             if (player.hitBox.Intersects(bottomLineDoor) && _currentState is Room1)
