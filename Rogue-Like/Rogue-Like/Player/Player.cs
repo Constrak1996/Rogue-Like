@@ -23,11 +23,11 @@ namespace Rogue_Like
         public static int rangedDamage;
         public static int bulletCount;
         public static string score;
-        public static int dataScore;
+        public static int myScore;
         public string coin;
-        public static int Coin;
+        public static int myCoin;
         public string food;
-        public static int Food;
+        public static int myFood;
         private double lastShot;
        
         /// <summary>
@@ -38,11 +38,11 @@ namespace Rogue_Like
         public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
             coin = controller.GetItem(4);
-            Int32.TryParse(coin, out Coin); //Converts the string coin to int Coin
+            Int32.TryParse(coin, out myCoin); //Converts the string coin to int Coin
             score = controller.GetPlayerScore();
-            Int32.TryParse(score, out dataScore); //string score to int dataScore
+            Int32.TryParse(score, out myScore); //string score to int dataScore
             food = controller.GetItem(5);
-            Int32.TryParse(food, out Food); //Convert the string food to int Food
+            Int32.TryParse(food, out myFood); //Convert the string food to int Food
             name = nameList[GameWorld.r.Next(0,3)]; //randomise a name after the player dies
             maxHealth = 20;
             currentHealth = 20;
@@ -126,14 +126,14 @@ namespace Rogue_Like
             }
             if (otherObject is Coin)
             {
-                Coin++;
+                myCoin++;
                 GameWorld.gameObjectsRemove.Add(otherObject);
                 GameWorld.moneyPickupSound.Play();
             }
             if (otherObject is Food)
             {
                 
-                Food++;
+                myFood++;
                 GameWorld.gameObjectsRemove.Add(otherObject);
                 GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
                 

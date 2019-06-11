@@ -93,7 +93,7 @@ namespace Rogue_Like
             {
                 m_dbConnection.Open();
                 SQLiteCommand cmd = m_dbConnection.CreateCommand();
-                cmd.CommandText = $"INSERT INTO savechar (id, name, score, gold, food, health) VALUES(null,'{Player.name}',{Player.dataScore},{Player.Coin},{Player.Food},{Player.currentHealth})";
+                cmd.CommandText = $"INSERT INTO savechar (id, name, score, gold, food, health) VALUES(null,'{Player.name}',{Player.myScore},{Player.myCoin},{Player.myFood},{Player.currentHealth})";
                 cmd.ExecuteNonQuery();
             }
         }
@@ -111,7 +111,7 @@ namespace Rogue_Like
             {
                 m_dbConnection.Open();
                 SQLiteCommand cmd = m_dbConnection.CreateCommand();
-                cmd.CommandText = $"UPDATE savechar set score = {Player.dataScore}, health = {Player.currentHealth}, food = {Player.Food}, gold = {Player.Coin}";
+                cmd.CommandText = $"UPDATE savechar set score = {Player.myScore}, health = {Player.currentHealth}, food = {Player.myFood}, gold = {Player.myCoin}";
                 cmd.ExecuteNonQuery();
             }
         }

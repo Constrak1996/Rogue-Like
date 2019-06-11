@@ -404,15 +404,15 @@ namespace Rogue_Like
                         
                     }
                     
-                    int tempFood = Player.Food;
+                    int tempFood = Player.myFood;
                     int tempHealth = Player.maxHealth;
                     
                     LoadContent();
 
-                    Player.Food = tempFood;
+                    Player.myFood = tempFood;
                     Player.maxHealth = tempHealth;
 
-                    if (Player.Food <= 3)
+                    if (Player.myFood <= 3)
                     {
                         Player.maxHealth -= 2;
                         Player.currentHealth = Player.maxHealth;
@@ -549,7 +549,7 @@ namespace Rogue_Like
                     }
                 }
 
-                spriteBatch.DrawString(Font, $"{Player.name}\nHealth: {Player.currentHealth}\nAmmo: {Player.bulletCount}\nDamage: {Player.meleeDamage}\nRangeDamage: {Player.rangedDamage}\nGold: {Player.Coin}\nFood: {Player.Food}\nScore: {Player.dataScore}", new Vector2(1735, 0), Color.White);
+                spriteBatch.DrawString(Font, $"{Player.name}\nHealth: {Player.currentHealth}\nAmmo: {Player.bulletCount}\nDamage: {Player.meleeDamage}\nRangeDamage: {Player.rangedDamage}\nGold: {Player.myCoin}\nFood: {Player.myFood}\nScore: {Player.myScore}", new Vector2(1735, 0), Color.White);
 #if DEBUG
                 spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
 #endif

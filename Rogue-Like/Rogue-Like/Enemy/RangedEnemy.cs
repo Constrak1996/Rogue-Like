@@ -61,7 +61,7 @@ namespace Rogue_Like
             //Bullet collision
             if (otherObject is Bullet)
             {
-                Player.dataScore++;
+                Player.myScore++;
                 health -= Player.rangedDamage;
                 GameWorld.gameObjectsRemove.Add(otherObject);
                 if (health <=0)
@@ -88,7 +88,7 @@ namespace Rogue_Like
             }
             if (otherObject is PlayerMeleeAttack)
             {
-                Player.dataScore++;
+                Player.myScore++;
                 health -= Player.meleeDamage;
                 GameWorld.gameObjectsRemove.Add(otherObject);
                 if (health <=0)

@@ -72,7 +72,7 @@ namespace Rogue_Like
         {
             while (GameWorld.isPlaying)
             {
-                model.ThreadUpdate(Player.Food, Player.Coin, Player.dataScore, Player.currentHealth);
+                model.ThreadUpdate(Player.myFood, Player.myCoin, Player.myScore, Player.currentHealth);
 
 
                 Thread.Sleep(500);
