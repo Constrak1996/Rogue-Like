@@ -67,7 +67,7 @@ namespace Rogue_Like
         public Rectangle rightBotCollideable4;
         #endregion
 
-        public static bool isShop;
+        public static bool isShop = true;
         public static bool isMap1 = false;
         public static bool isMap2 = false;
         public static bool isMap3 = false;
