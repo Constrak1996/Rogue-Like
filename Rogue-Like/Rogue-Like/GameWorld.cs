@@ -514,16 +514,14 @@ namespace Rogue_Like
                     Menu.newgame = false;
                     Menu.resume = true;
                     Menu.menu = false;
-
+                    Player.myCoin = 0;
+                    Player.myFood = 0;
                     _nextState = new Shop_Level1(this, GraphicsDevice, Content);
 
                 }
-
-
+                
             }
-
-
-
+            
         }
 
         /// <summary>
@@ -856,8 +854,9 @@ namespace Rogue_Like
                 }
                 #endregion
                 spriteBatch.DrawString(Font, $"Name: {Player.name}\n Health: {Player.currentHealth}\n Ammo: {Player.bulletCount}\n MeleeDamage: {Player.meleeDamage}\n RangedDamage: {Player.rangedDamage}\n Gold: {Player.myCoin}\n Food: {Player.myFood}\n Score: {Player.myScore}", new Vector2(1735, 0), Color.White);
-
+#if DEBUG
                 spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
+#endif
             }
             //Player vs Walls (Room's collisionbox)
             
