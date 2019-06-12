@@ -17,14 +17,14 @@ namespace Rogue_Like
         public static int health;
 
 
-        static void UpdateT()
+        public static void UpdateT()
         {
             Thread t = new Thread(AutoSave);
             t.IsBackground = true;
             t.Start();
         }
 
-        static void AutoSave()
+        public static void AutoSave()
         {
             while (true)
             {
@@ -34,7 +34,7 @@ namespace Rogue_Like
                 Thread.Sleep(500);
 
             }
-            
+
         }
 
     }

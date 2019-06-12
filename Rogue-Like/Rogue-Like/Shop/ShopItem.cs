@@ -17,7 +17,7 @@ namespace Rogue_Like
         public static bool spawnItem4 = true;
         public static bool spawnItem5 = true;
         public static bool spawnitem6 = true;
-        private int budget = Player.myCoin;
+       
         public override Rectangle Hitbox => base.Hitbox;
 
         public ShopItem(string spriteName, Transform Transform) : base(spriteName, Transform)
