@@ -49,9 +49,9 @@ namespace Rogue_Like
             meleeDamage = 10;
             rangedDamage = 5;
 
-            Thread CheckPoint = new Thread(controller.SaveChar);
-            CheckPoint.IsBackground = true;
-            CheckPoint.Start();
+            //Thread CheckPoint = new Thread(controller.SaveChar);
+            //CheckPoint.IsBackground = true;
+            //CheckPoint.Start();
                         
         }
 

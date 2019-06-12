@@ -255,7 +255,7 @@ namespace Rogue_Like
                 _currentState = _nextState;
                 _nextState = null;
             }
-
+            shopItems.Update(gameTime);
             _currentState.Update(gameTime);
             _currentState.PostUpdate(gameTime);
 
@@ -308,6 +308,8 @@ namespace Rogue_Like
             Restart();
         }
 
+            
+            }
         public void HitBox()
         {
             if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is Shop_Level1)
@@ -511,10 +513,14 @@ namespace Rogue_Like
 
                     Menu.newgame = false;
                     Menu.resume = true;
+                    Menu.menu = false;
 
                     _nextState = new Shop_Level1(this, GraphicsDevice, Content);
 
                 }
+
+
+            }
 
 
             }
@@ -740,121 +746,121 @@ namespace Rogue_Like
 
                     #endregion
                 }
+                #region Player hitbox interaction
+                if (player.Hitbox.Intersects(topLine) || player.Hitbox.Intersects(topLine1) || player.Hitbox.Intersects(topLine2))
+                {
+                    player.PlayerMovement(-8);
+                }
 
+                if (player.Hitbox.Intersects(rightLine) || player.Hitbox.Intersects(rightLine1) || player.Hitbox.Intersects(rightLine2))
+                {
+                    if (_currentState is Shop_Level1 || _currentState is Room1_Level1 || _currentState is Room2_Level1 || _currentState is Room3_Level1)
+                    {
+                        player.PlayerMovement(-8);
+                    }
+
+                    if (_currentState is NLR_Level1)
+                    {
+                        player.PlayerMovement(-8);
+                    }
+
+                }
+
+                if (player.Hitbox.Intersects(bottomLine) || player.Hitbox.Intersects(bottomLine1) || player.Hitbox.Intersects(bottomLine2))
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (player.Hitbox.Intersects(leftLine) || player.Hitbox.Intersects(leftLine1) || player.Hitbox.Intersects(leftLine2))
+                {
+                    if (_currentState is Shop_Level1 || _currentState is Room1_Level1 || _currentState is Room2_Level1 || _currentState is Room3_Level1)
+                    {
+                        player.PlayerMovement(-8);
+                    }
+
+                    if (_currentState is NLR_Level1)
+                    {
+                        player.PlayerMovement(-8);
+                    }
+
+                }
+
+                if (player.Hitbox.Intersects(leftTopCollideable1))
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (player.Hitbox.Intersects(leftTopCollideable2))
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (player.Hitbox.Intersects(leftTopCollideable3))
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (player.Hitbox.Intersects(leftBotCollideable4) || (player.Hitbox.Intersects(leftBotCollideable4)))
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (player.Hitbox.Intersects(leftBotCollideable1))
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (player.Hitbox.Intersects(leftBotCollideable2))
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (player.Hitbox.Intersects(leftBotCollideable3))
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (player.Hitbox.Intersects(rightTopCollideable1) || (player.Hitbox.Intersects(rightBotCollideable1) || (player.Hitbox.Intersects(rightBotCollideable3))))
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (player.Hitbox.Intersects(rightTopCollideable2))
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (player.Hitbox.Intersects(rightTopCollideable3))
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (player.Hitbox.Intersects(rightTopCollideable4))
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (player.Hitbox.Intersects(rightBotCollideable2))
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (player.Hitbox.Intersects(rightBotCollideable3))
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (player.Hitbox.Intersects(leftBotCollideable4))
+                {
+                    player.PlayerMovement(-8);
+                }
+                #endregion
+                spriteBatch.DrawString(Font, $"Name: {Player.name}\n Health: {Player.currentHealth}\n Ammo: {Player.bulletCount}\n MeleeDamage: {Player.meleeDamage}\n RangedDamage: {Player.rangedDamage}\n Gold: {Player.myCoin}\n Food: {Player.myFood}\n Score: {Player.myScore}", new Vector2(1735, 0), Color.White);
+
+                spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
             }
             //Player vs Walls (Room's collisionbox)
-            #region Player hitbox interaction
-            if (player.Hitbox.Intersects(topLine) || player.Hitbox.Intersects(topLine1) || player.Hitbox.Intersects(topLine2))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(rightLine) || player.Hitbox.Intersects(rightLine1) || player.Hitbox.Intersects(rightLine2))
-            {
-                if (_currentState is Shop_Level1 || _currentState is Room1_Level1 || _currentState is Room2_Level1 || _currentState is Room3_Level1)
-                {
-                    player.PlayerMovement(-8);
-                }
-
-                if (_currentState is NLR_Level1)
-                {
-                    player.PlayerMovement(-8);
-                }
-
-            }
-
-            if (player.Hitbox.Intersects(bottomLine) || player.Hitbox.Intersects(bottomLine1) || player.Hitbox.Intersects(bottomLine2))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(leftLine) || player.Hitbox.Intersects(leftLine1) || player.Hitbox.Intersects(leftLine2))
-            {
-                if (_currentState is Shop_Level1 || _currentState is Room1_Level1 || _currentState is Room2_Level1 || _currentState is Room3_Level1)
-                {
-                    player.PlayerMovement(-8);
-                }
-
-                if (_currentState is NLR_Level1)
-                {
-                    player.PlayerMovement(-8);
-                }
-
-            }
-
-            if (player.Hitbox.Intersects(leftTopCollideable1))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(leftTopCollideable2))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(leftTopCollideable3))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(leftBotCollideable4) || (player.Hitbox.Intersects(leftBotCollideable4)))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(leftBotCollideable1))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(leftBotCollideable2))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(leftBotCollideable3))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(rightTopCollideable1) || (player.Hitbox.Intersects(rightBotCollideable1) || (player.Hitbox.Intersects(rightBotCollideable3))))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(rightTopCollideable2))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(rightTopCollideable3))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(rightTopCollideable4))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(rightBotCollideable2))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(rightBotCollideable3))
-            {
-                player.PlayerMovement(-8);
-            }
-
-            if (player.Hitbox.Intersects(leftBotCollideable4))
-            {
-                player.PlayerMovement(-8);
-            }
-            #endregion
-            spriteBatch.DrawString(Font, $"Name: {Player.name}\n Health: {Player.currentHealth}\n Ammo: {Player.bulletCount}\n MeleeDamage: {Player.meleeDamage}\n RangedDamage: {Player.rangedDamage}\n Gold: {Player.myCoin}\n Food: {Player.myFood}\n Score: {Player.myScore}", new Vector2(1735, 0), Color.White);
-
-            spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
+            
 
             spriteBatch.End();
 
