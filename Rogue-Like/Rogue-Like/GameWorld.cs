@@ -860,8 +860,7 @@ namespace Rogue_Like
                 spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
             }
             //Player vs Walls (Room's collisionbox)
-
-
+            
             spriteBatch.End();
 
             base.Draw(gameTime);
