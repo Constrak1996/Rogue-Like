@@ -84,7 +84,7 @@ namespace Rogue_Like
         {
             tileTextures.Add(texture);
         }
-       
+
 
         #region Numeral Texture
         //The Width of Dungeon map
@@ -858,7 +858,9 @@ namespace Rogue_Like
 
             }
 
+#if DEBUG
             Level2_Change();
+#endif
         }
 
 

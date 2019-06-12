@@ -16,7 +16,7 @@ namespace Rogue_Like
 
         public RangedEnemy(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
-            health = 100; //Rangedenemys health
+            health = 50; //Rangedenemys health
         }
 
         public override Rectangle Hitbox => base.Hitbox;
@@ -115,11 +115,11 @@ namespace Rogue_Like
             }
 
             //PlayerMelee collision
-            if (otherObject is PlayerMeleeAttack)
-            {
+            //if (otherObject is PlayerMeleeAttack)
+            //{
                 
-                GameWorld.gameObjectsRemove.Add(this);
-            }
+            //    GameWorld.gameObjectsRemove.Add(this);
+            //}
 
             base.DoCollision(otherObject);
         }

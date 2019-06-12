@@ -731,8 +731,9 @@ namespace Rogue_Like
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
                 Shop_Level1.shop = false;
             }
-
+#if DEBUG
             Level3_Change();
+#endif
 
             level2Enemies();
         }

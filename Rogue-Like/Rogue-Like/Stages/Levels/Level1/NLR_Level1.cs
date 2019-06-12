@@ -965,7 +965,9 @@ namespace Rogue_Like
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
             }
 
+#if DEBUG
             Shop_Change();
+#endif
             
         }
 

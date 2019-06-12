@@ -12,7 +12,7 @@ namespace Rogue_Like
 {
     public class Shop_Level1 : State
     {
-       
+
         private SpriteFont Font;
         private Texture2D _playerTexture;
         public static bool shop;
@@ -62,7 +62,7 @@ namespace Rogue_Like
             {12,17,18,18,18,18,18,19,18,18,18,18,60,59,58,21,21,21,21,19,21,21,21,21,21,22,23},
 
        };
-       
+
         public static List<Texture2D> tileTextures = new List<Texture2D>();
         //add Textures to the Dungeon map
         public void AddTexture(Texture2D texture)
@@ -790,7 +790,7 @@ namespace Rogue_Like
 
 
         }
-        
+
 
         public void Level1_Change()
         {
@@ -807,7 +807,7 @@ namespace Rogue_Like
         /// <param name="spritebatch"></param>
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            
+
             for (int x = 0; x < Width; x++)
             {
                 for (int y = 0; y < Height; y++)
@@ -853,11 +853,12 @@ namespace Rogue_Like
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
-                
-            }
 
+            }
+#if DEBUG
             Level1_Change();
+#endif
         }
-       
+
     }
 }

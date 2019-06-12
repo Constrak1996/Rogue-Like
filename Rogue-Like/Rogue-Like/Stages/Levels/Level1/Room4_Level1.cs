@@ -813,7 +813,9 @@ namespace Rogue_Like
 
 
             level1Enemies();
+#if DEBUG
             NextLevelRoom_Change();
+#endif
         }
 
         /// <summary>
