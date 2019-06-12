@@ -14,7 +14,7 @@ namespace Rogue_Like
         private float speed = 13;
         private int age;
 
-        public override Rectangle hitBox => base.hitBox;
+        public override Rectangle Hitbox => base.Hitbox;
         /// <summary>
         /// Construktor for the playerMeleeAttack
         /// </summary>

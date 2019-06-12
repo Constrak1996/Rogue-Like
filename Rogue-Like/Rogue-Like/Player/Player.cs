@@ -81,7 +81,7 @@ namespace Rogue_Like
         /// <summary>
         /// Player hitbox
         /// </summary>
-        public override Rectangle hitBox
+        public override Rectangle Hitbox
         {
             get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, sprite.Width, sprite.Height); }
         }

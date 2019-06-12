@@ -19,7 +19,7 @@ namespace Rogue_Like
             health = 100; //Rangedenemys health
         }
 
-        public override Rectangle hitBox => base.hitBox;
+        public override Rectangle Hitbox => base.Hitbox;
 
         public override void Update(GameTime gameTime)
         {

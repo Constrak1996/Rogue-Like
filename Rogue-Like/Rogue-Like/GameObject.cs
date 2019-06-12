@@ -24,7 +24,7 @@ namespace Rogue_Like
         /// <summary>
         /// Makes a rectangle that will be made into the objects hitbox
         /// </summary>
-        public virtual Rectangle hitBox
+        public virtual Rectangle Hitbox
         {
             get { return new Rectangle((int)Transform.Position.X, (int)Transform.Position.Y, sprite.Width, sprite.Height); }
         }
@@ -63,7 +63,7 @@ namespace Rogue_Like
         public bool IsColliding(GameObject otherObject)
         {
             //A method used to determine when a object collides with another
-            return hitBox.Intersects(otherObject.hitBox);
+            return Hitbox.Intersects(otherObject.Hitbox);
         }
 
         public virtual void DoCollision(GameObject otherObject)

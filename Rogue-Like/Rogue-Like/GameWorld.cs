@@ -68,6 +68,7 @@ namespace Rogue_Like
         #endregion
         //collision bools, when the given tile map is open, give the collision box that matches with it
         #region Collision bools
+        public static bool isShop_Starter = false;
         public static bool isShop = false;
         public static bool isMap1 = false;
         public static bool isMap2 = false;
@@ -92,32 +93,6 @@ namespace Rogue_Like
 #endif
         }
 
-        private bool isFromTop = false;
-        private bool isFromRight = false;
-        private bool isFromBot = false;
-        private bool isFromLeft = false;
-
-        #region Stop Random Bools
-        private bool enterOnce = false;
-        private bool enterOnce1 = false;
-        private bool enterOnce2 = false;
-        private bool enterOnce3 = false;
-        private bool enteredRoom1 = false;
-        private bool enteredRoom2 = false;
-        private bool enteredRoom3 = false;
-        private bool enteredRoom4 = false;
-        private bool enteredRoom5 = false;
-        private bool enteredRoom6 = false;
-        private bool enteredRoom7 = false;
-        private bool enteredRoom8 = false;
-        private bool enteredRoom9 = false;
-        private bool enteredRoom10 = false;
-        private bool enteredNLR = false;
-        #endregion
-        
-        //What level u are on | level 1 = 0
-        private int level = 0;
-
         private static ContentManager _content;
         public static ContentManager ContentManager { get => _content; }
 
@@ -133,11 +108,6 @@ namespace Rogue_Like
         //Graphics
         public static int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
         public static int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-
-        //Dungeon rooms
-        public Texture2D shop;
-        public Texture2D level1;
-        public Texture2D level2;
         
         //Player
         public static Player player;
@@ -262,7 +232,7 @@ namespace Rogue_Like
         {
 
         }
-        
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -300,11 +270,7 @@ namespace Rogue_Like
                 }
                 gameObjectsAdd.Clear();
             }
-
-            if (level == 1)
-            {
-                _previousState.Clear();
-            }
+            
 
             // Remove all game objects in removeList
             foreach (GameObject obj in gameObjectsRemove)
@@ -333,278 +299,223 @@ namespace Rogue_Like
             base.Update(gameTime);
             HitBox();
 
-            switch (level)
+            void HitBox()
             {
-                case 0:
-                    if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is Shop_Level1)
-                    {
-                        if (enterOnce == false)
-                        {
-                            switch (roomchange1)
-                            {
-                                case 0:
-                                    _previousState.Add(_currentState);
-                                    _nextState = new Room1_Level1(this, GraphicsDevice, Content);
-                                    isMap1 = true;
-                                    enteredRoom1 = true;
-                                    break;
-                                case 1:
-                                    _previousState.Add(_currentState);
-                                    _nextState = new Room2_Level1(this, GraphicsDevice, Content);
-                                    isMap2 = true;
-                                    enteredRoom2 = true;
-                                   
-                                    break;
-                                case 2:
-                                    _previousState.Add(_currentState);
-                                    _nextState = new Room3_Level1(this, GraphicsDevice, Content);
-                                    isMap3 = true;
-                                    enteredRoom3 = true;
-                                    break;
-                                case 3:
-                                    _previousState.Add(_currentState);
-                                    _nextState = new Room4_Level1(this, GraphicsDevice, Content);
-                                    isMap4 = true;
-                                    enteredRoom4 = true;
-                                    break;
-                                case 4:
-                                    _previousState.Add(_currentState);
-                                    _nextState = new Room5_Level1(this, GraphicsDevice, Content);
-                                    isMap5 = true;
-                                    enteredRoom5 = true;
-                                    break;
-                                case 5:
-                                    _previousState.Add(_currentState);
-                                    _nextState = new Room10_Level1(this, GraphicsDevice, Content);
-                                    isMap10 = true;
-                                    enteredRoom10 = true;
-                                    break;
-                            }
-                            player.Transform = new Transform(new Vector2(865, 150), 1);
-                            isShop = false;
-                            enterOnce = true;
-                        }
-
-                        if (enteredRoom1 == true)
-                        {
-                            _nextState = new Room1_Level1(this, GraphicsDevice, Content);
-                            player.Transform = new Transform(new Vector2(865, 150), 1);
-                            isShop = false;
-                            isMap1 = true;
-                        }
-                        if (enteredRoom2 == true)
-                        {
-                            _nextState = new Room2_Level1(this, GraphicsDevice, Content);
-                            player.Transform = new Transform(new Vector2(865, 150), 1);
-                            isShop = false;
-                            isMap2 = true;
-                        }
-                        if (enteredRoom3 == true)
-                        {
-                            _nextState = new Room3_Level1(this, GraphicsDevice, Content);
-                            player.Transform = new Transform(new Vector2(865, 150), 1);
-                            isShop = false;
-                            isMap3 = true;
-                        }
-                        if (enteredRoom4 == true)
-                        {
-                            _nextState = new Room4_Level1(this, GraphicsDevice, Content);
-                            player.Transform = new Transform(new Vector2(865, 150), 1);
-                            isShop = false;
-                            isMap4 = true;
-                        }
-
-                        if (enteredRoom5 == true)
-                        {
-                            _nextState = new Room5_Level1(this, GraphicsDevice, Content);
-                            player.Transform = new Transform(new Vector2(865, 150), 1);
-                            isShop = false;
-                            isMap5 = true;
-                        }
-
-                        if (enteredRoom10 == true)
-                        {
-                            _nextState = new Room10_Level1(this, GraphicsDevice, Content);
-                            player.Transform = new Transform(new Vector2(865, 150), 1);
-                            isShop = false;
-                            isMap10 = true;
-                        }
-
-
-                    }
-
-                    if (player.Hitbox.Intersects(topLineDoor) && _currentState is Shop_Level1)
-                    {
-                        _nextState = new Menu(this, GraphicsDevice, Content);
-
-                    }
-
-                    if (player.Hitbox.Intersects(bottomLineDoor) && _currentState is Room1_Level1)
-                    {
-                        switch (roomchange1)
-                        {
-
-                            case 0:
-                                _nextState = new Room2_Level1(this, GraphicsDevice, Content);
-                                player.Transform = new Transform(new Vector2(865, 150), 1);
-                                isMap1 = false;
-                                isMap2 = true;
-                                break;
-                            case 1:
-                                _nextState = new Room3_Level1(this, GraphicsDevice, Content);
-                                isMap3 = true;
-                                enteredRoom3 = true;
-                                break;
-                            case 2:
-                                _nextState = new Room4_Level1(this, GraphicsDevice, Content);
-                                isMap4 = true;
-                                enteredRoom4 = true;
-                                break;
-                            case 4:
-                                _nextState = new Room5_Level1(this, GraphicsDevice, Content);
-                                isMap5 = true;
-                                enteredRoom5 = true;
-                                break;
-                            case 5:
-                                _nextState = new Room10_Level1(this, GraphicsDevice, Content);
-                                isMap10 = true;
-                                enteredRoom10 = true;
-                                break;
-                        }
-                    }
-
-                    
-
-
-                    if (player.Hitbox.Intersects(topLineDoor) && _currentState is Room1_Level1 || player.Hitbox.Intersects(topLineDoor) && _currentState is Room2_Level1)
-                    {
-                        if (_previousState.Count != 0)
-                        {
-                            _nextState = _previousState[0];
-                        }
-                        player.Transform = new Transform(new Vector2(865, 910), 1);
-                        isMap1 = false;
-                        isShop = true;
-                    }
-
-                    if (player.Hitbox.Intersects(bottomLineDoor) && _currentState is Room1_Level1)
-                    {
-                        _nextState = new Room2_Level1(this, GraphicsDevice, Content);
-                        player.Transform = new Transform(new Vector2(865, 150), 1);
-                        isMap1 = false;
-                        isMap2 = true;
-                    }
-
-                    if (player.Hitbox.Intersects(topLineDoor) && _currentState is Room2_Level1)
-                    {
-                        _nextState = new Room1_Level1(this, GraphicsDevice, Content);
-                        player.Transform = new Transform(new Vector2(865, 910), 1);
-                        isMap1 = true;
-                        isMap2 = false;
-                    }
-
-                    if (player.Hitbox.Intersects(rightLineDoor) && _currentState is Room2_Level1)
-                    {
-                        _nextState = new Room3_Level1(this, GraphicsDevice, Content);
-                        player.Transform = new Transform(new Vector2(147, 545), 1);
-                        isMap3 = true;
-                        isMap2 = false;
-                    }
-
-                    if (player.Hitbox.Intersects(leftLineDoor) && _currentState is Room3_Level1)
-                    {
-                        _nextState = new Room2_Level1(this, GraphicsDevice, Content);
-                        player.Transform = new Transform(new Vector2(1585, 545), 1);
-                        isMap3 = false;
-                        isMap2 = true;
-                    }
-
-                    if (player.Hitbox.Intersects(topLineDoor) & _currentState is Room3_Level1)
-                    {
-                        _nextState = new NLR_Level1(this, GraphicsDevice, Content);
-                        player.Transform = new Transform(new Vector2(865, 910), 1);
-                        isNextLevelRoom = true;
-                        isMap3 = false;
-                    }
-
-                    if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is NLR_Level1)
-                    {
-                        _nextState = new Room3_Level1(this, GraphicsDevice, Content);
-                        player.Transform = new Transform(new Vector2(865, 150), 1);
-                        isNextLevelRoom = false;
-                        isMap3 = true;
-                    }
-
-            if (player.hitBox.Intersects(topLineDoor) & _currentState is NextLevelRoom)
-            {
-                _nextState = new Shop_Level1(this, GraphicsDevice, Content);
-                player.Transform = new Transform(new Vector2(865, 150), 1);
-                isShop = true;
-                isNextLevelRoom = false;
-            }
-        }
-        /// <summary>
-        /// Start a second life for the player
-        /// </summary>
-        public void Restart()
-        { 
-            
-            if (Player.currentHealth <= 0 && isPlaying)
-            {
-
-                playerDeathCount++;
-                if (playerDeathCount >= 6) //check to see if the player died 6 times
+                if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is Shop_Level1)
                 {
-                    ChangeState(new EndScreen(this, GraphicsDevice, Content));
-                    foreach (GameObject enemy in gameObjects)
-                    {
-                        gameObjectsRemove.Add(enemy);
-                    }
-                    LoadContent();
-                    isPlaying = false;
-                    playerDeathCount = 0;
+                    _nextState = new Room1_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 150), 1);
+                    isShop_Starter = false;
+                    isMap1 = true;
                 }
-                else
+
+                if (player.Hitbox.Intersects(topLineDoor) && _currentState is Shop_Level1)
                 {
-                    foreach (GameObject enemy in gameObjects)
-                    {
-                        gameObjectsRemove.Add(enemy);
-                        
-                    }
-                    
-                    int tempFood = Player.myFood;
-                    int tempHealth = Player.maxHealth;
-                    
-                    LoadContent();
+                    _nextState = new Menu(this, GraphicsDevice, Content);
 
-                    Player.myFood = tempFood;
-                    Player.maxHealth = tempHealth;
+                }
 
-                    if (Player.myFood <= 3)
+                if (player.Hitbox.Intersects(topLineDoor) && _currentState is Room1_Level1)
+                {
+                    _nextState = new Shop_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 910), 1);
+                    isMap1 = false;
+                    isShop_Starter = true;
+
+                }
+
+                if (player.Hitbox.Intersects(bottomLineDoor) && _currentState is Room1_Level1)
+                {
+                    _nextState = new Room2_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 150), 1);
+                    isMap1 = false;
+                    isMap2 = true;
+                }
+
+                if (player.Hitbox.Intersects(topLineDoor) && _currentState is Room2_Level1)
+                {
+                    _nextState = new Room1_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 910), 1);
+                    isMap1 = true;
+                    isMap2 = false;
+                }
+
+                if (player.Hitbox.Intersects(rightLineDoor) && _currentState is Room2_Level1)
+                {
+                    _nextState = new Room3_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(147, 545), 1);
+                    isMap3 = true;
+                    isMap2 = false;
+                }
+
+                if (player.Hitbox.Intersects(leftLineDoor) && _currentState is Room3_Level1)
+                {
+                    _nextState = new Room2_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(1585, 545), 1);
+                    isMap3 = false;
+                    isMap2 = true;
+                }
+
+                if (player.Hitbox.Intersects(topLineDoor) & _currentState is Room3_Level1)
+                {
+                    _nextState = new NLR_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 910), 1);
+                    isNextLevelRoom = true;
+                    isMap3 = false;
+                }
+
+                if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is NLR_Level1)
+                {
+                    _nextState = new Room3_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 150), 1);
+                    isNextLevelRoom = false;
+                    isMap3 = true;
+                }
+
+                if (player.Hitbox.Intersects(topLineDoor) & _currentState is NLR_Level1)
+                {
+                    _nextState = new Shop_Level2(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 150), 1);
+                    isShop = true;
+                    isNextLevelRoom = false;
+                }
+
+                if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is Shop_Level2)
+                {
+                    _nextState = new Room3_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 150), 1);
+                    isShop = false;
+                    isMap3 = true;
+                }
+
+                if (player.Hitbox.Intersects(topLineDoor) && _currentState is Room3_Level2)
+                {
+                    _nextState = new Shop_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 910), 1);
+                    isMap3 = false;
+                    isShop = true;
+
+                }
+
+                if (player.Hitbox.Intersects(leftLineDoor) && _currentState is Room3_Level2)
+                {
+                    _nextState = new Room7_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(1585, 545), 1);
+                    isMap3 = false;
+                    isMap7 = true;
+                }
+
+                if (player.Hitbox.Intersects(rightLineDoor) && _currentState is Room7_Level2)
+                {
+                    _nextState = new Room3_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(147, 545), 1);
+                    isMap3 = true;
+                    isMap7 = false;
+                }
+
+                if (player.Hitbox.Intersects(leftLineDoor) && _currentState is Room7_Level2)
+                {
+                    _nextState = new Room2_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(1585, 545), 1);
+                    isMap2 = true;
+                    isMap7 = false;
+                }
+
+                if (player.Hitbox.Intersects(rightLineDoor) && _currentState is Room2_Level2)
+                {
+                    _nextState = new Room2_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(147, 545), 1);
+                    isMap2 = false;
+                    isMap7 = true;
+                }
+
+                if (player.Hitbox.Intersects(topLineDoor) & _currentState is Room2_Level2)
+                {
+                    _nextState = new NLR_Level2(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 910), 1);
+                    isNextLevelRoom = true;
+                    isMap2 = false;
+                }
+
+                if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is NLR_Level2)
+                {
+                    _nextState = new Room3_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 150), 1);
+                    isNextLevelRoom = false;
+                    isMap2 = true;
+                }
+
+                if (player.Hitbox.Intersects(topLineDoor) & _currentState is NLR_Level2)
+                {
+                    _nextState = new Shop_Level1(this, GraphicsDevice, Content);
+                    player.Transform = new Transform(new Vector2(865, 910), 1);
+                    isShop = true;
+                    isNextLevelRoom = false;
+                }
+            }
+            /// <summary>
+            /// Start a second life for the player
+            /// </summary>
+            void Restart()
+            {
+
+                if (Player.currentHealth <= 0 && isPlaying)
+                {
+
+                    playerDeathCount++;
+                    if (playerDeathCount >= 6) //check to see if the player died 6 times
                     {
-                        Player.maxHealth -= 2;
-                        Player.currentHealth = Player.maxHealth;
+                        ChangeState(new EndScreen(this, GraphicsDevice, Content));
+                        foreach (GameObject enemy in gameObjects)
+                        {
+                            gameObjectsRemove.Add(enemy);
+                        }
+                        LoadContent();
+                        isPlaying = false;
+                        playerDeathCount = 0;
                     }
                     else
                     {
-                        Player.maxHealth += 2;
-                        Player.currentHealth = Player.maxHealth;
+                        foreach (GameObject enemy in gameObjects)
+                        {
+                            gameObjectsRemove.Add(enemy);
+
+                        }
+
+                        int tempFood = Player.myFood;
+                        int tempHealth = Player.maxHealth;
+
+                        LoadContent();
+
+                        Player.myFood = tempFood;
+                        Player.maxHealth = tempHealth;
+
+                        if (Player.myFood <= 3)
+                        {
+                            Player.maxHealth -= 2;
+                            Player.currentHealth = Player.maxHealth;
+                        }
+                        else
+                        {
+                            Player.maxHealth += 2;
+                            Player.currentHealth = Player.maxHealth;
+                        }
+
+                        Menu.newgame = false;
+                        Menu.resume = true;
+
+                        _nextState = new Shop_Level1(this, GraphicsDevice, Content);
+
                     }
 
-                    Menu.newgame = false;
-                    Menu.resume = true;
-
-                    _nextState = new Shop(this, GraphicsDevice, Content);
 
                 }
 
 
-            }
 
-                    break;
             }
         }
-        
+
 
 
         /// <summary>
@@ -619,317 +530,329 @@ namespace Rogue_Like
             _currentState.Draw(gameTime, spriteBatch);
             if (Menu.menu == false && isPlaying)
             {
-              
-                    //Draws sprites in gameObjects list
-                    foreach (GameObject go in gameObjects)
-                    {
-                        go.Draw(spriteBatch);
 
+                //Draws sprites in gameObjects list
+                foreach (GameObject go in gameObjects)
+                {
+                    go.Draw(spriteBatch);
+
+                }
+
+                //Collision texture draw
+                foreach (GameObject go in gameObjects)
+                {
+                    go.Draw(spriteBatch);
+                    #region Room's collisionbox
+
+                    DrawCollisionBox(go);
+
+                    if (_currentState is Shop_Level1)
+                    {
+                        ShopCollisionBox();
+                        ShopDoorCollision();
+                        CornersCollideableObjects();
+                        if (isShop_Starter == true)
+                        {
+                            bottomLine.Y = -1000;
+                            topLine.Y = -1000;
+                            leftLine.Y = 105;
+                            rightLine.Y = 105;
+                        }
                     }
 
-                    //Collision texture draw
-                    foreach (GameObject go in gameObjects)
+                    if (_currentState is Shop_Level2)
                     {
-                        go.Draw(spriteBatch);
-                        #region Room's collisionbox
-
-                        DrawCollisionBox(go);
-                
-                        if (_currentState is Shop_Level1 || _currentState is Shop_Level2)
+                        ShopCollisionBox();
+                        ShopDoorCollision();
+                        CornersCollideableObjects();
+                        if (isShop == true)
                         {
-                            ShopCollisionBox();
-                            ShopDoorCollision();
-                            CornersCollideableObjects();
-                            if (isShop == true)
-                            {
-                                bottomLine.Y = -1000;
-                                topLine.Y = -1000;
-                                leftLine.Y = 105;
-                                rightLine.Y = 105;
-                            }
+                            bottomLine.Y = -1000;
+                            topLine.Y = 105;
+                            leftLine.Y = 105;
+                            rightLine.Y = 105;
                         }
-                
-                        if (_currentState is Room1_Level1 || _currentState is Room1_Level2)
-                        {
-                            TopDoorCollision();
-                            BottomDoorCollision();
-                            CornersCollideableObjects();
-                            ShopCollisionBox();
-                        }
-
-                        if (_currentState is Room2_Level1 || _currentState is Room2_Level2)
-                        { 
-                            TopDoorCollision();
-                            RightDoorCollision();
-                            TopAndRightCollisionBox();
-                            if (isMap2 == true)
-                            {
-                                rightLine.Y = -1000;
-                                topLine.Y = -1000;
-                                leftLine.Y = 105;
-                                bottomLine.Y = 980;
-                            }
-                        }
-
-                        if (_currentState is Room3_Level1 || _currentState is Room3_Level2)
-                        {
-                            TopDoorCollision();
-                            LeftDoorCollision();
-                            TopAndLeftCollisionBox();
-                            LeftSideCollideableObjects1();
-                            LeftSideCollideableObjects2();
-                            CornersCollideableObjects();
-                            if (isMap3 == true)
-                            {
-                                bottomLine.Y = 980;
-                                rightLine.Y = 105;
-                                leftLine.Y = -1000;
-                                topLine.Y = -1000;
-                            }
-                        }
-
-                        if (_currentState is Room4_Level1 || _currentState is Room4_Level2 || _currentState is Room4_Level3)
-                        {
-                            LeftTopBottomCollisionBox();
-                            BottomDoorCollision();
-                            TopDoorCollision();
-                            LeftDoorCollision();
-                            CornersCollideableObjects();
-                            if (isMap4 == true)
-                            {
-                                bottomLine.Y = -1000;
-                                topLine.Y = -1000;
-                                rightLine.Y = 108;
-                                leftLine.Y = -1000;
-                            }
-                        }
-
-                        if (_currentState is Room5_Level1 || _currentState is Room5_Level2 || _currentState is Room5_Level3)
-                        {
-                            DungeonCollisionBox();
-                            AllDoorCollision();
-                            CornersCollideableObjects();
-                            if (isMap5 == true)
-                            {
-                                bottomLine.Y = -1000;
-                                topLine.Y = -1000;
-                                rightLine.Y = -1000;
-                                leftLine.Y = -1000;
-                            }
-                        }
-
-                        if (_currentState is Room6_Level1 || _currentState is Room6_Level2 || _currentState is Room6_Level3)
-                        {
-                            LeftTopBottomCollisionBox();
-                            LeftDoorCollision();
-                            BottomDoorCollision();
-                            RightDoorCollision();
-                            CornersCollideableObjects();
-                            if (isMap6 == true)
-                            {
-                                bottomLine.Y = -1000;
-                                topLine.Y = -1000;
-                                rightLine.Y = 108;
-                                leftLine.Y = -1000;
-                            }
-                        }
-
-                        if (_currentState is Room7_Level1 || _currentState is Room7_Level2)
-                        {
-                            LeftRightCollisionBox();
-                            LeftDoorCollision();
-                            RightDoorCollision();
-                            CornersCollideableObjects();
-                            if (isMap7 == true)
-                            {
-                                bottomLine.Y = 980;
-                                topLine.Y = 108;
-                                rightLine.Y = -1000;
-                                leftLine.Y = -1000;
-                            }
-                        }
-
-                        if (_currentState is Room8_Level1 || _currentState is Room8_Level2)
-                        {
-                            BottomRightCollisionBox();
-                            BottomDoorCollision();
-                            RightDoorCollision();
-                            CornersCollideableObjects();
-                            if (isMap8 == true)
-                            {
-                                bottomLine.Y = 980;
-                                topLine.Y = 108;
-                                rightLine.Y = -1000;
-                                leftLine.Y = 108;
-                            }
-                        }
-
-                        if (_currentState is Room9_Level1 || _currentState is Room9_Level2)
-                        {
-                            LeftBottomCollisionBox();
-                            LeftDoorCollision();
-                            BottomDoorCollision();
-                            CornersCollideableObjects();
-                            if (isMap9 == true)
-                            {
-                                bottomLine.Y = -1000;
-                                topLine.Y = 108;
-                                rightLine.Y = 108;
-                                leftLine.Y = -1000;
-                            }
-                        }
-
-                        if (_currentState is Room10_Level1 || _currentState is Room10_Level2)
-                        {
-                            TopBottomRightCollisionBox();
-                            TopDoorCollision();
-                            BottomDoorCollision();
-                            RightDoorCollision();
-                            CornersCollideableObjects();
-                            if (isMap10 == true)
-                            {
-                                bottomLine.Y = -1000;
-                                topLine.Y = -1000;
-                                rightLine.Y = -1000;
-                                leftLine.Y = 108;
-                            }
-                        }
-
-                        if (_currentState is NLR_Level1 || _currentState is NLR_Level2)
-                        {
-                            TopDoorCollision();
-                            BottomDoorCollision();
-                            NextLevelRoomCollisionBox();
-                            CornersCollideableObjects();
-                            if (isNextLevelRoom == true)
-                            {
-                                bottomLine.Y = -1000;
-                                topLine.Y = -1000;
-                                rightLine.Y = 108;
-                                leftLine.Y = 108;
-                            }
-                        }
-
-                        
-                        #endregion
                     }
 
-                }
-                //Player vs Walls (Room's collisionbox)
-                #region Player hitbox interaction
-                if (player.Hitbox.Intersects(topLine) || player.Hitbox.Intersects(topLine1) || player.Hitbox.Intersects(topLine2))
-                {
-                    player.PlayerMovement(-8);
-                }
-
-                if (player.hitBox.Intersects(rightLine) || player.hitBox.Intersects(rightLine1) || player.hitBox.Intersects(rightLine2))
-                {
-                    if (_currentState is Shop_Level1 || _currentState is Room1_Level1 || _currentState is Room2_Level1 || _currentState is Room3_Level1)
+                    if (_currentState is Room1_Level1 || _currentState is Room1_Level2)
                     {
-                        player.PlayerMovement(-8);
+                        TopDoorCollision();
+                        BottomDoorCollision();
+                        CornersCollideableObjects();
+                        ShopCollisionBox();
                     }
 
-                    if (_currentState is NLR_Level1)
+                    if (_currentState is Room2_Level1 || _currentState is Room2_Level2)
                     {
-                        player.PlayerMovement(-8);
+                        TopDoorCollision();
+                        RightDoorCollision();
+                        TopAndRightCollisionBox();
+                        if (isMap2 == true)
+                        {
+                            rightLine.Y = -1000;
+                            topLine.Y = -1000;
+                            leftLine.Y = 105;
+                            bottomLine.Y = 980;
+                        }
                     }
 
-                }
-
-                if (player.hitBox.Intersects(bottomLine) || player.hitBox.Intersects(bottomLine1) || player.hitBox.Intersects(bottomLine2))
-                {
-                    player.PlayerMovement(-8);
-                }
-
-                if (player.hitBox.Intersects(leftLine) || player.hitBox.Intersects(leftLine1) || player.hitBox.Intersects(leftLine2))
-                {
-                    if (_currentState is Shop_Level1 || _currentState is Room1_Level1 || _currentState is Room2_Level1 || _currentState is Room3_Level1)
+                    if (_currentState is Room3_Level1 || _currentState is Room3_Level2)
                     {
-                        player.PlayerMovement(-8);
+                        TopDoorCollision();
+                        LeftDoorCollision();
+                        TopAndLeftCollisionBox();
+                        LeftSideCollideableObjects1();
+                        LeftSideCollideableObjects2();
+                        CornersCollideableObjects();
+                        if (isMap3 == true)
+                        {
+                            bottomLine.Y = 980;
+                            rightLine.Y = 105;
+                            leftLine.Y = -1000;
+                            topLine.Y = -1000;
+                        }
                     }
 
-                    if (_currentState is NLR_Level1)
+                    if (_currentState is Room4_Level1 || _currentState is Room4_Level2 || _currentState is Room4_Level3)
                     {
-                        player.PlayerMovement(-8);
+                        LeftTopBottomCollisionBox();
+                        BottomDoorCollision();
+                        TopDoorCollision();
+                        LeftDoorCollision();
+                        CornersCollideableObjects();
+                        if (isMap4 == true)
+                        {
+                            bottomLine.Y = -1000;
+                            topLine.Y = -1000;
+                            rightLine.Y = 108;
+                            leftLine.Y = -1000;
+                        }
                     }
-                    
-                }
 
-                if (player.Hitbox.Intersects(leftTopCollideable1))
-                {
-                    player.PlayerMovement(-8);
-                }
+                    if (_currentState is Room5_Level1 || _currentState is Room5_Level2 || _currentState is Room5_Level3)
+                    {
+                        DungeonCollisionBox();
+                        AllDoorCollision();
+                        CornersCollideableObjects();
+                        if (isMap5 == true)
+                        {
+                            bottomLine.Y = -1000;
+                            topLine.Y = -1000;
+                            rightLine.Y = -1000;
+                            leftLine.Y = -1000;
+                        }
+                    }
 
-                if (player.Hitbox.Intersects(leftTopCollideable2))
-                {
-                    player.PlayerMovement(-8);
-                }
+                    if (_currentState is Room6_Level1 || _currentState is Room6_Level2 || _currentState is Room6_Level3)
+                    {
+                        LeftTopBottomCollisionBox();
+                        LeftDoorCollision();
+                        BottomDoorCollision();
+                        RightDoorCollision();
+                        CornersCollideableObjects();
+                        if (isMap6 == true)
+                        {
+                            bottomLine.Y = -1000;
+                            topLine.Y = -1000;
+                            rightLine.Y = 108;
+                            leftLine.Y = -1000;
+                        }
+                    }
 
-                if (player.Hitbox.Intersects(leftTopCollideable3))
-                {
-                    player.PlayerMovement(-8);
-                }
+                    if (_currentState is Room7_Level1 || _currentState is Room7_Level2)
+                    {
+                        LeftRightCollisionBox();
+                        LeftDoorCollision();
+                        RightDoorCollision();
+                        CornersCollideableObjects();
+                        if (isMap7 == true)
+                        {
+                            bottomLine.Y = 980;
+                            topLine.Y = 108;
+                            rightLine.Y = -1000;
+                            leftLine.Y = -1000;
+                        }
+                    }
 
-                if (player.Hitbox.Intersects(leftBotCollideable4) || (player.Hitbox.Intersects(leftBotCollideable4)))
-                {
-                    player.PlayerMovement(-8);
-                }
+                    if (_currentState is Room8_Level1 || _currentState is Room8_Level2)
+                    {
+                        BottomRightCollisionBox();
+                        BottomDoorCollision();
+                        RightDoorCollision();
+                        CornersCollideableObjects();
+                        if (isMap8 == true)
+                        {
+                            bottomLine.Y = 980;
+                            topLine.Y = 108;
+                            rightLine.Y = -1000;
+                            leftLine.Y = 108;
+                        }
+                    }
 
-                if (player.Hitbox.Intersects(leftBotCollideable1))
-                {
-                    player.PlayerMovement(-8);
-                }
+                    if (_currentState is Room9_Level1 || _currentState is Room9_Level2)
+                    {
+                        LeftBottomCollisionBox();
+                        LeftDoorCollision();
+                        BottomDoorCollision();
+                        CornersCollideableObjects();
+                        if (isMap9 == true)
+                        {
+                            bottomLine.Y = -1000;
+                            topLine.Y = 108;
+                            rightLine.Y = 108;
+                            leftLine.Y = -1000;
+                        }
+                    }
 
-                if (player.Hitbox.Intersects(leftBotCollideable2))
-                {
-                    player.PlayerMovement(-8);
-                }
+                    if (_currentState is Room10_Level1 || _currentState is Room10_Level2)
+                    {
+                        TopBottomRightCollisionBox();
+                        TopDoorCollision();
+                        BottomDoorCollision();
+                        RightDoorCollision();
+                        CornersCollideableObjects();
+                        if (isMap10 == true)
+                        {
+                            bottomLine.Y = -1000;
+                            topLine.Y = -1000;
+                            rightLine.Y = -1000;
+                            leftLine.Y = 108;
+                        }
+                    }
 
-                if (player.Hitbox.Intersects(leftBotCollideable3))
-                {
-                    player.PlayerMovement(-8);
-                }
+                    if (_currentState is NLR_Level1 || _currentState is NLR_Level2)
+                    {
+                        TopDoorCollision();
+                        BottomDoorCollision();
+                        NextLevelRoomCollisionBox();
+                        CornersCollideableObjects();
+                        if (isNextLevelRoom == true)
+                        {
+                            bottomLine.Y = -1000;
+                            topLine.Y = -1000;
+                            rightLine.Y = 108;
+                            leftLine.Y = 108;
+                        }
+                    }
 
-                if (player.Hitbox.Intersects(rightTopCollideable1) || (player.Hitbox.Intersects(rightBotCollideable1) || (player.Hitbox.Intersects(rightBotCollideable3))))
-                {
-                    player.PlayerMovement(-8);
-                }
 
-                if (player.Hitbox.Intersects(rightTopCollideable2))
-                {
-                    player.PlayerMovement(-8);
+                    #endregion
                 }
-
-                if (player.Hitbox.Intersects(rightTopCollideable3))
-                {
-                    player.PlayerMovement(-8);
-                }
-
-                if (player.Hitbox.Intersects(rightTopCollideable4))
-                {
-                    player.PlayerMovement(-8);
-                }
-
-                if (player.Hitbox.Intersects(rightBotCollideable2))
-                {
-                    player.PlayerMovement(-8);
-                }
-
-                if (player.Hitbox.Intersects(rightBotCollideable3))
-                {
-                    player.PlayerMovement(-8);
-                }
-
-                if (player.Hitbox.Intersects(leftBotCollideable4))
-                {
-                    player.PlayerMovement(-8);
-                }
-                #endregion
-                spriteBatch.DrawString(Font, $"Name: {Player.Name}\n Health: {Player.health}\n Ammo: {Player.bulletCount}\n Damage: {Player.damage}\n Gold: {Player.Coin}\n Food: {Player.Food}\n Score: {Player.DataScore}", new Vector2(1735, 0), Color.White);
-
-                spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
 
             }
+            //Player vs Walls (Room's collisionbox)
+            #region Player hitbox interaction
+            if (player.Hitbox.Intersects(topLine) || player.Hitbox.Intersects(topLine1) || player.Hitbox.Intersects(topLine2))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(rightLine) || player.Hitbox.Intersects(rightLine1) || player.Hitbox.Intersects(rightLine2))
+            {
+                if (_currentState is Shop_Level1 || _currentState is Room1_Level1 || _currentState is Room2_Level1 || _currentState is Room3_Level1)
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (_currentState is NLR_Level1)
+                {
+                    player.PlayerMovement(-8);
+                }
+
+            }
+
+            if (player.Hitbox.Intersects(bottomLine) || player.Hitbox.Intersects(bottomLine1) || player.Hitbox.Intersects(bottomLine2))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(leftLine) || player.Hitbox.Intersects(leftLine1) || player.Hitbox.Intersects(leftLine2))
+            {
+                if (_currentState is Shop_Level1 || _currentState is Room1_Level1 || _currentState is Room2_Level1 || _currentState is Room3_Level1)
+                {
+                    player.PlayerMovement(-8);
+                }
+
+                if (_currentState is NLR_Level1)
+                {
+                    player.PlayerMovement(-8);
+                }
+
+            }
+
+            if (player.Hitbox.Intersects(leftTopCollideable1))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(leftTopCollideable2))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(leftTopCollideable3))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(leftBotCollideable4) || (player.Hitbox.Intersects(leftBotCollideable4)))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(leftBotCollideable1))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(leftBotCollideable2))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(leftBotCollideable3))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(rightTopCollideable1) || (player.Hitbox.Intersects(rightBotCollideable1) || (player.Hitbox.Intersects(rightBotCollideable3))))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(rightTopCollideable2))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(rightTopCollideable3))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(rightTopCollideable4))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(rightBotCollideable2))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(rightBotCollideable3))
+            {
+                player.PlayerMovement(-8);
+            }
+
+            if (player.Hitbox.Intersects(leftBotCollideable4))
+            {
+                player.PlayerMovement(-8);
+            }
+            #endregion
+            spriteBatch.DrawString(Font, $"Name: {Player.name}\n Health: {Player.currentHealth}\n Ammo: {Player.bulletCount}\n MeleeDamage: {Player.meleeDamage}\n RangedDamage: {Player.rangedDamage}\n Gold: {Player.myCoin}\n Food: {Player.myFood}\n Score: {Player.myScore}", new Vector2(1735, 0), Color.White);
+
+            spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
 
             spriteBatch.End();
 
@@ -939,7 +862,7 @@ namespace Rogue_Like
         private void DrawCollisionBox(GameObject go)
         {
             //Creating a box around the object
-            Rectangle collisionBox = go.hitBox;
+            Rectangle collisionBox = go.Hitbox;
 
             //Defining each side
             Rectangle topLine = new Rectangle(collisionBox.Center.X - collisionBox.Width, collisionBox.Center.Y - collisionBox.Height, collisionBox.Width, 1);

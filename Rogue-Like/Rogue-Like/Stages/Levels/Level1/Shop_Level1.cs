@@ -39,13 +39,7 @@ namespace Rogue_Like
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
 
        };
-        public int GetIndexBackGround(int cellX, int cellY)
-        {
-            if (cellX < 0 || cellX > Width - 1 || cellY < 0 || cellY > Height - 1)
-                return 0;
 
-            return mapBackground[cellY, cellX];
-        }
         //Tilemap of Shop
         private int[,] map = new int[,]
        {
@@ -68,17 +62,8 @@ namespace Rogue_Like
             {12,17,18,18,18,18,18,19,18,18,18,18,60,59,58,21,21,21,21,19,21,21,21,21,21,22,23},
 
        };
-
-        public int GetIndex(int cellX, int cellY)
-        {
-            if (cellX < 0 || cellX > Width - 1 || cellY < 0 || cellY > Height - 1)
-                return 0;
-
-            return map[cellY, cellX];
-        }
        
         public static List<Texture2D> tileTextures = new List<Texture2D>();
-        //private List<Array> ArrayLevelGenerate = new List<Array>();
         //add Textures to the Dungeon map
         public void AddTexture(Texture2D texture)
         {

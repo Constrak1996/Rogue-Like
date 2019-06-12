@@ -18,7 +18,7 @@ namespace Rogue_Like
         public static bool spawnItem5 = true;
         public static bool spawnitem6 = true;
         private int budget = Player.myCoin;
-        public override Rectangle hitBox => base.hitBox;
+        public override Rectangle Hitbox => base.Hitbox;
 
         public ShopItem(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
@@ -87,7 +87,7 @@ namespace Rogue_Like
         /// </summary>
         public void SpawnShopItems()
         {         
-            if (spawnItem1 && GameWorld.isShop == true)
+            if (spawnItem1 && GameWorld.isShop_Starter == true)
             {
                 spriteName = shopItems[GameWorld.r.Next(0, 5)];
                 Vector2 pos1 = new Vector2(353, 386);
@@ -96,7 +96,7 @@ namespace Rogue_Like
                 spawnItem1 = false;
             }
 
-            if (spawnItem2 && GameWorld.isShop == true)
+            if (spawnItem2 && GameWorld.isShop_Starter == true)
             {
                 spriteName = shopItems[GameWorld.r.Next(0, 5)];
                 Vector2 pos2 = new Vector2(542, 386);
@@ -105,7 +105,7 @@ namespace Rogue_Like
                 spawnItem2 = false;
             }
 
-            if (spawnItem3 && GameWorld.isShop == true)
+            if (spawnItem3 && GameWorld.isShop_Starter == true)
             {
                 spriteName = shopItems[GameWorld.r.Next(0, 5)];
                 Vector2 pos3 = new Vector2(350, 701);
@@ -114,7 +114,7 @@ namespace Rogue_Like
                 spawnItem3 = false;
             }
 
-            if (spawnItem4 && GameWorld.isShop == true)
+            if (spawnItem4 && GameWorld.isShop_Starter == true)
             {
                 spriteName = shopItems[GameWorld.r.Next(0, 5)];
                 Vector2 pos4 = new Vector2(544, 701);
@@ -123,7 +123,7 @@ namespace Rogue_Like
                 spawnItem4 = false;
             }
 
-            if (spawnItem5 && GameWorld.isShop == true)
+            if (spawnItem5 && GameWorld.isShop_Starter == true)
             {
                 spriteName = shopItems[GameWorld.r.Next(0, 5)];
                 Vector2 pos5 = new Vector2(1183, 388);
@@ -132,7 +132,7 @@ namespace Rogue_Like
                 spawnItem5 = false;
             }
 
-            if (spawnitem6 && GameWorld.isShop == true)
+            if (spawnitem6 && GameWorld.isShop_Starter == true)
             {
                 spriteName = shopItems[GameWorld.r.Next(0, 5)];
                 Vector2 pos6 = new Vector2(1377, 388);
@@ -141,7 +141,7 @@ namespace Rogue_Like
                 spawnitem6 = false;
             }
 
-            if (GameWorld.isShop != true)
+            if (GameWorld.isShop_Starter != true)
             {
                 GameWorld.gameObjectsRemove.Add(this);
             }
