@@ -101,14 +101,14 @@ namespace Rogue_Like
         public static List<GameObject> gameObjectsAdd = new List<GameObject>();
         public static List<GameObject> gameObjectsRemove = new List<GameObject>();
 
-        
+
         private List<State> _previousState = new List<State>();
 
 
         //Graphics
         public static int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
         public static int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-        
+
         //Player
         public static Player player;
 
@@ -229,7 +229,7 @@ namespace Rogue_Like
             MediaPlayer.Volume = 0.5f;
             MediaPlayer.IsRepeating = true;
         }
-        
+
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
@@ -266,7 +266,7 @@ namespace Rogue_Like
             roomTime = enteredRoom.Seconds;
             Restart();
             Debugging();
-            
+
 
             //Adds gameobjects to the gameobjects list
             if (gameObjectsAdd.Count > 0)
@@ -277,7 +277,7 @@ namespace Rogue_Like
                 }
                 gameObjectsAdd.Clear();
             }
-            
+
 
             // Remove all game objects in removeList
             foreach (GameObject obj in gameObjectsRemove)
@@ -308,8 +308,8 @@ namespace Rogue_Like
             Restart();
         }
 
-            
-            }
+
+
         public void HitBox()
         {
             if (player.Hitbox.Intersects(bottomLineDoor) & _currentState is Shop_Level1)
@@ -523,7 +523,7 @@ namespace Rogue_Like
             }
 
 
-            }
+
         }
 
         /// <summary>
@@ -860,7 +860,7 @@ namespace Rogue_Like
                 spriteBatch.DrawString(Font, $"Mouse X: {Mouse.GetState().X.ToString()}\nMouse Y: {Mouse.GetState().Y.ToString()}", new Vector2(1735, 500), Color.White);
             }
             //Player vs Walls (Room's collisionbox)
-            
+
 
             spriteBatch.End();
 
@@ -893,10 +893,10 @@ namespace Rogue_Like
                 spriteBatch.Draw(collisionTexture, rightLine, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
                 spriteBatch.Draw(collisionTexture, leftLine, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
             }
-            
+
 
         }
-        
+
         private void DungeonCollisionBox()
         {
             //Defining each side
@@ -972,9 +972,9 @@ namespace Rogue_Like
             }
 
 
-            
 
-#endregion
+
+            #endregion
 
         }
 
@@ -1349,8 +1349,8 @@ namespace Rogue_Like
                 spriteBatch.Draw(collisionTexture, leftLineDoor2, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
                 spriteBatch.Draw(collisionTexture, leftLineDoor3, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
             }
-            
-#endregion
+
+            #endregion
 
         }
 
@@ -1403,10 +1403,10 @@ namespace Rogue_Like
                 spriteBatch.Draw(collisionTexture, rightLine, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
                 spriteBatch.Draw(collisionTexture, leftLine, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
             }
-            
-#endregion
 
-            
+            #endregion
+
+
 
         }
 
@@ -1460,10 +1460,10 @@ namespace Rogue_Like
                 spriteBatch.Draw(collisionTexture, rightLineDoor3, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
                 spriteBatch.Draw(collisionTexture, leftLine, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
             }
-            
-#endregion
 
-            
+            #endregion
+
+
         }
 
         private void TopAndLeftCollisionBox()
@@ -1516,12 +1516,12 @@ namespace Rogue_Like
                 spriteBatch.Draw(collisionTexture, leftLineDoor2, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
                 spriteBatch.Draw(collisionTexture, leftLineDoor3, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
             }
-            
-#endregion
 
-            
+            #endregion
+
+
         }
-        
+
         private void ShopDoorCollision()
         {
             //Defining each side
@@ -1539,7 +1539,7 @@ namespace Rogue_Like
                 spriteBatch.Draw(collisionTexture, topLineDoor, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
                 spriteBatch.Draw(collisionTexture, bottomLineDoor, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
             }
-            
+
         }
 
         private void AllDoorCollision()
@@ -1581,7 +1581,7 @@ namespace Rogue_Like
             {
                 spriteBatch.Draw(collisionTexture, topLineDoor, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
             }
-            
+
         }
 
         private void LeftDoorCollision()
@@ -1598,7 +1598,7 @@ namespace Rogue_Like
             {
                 spriteBatch.Draw(collisionTexture, leftLineDoor, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
             }
-            
+
         }
 
         private void BottomDoorCollision()
@@ -1615,7 +1615,7 @@ namespace Rogue_Like
             {
                 spriteBatch.Draw(collisionTexture, bottomLineDoor, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
             }
-            
+
         }
 
         private void RightDoorCollision()
@@ -1632,14 +1632,14 @@ namespace Rogue_Like
             {
                 spriteBatch.Draw(collisionTexture, rightLineDoor, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
             }
-            
+
         }
-        
+
         private void NextLevelRoomCollisionBox()
         {
 
             //Defining each side
-#region Rectangle lines
+            #region Rectangle lines
             topLine1 = new Rectangle(108, 105, 724, 1);
             topLine2 = new Rectangle(925, 105, 723, 1);
             Rectangle topLineDoor1 = new Rectangle(832, 30, 63, 1);
@@ -1686,10 +1686,10 @@ namespace Rogue_Like
                 spriteBatch.Draw(collisionTexture, rightLine, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 0);
                 spriteBatch.Draw(collisionTexture, leftLine, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 0);
             }
-            
-#endregion
 
-            
+            #endregion
+
+
         }
 
         private void LeftSideCollideableObjects1()
@@ -1807,11 +1807,15 @@ namespace Rogue_Like
                 spriteBatch.Draw(collisionTexture, rightBotCollideable3, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
                 spriteBatch.Draw(collisionTexture, rightBotCollideable4, null, Color.Transparent, 0, Vector2.Zero, SpriteEffects.None, 1);
             }
-            
-#endregion
+
+            #endregion
 
 
         }
+
+
+
+        #endregion
     }
-    #endregion
 }
+
