@@ -12,11 +12,11 @@ namespace Rogue_Like
 {
     class EndScreen : State
     {
+        public static bool endScreen;
         private Controller controller;
-        private Player player;
-        private SpriteFont Font;
-        private Texture2D _playerTexture;
         
+        private SpriteFont Font;
+       
         private List<Component> _component;
         /// <summary>
         /// 
@@ -26,26 +26,27 @@ namespace Rogue_Like
         /// <param name="content"></param>
         public EndScreen(GameWorld gameWorld, GraphicsDevice graphicsDevice, ContentManager content) : base(gameWorld, graphicsDevice, content)
         {
+            endScreen = true;
+            Menu.newgame = true;
             controller = new Controller();
             Font = content.Load<SpriteFont>("Font");
             
             var buttonTexture = _content.Load<Texture2D>("Button");
             var buttonFont = _content.Load<SpriteFont>("Font");
-
-
+            
             var saveScoreButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2(600, 600),
                 Text = "Save Score to highscore",
 
             };
+            
             saveScoreButton.Click += SaveScoreButton_Click;
-
-
+            
             _component = new List<Component>()
             {
                 saveScoreButton,
-
+                
             };
         }
         /// <summary>
@@ -55,9 +56,9 @@ namespace Rogue_Like
         /// <param name="e"></param>
         private void SaveScoreButton_Click(object sender, EventArgs e)
         {
-
-
+            controller.NewPlayer();
         }
+        
         /// <summary>
         /// 
         /// </summary>
@@ -65,16 +66,14 @@ namespace Rogue_Like
         /// <param name="spritebatch"></param>
         public override void Draw(GameTime gameTime, SpriteBatch spritebatch)
         {
-
-            spritebatch.Begin();
-            spritebatch.DrawString(Font, "Best score" + controller.getBestscore(), new Vector2(600, 400), Color.White);
-            spritebatch.DrawString(Font, "you'r score" + controller.getPlayerScore(), new Vector2(600, 500), Color.White);
+            
+            spritebatch.DrawString(Font, "Best score" + controller.GetBestScore(), new Vector2(600, 400), Color.White);
+            spritebatch.DrawString(Font, "you'r score" + controller.GetPlayerScore(), new Vector2(600, 500), Color.White);
             foreach (var component in _component)
             {
                 component.Draw(gameTime, spritebatch);
             }
             
-            spritebatch.End();
         }
         /// <summary>
         /// 
@@ -95,15 +94,15 @@ namespace Rogue_Like
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
                 _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
+                GameWorld.deathCounter = true;
+                GameWorld.isPlaying = false;
+               
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Space))
-            {
-                _gameWorld.ChangeState(new Menu(_gameWorld, _graphichsDevice, _content));
-            }
-
+            
             foreach (var component in _component)
             {
                 component.Update(gameTime);
+                
             }
 
         }

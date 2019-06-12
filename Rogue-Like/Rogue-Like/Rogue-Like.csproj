@@ -58,6 +58,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Autosave.cs" />
     <Compile Include="Ammo.cs" />
     <Compile Include="Bone.cs" />
     <Compile Include="Coin.cs" />
@@ -68,7 +69,7 @@
     <Compile Include="Component.cs" />
     <Compile Include="Enemy\EnemyBullet.cs" />
     <Compile Include="Player\PlayerMeleeAttack.cs" />
-    <Compile Include="Shop\ShopItems.cs" />
+    <Compile Include="Shop\ShopItem.cs" />
     <Compile Include="Stages\EndScreen.cs" />
     <Compile Include="Enemy\Enemy.cs" />
     <Compile Include="GameObject.cs" />

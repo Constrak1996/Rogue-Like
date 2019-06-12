@@ -1,10 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Threading;
 
 namespace Rogue_Like
 {
@@ -13,7 +16,12 @@ namespace Rogue_Like
     /// </summary>
     public class GameWorld : Game
     {
+        private static GameWorld instance;
+        public static bool isPlaying;
+        public static bool deathCounter = false; //Has the player died X Times
+        Controller controller = new Controller();
         GraphicsDeviceManager graphics;
+        private int playerDeathCount; //Counts the time the player died
         SpriteBatch spriteBatch;
         SpriteFont Font;
         private TimeSpan timeSinceStart;
@@ -130,10 +138,12 @@ namespace Rogue_Like
         public Texture2D shop;
         public Texture2D level1;
         public Texture2D level2;
-
-
+        
         //Player
         public static Player player;
+
+        //Shopitems
+        ShopItem shopItems;
 
         //Collision
         private Texture2D collisionTexture;
@@ -161,6 +171,26 @@ namespace Rogue_Like
         public static bool L1;
         public static bool L2;
 
+        //Soundeffects
+        public static SoundEffect playerMeleeSound;
+        public static SoundEffect playerRangedSound;
+        public static SoundEffect moneyPickupSound;
+
+        //Music
+        public static Song backTrack;
+        public static GameWorld Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GameWorld();
+                }
+                return instance;
+            }
+
+        }
+
         public void ChangeState(State state)
         {
             _nextState = state;
@@ -174,6 +204,7 @@ namespace Rogue_Like
             IsMouseVisible = true;
             graphics.PreferredBackBufferWidth = Width;
             graphics.PreferredBackBufferHeight = Height;
+
         }
 
         /// <summary>
@@ -200,19 +231,29 @@ namespace Rogue_Like
             //Collisionbox texture
             collisionTexture = Content.Load<Texture2D>("OnePixel");
             //Enemy
-            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0), 0);
+            enemy = new Enemy("Worker", new Transform(new Vector2(0, 0), 0));
 
             //Player
             player = new Player("SwordBob", new Transform(new Vector2(700, 200), 0));
             gameObjectsAdd.Add(player);
 
+            //Instansiate shop
+            shopItems = new ShopItem("worker", new Transform(new Vector2(0, 0), 0));
+
+            //Soundeffects
+            playerMeleeSound = Content.Load<SoundEffect>("SwordSlashSound");
+            playerRangedSound = Content.Load<SoundEffect>("PlayerBulletThrow");
+            moneyPickupSound = Content.Load<SoundEffect>("MoneyPickup");
+
             //Level bools running once
             L1 = true;
             L2 = true;
+
             Menu.newgame = true;
             Menu.resume = false;
+            EndScreen.endScreen = false;
         }
-
+        
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
@@ -221,7 +262,7 @@ namespace Rogue_Like
         {
 
         }
-
+        
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -247,6 +288,8 @@ namespace Rogue_Like
 
             enteredRoom += gameTime.ElapsedGameTime;
             roomTime = enteredRoom.Seconds;
+            Restart();
+
 
             //Adds gameobjects to the gameobjects list
             if (gameObjectsAdd.Count > 0)
@@ -272,24 +315,23 @@ namespace Rogue_Like
 
             //Player movement
             player.PlayerMovement(8);
-            
+
             //Check if gameobject is colliding, if it does run collision code
             foreach (GameObject go in gameObjects)
             {
-                 go.Update(gameTime);
+                go.Update(gameTime);
 
-                 foreach (GameObject other in gameObjects)
-                 {
-                     if (go != other && go.IsColliding(other))
-                     {
-                            go.DoCollision(other);
-                     }
-                 }
+                foreach (GameObject other in gameObjects)
+                {
+                    if (go != other && go.IsColliding(other))
+                    {
+                        go.DoCollision(other);
+                    }
+                }
             }
-
             enemy.Update(gameTime);
             base.Update(gameTime);
-            Debugging();
+            HitBox();
 
             switch (level)
             {
@@ -493,20 +535,77 @@ namespace Rogue_Like
                         isMap3 = true;
                     }
 
-                    if (player.Hitbox.Intersects(topLineDoor) & _currentState is NLR_Level1)
+            if (player.hitBox.Intersects(topLineDoor) & _currentState is NextLevelRoom)
+            {
+                _nextState = new Shop_Level1(this, GraphicsDevice, Content);
+                player.Transform = new Transform(new Vector2(865, 150), 1);
+                isShop = true;
+                isNextLevelRoom = false;
+            }
+        }
+        /// <summary>
+        /// Start a second life for the player
+        /// </summary>
+        public void Restart()
+        { 
+            
+            if (Player.currentHealth <= 0 && isPlaying)
+            {
+
+                playerDeathCount++;
+                if (playerDeathCount >= 6) //check to see if the player died 6 times
+                {
+                    ChangeState(new EndScreen(this, GraphicsDevice, Content));
+                    foreach (GameObject enemy in gameObjects)
                     {
-                        _nextState = new Shop_Level2(this, GraphicsDevice, Content);
-                        player.Transform = new Transform(new Vector2(865, 150), 1);
-                        isShop = true;
-                        isNextLevelRoom = false;
+                        gameObjectsRemove.Add(enemy);
                     }
-                    break;
-                case 1:
+                    LoadContent();
+                    isPlaying = false;
+                    playerDeathCount = 0;
+                }
+                else
+                {
+                    foreach (GameObject enemy in gameObjects)
+                    {
+                        gameObjectsRemove.Add(enemy);
+                        
+                    }
+                    
+                    int tempFood = Player.myFood;
+                    int tempHealth = Player.maxHealth;
+                    
+                    LoadContent();
+
+                    Player.myFood = tempFood;
+                    Player.maxHealth = tempHealth;
+
+                    if (Player.myFood <= 3)
+                    {
+                        Player.maxHealth -= 2;
+                        Player.currentHealth = Player.maxHealth;
+                    }
+                    else
+                    {
+                        Player.maxHealth += 2;
+                        Player.currentHealth = Player.maxHealth;
+                    }
+
+                    Menu.newgame = false;
+                    Menu.resume = true;
+
+                    _nextState = new Shop(this, GraphicsDevice, Content);
+
+                }
+
+
+            }
 
                     break;
             }
         }
         
+
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -518,10 +617,9 @@ namespace Rogue_Like
 
             spriteBatch.Begin();
             _currentState.Draw(gameTime, spriteBatch);
-            if (Menu.menu == false)
+            if (Menu.menu == false && isPlaying)
             {
-                if (Shop_Level1.shop == true)
-                {
+              
                     //Draws sprites in gameObjects list
                     foreach (GameObject go in gameObjects)
                     {
@@ -724,7 +822,7 @@ namespace Rogue_Like
                     player.PlayerMovement(-8);
                 }
 
-                if (player.Hitbox.Intersects(rightLine) || player.Hitbox.Intersects(rightLine1) || player.Hitbox.Intersects(rightLine2))
+                if (player.hitBox.Intersects(rightLine) || player.hitBox.Intersects(rightLine1) || player.hitBox.Intersects(rightLine2))
                 {
                     if (_currentState is Shop_Level1 || _currentState is Room1_Level1 || _currentState is Room2_Level1 || _currentState is Room3_Level1)
                     {
@@ -735,15 +833,15 @@ namespace Rogue_Like
                     {
                         player.PlayerMovement(-8);
                     }
-                    
+
                 }
 
-                if (player.Hitbox.Intersects(bottomLine) || player.Hitbox.Intersects(bottomLine1) || player.Hitbox.Intersects(bottomLine2))
+                if (player.hitBox.Intersects(bottomLine) || player.hitBox.Intersects(bottomLine1) || player.hitBox.Intersects(bottomLine2))
                 {
                     player.PlayerMovement(-8);
                 }
 
-                if (player.Hitbox.Intersects(leftLine) || player.Hitbox.Intersects(leftLine1) || player.Hitbox.Intersects(leftLine2))
+                if (player.hitBox.Intersects(leftLine) || player.hitBox.Intersects(leftLine1) || player.hitBox.Intersects(leftLine2))
                 {
                     if (_currentState is Shop_Level1 || _currentState is Room1_Level1 || _currentState is Room2_Level1 || _currentState is Room3_Level1)
                     {
@@ -837,18 +935,18 @@ namespace Rogue_Like
 
             base.Draw(gameTime);
         }
-
+        #region CollisionDrawings
         private void DrawCollisionBox(GameObject go)
         {
             //Creating a box around the object
-            Rectangle collisionBox = go.Hitbox;
-            
+            Rectangle collisionBox = go.hitBox;
+
             //Defining each side
             Rectangle topLine = new Rectangle(collisionBox.Center.X - collisionBox.Width, collisionBox.Center.Y - collisionBox.Height, collisionBox.Width, 1);
             Rectangle bottomLine = new Rectangle(collisionBox.Center.X - collisionBox.Width, collisionBox.Center.Y, collisionBox.Width, 1);
             Rectangle rightLine = new Rectangle(collisionBox.Center.X, collisionBox.Center.Y - collisionBox.Height, 1, collisionBox.Height);
             Rectangle leftLine = new Rectangle(collisionBox.Center.X - collisionBox.Width, collisionBox.Center.Y - collisionBox.Height, 1, collisionBox.Height);
-            
+
             //Draw each side
             if (isDebug == true)
             {
@@ -1784,4 +1882,5 @@ namespace Rogue_Like
 
         }
     }
+    #endregion
 }

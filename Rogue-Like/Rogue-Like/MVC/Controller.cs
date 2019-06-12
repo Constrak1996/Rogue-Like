@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Rogue_Like
@@ -21,45 +22,62 @@ namespace Rogue_Like
             
             //Structure the Tables
             {
-                model.highscoreStructure();
-                model.itemStructure();
+                model.HighScoreStructure();
+                model.ItemStructure();
+                model.CharacterTable();
+                
                 
             }
             //Fill the Tables
             {
 
-                model.fillHighscoreTable();
-                //model.fillitemTable();
+                model.FillHighScoreTable();
+                model.FillItemTable();
+                model.FillCharTable();
             }
         }
 
         //Get the games HighScore
-        public String getHighscore()
+        public String GetHighScore()
         {
-            return model.getHighscore();
+            return model.GetHighScore();
         }
        
         //Get a item from the itemsList
-        public string getItem(int id)
+        public string GetItem(int id)
         {
-            return model.getItem(id);
+            return model.GetItem(id);
         }
 
-        public String getNewHighscore()
+        public String GetNewHighScore()
         {
-            return model.getNewHighScore();
+            return model.GetNewHighScore();
         }
-        public void newPlayer()
+        public void NewPlayer()
         {
-            model.newPlayerScore();
+            model.NewPlayerScore();
         }
-        public String getBestscore()
+        public String GetBestScore()
         {
-            return model.getBestHeighscore();
+            return model.GetBestHighScore();
         }
-        public String getPlayerScore()
+        public String GetPlayerScore()
         {
-            return model.getUpdateNewScore();
+            return model.GetUpdateNewScore();
+        }
+       /// <summary>
+       /// Acces the savechar table and updates it
+       /// </summary>
+        public void SaveChar()
+        {
+            while (GameWorld.isPlaying)
+            {
+                model.ThreadUpdate(Player.myFood, Player.myCoin, Player.myScore, Player.currentHealth);
+
+
+                Thread.Sleep(500);
+
+            }
         }
     }
 }

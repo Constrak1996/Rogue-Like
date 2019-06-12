@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Rogue_Like
@@ -11,21 +13,23 @@ namespace Rogue_Like
     public class Player : GameObject
     {
         Controller controller = new Controller();
-        public static string Name;
+
+        private string[] nameList = { "Bore Ragnerock", "Hilbo Maggins", "Pappy Poonter", "Michael the bicicle", "Boris Boatman","Mr.X"};
+        public static string name;
         public bool shoot;
-        public static int health;
-        public static int damage;
+        public static int currentHealth;
+        public static int maxHealth;
+        public static int meleeDamage;
+        public static int rangedDamage;
         public static int bulletCount;
         public static string score;
-        public static int DataScore;
+        public static int myScore;
         public string coin;
-        public static int Coin;
+        public static int myCoin;
         public string food;
-        public static int Food;
-        public Random randomPlayerDamage = new Random();
-        public Random randomPlayerHealth = new Random();
+        public static int myFood;
         private double lastShot;
-
+       
         /// <summary>
         /// The players Constructor
         /// </summary>
@@ -33,16 +37,22 @@ namespace Rogue_Like
         /// <param name="Transform"></param>
         public Player(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
-            coin = controller.getItem(4);
-            Int32.TryParse(coin, out Coin);
-            score = controller.getPlayerScore();
-            Int32.TryParse(score, out DataScore);
-            food = controller.getItem(5);
-            Int32.TryParse(food, out Food);
-            Name = "Peter";
-            health = randomPlayerHealth.Next(50, 75);
-            damage = randomPlayerDamage.Next(10, 120);
-            bulletCount = 20;
+            coin = controller.GetItem(4);
+            Int32.TryParse(coin, out myCoin); //Converts the string coin to int Coin
+            score = controller.GetPlayerScore();
+            Int32.TryParse(score, out myScore); //string score to int dataScore
+            food = controller.GetItem(5);
+            Int32.TryParse(food, out myFood); //Convert the string food to int Food
+            name = nameList[GameWorld.r.Next(0,3)]; //randomise a name after the player dies
+            maxHealth = 20;
+            currentHealth = 20;
+            meleeDamage = 10;
+            rangedDamage = 5;
+
+            Thread CheckPoint = new Thread(controller.SaveChar);
+            CheckPoint.IsBackground = true;
+            CheckPoint.Start();
+                        
         }
 
         /// <summary>
@@ -71,7 +81,7 @@ namespace Rogue_Like
         /// <summary>
         /// Player hitbox
         /// </summary>
-        public override Rectangle Hitbox
+        public override Rectangle hitBox
         {
             get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, sprite.Width, sprite.Height); }
         }
@@ -79,20 +89,19 @@ namespace Rogue_Like
         public override void Update(GameTime gameTime)
         {
             lastShot += gameTime.ElapsedGameTime.TotalSeconds;
-
+          
             PlayerRanged();
             PlayerMelee();
-
-            if (health <= 0)
-            {
-                Restart();
-            }
+            
             base.Update(gameTime);
         }
-
+        /// <summary>
+        /// Allows the player to melee attack
+        /// </summary>
         public void PlayerMelee()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.E) && lastShot > 0.5f)
+            var mouseState = Mouse.GetState();
+            if (Keyboard.GetState().IsKeyDown(Keys.R) && lastShot >= 0.5f || mouseState.LeftButton == ButtonState.Pressed && lastShot >= 0.5)
             {
                 Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
                 Vector2 direction = mousePos - this.Transform.Position;
@@ -100,29 +109,31 @@ namespace Rogue_Like
                 PlayerMeleeAttack playerMelee = new PlayerMeleeAttack("PlayerSwipeTemp", new Transform(new Vector2(this.Transform.Position.X, this.Transform.Position.Y), 0), direction, rotation);
                 GameWorld.gameObjectsAdd.Add(playerMelee);
                 lastShot = 0;
+                GameWorld.playerMeleeSound.Play();
             }
         }
 
-        public void Restart()
-        {
-            new Player("SwordBob", new Transform(new Vector2(400, 50),0));
-        }
-
+        /// <summary>
+        /// Collison between player and objects
+        /// </summary>
+        /// <param name="otherObject"></param>
         public override void DoCollision(GameObject otherObject)
         {
             if (otherObject is EnemyBullet)
             {
-                health--;
+                currentHealth -= RangedEnemy.damage;
                 GameWorld.gameObjectsRemove.Add(otherObject);
             }
             if (otherObject is Coin)
             {
-                Coin++;
+                myCoin++;
                 GameWorld.gameObjectsRemove.Add(otherObject);
+                GameWorld.moneyPickupSound.Play();
             }
             if (otherObject is Food)
             {
-                Food++;
+                
+                myFood++;
                 GameWorld.gameObjectsRemove.Add(otherObject);
                 GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
                 
@@ -139,7 +150,8 @@ namespace Rogue_Like
         /// </summary>
         public void PlayerRanged()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) && lastShot > 1f && shoot == true)
+            var mouseState = Mouse.GetState();
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && lastShot >= 1f && shoot == true || mouseState.RightButton == ButtonState.Pressed && lastShot >= 1f && shoot == true)
             {
                 Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
                 Vector2 direction = mousePos - this.Transform.Position;
@@ -147,7 +159,8 @@ namespace Rogue_Like
                 Bullet bullet = new Bullet("BulletTest", new Transform(new Vector2(this.Transform.Position.X, this.Transform.Position.Y), 0), direction, 5);
                 GameWorld.gameObjectsAdd.Add(bullet);
                 lastShot = 0;
-                bulletCount--;              
+                bulletCount--;
+                GameWorld.playerRangedSound.Play();
             }
             if (bulletCount <= 0)
             {
@@ -158,5 +171,7 @@ namespace Rogue_Like
                 shoot = true;
             }
         }
+
+        
     }
 }

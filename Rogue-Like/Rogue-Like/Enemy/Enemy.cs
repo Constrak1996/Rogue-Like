@@ -12,28 +12,27 @@ namespace Rogue_Like
     public class Enemy : GameObject
     {
         Controller controller = new Controller();
-        Thread enemyThread;
+        
         //Spawn Bool
         public bool spawned;
-        
-        public int damage;
+        private int health;
+        public static int damage = 1; //static attack of the enemy
 
         public Vector2 enemyPos;
         public float enemyMoveSpeed = 1;
         private double lastAttack;
-
-
-
+        
         /// <summary>
         /// Enemy hitbox
         /// </summary>
-        public override Rectangle Hitbox
+        public override Rectangle hitBox
         {
             get { return new Rectangle((int)Transform.Position.X + 1, (int)Transform.Position.Y, sprite.Width, sprite.Height); }
         }
 
-        public Enemy(string spriteName, Transform Transform, int health) : base(spriteName, Transform)
+        public Enemy(string spriteName, Transform Transform) : base(spriteName, Transform)
         {
+            health = 100; //Enemys health
             
         }
 
@@ -213,16 +212,16 @@ namespace Rogue_Like
             switch (enemyType)
             {
                 case 0:
-                    GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
+                    GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0)));
                     break;
                 case 1:
-                    GameWorld.gameObjectsAdd.Add(new RangedEnemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
+                    GameWorld.gameObjectsAdd.Add(new RangedEnemy("RangedWorker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0)));
                     break;
                 case 2:
-                    GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
+                    GameWorld.gameObjectsAdd.Add(new Enemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0)));
                     break;
                 case 3:
-                    GameWorld.gameObjectsAdd.Add(new RangedEnemy("Worker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0), 50));
+                    GameWorld.gameObjectsAdd.Add(new RangedEnemy("RangedWorker", new Transform(new Vector2(GameWorld.r.Next(192, 1538), GameWorld.r.Next(192, 887)), 0)));
                     break;
                 default:
                     break;
@@ -251,41 +250,69 @@ namespace Rogue_Like
             {
                 if (lastAttack > 1.5f)
                 {
-                    Player.health -= 1;
+                    Player.currentHealth -= Enemy.damage;
                     lastAttack = 0;
+                    GameWorld.playerMeleeSound.Play();
                 }
             }
 
             //Bullet collision
             if (otherObject is Bullet)
             {
-                Player.health--;
                 
-                GameWorld.gameObjectsRemove.Add(this);
+
+                health -= Player.rangedDamage;
                 GameWorld.gameObjectsRemove.Add(otherObject);
-                int lootpool = GameWorld.r.Next(1, 3);
-                switch (lootpool)
+                if (health <=0)
                 {
-                    //case 0:
-                    //    GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
-                    //    break;
-                    case 1:
-                        GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
-                        break;
-                    case 2:
-                        GameWorld.gameObjectsAdd.Add(new Food("Food", new Transform(Transform.Position, 0)));
-                        break;
-                    case 3:
-                        GameWorld.gameObjectsAdd.Add(new Ammo("BulletTest", new Transform(Transform.Position, 0)));
-                        break;
-                    
+                    GameWorld.gameObjectsRemove.Add(this);
+                    int lootpool = GameWorld.r.Next(1, 3);
+                    switch (lootpool)
+                    {
+                        //case 0:
+                        //    GameWorld.gameObjectsAdd.Add(new Bone("Bone", new Transform(Transform.Position, 0)));
+                        //    break;
+                        case 1:
+                            GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
+                            break;
+                        case 2:
+                            GameWorld.gameObjectsAdd.Add(new Food("Meat", new Transform(Transform.Position, 0)));
+                            break;
+                        case 3:
+                            GameWorld.gameObjectsAdd.Add(new Ammo("BulletTest", new Transform(Transform.Position, 0)));
+                            break;
+
+                    }
                 }
+                GameWorld.gameObjectsRemove.Add(otherObject);
+                
             }
 
             //PlayerMelee collision
             if (otherObject is PlayerMeleeAttack)
             {
-                GameWorld.gameObjectsRemove.Add(this);
+                health -= Player.meleeDamage;
+                GameWorld.gameObjectsRemove.Add(otherObject);
+                if (health <=0)
+                {
+                    GameWorld.gameObjectsRemove.Add(this);
+                    int lootpool = GameWorld.r.Next(1, 3);
+                    switch (lootpool)
+                    {
+                        
+                        case 1:
+                            GameWorld.gameObjectsAdd.Add(new Coin("Coin", new Transform(Transform.Position, 0)));
+                            break;
+                        case 2:
+                            GameWorld.gameObjectsAdd.Add(new Food("Meat", new Transform(Transform.Position, 0)));
+                            break;
+                        case 3:
+                            GameWorld.gameObjectsAdd.Add(new Ammo("BulletTest", new Transform(Transform.Position, 0)));
+                            break;
+
+                    }
+                }
+                
             }
 
             base.DoCollision(otherObject);

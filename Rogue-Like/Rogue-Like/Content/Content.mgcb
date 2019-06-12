@@ -2293,6 +2293,18 @@
 /processorParam:TextureFormat=Color
 /build:64x64/Wall_Top_Right_2.png
 
+#begin ArmorOfTheGods.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ArmorOfTheGods.png
+
 #begin Arrow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2341,6 +2353,18 @@
 /processorParam:TextureFormat=Color
 /build:Button.jpg
 
+#begin Club.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Club.png
+
 #begin Coin.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2372,18 +2396,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Font.spritefont
 
-#begin Food.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Food.png
-
 #begin Ground.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2395,6 +2407,24 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Ground.png
+
+#begin Meat.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Meat.png
+
+#begin MoneyPickup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:MoneyPickup.wav
 
 #begin OnePixel.png
 /importer:TextureImporter
@@ -2420,6 +2450,12 @@
 /processorParam:TextureFormat=Color
 /build:Pillar1.png
 
+#begin PlayerBulletThrow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:PlayerBulletThrow.wav
+
 #begin PlayerSwipeTemp.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2431,6 +2467,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:PlayerSwipeTemp.png
+
+#begin RangedWorker.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:RangedWorker.png
+
+#begin Rock.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Rock.png
 
 #begin Shop.png
 /importer:TextureImporter
@@ -2444,6 +2504,42 @@
 /processorParam:TextureFormat=Color
 /build:Shop.png
 
+#begin Slingshot.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Slingshot.png
+
+#begin Stick.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Stick.png
+
+#begin Sword.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sword.png
+
 #begin SwordBob.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2455,6 +2551,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:SwordBob.png
+
+#begin SwordSlashSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SwordSlashSound.wav
 
 #begin Wall.png
 /importer:TextureImporter

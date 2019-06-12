@@ -34,12 +34,22 @@ namespace Rogue_Like
 
         #endregion
         #region methods
+        /// <summary>
+        /// Construktor of the button class
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <param name="font"></param>
         public Button(Texture2D texture, SpriteFont font)
         {
             _texture = texture;
             _font = font;
             PenColor = Color.Black;
         }
+        /// <summary>
+        /// Draws the item in the button class
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="spriteBach"></param>
         public override void Draw(GameTime gameTime, SpriteBatch spriteBach)
         {
             var colour = Color.White;
@@ -56,6 +66,10 @@ namespace Rogue_Like
                 spriteBach.DrawString(_font, Text, new Vector2(x, y), PenColor);
             }
         }
+        /// <summary>
+        /// Updates the Button class
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             _previousMouse = _curretMouse;

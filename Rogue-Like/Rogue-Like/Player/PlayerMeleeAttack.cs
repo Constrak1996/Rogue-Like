@@ -14,8 +14,14 @@ namespace Rogue_Like
         private float speed = 13;
         private int age;
 
-        public override Rectangle Hitbox => base.Hitbox;
-
+        public override Rectangle hitBox => base.hitBox;
+        /// <summary>
+        /// Construktor for the playerMeleeAttack
+        /// </summary>
+        /// <param name="spriteName"></param>
+        /// <param name="Transform"></param>
+        /// <param name="direction"></param>
+        /// <param name="rotation"></param>
         public PlayerMeleeAttack(string spriteName, Transform Transform, Vector2 direction, float rotation) : base(spriteName, Transform)
         {
             this.velocity = direction * speed;
@@ -38,7 +44,9 @@ namespace Rogue_Like
         {
             base.DoCollision(otherObject);
         }
-
+        /// <summary>
+        /// makes the game look at the position of the mouse
+        /// </summary>
         private void LookAtMouse()
         {
             //Distance from the mouse to the player position

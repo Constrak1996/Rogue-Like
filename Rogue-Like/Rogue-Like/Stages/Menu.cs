@@ -12,12 +12,13 @@ namespace Rogue_Like
     public class Menu : State
     {
         private Controller controller = new Controller();
+        Player player;
         private List<Component> _component;
         private Model model;
         public static bool newgame;
         public static bool resume;
         public static bool menu;
-        //private Thread idleIkon;
+        
         /// <summary>
         /// The MenuStates Constructor
         /// </summary>
@@ -65,16 +66,7 @@ namespace Rogue_Like
                 quitGameButton,
             };
         }
-        /// <summary>
-        /// Make a idleikon spinning around in the buttom right side of the screen attached to a thread
-        /// </summary>
-        //public void IdleIkon()
-        //{
-
-        //    //idleIkon = new Thread(new ThreadStart(IdleIkon));
-        //    idleIkon.Start();
-        //    idleIkon.IsBackground = true;
-        //}
+        
         /// <summary>
         /// Draws the MenuState
         /// </summary>
@@ -95,32 +87,36 @@ namespace Rogue_Like
         {
             if (newgame)
             {
-                controller.newPlayer();
-                _gameWorld.ChangeState(new Shop_Level1(_gameWorld, _graphichsDevice, _content));
-                Shop_Level1.shop = true;
+                
+                controller.NewPlayer();
+                _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+                Shop.shop = true;
                 menu = false;
-                newgame = false;
+                Player.score = "0";
+                Player.currentHealth = 20;
                 resume = true;
+                GameWorld.isPlaying = true;
+                
             }
-            
-            
+                
         }
+        
         //Makes a Resumebutton
         private void ResumeButton_Click(object sender, EventArgs e)
         {
             if (resume)
             {
-                _gameWorld.ChangeState(new Shop_Level1(_gameWorld, _graphichsDevice, _content));
-                Shop_Level1.shop = true;
+                _gameWorld.ChangeState(new Shop(_gameWorld, _graphichsDevice, _content));
+                Shop.shop = true;
                 menu = false;
             }
-            
+
 
         }
         //Makes a HighScorebutton
         private void HighScoreButton_Click(object sender, EventArgs e)
         {
-            
+
             _gameWorld.ChangeState(new HighScore(_gameWorld, _graphichsDevice, _content));
         }
 
@@ -144,7 +140,7 @@ namespace Rogue_Like
         private void QuitGameButton_Click(object sender, EventArgs e)
         {
             _gameWorld.Exit();
-            model.QuitGame();
+            GameWorld.isPlaying = false;
         }
     }
 }
